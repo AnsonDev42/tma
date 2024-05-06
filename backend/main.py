@@ -1,5 +1,4 @@
 import ast
-
 import requests
 from fastapi import FastAPI, UploadFile, status, HTTPException
 from pydantic import BaseModel
@@ -126,8 +125,8 @@ def calculate_bounding_box(image_xy: tuple, bounding_box: list) -> tuple:
     y_min = min([x[1] for x in bounding_box])
     y_max = max([x[1] for x in bounding_box])
 
-    x_percentage = (x_min / image_xy[0], x_max / image_xy[0])
-    y_percentage = (y_min / image_xy[1], y_max / image_xy[1])
+    x_percentage = x_min / image_xy[0]
+    y_percentage = y_min / image_xy[1]
     w_percentage = (x_max - x_min) / image_xy[0]
     h_percentage = (y_max - y_min) / image_xy[1]
     return x_percentage, y_percentage, w_percentage, h_percentage
@@ -214,7 +213,13 @@ async def ocr_pipeline(file: UploadFile):
         return {"message": "No file uploaded"}
 
     img_hw, ocr_results = get_ocr_result(file.file.read())
+
     print(f"img_hw: {img_hw}, ocr_results: {ocr_results}")
-    processed_results = process_ocr(img_hw, ocr_results)
+    try:
+        processed_results = await process_ocr(img_hw, ocr_results)
+    except HTTPException:
+        raise HTTPException(status_code=400, detail="Failed to process the image")
+
+    # processed_results = process_ocr(img_hw, ocr_results)
 
     return {"results": processed_results, "message": "OK"}
