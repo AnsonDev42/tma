@@ -8,6 +8,8 @@ import base64
 from rapidocr_onnxruntime import RapidOCR
 import cv2
 import numpy as np
+import asyncio
+import httpx
 
 app = FastAPI()
 ocr_engine = RapidOCR()
@@ -71,41 +73,46 @@ def get_ocr_result(
         raise HTTPException(status_code=400, detail="Failed to parse OCR results")
 
 
-def process_ocr(img_hw, ocr_results: list):
+async def process_ocr(img_hw, ocr_results: list):
     """
     Process OCR by searching dish_name and return structured results
-
     """
     processed_results = ocr_results
-    # processed_results = [
-    #     [
-    #         ["FATTO TIRAMISU-7", 0.9470489],
-    #         [[1181, 728], [1870, 748], [1870, 819], [1181, 799]],
-    #     ],
-    #     [
-    #         ["Coffee liqueur-soaked sponge, mascarpone, chocolate", 0.9988693],
-    #         [[681, 811], [2358, 858], [2358, 948], [681, 901]],
-    #     ],
-    # ]
     all_dishes_info = []
-    for item in processed_results[:2]:
-        dish_name = item[0][0]
-        confidence = item[0][1]
+    try:
+        tasks = []
+        for item in processed_results:
+            dish_name = item[0][0]
+            tasks.append(search_dish_info_wiki(dish_name))
+
+        dish_infos = await asyncio.gather(*tasks)
+    except HTTPException as http_exc:
+        print(f"Failed to search the dish in async mode: {http_exc.detail}")
+        raise HTTPException(
+            status_code=http_exc.status_code,
+            detail=f"Failed to search the dish in async mode: {http_exc.detail}",
+        )
+    except Exception as exc:
+        print(f"An unexpected error occurred: {exc}")
+        raise HTTPException(
+            status_code=500,
+            detail="An unexpected error occurred while processing OCR results",
+        )
+    for dish_info, item in zip(dish_infos, processed_results):
         bounding_boxes = item[1]
-        print(dish_name, confidence, bounding_boxes)
-        dish_info = search_dish_info(dish_name)
+        if "description" not in dish_info:  # failed search
+            continue
         x_percentage, y_percentage, w_percentage, h_percentage = calculate_bounding_box(
             img_hw, bounding_boxes
         )
-        print(dish_info)
-        dish_info["bounding_box"] = {
+        dish_info["bounding_box_percentage"] = {
             "x": x_percentage,
             "y": y_percentage,
             "w": w_percentage,
             "h": h_percentage,
         }
+
         all_dishes_info.append(dish_info)
-        print("---" * 10)
 
     return all_dishes_info
 
@@ -153,6 +160,38 @@ def search_dish_info(dish_name: str) -> dict:
             dish_info["image"] = item["img_src"]
             dish_info["text"] = item["title"]
             return dish_info
+    raise HTTPException(status_code=400, detail="Failed to find results about the dish")
+
+
+async def search_dish_info_wiki(dish_name: str) -> dict:
+    """
+    Search a dish via Searching on Wikipedia and return the description and image of the dish
+    if found in the save search results
+    """
+    url = "https://api.wikimedia.org/core/v1/wikipedia/en/search/page"
+    querystring = {"q": dish_name, "format": "json", "limit": "3"}
+
+    async with httpx.AsyncClient() as client:
+        response = await client.get(url, params=querystring, timeout=3)
+
+    search_results = response.json()
+    dish_info = {}
+
+    if "pages" not in search_results or len(search_results["pages"]) == 0:
+        return dish_info
+
+    for item in search_results["pages"]:
+        if (
+            "title" in item
+            and item["title"] != ""
+            and "thumbnail" in item
+            and item["thumbnail"] is not None
+        ):
+            dish_info["description"] = item["description"]
+            dish_info["image"] = "https:" + item["thumbnail"]["url"]
+            dish_info["text"] = item["title"]
+            return dish_info
+
     raise HTTPException(status_code=400, detail="Failed to find results about the dish")
 
 
