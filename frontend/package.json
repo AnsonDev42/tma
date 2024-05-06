@@ -8,7 +8,10 @@
 		"build": "tsc && vite build",
 		"lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
 		"preview": "vite preview",
-		"prepare": "husky"
+		"prepare": "cd .. && husky frontend/.husky"
+	},
+	"lint-staged": {
+		"*": ["biome check --apply --no-errors-on-unmatched"]
 	},
 	"dependencies": {
 		"@hookform/resolvers": "^3.3.4",
@@ -43,8 +46,5 @@
 		"tailwindcss": "^3.4.3",
 		"typescript": "^5.2.2",
 		"vite": "^5.2.0"
-	},
-	"lint-staged": {
-		"*": ["biome check --no-errors-on-unmatched --files-ignore-unknown=true"]
 	}
 }
