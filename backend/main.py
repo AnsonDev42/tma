@@ -194,13 +194,6 @@ async def search_dish_info_wiki(dish_name: str) -> dict:
     raise HTTPException(status_code=400, detail="Failed to find results about the dish")
 
 
-@app.get("/test")
-async def test():
-    # res = search_dish("masala chicken")
-    res = process_ocr([])
-    return {"message": "OK", "results": res}
-
-
 @app.post("/v1/ocr")
 async def ocr_pipeline(file: UploadFile):
     """
