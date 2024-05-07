@@ -1,7 +1,6 @@
 import ast
 import requests
 from fastapi import FastAPI, UploadFile, status, HTTPException
-from pydantic import BaseModel
 import json
 import base64
 from rapidocr_onnxruntime import RapidOCR
@@ -17,27 +16,9 @@ WIKI_API_URL = "https://api.wikimedia.org/core/v1/wikipedia/en/search/page"
 PD_OCR_API_URL = "http://anson-eq.local:9998/ocr/prediction"
 
 
-class HealthCheck(BaseModel):
-    """Response model to validate and return when performing a health check."""
-
-    status: str = "OK"
-
-
-@app.get(
-    "/health",
-    tags=["healthcheck"],
-    summary="Perform a Health Check",
-    response_description="Return HTTP Status Code 200 (OK)",
-    status_code=status.HTTP_200_OK,
-    response_model=HealthCheck,
-)
-def get_health() -> HealthCheck:
-    return HealthCheck(status="OK")
-
-
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
+@app.get("/health")
+def get_health():
+    return status.HTTP_200_OK
 
 
 def cv2_to_base64(image):
