@@ -3,14 +3,12 @@ import requests
 from fastapi import FastAPI, UploadFile, status, HTTPException
 import json
 import base64
-from rapidocr_onnxruntime import RapidOCR
 import cv2
 import numpy as np
 import asyncio
 import httpx
 
 app = FastAPI()
-ocr_engine = RapidOCR()
 SEARXNG_API_URL = "http://anson-eq.local:8081/"
 WIKI_API_URL = "https://api.wikimedia.org/core/v1/wikipedia/en/search/page"
 PD_OCR_API_URL = "http://anson-eq.local:9998/ocr/prediction"
