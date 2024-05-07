@@ -12,6 +12,9 @@ import httpx
 
 app = FastAPI()
 ocr_engine = RapidOCR()
+SEARXNG_API_URL = "http://anson-eq.local:8081/"
+WIKI_API_URL = "https://api.wikimedia.org/core/v1/wikipedia/en/search/page"
+PD_OCR_API_URL = "http://anson-eq.local:9998/ocr/prediction"
 
 
 class HealthCheck(BaseModel):
@@ -43,7 +46,6 @@ def cv2_to_base64(image):
 
 def get_ocr_result(
     file_content: bytes,
-    url: str = "http://anson-eq.local:9998/ocr/prediction",
     timeout: int = 10,
 ):
     """
@@ -55,7 +57,8 @@ def get_ocr_result(
     img_height, img_width = cv2.imdecode(nparr, cv2.IMREAD_COLOR).shape[:2]
     data = {"key": ["image"], "value": [image]}
     try:
-        r = requests.post(url=url, data=json.dumps(data), timeout=timeout)
+        r = requests.post(url=PD_OCR_API_URL, data=json.dumps(data), timeout=timeout)
+        assert r.status_code == 200
         result = r.json()
     except Exception:
         raise HTTPException(status_code=400, detail="Failed to process the image")
@@ -141,9 +144,10 @@ def search_dish_info(dish_name: str) -> dict:
         "q": f"site:wikipedia.org what is {dish_name}",
         "format": "json",
     }
-    url = "http://anson-eq.local:8081/"
     dish_info = {}
-    search_results = requests.get(url=url, params=query, timeout=10)
+    search_results = requests.get(url=SEARXNG_API_URL, params=query, timeout=10)
+    if search_results.status_code != 200:
+        raise HTTPException(status_code=400, detail="Failed to search the dish")
     search_results = search_results.json()
     if "results" not in search_results or len(search_results["results"]) == 0:
         raise HTTPException(status_code=400, detail="Failed to search the dish")
@@ -167,12 +171,12 @@ async def search_dish_info_wiki(dish_name: str) -> dict:
     Search a dish via Searching on Wikipedia and return the description and image of the dish
     if found in the save search results
     """
-    url = "https://api.wikimedia.org/core/v1/wikipedia/en/search/page"
     querystring = {"q": dish_name, "format": "json", "limit": "3"}
 
     async with httpx.AsyncClient() as client:
-        response = await client.get(url, params=querystring, timeout=3)
-
+        response = await client.get(WIKI_API_URL, params=querystring, timeout=3)
+    if response.status_code != 200:
+        raise HTTPException(status_code=400, detail="Failed to search the dish")
     search_results = response.json()
     dish_info = {}
 
