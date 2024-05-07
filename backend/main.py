@@ -21,8 +21,14 @@ def get_health():
     return status.HTTP_200_OK
 
 
-def cv2_to_base64(image):
-    return base64.b64encode(image).decode("utf8")
+class OCRException(Exception):
+    status_code = 400
+    detail = "Failed to process the image"
+
+
+class DishInfoException(Exception):
+    status_code = 400
+    detail = "Failed to search the dish"
 
 
 def get_ocr_result(
@@ -33,7 +39,7 @@ def get_ocr_result(
     Post uploaded image file content to pdOCR server and return img dimension and OCR results in json format
     return: (img_height, img_width), ocr_results
     """
-    image = cv2_to_base64(file_content)
+    image = base64.b64encode(file_content).decode("utf8")
     nparr = np.frombuffer(file_content, np.uint8)
     img_height, img_width = cv2.imdecode(nparr, cv2.IMREAD_COLOR).shape[:2]
     data = {"key": ["image"], "value": [image]}
@@ -45,15 +51,16 @@ def get_ocr_result(
         raise HTTPException(status_code=400, detail="Failed to process the image")
 
     if "err_no" not in result or result["err_no"] != 0 or "value" not in result:
-        raise HTTPException(status_code=400, detail="Failed to process the image")
+        raise OCRException()
 
     ocr_results_str = result["value"][0]
     try:
         ocr_results = ast.literal_eval(ocr_results_str)
-        return (img_height, img_width), ocr_results
-    except json.JSONDecodeError:
-        print(f"Failed to parse OCR results: {ocr_results_str}")
-        raise HTTPException(status_code=400, detail="Failed to parse OCR results")
+        assert isinstance(ocr_results, list)
+        assert len(ocr_results) > 0
+    except json.JSONDecodeError as e:
+        raise json.JSONDecodeError("Failed to parse the OCR results", e.doc, e.pos)
+    return (img_height, img_width), ocr_results
 
 
 async def process_ocr(img_hw, ocr_results: list):
@@ -70,13 +77,11 @@ async def process_ocr(img_hw, ocr_results: list):
 
         dish_infos = await asyncio.gather(*tasks)
     except HTTPException as http_exc:
-        print(f"Failed to search the dish in async mode: {http_exc.detail}")
         raise HTTPException(
             status_code=http_exc.status_code,
             detail=f"Failed to search the dish in async mode: {http_exc.detail}",
         )
-    except Exception as exc:
-        print(f"An unexpected error occurred: {exc}")
+    except Exception:
         raise HTTPException(
             status_code=500,
             detail="An unexpected error occurred while processing OCR results",
@@ -85,22 +90,14 @@ async def process_ocr(img_hw, ocr_results: list):
         bounding_boxes = item[1]
         if "description" not in dish_info:  # failed search
             continue
-        x_percentage, y_percentage, w_percentage, h_percentage = calculate_bounding_box(
+        dish_info["bounding_box_percentage"] = calculate_bounding_box(
             img_hw, bounding_boxes
         )
-        dish_info["bounding_box_percentage"] = {
-            "x": x_percentage,
-            "y": y_percentage,
-            "w": w_percentage,
-            "h": h_percentage,
-        }
-
         all_dishes_info.append(dish_info)
-
     return all_dishes_info
 
 
-def calculate_bounding_box(image_xy: tuple, bounding_box: list) -> tuple:
+def calculate_bounding_box(image_xy: tuple, bounding_box: list) -> dict:
     """
     Calculate the bounding box of the detected text in image percentage
     """
@@ -113,7 +110,13 @@ def calculate_bounding_box(image_xy: tuple, bounding_box: list) -> tuple:
     y_percentage = y_min / image_xy[1]
     w_percentage = (x_max - x_min) / image_xy[0]
     h_percentage = (y_max - y_min) / image_xy[1]
-    return x_percentage, y_percentage, w_percentage, h_percentage
+    bb = {
+        "x": x_percentage,
+        "y": y_percentage,
+        "w": w_percentage,
+        "h": h_percentage,
+    }
+    return bb
 
 
 def search_dish_info(dish_name: str) -> dict:
@@ -122,7 +125,7 @@ def search_dish_info(dish_name: str) -> dict:
         if found in the save search results
     """
     query = {
-        "q": f"site:wikipedia.org what is {dish_name}",
+        "q": f"site:wikipedia.org {dish_name}",
         "format": "json",
     }
     dish_info = {}
@@ -131,7 +134,7 @@ def search_dish_info(dish_name: str) -> dict:
         raise HTTPException(status_code=400, detail="Failed to search the dish")
     search_results = search_results.json()
     if "results" not in search_results or len(search_results["results"]) == 0:
-        raise HTTPException(status_code=400, detail="Failed to search the dish")
+        return {}
     for item in search_results["results"]:
         # todo: put into pydantic model to serialize
         if (
@@ -144,7 +147,9 @@ def search_dish_info(dish_name: str) -> dict:
             dish_info["image"] = item["img_src"]
             dish_info["text"] = item["title"]
             return dish_info
-    raise HTTPException(status_code=400, detail="Failed to find results about the dish")
+    raise DishInfoException(
+        status_code=400, detail="Failed to find results about the dish"
+    )
 
 
 async def search_dish_info_wiki(dish_name: str) -> dict:
@@ -159,11 +164,9 @@ async def search_dish_info_wiki(dish_name: str) -> dict:
     if response.status_code != 200:
         raise HTTPException(status_code=400, detail="Failed to search the dish")
     search_results = response.json()
-    dish_info = {}
-
     if "pages" not in search_results or len(search_results["pages"]) == 0:
-        return dish_info
-
+        return {}
+    dish_info = {}
     for item in search_results["pages"]:
         if (
             "title" in item
@@ -175,11 +178,10 @@ async def search_dish_info_wiki(dish_name: str) -> dict:
             dish_info["image"] = "https:" + item["thumbnail"]["url"]
             dish_info["text"] = item["title"]
             return dish_info
+    return dish_info
 
-    raise HTTPException(status_code=400, detail="Failed to find results about the dish")
 
-
-@app.post("/v1/ocr")
+@app.post("/v1/menu_text_analysis")
 async def ocr_pipeline(file: UploadFile):
     """
     pipeline from image to results:
@@ -188,16 +190,28 @@ async def ocr_pipeline(file: UploadFile):
     """
 
     if not file or not file.filename:
-        return {"message": "No file uploaded"}
-
-    img_hw, ocr_results = get_ocr_result(file.file.read())
-
-    print(f"img_hw: {img_hw}, ocr_results: {ocr_results}")
+        raise HTTPException(status_code=400, detail="No file uploaded")
+    try:
+        img_hw, ocr_results = get_ocr_result(file.file.read())
+    except Exception:
+        raise HTTPException(status_code=400, detail="Failed to OCR the image")
     try:
         processed_results = await process_ocr(img_hw, ocr_results)
-    except HTTPException:
-        raise HTTPException(status_code=400, detail="Failed to process the image")
-
-    # processed_results = process_ocr(img_hw, ocr_results)
+    except Exception:
+        raise HTTPException(status_code=400, detail="Failed to process the OCR results")
 
     return {"results": processed_results, "message": "OK"}
+
+
+@app.get("/v1/get_dish_info")
+async def dish_info_pipeline(dish: str):
+    """
+    return a dish info from wikipedia search
+    results contains description, image(url), and text
+    """
+    dish_info = await search_dish_info_wiki(dish)
+
+    return {
+        "results": dish_info,
+        "message": "OK",
+    }
