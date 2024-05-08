@@ -7,11 +7,24 @@ import cv2
 import numpy as np
 import asyncio
 import httpx
+from dataclasses import dataclass, asdict
 
 app = FastAPI()
 SEARXNG_API_URL = "http://anson-eq.local:8081/"
 WIKI_API_URL = "https://api.wikimedia.org/core/v1/wikipedia/en/search/page"
 PD_OCR_API_URL = "http://anson-eq.local:9998/ocr/prediction"
+
+
+@dataclass
+class BoundingBox:
+    """
+    Bounding box for detected text in image in percentage
+    """
+
+    x: float
+    y: float
+    w: float
+    h: float
 
 
 @app.get("/")
@@ -90,8 +103,8 @@ async def process_ocr(img_hw, ocr_results: list):
         bounding_boxes = item[1]
         if "description" not in dish_info:  # failed search
             continue
-        dish_info["bounding_box_percentage"] = calculate_bounding_box(
-            img_hw, bounding_boxes
+        dish_info["bounding_box_percentage"] = asdict(
+            calculate_bounding_box(img_hw, bounding_boxes)
         )
         all_dishes_info.append(dish_info)
     return all_dishes_info
@@ -110,13 +123,8 @@ def calculate_bounding_box(image_xy: tuple, bounding_box: list) -> dict:
     y_percentage = y_min / image_xy[1]
     w_percentage = (x_max - x_min) / image_xy[0]
     h_percentage = (y_max - y_min) / image_xy[1]
-    bb = {
-        "x": x_percentage,
-        "y": y_percentage,
-        "w": w_percentage,
-        "h": h_percentage,
-    }
-    return bb
+
+    return BoundingBox(x=x_percentage, y=y_percentage, w=w_percentage, h=h_percentage)
 
 
 def search_dish_info(dish_name: str) -> dict:
