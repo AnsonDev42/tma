@@ -14,7 +14,7 @@ WIKI_API_URL = "https://api.wikimedia.org/core/v1/wikipedia/en/search/page"
 PD_OCR_API_URL = "http://anson-eq.local:9998/ocr/prediction"
 
 
-@app.get("/health")
+@app.get("/")
 def get_health():
     return status.HTTP_200_OK
 
