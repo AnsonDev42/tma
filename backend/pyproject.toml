@@ -10,6 +10,7 @@ python = "^3.11"
 fastapi = "^0.111.0"
 uvicorn = "^0.29.0"
 requests = "^2.31.0"
+opencv-python = "^4.9.0.80"
 
 
 [tool.poetry.group.dev.dependencies]
