@@ -19,14 +19,16 @@ def get_health():
     return status.HTTP_200_OK
 
 
-class OCRException(Exception):
-    status_code = 400
-    detail = "Failed to process the image"
+class OCRError(Exception):
+    def __init__(self, message="Failed to process the image"):
+        super().__init__(message)
+        self.status_code = 400
 
 
-class DishInfoException(Exception):
-    status_code = 400
-    detail = "Failed to search the dish"
+class DishSearchError(Exception):
+    def __init__(self, message="Failed to build dish results"):
+        super().__init__(message)
+        self.status_code = 400
 
 
 def get_ocr_result(
@@ -49,7 +51,7 @@ def get_ocr_result(
         raise HTTPException(status_code=400, detail="Failed to process the image")
 
     if "err_no" not in result or result["err_no"] != 0 or "value" not in result:
-        raise OCRException()
+        raise OCRError()
 
     ocr_results_str = result["value"][0]
     try:
@@ -145,7 +147,7 @@ def search_dish_info(dish_name: str) -> dict:
             dish_info["image"] = item["img_src"]
             dish_info["text"] = item["title"]
             return dish_info
-    raise DishInfoException(
+    raise DishSearchError(
         status_code=400, detail="Failed to find results about the dish"
     )
 
