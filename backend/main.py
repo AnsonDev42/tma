@@ -181,8 +181,8 @@ async def search_dish_info_wiki(dish_name: str) -> dict:
     return dish_info
 
 
-@app.post("/v1/menu_text_analysis")
-async def ocr_pipeline(file: UploadFile):
+@app.post("/upload")
+async def menu_analysis(file: UploadFile):
     """
     pipeline from image to results:
     uploadFile -> get_ocr_result() -> process_ocr(search dish+calculate bb) -> return results in schema
@@ -203,7 +203,7 @@ async def ocr_pipeline(file: UploadFile):
     return {"results": processed_results, "message": "OK"}
 
 
-@app.get("/v1/get_dish_info")
+@app.get("/get_dish_info")
 async def dish_info_pipeline(dish: str):
     """
     return a dish info from wikipedia search
