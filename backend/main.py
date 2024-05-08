@@ -28,7 +28,7 @@ class BoundingBox:
 
 
 @app.get("/")
-def get_health():
+def root():
     return status.HTTP_200_OK
 
 
