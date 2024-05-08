@@ -114,6 +114,7 @@ def calculate_bounding_box(image_xy: tuple, bounding_box: list) -> dict:
     """
     Calculate the bounding box of the detected text in image percentage
     """
+    assert image_xy[0] > 0 and image_xy[1] > 0, "Invalid image dimension"
     x_min = min([x[0] for x in bounding_box])
     x_max = max([x[0] for x in bounding_box])
     y_min = min([x[1] for x in bounding_box])
