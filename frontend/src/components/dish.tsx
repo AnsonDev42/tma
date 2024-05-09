@@ -27,8 +27,8 @@ export const demoData: DishProps[] = [
 			text: "FATTO TIRAMASU",
 			imgSrc:
 				"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Dolce_%26_Gabbana_Store_%2851396804775%29.jpg/60px-Dolce_%26_Gabbana_Store_%2851396804775%29.jpg",
-			description: `Tiramisu (Italian: tiramisù) is an Italian dessert made of 
-        ladyfinger pastries (savoiardi) dipped in coffee, layered with a 
+			description: `Tiramisu (Italian: tiramisù) is an Italian dessert made of
+        ladyfinger pastries (savoiardi) dipped in coffee, layered with a
         whipped mixture of eggs, sugar and mascarpone and flavoured with cocoa.`,
 		},
 	},
@@ -44,10 +44,10 @@ export const demoData: DishProps[] = [
 			text: "Pizzeria",
 			imgSrc:
 				"https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Old_Pizzeria_-_Napoli.jpg/60px-Old_Pizzeria_-_Napoli.jpg",
-			description: `Scugnizzielli is a term often used in Naples, Italy, to refer to 
-        street food or small, typically savory, snacks. When filled with Nutella, 
-        it indicates that these bites are filled with the popular hazelnut 
-        chocolate spread. So, it would likely refer to a dessert or pastry made 
+			description: `Scugnizzielli is a term often used in Naples, Italy, to refer to
+        street food or small, typically savory, snacks. When filled with Nutella,
+        it indicates that these bites are filled with the popular hazelnut
+        chocolate spread. So, it would likely refer to a dessert or pastry made
         with Nutella filling.`,
 		},
 	},
@@ -75,7 +75,7 @@ export async function uploadData(
 	setData: React.Dispatch<React.SetStateAction<DishProps[]>>,
 ) {
 	try {
-		const response = await axios.post("/api/upload", formData, {
+		const response = await axios.post("http://localhost:8000/test", formData, {
 			headers: { "Content-Type": "multipart/form-data" },
 		});
 
