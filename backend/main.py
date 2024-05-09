@@ -12,12 +12,22 @@ import asyncio
 import httpx
 from dataclasses import dataclass, asdict
 
+from fastapi.middleware.cors import CORSMiddleware
+
+app = FastAPI()
 SEARXNG_API_URL = "http://anson-eq.local:8081/"
 WIKI_API_URL = "https://api.wikimedia.org/core/v1/wikipedia/en/search/page"
 PD_OCR_API_URL = "http://anson-eq.local:9998/ocr/prediction"
+ALLOWED_ORIGINS = ["http://localhost", "http://localhost:8080", "http://localhost:5173"]
 TIMEOUT = 10
 
-app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=ALLOWED_ORIGINS,
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods
+    allow_headers=["*"],  # Allows all headers
+)
 
 
 @dataclass
@@ -164,7 +174,7 @@ async def search_dish_info_via_wiki(dish_name: str) -> dict:
         ):
             dish_info = {
                 "description": item["description"],
-                "image": "https:" + item["thumbnail"]["url"],
+                "imageSrc": "https:" + item["thumbnail"]["url"],
                 "text": item["title"],
             }
             return dish_info
@@ -190,6 +200,231 @@ async def upload(file: UploadFile):
     texts_bboxes = normalize_text_bbox(img_hw, ocr_results)
     return aggregate_dishes_info_and_bbox(dishes_info, texts_bboxes)
 
+@app.post("/test")
+async def test_upload(file: UploadFile):
+    """
+    pipeline from image to results:
+    1. get OCR results
+    2. search dish info
+    3. calculate bounding box in percentage
+    4. aggregate results
+    """
+
+    if not file or not file.filename:
+        raise HTTPException(
+            status_code=http.HTTPStatus.NO_CONTENT.value, detail="No file uploaded"
+        )
+    return {"results": [
+        {
+            "info": {
+                "description": "Italian fashion house",
+                "imageSrc": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Dolce_%26_Gabbana_Store_%2851396804775%29.jpg/60px-Dolce_%26_Gabbana_Store_%2851396804775%29.jpg",
+                "text": "Dolce & Gabbana"
+            },
+            "boundingBox": {
+                "x": 21.081349206349206,
+                "y": 10.152116402116402,
+                "w": 33.60615079365079,
+                "h": 5.4563492063492065
+            }
+        },
+        {
+            "info": {
+                "description": "Restaurant that sells pizza",
+                "imageSrc": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Old_Pizzeria_-_Napoli.jpg/60px-Old_Pizzeria_-_Napoli.jpg",
+                "text": "Pizzeria"
+            },
+            "boundingBox": {
+                "x": 28.29861111111111,
+                "y": 16.666666666666668,
+                "w": 19.146825396825395,
+                "h": 3.6375661375661377
+            }
+        },
+        {
+            "info": {
+                "description": "Country in Southern Europe",
+                "imageSrc": "https://upload.wikimedia.org/wikipedia/en/thumb/0/03/Flag_of_Italy.svg/60px-Flag_of_Italy.svg.png",
+                "text": "Italy"
+            },
+            "boundingBox": {
+                "x": 29.092261904761905,
+                "y": 23.941798941798943,
+                "w": 17.286706349206348,
+                "h": 3.240740740740741
+            }
+        },
+        {
+            "info": {
+                "description": None,
+                "image": None,
+                "text": None
+            },
+            "boundingBox": {
+                "x": 17.088293650793652,
+                "y": 26.951058201058203,
+                "w": 41.294642857142854,
+                "h": 4.166666666666667
+            }
+        },
+        {
+            "info": {
+                "description": None,
+                "image": None,
+                "text": None
+            },
+            "boundingBox": {
+                "x": 20.88293650793651,
+                "y": 31.87830687830688,
+                "w": 33.407738095238095,
+                "h": 3.4060846560846563
+            }
+        },
+        {
+            "info": {
+                "description": "Culinary traditions of Israel",
+                "imageSrc": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/The_7_Breakfasts_-_Caf%C3%A9_Caf%C3%A9.jpg/60px-The_7_Breakfasts_-_Caf%C3%A9_Caf%C3%A9.jpg",
+                "text": "Israeli cuisine"
+            },
+            "boundingBox": {
+                "x": 17.75793650793651,
+                "y": 35.152116402116405,
+                "w": 39.55853174603175,
+                "h": 3.7698412698412698
+            }
+        },
+        {
+            "info": {
+                "description": None,
+                "image": None,
+                "text": None
+            },
+            "boundingBox": {
+                "x": 31.721230158730158,
+                "y": 40.476190476190474,
+                "w": 11.830357142857142,
+                "h": 2.6124338624338623
+            }
+        },
+        {
+            "info": {
+                "description": "Italian ice cream",
+                "imageSrc": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/CafeMia.jpg/60px-CafeMia.jpg",
+                "text": "Gelato"
+            },
+            "boundingBox": {
+                "x": 28.39781746031746,
+                "y": 43.61772486772487,
+                "w": 18.5515873015873,
+                "h": 3.373015873015873
+            }
+        },
+        {
+            "info": {
+                "description": None,
+                "image": None,
+                "text": None
+            },
+            "boundingBox": {
+                "x": 23.040674603174605,
+                "y": 48.41269841269841,
+                "w": 28.69543650793651,
+                "h": 3.1415343915343916
+            }
+        },
+        {
+            "info": {
+                "description": None,
+                "imageSrc": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/NCI_Visuals_Food_Pie.jpg/60px-NCI_Visuals_Food_Pie.jpg",
+                "text": "List of lemon dishes and drinks"
+            },
+            "boundingBox": {
+                "x": 27.728174603174605,
+                "y": 51.9510582010582,
+                "w": 19.32043650793651,
+                "h": 2.7116402116402116
+            }
+        },
+        {
+            "info": {
+                "description": "Frozen dessert typically composed of ice cream between two biscuits",
+                "imageSrc": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/IceCreamSandwich.jpg/60px-IceCreamSandwich.jpg",
+                "text": "Ice cream sandwich"
+            },
+            "boundingBox": {
+                "x": 26.3640873015873,
+                "y": 62.36772486772487,
+                "w": 21.875,
+                "h": 3.1084656084656084
+            }
+        },
+        {
+            "info": {
+                "description": "Pie topped with meringue",
+                "imageSrc": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Theres_always_room_for_pie_%287859650026%29.jpg/60px-Theres_always_room_for_pie_%287859650026%29.jpg",
+                "text": "Lemon meringue pie"
+            },
+            "boundingBox": {
+                "x": 28.025793650793652,
+                "y": 67.82407407407408,
+                "w": 18.253968253968253,
+                "h": 2.6124338624338623
+            }
+        },
+        {
+            "info": {
+                "description": None,
+                "imageSrc": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Bunnings_Sausage_sizzle.jpg/60px-Bunnings_Sausage_sizzle.jpg",
+                "text": "List of Australian and New Zealand dishes"
+            },
+            "boundingBox": {
+                "x": 21.875,
+                "y": 70.93253968253968,
+                "w": 30.555555555555557,
+                "h": 3.1415343915343916
+            }
+        },
+        {
+            "info": {
+                "description": "Pie topped with meringue",
+                "imageSrc": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Theres_always_room_for_pie_%287859650026%29.jpg/60px-Theres_always_room_for_pie_%287859650026%29.jpg",
+                "text": "Lemon meringue pie"
+            },
+            "boundingBox": {
+                "x": 28.125,
+                "y": 74.07407407407408,
+                "w": 18.154761904761905,
+                "h": 2.744708994708995
+            }
+        },
+        {
+            "info": {
+                "description": "Water soluble food coloring",
+                "imageSrc": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Caramel_Color_in_cola.jpg/60px-Caramel_Color_in_cola.jpg",
+                "text": "Caramel color"
+            },
+            "boundingBox": {
+                "x": 23.040674603174605,
+                "y": 78.76984126984127,
+                "w": 27.9265873015873,
+                "h": 2.8439153439153437
+            }
+        },
+        {
+            "info": {
+                "description": None,
+                "imageSrc": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Bunnings_Sausage_sizzle.jpg/60px-Bunnings_Sausage_sizzle.jpg",
+                "text": "List of Australian and New Zealand dishes"
+            },
+            "boundingBox": {
+                "x": 23.4375,
+                "y": 82.14285714285714,
+                "w": 27.13293650793651,
+                "h": 2.744708994708995
+            }
+        }
+    ]
+    }
 
 @app.get("/get_dish_info")
 async def dish_info_pipeline(dish: str):
