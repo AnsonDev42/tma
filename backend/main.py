@@ -84,34 +84,33 @@ async def search_dishes_info(ocr_results: list):
     return search_results
 
 
-def normalize_text_bbox(img_hw, ocr_results: list):
+def normalize_text_bbox(img_dimension: Dimensions, ocr_results: list):
     texts_bboxes = []
     for item in ocr_results:
         bounding_boxes = item[1]
-        texts_bboxes.append(asdict(normalize_bounding_box(img_hw, bounding_boxes)))
+        texts_bboxes.append(asdict(normalize_bounding_box(img_dimension, bounding_boxes)))
     return texts_bboxes
 
 
 def aggregate_dishes_info_and_bbox(dish_infos: list, dishes_bboxes: list):
-    for dish_info, dish_bbox in zip(dish_infos, dishes_bboxes):
+    for dish_info, dish_bbox in zip(dish_infos, dishes_bboxes, strict=True):
         dish_info["bounding_box"] = dish_bbox
     return dish_infos
 
 
-def normalize_bounding_box(image_xy: tuple, bounding_box: list) -> BoundingBox:
+def normalize_bounding_box(image_dimension: Dimensions, bounding_box: list) -> BoundingBox:
     """
     Calculate the bounding box of the detected text in image percentage
     """
-    assert image_xy[0] > 0 and image_xy[1] > 0, "Invalid image dimension"
     x_min = min([x[0] for x in bounding_box])
     x_max = max([x[0] for x in bounding_box])
     y_min = min([x[1] for x in bounding_box])
     y_max = max([x[1] for x in bounding_box])
 
-    x_percentage = x_min / image_xy[0]
-    y_percentage = y_min / image_xy[1]
-    w_percentage = (x_max - x_min) / image_xy[0]
-    h_percentage = (y_max - y_min) / image_xy[1]
+    x_percentage = x_min / image_dimension.width
+    y_percentage = y_min / image_dimension.height
+    w_percentage = (x_max - x_min) / image_dimension.width
+    h_percentage = (y_max - y_min) / image_dimension.height
 
     return BoundingBox(x=x_percentage, y=y_percentage, w=w_percentage, h=h_percentage)
 
