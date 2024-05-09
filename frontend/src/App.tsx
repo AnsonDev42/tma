@@ -9,12 +9,12 @@ import {
 } from "./components/ui/form";
 import { Input } from "./components/ui/input";
 import "./globals.css";
+import { demoData, uploadData } from "@/components/dish.tsx";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { z } from "zod";
 import { Button } from "./components/ui/button";
-
 const MAX_FILE_SIZE = 25 * 1024 * 1024; // 25MB
 const ACCEPTED_IMAGE_TYPES = [
 	"image/jpeg",
@@ -40,42 +40,7 @@ const formSchema = z.object({
 
 function App() {
 	const [menuSrc, setMenuSrc] = useState<string | ArrayBuffer | null>(null);
-	const [data] = useState([
-		{
-			id: 1,
-			boundingBox: {
-				x: 470,
-				y: 290,
-				w: 230,
-				h: 40,
-			},
-			info: {
-				text: "FATTO TIRAMASU",
-				imgSrc: null,
-				description: `Tiramisu (Italian: tiramisù) is an Italian dessert made of 
-        ladyfinger pastries (savoiardi) dipped in coffee, layered with a 
-        whipped mixture of eggs, sugar and mascarpone and flavoured with cocoa.`,
-			},
-		},
-		{
-			id: 2,
-			boundingBox: {
-				x: 330,
-				y: 385,
-				w: 470,
-				h: 40,
-			},
-			info: {
-				text: "SCUGNIZIELLI NUTELLA & GELATO",
-				imgSrc: null,
-				description: `Scugnizzielli is a term often used in Naples, Italy, to refer to 
-        street food or small, typically savory, snacks. When filled with Nutella, 
-        it indicates that these bites are filled with the popular hazelnut 
-        chocolate spread. So, it would likely refer to a dessert or pastry made 
-        with Nutella filling.`,
-			},
-		},
-	]);
+	const [data, setData] = useState(demoData);
 
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
@@ -89,24 +54,14 @@ function App() {
 		const file = payload.file[0];
 		const formData = new FormData();
 		formData.append("file", file);
-		formData.append("file_name", file.name);
+		// formData.append("file_name", file.name);
 
 		const reader = new FileReader();
 		reader.readAsDataURL(file);
 		reader.onload = () => {
 			setMenuSrc(reader.result);
 		};
-
-		const response = await fetch("http://localhost:8000/upload", {
-			method: "POST",
-			body: formData,
-		});
-
-		if (!response.ok) {
-			console.error("Failed to send");
-		} else {
-			console.log("Send succesfully");
-		}
+		await uploadData(formData, setData);
 	};
 
 	return (
@@ -139,12 +94,13 @@ function App() {
 							<Dialog key={index}>
 								<DialogTrigger asChild>
 									<div
-										key={value.id}
+										key={index}
 										className="absolute z-10 bg-red-300/30"
 										style={{
-											width: value.boundingBox.w,
-											height: value.boundingBox.h,
-											transform: `translate(${value.boundingBox.x}px, ${value.boundingBox.y}px)`,
+											width: `${value.boundingBox.w}%`,
+											height: `${value.boundingBox.h}%`,
+											left: `${value.boundingBox.x}%`,
+											top: `${value.boundingBox.y}%`,
 										}}
 									></div>
 								</DialogTrigger>
