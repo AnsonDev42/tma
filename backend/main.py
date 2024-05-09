@@ -1,5 +1,6 @@
 import ast
 import http
+from typing import NamedTuple
 
 import requests
 from fastapi import FastAPI, UploadFile, status, HTTPException
@@ -11,23 +12,29 @@ import asyncio
 import httpx
 from dataclasses import dataclass, asdict
 
-app = FastAPI()
 SEARXNG_API_URL = "http://anson-eq.local:8081/"
 WIKI_API_URL = "https://api.wikimedia.org/core/v1/wikipedia/en/search/page"
 PD_OCR_API_URL = "http://anson-eq.local:9998/ocr/prediction"
 TIMEOUT = 10
 
+app = FastAPI()
+
 
 @dataclass
 class BoundingBox:
-    """
-    Bounding box for detected text in image in percentage
-    """
+    """Bounding box for detected text in image in percentage"""
 
     x: float
     y: float
     w: float
     h: float
+
+
+class Dimensions(NamedTuple):
+    """Image dimensions"""
+
+    width: int
+    height: int
 
 
 @app.get("/")
@@ -43,9 +50,7 @@ class DishSearchError(Exception):
     pass
 
 
-def get_ocr_result(
-    file_content: bytes,
-):
+def get_ocr_result(file_content: bytes):
     """
     Post uploaded image file content to pdOCR server and return img dimension and OCR results in json format
     return: (img_height, img_width), ocr_results
@@ -58,14 +63,14 @@ def get_ocr_result(
     response.raise_for_status()
     result = response.json()
 
-    if "err_no" not in result or result["err_no"] != 0 or "value" not in result:
+    if result["err_no"] != 0:
         raise OCRError("Failed to get OCR results")
 
     ocr_results_str = result["value"][0]
     ocr_results = ast.literal_eval(ocr_results_str)
     if not isinstance(ocr_results, list) or not ocr_results:
         raise OCRError("OCR results is not a list")
-    return (img_height, img_width), ocr_results
+    return Dimensions(img_width, img_height), ocr_results
 
 
 async def search_dishes_info(ocr_results: list):
@@ -79,11 +84,11 @@ async def search_dishes_info(ocr_results: list):
     return search_results
 
 
-def calculate_texts_bbox(img_hw, ocr_results: list):
+def normalize_text_bbox(img_hw, ocr_results: list):
     texts_bboxes = []
     for item in ocr_results:
         bounding_boxes = item[1]
-        texts_bboxes.append(asdict(calculate_bounding_box(img_hw, bounding_boxes)))
+        texts_bboxes.append(asdict(normalize_bounding_box(img_hw, bounding_boxes)))
     return texts_bboxes
 
 
@@ -93,7 +98,7 @@ def aggregate_dishes_info_and_bbox(dish_infos: list, dishes_bboxes: list):
     return dish_infos
 
 
-def calculate_bounding_box(image_xy: tuple, bounding_box: list) -> dict:
+def normalize_bounding_box(image_xy: tuple, bounding_box: list) -> BoundingBox:
     """
     Calculate the bounding box of the detected text in image percentage
     """
@@ -116,13 +121,10 @@ def search_dish_info_via_searxng(dish_name: str) -> dict:
     Search a dish via Searxng on Wikipedia and return the description and image of the dish
         if found in the save search results
     """
-    query = {
-        "q": f"site:wikipedia.org {dish_name}",
-        "format": "json",
-    }
-    search_results = requests.get(url=SEARXNG_API_URL, params=query, timeout=TIMEOUT)
-    search_results.raise_for_status()
-    search_results = search_results.json()
+    query = {"q": f"site:wikipedia.org {dish_name}", "format": "json"}
+    response = requests.get(url=SEARXNG_API_URL, params=query, timeout=TIMEOUT)
+    response.raise_for_status()
+    search_results = response.json()
     if "results" not in search_results or len(search_results["results"]) == 0:
         return {"description": None, "image": None, "text": None}
     for item in search_results["results"]:
@@ -133,12 +135,11 @@ def search_dish_info_via_searxng(dish_name: str) -> dict:
             and "img_src" in item
             and item["img_src"] != ""
         ):
-            dish_info = {
+            return {
                 "description": item["content"],
                 "image": item["img_src"],
                 "text": item["title"],
             }
-            return dish_info
     return {"description": None, "image": None, "text": None}
 
 
@@ -187,10 +188,8 @@ async def upload(file: UploadFile):
         )
     img_hw, ocr_results = get_ocr_result(file.file.read())
     dishes_info = await search_dishes_info(ocr_results)
-    texts_bboxes = calculate_texts_bbox(img_hw, ocr_results)
-    results = aggregate_dishes_info_and_bbox(dishes_info, texts_bboxes)
-
-    return {"results": results}
+    texts_bboxes = normalize_text_bbox(img_hw, ocr_results)
+    return aggregate_dishes_info_and_bbox(dishes_info, texts_bboxes)
 
 
 @app.get("/get_dish_info")
@@ -202,7 +201,4 @@ async def dish_info_pipeline(dish: str):
     """
     dish_info = await search_dish_info_via_wiki(dish)
 
-    return {
-        "results": dish_info,
-        "message": "OK",
-    }
+    return {"results": dish_info, "message": "OK"}
