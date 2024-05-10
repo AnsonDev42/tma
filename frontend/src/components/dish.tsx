@@ -1,14 +1,15 @@
-import * as url from "node:url";
 import axios from "axios";
+
+export type BoundingBoxProps = {
+	x: number;
+	y: number;
+	w: number;
+	h: number;
+};
 
 export type DishProps = {
 	id: number;
-	boundingBox: {
-		x: number;
-		y: number;
-		w: number;
-		h: number;
-	};
+	boundingBox: BoundingBoxProps;
 	info: {
 		text: string;
 		imgSrc: string;
