@@ -1,3 +1,4 @@
+import * as url from "node:url";
 import axios from "axios";
 
 export type DishProps = {
@@ -10,7 +11,7 @@ export type DishProps = {
 	};
 	info: {
 		text: string;
-		imgSrc: string | null;
+		imgSrc: string;
 		description: string;
 	};
 };
@@ -57,12 +58,13 @@ export function formatResponseData(results: DishProps[]) {
 	return results
 		.map((item) => {
 			const { x, y, w, h } = item.boundingBox || {};
+			console.log("imgSrc in item:", item.info.imgSrc); // Specifically log imgSrc
 			return {
 				id: item.id,
 				boundingBox: { x, y, w, h },
 				info: {
 					text: item.info.text,
-					imgSrc: item.info.imgSrc || null,
+					imgSrc: item.info.imgSrc,
 					description: item.info.description,
 				},
 			};
@@ -83,8 +85,7 @@ export async function uploadData(
 		const formattedData = formatResponseData(response.data.results);
 		if (formattedData.length > 0) {
 			setData(formattedData);
-			console.log(formattedData);
-			alert("Sent successfully");
+			console.log("Data received:", formattedData);
 		} else {
 			console.error("No valid data received.");
 			alert("No valid data to display.");
