@@ -18,13 +18,15 @@ from starlette.responses import StreamingResponse
 SEARXNG_API_URL = "http://anson-eq.local:8081/"
 WIKI_API_URL = "https://api.wikimedia.org/core/v1/wikipedia/en/search/page"
 PD_OCR_API_URL = "http://anson-eq.local:9998/ocr/prediction"
-ALLOWED_ORIGINS = ["http://localhost", "http://localhost:8080", "http://localhost:5173"]
+ALLOWED_ORIGINS = ["http://localhost", "http://localhost:8080", "http://localhost:5173", "https://tma.itsya0wen.com"]
+ALLOWED_ORIGIN_REGEX = r"^https://([a-zA-Z0-9-]+\.)*tma-cd3.pages.dev$"  # preview deploy domain
 TIMEOUT = 10
 
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=ALLOWED_ORIGINS,
+    allow_origin_regex=ALLOWED_ORIGIN_REGEX,
     allow_credentials=True,
     allow_methods=["*"],  # Allows all methods
     allow_headers=["*"],  # Allows all headers
