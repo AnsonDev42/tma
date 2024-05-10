@@ -78,9 +78,13 @@ export async function uploadData(
 	setData: React.Dispatch<React.SetStateAction<DishProps[]>>,
 ) {
 	try {
-		const response = await axios.post("http://localhost:8000/test", formData, {
-			headers: { "Content-Type": "multipart/form-data" },
-		});
+		const response = await axios.post(
+			"https://api.itsya0wen.com/post",
+			formData,
+			{
+				headers: { "Content-Type": "multipart/form-data" },
+			},
+		);
 
 		console.log(response.data);
 		const formattedData = formatResponseData(response.data.results);
