@@ -12,7 +12,7 @@ import "./globals.css";
 import { demoData, uploadData } from "@/components/dish.tsx";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { z } from "zod";
 import { Button } from "./components/ui/button";
 const MAX_FILE_SIZE = 25 * 1024 * 1024; // 25MB
@@ -41,7 +41,7 @@ const formSchema = z.object({
 function App() {
 	const [menuSrc, setMenuSrc] = useState<string | ArrayBuffer | null>(null);
 	const [data, setData] = useState(demoData);
-
+	const imageRef = useRef(null);
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
@@ -54,7 +54,6 @@ function App() {
 		const file = payload.file[0];
 		const formData = new FormData();
 		formData.append("file", file);
-		// formData.append("file_name", file.name);
 
 		const reader = new FileReader();
 		reader.readAsDataURL(file);
@@ -65,8 +64,8 @@ function App() {
 	};
 
 	return (
-		<div className="w-full justify-center">
-			<div className="min-w-screen-xl">
+		<div>
+			<div className="max-w-lg">
 				<Form {...form}>
 					<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
 						<FormField
@@ -85,43 +84,94 @@ function App() {
 						<Button type="submit">Submit</Button>
 					</form>
 				</Form>
-				<div className="grid w-full max-w-sm items-center gap-1.5"></div>
+				<div className="w-full"></div>
 			</div>
-			{menuSrc && (
-				<div className="static">
-					{data.map((value, index) => {
-						return (
-							<Dialog key={index}>
-								<DialogTrigger asChild>
-									<div
-										key={index}
-										className="absolute z-10 bg-red-300/30"
-										style={{
-											width: `${value.boundingBox.w}%`,
-											height: `${value.boundingBox.h}%`,
-											left: `${value.boundingBox.x}%`,
-											top: `${value.boundingBox.y}%`,
-										}}
-									></div>
-								</DialogTrigger>
-								<DialogContent className="sm:max-w-md">
-									<h2>{value.info.text}</h2>
-									{value.info.imgSrc && (
-										<img
-											src={value.info.imgSrc}
-											alt={`${value.info.text}-image`}
-										></img>
-									)}
-									<p>{value.info.description}</p>
-								</DialogContent>
-							</Dialog>
-						);
-					})}
-					<img src={menuSrc as string} alt="menu" />
-				</div>
-			)}
+			{ImageResults(menuSrc, data, imageRef)}
 		</div>
 	);
 }
 
+function ImageResults(menuSrc, data, imageRef) {
+	const [imgWidth, setImgWidth] = useState(0);
+	const [imgHeight, setImgHeight] = useState(0);
+	useEffect(() => {
+		const updateScale = () => {
+			const imageElement = imageRef.current;
+			if (imageElement) {
+				const renderedWidth = imageElement.clientWidth;
+				const renderedHeight = imageElement.clientHeight;
+				setImgWidth(0.01 * renderedWidth);
+				setImgHeight(0.01 * renderedHeight);
+			}
+		};
+
+		window.addEventListener("resize", updateScale);
+		window.addEventListener("load", updateScale);
+		window.addEventListener("DOMContentLoaded", updateScale);
+		window.addEventListener("readystatechange", updateScale);
+
+		// Initial scale update when the image loads
+		updateScale();
+
+		return () => window.removeEventListener("resize", updateScale);
+	}, [imageRef, data]);
+
+	const getAdjustedStyles = (boundingBox) => {
+		// Calculate adjusted bounding box based on the image scale
+		const styles = {
+			width: `${boundingBox.w * imgWidth}px`,
+			height: `${boundingBox.h * imgHeight}px`,
+			left: `${boundingBox.x * imgWidth}px`,
+			top: `${boundingBox.y * imgHeight}px`,
+			background: "rgba(255, 0, 0, 0.5)",
+			border: "2px solid red",
+		};
+
+		return styles;
+	};
+
+	if (!menuSrc) {
+		return null;
+	}
+
+	return (
+		<div style={{ position: "relative" }}>
+			<img
+				src={menuSrc}
+				alt="Uploaded"
+				ref={imageRef}
+				className="absolute max-w-lg"
+			/>
+			{data.map((value, index) => {
+				return (
+					<div>
+						<Dialog key={index}>
+							<DialogTrigger asChild>
+								<div
+									key={index}
+									className="absolute"
+									style={getAdjustedStyles(value.boundingBox)}
+								>
+									<p>{value.info.text}</p>
+								</div>
+							</DialogTrigger>
+							<DialogContent className="sm:max-w-md">
+								<h2>{value.info.text}</h2>
+								{value.info.imgSrc ? (
+									<img
+										src={value.info.imgSrc}
+										alt={`${value.info.text} image`}
+									/>
+								) : (
+									<p>No image available</p>
+								)}
+								<p>{value.info.description}</p>
+							</DialogContent>
+						</Dialog>
+					</div>
+				);
+			})}
+		</div>
+	);
+}
 export default App;
