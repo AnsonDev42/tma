@@ -79,7 +79,7 @@ export async function uploadData(
 ) {
 	try {
 		const response = await axios.post(
-			"https://api.itsya0wen.com/post",
+			"https://api.itsya0wen.com/upload",
 			formData,
 			{
 				headers: { "Content-Type": "multipart/form-data" },
