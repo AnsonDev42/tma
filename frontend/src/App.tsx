@@ -9,7 +9,12 @@ import {
 } from "./components/ui/form";
 import { Input } from "./components/ui/input";
 import "./globals.css";
-import { demoData, uploadData } from "@/components/dish.tsx";
+import {
+	BoundingBoxProps,
+	DishProps,
+	demoData,
+	uploadData,
+} from "@/components/dish.tsx";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useRef, useState } from "react";
@@ -91,7 +96,11 @@ function App() {
 	);
 }
 
-function ImageResults(menuSrc, data, imageRef) {
+function ImageResults(
+	menuSrc: string | ArrayBuffer | null,
+	data: DishProps[],
+	imageRef: React.RefObject<HTMLImageElement>,
+) {
 	const [imgWidth, setImgWidth] = useState(0);
 	const [imgHeight, setImgHeight] = useState(0);
 	useEffect(() => {
@@ -116,7 +125,7 @@ function ImageResults(menuSrc, data, imageRef) {
 		return () => window.removeEventListener("resize", updateScale);
 	}, [imageRef, data]);
 
-	const getAdjustedStyles = (boundingBox) => {
+	const getAdjustedStyles = (boundingBox: BoundingBoxProps) => {
 		// Calculate adjusted bounding box based on the image scale
 		const styles = {
 			width: `${boundingBox.w * imgWidth}px`,
@@ -137,7 +146,7 @@ function ImageResults(menuSrc, data, imageRef) {
 	return (
 		<div style={{ position: "relative" }}>
 			<img
-				src={menuSrc}
+				src={menuSrc as string}
 				alt="Uploaded"
 				ref={imageRef}
 				className="absolute max-w-lg"
