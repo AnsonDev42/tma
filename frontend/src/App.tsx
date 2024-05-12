@@ -20,6 +20,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useRef, useState } from "react";
 import { z } from "zod";
 import { Button } from "./components/ui/button";
+
 const MAX_FILE_SIZE = 25 * 1024 * 1024; // 25MB
 const ACCEPTED_IMAGE_TYPES = [
 	"image/jpeg",
@@ -59,6 +60,7 @@ function App() {
 		const file = payload.file[0];
 		const formData = new FormData();
 		formData.append("file", file);
+		formData.append("file_name", file.name);
 
 		const reader = new FileReader();
 		reader.readAsDataURL(file);
@@ -91,26 +93,35 @@ function App() {
 				</Form>
 				<div className="w-full"></div>
 			</div>
-			{ImageResults(menuSrc, data, imageRef)}
+			{menuSrc && (
+				<ImageResults menuSrc={menuSrc} data={data} imageRef={imageRef} />
+			)}
 		</div>
 	);
 }
 
-function ImageResults(
-	menuSrc: string | ArrayBuffer | null,
-	data: DishProps[],
-	imageRef: React.RefObject<HTMLImageElement>,
-) {
+interface ImageResultsProps {
+	menuSrc: string | ArrayBuffer | null;
+	data: DishProps[];
+	imageRef: React.RefObject<HTMLImageElement>;
+}
+
+function ImageResults({
+	menuSrc,
+	data,
+	imageRef,
+}: ImageResultsProps): React.ReactElement {
 	const [imgWidth, setImgWidth] = useState(0);
 	const [imgHeight, setImgHeight] = useState(0);
+
 	useEffect(() => {
 		const updateScale = () => {
 			const imageElement = imageRef.current;
 			if (imageElement) {
 				const renderedWidth = imageElement.clientWidth;
 				const renderedHeight = imageElement.clientHeight;
-				setImgWidth(0.01 * renderedWidth);
-				setImgHeight(0.01 * renderedHeight);
+				setImgWidth(renderedWidth);
+				setImgHeight(renderedHeight);
 			}
 		};
 
@@ -127,24 +138,18 @@ function ImageResults(
 
 	const getAdjustedStyles = (boundingBox: BoundingBoxProps) => {
 		// Calculate adjusted bounding box based on the image scale
-		const styles = {
+		return {
 			width: `${boundingBox.w * imgWidth}px`,
 			height: `${boundingBox.h * imgHeight}px`,
 			left: `${boundingBox.x * imgWidth}px`,
 			top: `${boundingBox.y * imgHeight}px`,
 			background: "rgba(255, 0, 0, 0.5)",
-			border: "2px solid red",
+			border: "1px solid red",
 		};
-
-		return styles;
 	};
 
-	if (!menuSrc) {
-		return null;
-	}
-
 	return (
-		<div style={{ position: "relative" }}>
+		<div className="relative">
 			<img
 				src={menuSrc as string}
 				alt="Uploaded"
@@ -166,13 +171,11 @@ function ImageResults(
 							</DialogTrigger>
 							<DialogContent className="sm:max-w-md">
 								<h2>{value.info.text}</h2>
-								{value.info.imgSrc ? (
+								{value.info.imgSrc && (
 									<img
 										src={value.info.imgSrc}
 										alt={`${value.info.text} image`}
 									/>
-								) : (
-									<p>No image available</p>
 								)}
 								<p>{value.info.description}</p>
 							</DialogContent>
