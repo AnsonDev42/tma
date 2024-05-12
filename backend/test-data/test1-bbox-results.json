@@ -1,0 +1,355 @@
+{
+  "results": [
+    {
+      "info": {
+        "description": "Italian fashion house",
+        "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Dolce_%26_Gabbana_Store_%2851396804775%29.jpg/60px-Dolce_%26_Gabbana_Store_%2851396804775%29.jpg",
+        "text": "Dolce & Gabbana"
+      },
+      "boundingBox": {
+        "x": 28.108465608465607,
+        "y": 7.614087301587301,
+        "w": 44.80820105820106,
+        "h": 4.092261904761905
+      }
+    },
+    {
+      "info": {
+        "description": "Restaurant that sells pizza",
+        "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Old_Pizzeria_-_Napoli.jpg/60px-Old_Pizzeria_-_Napoli.jpg",
+        "text": "Pizzeria"
+      },
+      "boundingBox": {
+        "x": 37.73148148148148,
+        "y": 12.5,
+        "w": 25.52910052910053,
+        "h": 2.7281746031746033
+      }
+    },
+    {
+      "info": {
+        "description": "Country in Southern Europe",
+        "imgSrc": "https://upload.wikimedia.org/wikipedia/en/thumb/0/03/Flag_of_Italy.svg/60px-Flag_of_Italy.svg.png",
+        "text": "Italy"
+      },
+      "boundingBox": {
+        "x": 38.78968253968254,
+        "y": 17.956349206349206,
+        "w": 23.048941798941797,
+        "h": 2.4305555555555554
+      }
+    },
+    {
+      "info": {
+        "description": null,
+        "image": null,
+        "text": null
+      },
+      "boundingBox": {
+        "x": 22.784391534391535,
+        "y": 20.213293650793652,
+        "w": 55.05952380952381,
+        "h": 3.125
+      }
+    },
+    {
+      "info": {
+        "description": null,
+        "image": null,
+        "text": null
+      },
+      "boundingBox": {
+        "x": 27.843915343915345,
+        "y": 23.908730158730158,
+        "w": 44.54365079365079,
+        "h": 2.554563492063492
+      }
+    },
+    {
+      "info": {
+        "description": "Culinary traditions of Israel",
+        "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/The_7_Breakfasts_-_Caf%C3%A9_Caf%C3%A9.jpg/60px-The_7_Breakfasts_-_Caf%C3%A9_Caf%C3%A9.jpg",
+        "text": "Israeli cuisine"
+      },
+      "boundingBox": {
+        "x": 23.677248677248677,
+        "y": 26.3640873015873,
+        "w": 52.74470899470899,
+        "h": 2.8273809523809526
+      }
+    },
+    {
+      "info": {
+        "description": null,
+        "image": null,
+        "text": null
+      },
+      "boundingBox": {
+        "x": 42.294973544973544,
+        "y": 30.357142857142858,
+        "w": 15.773809523809524,
+        "h": 1.9593253968253967
+      }
+    },
+    {
+      "info": {
+        "description": "Italian ice cream",
+        "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/CafeMia.jpg/60px-CafeMia.jpg",
+        "text": "Gelato"
+      },
+      "boundingBox": {
+        "x": 37.863756613756614,
+        "y": 32.71329365079365,
+        "w": 24.735449735449734,
+        "h": 2.5297619047619047
+      }
+    },
+    {
+      "info": {
+        "description": null,
+        "image": null,
+        "text": null
+      },
+      "boundingBox": {
+        "x": 30.72089947089947,
+        "y": 36.30952380952381,
+        "w": 38.26058201058201,
+        "h": 2.3561507936507935
+      }
+    },
+    {
+      "info": {
+        "description": null,
+        "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/NCI_Visuals_Food_Pie.jpg/60px-NCI_Visuals_Food_Pie.jpg",
+        "text": "List of lemon dishes and drinks"
+      },
+      "boundingBox": {
+        "x": 36.97089947089947,
+        "y": 38.96329365079365,
+        "w": 25.76058201058201,
+        "h": 2.0337301587301586
+      }
+    },
+    {
+      "info": {
+        "description": "Frozen dessert typically composed of ice cream between two biscuits",
+        "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/IceCreamSandwich.jpg/60px-IceCreamSandwich.jpg",
+        "text": "Ice cream sandwich"
+      },
+      "boundingBox": {
+        "x": 35.152116402116405,
+        "y": 46.77579365079365,
+        "w": 29.166666666666668,
+        "h": 2.3313492063492065
+      }
+    },
+    {
+      "info": {
+        "description": "Pie topped with meringue",
+        "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Theres_always_room_for_pie_%287859650026%29.jpg/60px-Theres_always_room_for_pie_%287859650026%29.jpg",
+        "text": "Lemon meringue pie"
+      },
+      "boundingBox": {
+        "x": 37.36772486772487,
+        "y": 50.86805555555556,
+        "w": 24.33862433862434,
+        "h": 1.9593253968253967
+      }
+    },
+    {
+      "info": {
+        "description": null,
+        "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Bunnings_Sausage_sizzle.jpg/60px-Bunnings_Sausage_sizzle.jpg",
+        "text": "List of Australian and New Zealand dishes"
+      },
+      "boundingBox": {
+        "x": 29.166666666666668,
+        "y": 53.19940476190476,
+        "w": 40.74074074074074,
+        "h": 2.3561507936507935
+      }
+    },
+    {
+      "info": {
+        "description": "Pie topped with meringue",
+        "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Theres_always_room_for_pie_%287859650026%29.jpg/60px-Theres_always_room_for_pie_%287859650026%29.jpg",
+        "text": "Lemon meringue pie"
+      },
+      "boundingBox": {
+        "x": 37.5,
+        "y": 55.55555555555556,
+        "w": 24.206349206349206,
+        "h": 2.058531746031746
+      }
+    },
+    {
+      "info": {
+        "description": "Water soluble food coloring",
+        "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Caramel_Color_in_cola.jpg/60px-Caramel_Color_in_cola.jpg",
+        "text": "Caramel color"
+      },
+      "boundingBox": {
+        "x": 30.72089947089947,
+        "y": 59.07738095238095,
+        "w": 37.235449735449734,
+        "h": 2.132936507936508
+      }
+    },
+    {
+      "info": {
+        "description": null,
+        "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Bunnings_Sausage_sizzle.jpg/60px-Bunnings_Sausage_sizzle.jpg",
+        "text": "List of Australian and New Zealand dishes"
+      },
+      "boundingBox": {
+        "x": 31.25,
+        "y": 61.607142857142854,
+        "w": 36.17724867724868,
+        "h": 2.058531746031746
+      }
+    },
+    {
+      "info": {
+        "description": "Ice cream company",
+        "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Anita_Gelato_official_logo.jpg/60px-Anita_Gelato_official_logo.jpg",
+        "text": "Anita Gelato"
+      },
+      "boundingBox": {
+        "x": 37.99603174603175,
+        "y": 63.864087301587304,
+        "w": 22.51984126984127,
+        "h": 2.0337301587301586
+      }
+    },
+    {
+      "info": {
+        "description": "Listing of liqueurs, alcoholic drinks made by adding extra sugar and flavorings",
+        "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/ManyAmari.jpg/60px-ManyAmari.jpg",
+        "text": "List of liqueur brands"
+      },
+      "boundingBox": {
+        "x": 33.06878306878307,
+        "y": 67.26190476190476,
+        "w": 32.01058201058201,
+        "h": 2.455357142857143
+      }
+    },
+    {
+      "info": {
+        "description": null,
+        "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Bunnings_Sausage_sizzle.jpg/60px-Bunnings_Sausage_sizzle.jpg",
+        "text": "List of Australian and New Zealand dishes"
+      },
+      "boundingBox": {
+        "x": 22.123015873015873,
+        "y": 69.61805555555556,
+        "w": 53.76984126984127,
+        "h": 2.628968253968254
+      }
+    },
+    {
+      "info": {
+        "description": "Cocktail from UK",
+        "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Hanky_Panky_cocktail.jpg/60px-Hanky_Panky_cocktail.jpg",
+        "text": "Hanky panky (cocktail)"
+      },
+      "boundingBox": {
+        "x": 28.902116402116402,
+        "y": 78.02579365079364,
+        "w": 16.666666666666668,
+        "h": 2.132936507936508
+      }
+    },
+    {
+      "info": {
+        "description": "Brewed beverage made from coffee beans",
+        "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Latte_and_dark_coffee.jpg/60px-Latte_and_dark_coffee.jpg",
+        "text": "Coffee"
+      },
+      "boundingBox": {
+        "x": 62.1031746031746,
+        "y": 81.25,
+        "w": 11.30952380952381,
+        "h": 1.7361111111111112
+      }
+    },
+    {
+      "info": {
+        "description": null,
+        "image": null,
+        "text": null
+      },
+      "boundingBox": {
+        "x": 25.23148148148148,
+        "y": 82.0188492063492,
+        "w": 23.57804232804233,
+        "h": 1.8601190476190477
+      }
+    },
+    {
+      "info": {
+        "description": null,
+        "image": null,
+        "text": null
+      },
+      "boundingBox": {
+        "x": 20.701058201058203,
+        "y": 84.54861111111111,
+        "w": 32.93650793650794,
+        "h": 1.9593253968253967
+      }
+    },
+    {
+      "info": {
+        "description": "Type of strong coffee",
+        "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Tazzina_di_caff%C3%A8_a_Ventimiglia.jpg/60px-Tazzina_di_caff%C3%A8_a_Ventimiglia.jpg",
+        "text": "Espresso"
+      },
+      "boundingBox": {
+        "x": 59.09391534391534,
+        "y": 84.84623015873017,
+        "w": 16.93121693121693,
+        "h": 1.8601190476190477
+      }
+    },
+    {
+      "info": {
+        "description": null,
+        "image": null,
+        "text": null
+      },
+      "boundingBox": {
+        "x": 22.652116402116402,
+        "y": 87.20238095238095,
+        "w": 28.902116402116402,
+        "h": 1.9345238095238095
+      }
+    },
+    {
+      "info": {
+        "description": "Espresso coffee drink with a small amount of milk",
+        "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Caff%C3%A8_Espresso_Macchiato_Schiumato.jpg/60px-Caff%C3%A8_Espresso_Macchiato_Schiumato.jpg",
+        "text": "Caffè macchiato"
+      },
+      "boundingBox": {
+        "x": 58.06878306878307,
+        "y": 87.5,
+        "w": 18.617724867724867,
+        "h": 1.7361111111111112
+      }
+    },
+    {
+      "info": {
+        "description": null,
+        "image": null,
+        "text": null
+      },
+      "boundingBox": {
+        "x": 25.099206349206348,
+        "y": 89.73214285714286,
+        "w": 23.84259259259259,
+        "h": 1.8601190476190477
+      }
+    }
+  ]
+}
