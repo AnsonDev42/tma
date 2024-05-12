@@ -58,11 +58,9 @@ export const demoData: DishProps[] = [
 export function formatResponseData(results: DishProps[]) {
 	return results
 		.map((item) => {
-			const { x, y, w, h } = item.boundingBox || {};
-			console.log("imgSrc in item:", item.info.imgSrc); // Specifically log imgSrc
 			return {
 				id: item.id,
-				boundingBox: { x, y, w, h },
+				boundingBox: item.boundingBox,
 				info: {
 					text: item.info.text,
 					imgSrc: item.info.imgSrc,
