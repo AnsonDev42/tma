@@ -86,11 +86,9 @@ export async function uploadData(
 			},
 		);
 
-		console.log(response.data);
 		const formattedData = formatResponseData(response.data.results);
 		if (formattedData.length > 0) {
 			setData(formattedData);
-			console.log("Data received:", formattedData);
 		} else {
 			console.error("No valid data received.");
 			alert("No valid data to display.");
