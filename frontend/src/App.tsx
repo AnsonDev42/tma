@@ -18,6 +18,7 @@ import { Session } from "@supabase/gotrue-js/src/lib/types";
 import { createClient } from "@supabase/supabase-js";
 import axios from "axios";
 import React, { useContext, useEffect, useRef, useState } from "react";
+import { Toaster, toast } from "sonner";
 import { z } from "zod";
 import { Button } from "./components/ui/button";
 
@@ -89,7 +90,7 @@ function Authentication() {
 					password: newPassword as string,
 				});
 
-				if (data) alert("Password updated successfully!");
+				if (data) toast.info("Password updated successfully!");
 				if (error) alert("There was an error updating your password.");
 			}
 		});
@@ -101,11 +102,12 @@ function Authentication() {
 				error,
 			} = await supabase.auth.signInAnonymously({ options: { captchaToken } });
 			if (error) throw error;
-			alert("Signed in anonymously! User ID: " + session?.user?.id);
-			setSession(session); // Manually update the session state
+			toast.success("Signed in anonymously!");
+			setSession(session);
 		} catch (_error) {
 			console.error("Error signing in anonymously.");
 			alert("Failed to sign in anonymously.");
+			toast.error("Failed to sign in anonymously.");
 		}
 	}
 	if (!session) {
@@ -128,7 +130,9 @@ function Authentication() {
 						providers={["google", "github"]}
 					/>
 					<h1>Demo Sign in : </h1>
-					<Button onClick={handleAnonymousSignIn}>Sign in anonymously</Button>
+					<Button onClick={handleAnonymousSignIn} className="m-3">
+						Sign in anonymously
+					</Button>
 					<Turnstile
 						siteKey="0x4AAAAAAAaDaYB6f6UNZHsB"
 						onSuccess={(token) => {
@@ -145,6 +149,7 @@ function Authentication() {
 				<Button
 					onClick={async () => {
 						await supabase.auth.signOut();
+						toast.success("Signed out successfully!");
 					}}
 				>
 					Sign out
@@ -178,9 +183,12 @@ function App() {
 		return <div>Loading...</div>;
 	}
 	return (
-		<SessionContext.Provider value={session}>
-			{session ? <MainAppContent /> : <Authentication />}
-		</SessionContext.Provider>
+		<div>
+			<Toaster />
+			<SessionContext.Provider value={session}>
+				{session ? <MainAppContent /> : <Authentication />}
+			</SessionContext.Provider>
+		</div>
 	);
 }
 
