@@ -181,7 +181,9 @@ function Authentication() {
 				data: { session },
 				error,
 			} = await supabase.auth.signInAnonymously({ options: { captchaToken } });
-			if (error) throw error;
+			if (error) {
+				throw error;
+			}
 			toast.success("Signed in anonymously!");
 			setSession(session);
 		} catch (_error) {
