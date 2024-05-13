@@ -83,15 +83,17 @@ function Authentication() {
 	useEffect(() => {
 		supabase.auth.onAuthStateChange(async (event, _auth) => {
 			if (event == "PASSWORD_RECOVERY") {
-				const newPassword = prompt(
-					"What would you like your new password to be?",
-				);
+				const newPassword = prompt("Enter your a new password ");
 				const { data, error } = await supabase.auth.updateUser({
 					password: newPassword as string,
 				});
 
-				if (data) toast.info("Password updated successfully!");
-				if (error) alert("There was an error updating your password.");
+				if (data) {
+					toast.info("Password updated successfully!");
+				}
+				if (error) {
+					alert("There was an error updating your password.");
+				}
 			}
 		});
 	}, []);

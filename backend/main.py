@@ -1,10 +1,11 @@
 import ast
 import http
+import os
 from io import BytesIO
-from typing import NamedTuple
+from typing import NamedTuple, Optional
 
 import pydantic
-from jose import jwt, JWTError
+from jose import jwt
 import requests
 from fastapi import FastAPI, UploadFile, status, HTTPException, Header, Depends
 import json
@@ -17,11 +18,12 @@ from dataclasses import dataclass, asdict
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.responses import StreamingResponse
 from openai import AsyncOpenAI
-from dotenv import dotenv_values
+from dotenv import load_dotenv
 
-config = dotenv_values(".env.dev")
+load_dotenv()
+
 OPENAI_CLIENT = AsyncOpenAI(
-    api_key=config["OPENAI_API_KEY"], base_url=config["OPENAI_BASE_URL"]
+    api_key=os.getenv("OPENAI_API_KEY"), base_url=os.getenv("OPENAI_BASE_URL")
 )
 SEARXNG_API_URL = "http://anson-eq.local:8081/"
 WIKI_API_URL = "https://api.wikimedia.org/core/v1/wikipedia/en/search/page"
@@ -35,8 +37,8 @@ ALLOWED_ORIGINS = [
 ALLOWED_ORIGIN_REGEX = (
     r"^https://([a-zA-Z0-9-]+\.)*tma-cd3.pages.dev$"  # preview deploy domain
 )
-JWT_SECRET = config["JWT_SECRET"]
-ALGORITHM = config["JWT_ALGORITHM"]
+JWT_SECRET = os.getenv("JWT_SECRET")
+ALGORITHM = "HS256"
 TIMEOUT = 10
 
 app = FastAPI()
@@ -76,18 +78,15 @@ class OCRError(Exception):
     pass
 
 
-class DishSearchError(Exception):
+class SearchError(Exception):
     pass
 
 
 def verify_jwt(token: str):
-    try:
-        payload = jwt.decode(
-            token, JWT_SECRET, algorithms=[ALGORITHM], audience="authenticated"
-        )
-        return payload  # Return the decoded payload if token is valid
-    except JWTError:
-        raise HTTPException(status_code=401, detail="Invalid token")
+    payload = jwt.decode(
+        token, JWT_SECRET, algorithms=[ALGORITHM], audience="authenticated"
+    )
+    return payload
 
 
 class User(pydantic.BaseModel):
@@ -97,13 +96,13 @@ class User(pydantic.BaseModel):
     exp: int
 
 
-def get_current_user(authorization: str = Header("Authorization")):
+def get_user(authorization: str = Header("Authorization")):
     try:
         token = authorization.split("Bearer ")[1]
         payload = verify_jwt(token)
         return User(**payload)
     except Exception:
-        raise HTTPException(status_code=401, detail="Invalid token")
+        raise HTTPException(status_code=http.HTTPStatus.UNAUTHORIZED)
 
 
 def get_ocr_result(file_content: bytes):
@@ -134,7 +133,7 @@ async def search_dishes_info(ocr_results: list):
 
     for item in ocr_results:
         dish_name, _ = item[0]
-        tasks.append(search_dish_info_via_OPENAI(dish_name))
+        tasks.append(search_dish_info_via_openai(dish_name))
 
     search_results = await asyncio.gather(*tasks)
     return search_results
@@ -194,10 +193,10 @@ def search_dish_info_via_searxng(dish_name: str) -> dict:
     for item in search_results["results"]:
         # todo: put into pydantic model to serialize
         if (
-                "content" in item
-                and item["content"] != ""
-                and "img_src" in item
-                and item["img_src"] != ""
+            "content" in item
+            and item["content"] != ""
+            and "img_src" in item
+            and item["img_src"] != ""
         ):
             return {
                 "description": item["content"],
@@ -222,10 +221,10 @@ async def search_dish_info_via_wiki(dish_name: str) -> dict:
         return {"description": None, "image": None, "text": None}
     for item in search_results["pages"]:
         if (
-                "title" in item
-                and item["title"] != ""
-                and "thumbnail" in item
-                and item["thumbnail"] is not None
+            "title" in item
+            and item["title"] != ""
+            and "thumbnail" in item
+            and item["thumbnail"] is not None
         ):
             dish_info = {
                 "description": item["description"],
@@ -236,7 +235,7 @@ async def search_dish_info_via_wiki(dish_name: str) -> dict:
     return {"description": None, "image": None, "text": None}
 
 
-async def search_dish_info_via_OPENAI(dish_name: str) -> dict:
+async def search_dish_info_via_openai(dish_name: str) -> dict:
     """
     serach dish info via OPENAI and using WIKI to get the image
     """
@@ -259,34 +258,32 @@ async def search_dish_info_via_OPENAI(dish_name: str) -> dict:
     dish_info = {
         "description": converted_response["dish-description"],
         "text": converted_response["dish-name"],
+        "imgSrc": None,
     }
 
     # STEP2: WIKI SEARCH DISH-NAME
     if converted_response["dish-name"] == "unknown":
-        dish_info["imgSrc"] = None
         return dish_info
+
     query = {"q": converted_response["dish-name"], "format": "json", "limit": "3"}
     async with httpx.AsyncClient() as wiki_client:
         response = await wiki_client.get(WIKI_API_URL, params=query, timeout=TIMEOUT)
-    try:
-        response.raise_for_status()
-        search_results = response.json()
-        if "pages" not in search_results or len(search_results["pages"]) == 0:
-            raise DishSearchError(
-                "No image results found in Wikipedia in OPENAI search chain"
-            )
-    except Exception:
-        dish_info["imgSrc"] = None
-        return dish_info
+    response.raise_for_status()
+    search_results = response.json()
+
+    if "pages" not in search_results or len(search_results["pages"]) == 0:
+        raise SearchError("No search results found")
+
     for item in search_results["pages"]:
         if "thumbnail" in item and item["thumbnail"] is not None:
-            dish_info["imgSrc"] = "https:" + item["thumbnail"]["url"]
+            dish_info["imgSrc"] = f"https:{item["thumbnail"]["url"]}"
             break
+
     return dish_info
 
 
 @app.post("/upload")
-async def upload(file: UploadFile, current_user: User = Depends(get_current_user)):
+async def upload(file: UploadFile, current_user: User = Depends(get_user)):
     """
     pipeline from image to results:
     1. get OCR results
@@ -305,7 +302,7 @@ async def upload(file: UploadFile, current_user: User = Depends(get_current_user
     texts_bboxes = normalize_text_bbox(img_dimension, ocr_results)
     return {
         "results": aggregate_dishes_info_and_bbox(dishes_info, texts_bboxes),
-        "user": current_user,
+        "user": user,
     }
 
 
@@ -335,7 +332,7 @@ async def dish_info_pipeline(dish: str):
     return a dish info from wikipedia search
     results contains description, image(url), and text
     """
-    dish_info = await search_dish_info_via_OPENAI(dish)
+    dish_info = await search_dish_info_via_openai(dish)
 
     return {"results": dish_info, "message": "OK"}
 
