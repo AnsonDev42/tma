@@ -37,6 +37,12 @@ export function ImageResults({
 
 		return () => window.removeEventListener("resize", updateScale);
 	}, [imageRef, data]);
+	const calculateFontSize = (boundingBox: BoundingBoxProps) => {
+		const minFontSize = 10; // Minimum font size in pixels
+		const baseFontSize =
+			Math.min(boundingBox.w * imgWidth, boundingBox.h * imgHeight) * 0.2; // Adjust scale factor as needed
+		return Math.max(baseFontSize, minFontSize);
+	};
 
 	const getAdjustedStyles = (boundingBox: BoundingBoxProps) => {
 		// Calculate adjusted bounding box based on the image scale
@@ -49,7 +55,13 @@ export function ImageResults({
 			border: "1px solid red",
 		};
 	};
-
+	const getTextStyle = (boundingBox: BoundingBoxProps) => ({
+		fontSize: `${calculateFontSize(boundingBox)}px`,
+		overflow: "hidden", // Ensures that text does not overflow the bounding box
+		textOverflow: "ellipsis", // Adds an ellipsis if the text overflows
+		whiteSpace: "nowrap", // Keeps the text on a single line
+		color: "white",
+	});
 	return (
 		<div className="relative">
 			<img
@@ -68,7 +80,9 @@ export function ImageResults({
 									className="absolute"
 									style={getAdjustedStyles(value.boundingBox)}
 								>
-									<p>{value.info.text}</p>
+									<div style={getTextStyle(value.boundingBox)}>
+										{value.info.text}
+									</div>
 								</div>
 							</DialogTrigger>
 							<DialogContent className="sm:max-w-md">
