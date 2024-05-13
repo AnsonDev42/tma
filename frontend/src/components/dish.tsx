@@ -1,98 +1,90 @@
-import axios from "axios";
+import { BoundingBoxProps, DishProps } from "@/App.tsx";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { useEffect, useState } from "react";
 
-export type BoundingBoxProps = {
-	x: number;
-	y: number;
-	w: number;
-	h: number;
-};
-
-export type DishProps = {
-	id: number;
-	boundingBox: BoundingBoxProps;
-	info: {
-		text: string;
-		imgSrc: string;
-		description: string;
-	};
-};
-export const demoData: DishProps[] = [
-	{
-		id: 1,
-		boundingBox: {
-			x: 0.21081349206349206,
-			y: 0.10152116402116403,
-			w: 0.33606150793650796,
-			h: 0.054563492063492064,
-		},
-		info: {
-			text: "FATTO TIRAMASU",
-			imgSrc:
-				"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Dolce_%26_Gabbana_Store_%2851396804775%29.jpg/60px-Dolce_%26_Gabbana_Store_%2851396804775%29.jpg",
-			description: `Tiramisu (Italian: tiramisù) is an Italian dessert made of
-        ladyfinger pastries (savoiardi) dipped in coffee, layered with a
-        whipped mixture of eggs, sugar and mascarpone and flavoured with cocoa.`,
-		},
-	},
-	{
-		id: 2,
-		boundingBox: {
-			x: 0.2829861111111111,
-			y: 0.16666666666666666,
-			w: 0.19146825396825398,
-			h: 0.036375661375661374,
-		},
-		info: {
-			text: "Pizzeria",
-			imgSrc:
-				"https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Old_Pizzeria_-_Napoli.jpg/60px-Old_Pizzeria_-_Napoli.jpg",
-			description: `Scugnizzielli is a term often used in Naples, Italy, to refer to
-        street food or small, typically savory, snacks. When filled with Nutella,
-        it indicates that these bites are filled with the popular hazelnut
-        chocolate spread. So, it would likely refer to a dessert or pastry made
-        with Nutella filling.`,
-		},
-	},
-];
-
-export function formatResponseData(results: DishProps[]) {
-	return results
-		.map((item) => {
-			return {
-				id: item.id,
-				boundingBox: item.boundingBox,
-				info: {
-					text: item.info.text,
-					imgSrc: item.info.imgSrc,
-					description: item.info.description,
-				},
-			};
-		})
-		.filter((item) => item !== null) as DishProps[];
+interface ImageResultsProps {
+	menuSrc: string | ArrayBuffer | null;
+	data: DishProps[];
+	imageRef: React.RefObject<HTMLImageElement>;
 }
 
-export async function uploadData(
-	formData: FormData,
-	setData: React.Dispatch<React.SetStateAction<DishProps[]>>,
-) {
-	try {
-		const response = await axios.post(
-			"https://api.itsya0wen.com/upload",
-			formData,
-			{
-				headers: { "Content-Type": "multipart/form-data" },
-			},
-		);
+export function ImageResults({
+	menuSrc,
+	data,
+	imageRef,
+}: ImageResultsProps): React.ReactElement {
+	const [imgWidth, setImgWidth] = useState(0);
+	const [imgHeight, setImgHeight] = useState(0);
 
-		const formattedData = formatResponseData(response.data.results);
-		if (formattedData.length > 0) {
-			setData(formattedData);
-		} else {
-			console.error("No valid data received.");
-			alert("No valid data to display.");
-		}
-	} catch (error) {
-		console.error("Failed to send:", (error as string) || "No response");
-		alert("Failed to send: " + ((error as string) || "Unknown error"));
-	}
+	useEffect(() => {
+		const updateScale = () => {
+			const imageElement = imageRef.current;
+			if (imageElement) {
+				const renderedWidth = imageElement.clientWidth;
+				const renderedHeight = imageElement.clientHeight;
+				setImgWidth(renderedWidth);
+				setImgHeight(renderedHeight);
+			}
+		};
+
+		window.addEventListener("resize", updateScale);
+		window.addEventListener("load", updateScale);
+		window.addEventListener("DOMContentLoaded", updateScale);
+		window.addEventListener("readystatechange", updateScale);
+
+		// Initial scale update when the image loads
+		updateScale();
+
+		return () => window.removeEventListener("resize", updateScale);
+	}, [imageRef, data]);
+
+	const getAdjustedStyles = (boundingBox: BoundingBoxProps) => {
+		// Calculate adjusted bounding box based on the image scale
+		return {
+			width: `${boundingBox.w * imgWidth}px`,
+			height: `${boundingBox.h * imgHeight}px`,
+			left: `${boundingBox.x * imgWidth}px`,
+			top: `${boundingBox.y * imgHeight}px`,
+			background: "rgba(255, 0, 0, 0.5)",
+			border: "1px solid red",
+		};
+	};
+
+	return (
+		<div className="relative">
+			<img
+				src={menuSrc as string}
+				alt="Uploaded"
+				ref={imageRef}
+				className="absolute max-w-lg"
+			/>
+			{data.map((value, index) => {
+				return (
+					<div>
+						<Dialog key={index}>
+							<DialogTrigger asChild>
+								<div
+									key={index}
+									className="absolute"
+									style={getAdjustedStyles(value.boundingBox)}
+								>
+									<p>{value.info.text}</p>
+								</div>
+							</DialogTrigger>
+							<DialogContent className="sm:max-w-md">
+								<h2>{value.info.text}</h2>
+								{value.info.imgSrc && (
+									<img
+										src={value.info.imgSrc}
+										alt={`${value.info.text} image`}
+									/>
+								)}
+								<p>{value.info.description}</p>
+							</DialogContent>
+						</Dialog>
+					</div>
+				);
+			})}
+		</div>
+	);
 }
