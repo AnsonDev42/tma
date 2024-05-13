@@ -102,7 +102,7 @@ def get_current_user(authorization: str = Header("Authorization")):
         token = authorization.split("Bearer ")[1]
         payload = verify_jwt(token)
         return User(**payload)
-    except JWTError:
+    except Exception:
         raise HTTPException(status_code=401, detail="Invalid token")
 
 
