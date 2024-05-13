@@ -36,7 +36,7 @@ export function ImageResults({
 		updateScale();
 
 		return () => window.removeEventListener("resize", updateScale);
-	}, [imageRef, data]);
+	}, [imageRef]);
 	const calculateFontSize = (boundingBox: BoundingBoxProps) => {
 		const minFontSize = 10; // Minimum font size in pixels
 		const baseFontSize =
