@@ -94,7 +94,25 @@ function Authentication() {
 	}, []);
 
 	if (!session) {
-		return <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} />;
+		return (
+			<div className="flex items-center justify-center max-w-full mt-5">
+				<Auth
+					supabaseClient={supabase}
+					appearance={{
+						theme: ThemeSupa,
+						variables: {
+							default: {
+								colors: {
+									brand: "green",
+									brandAccent: "darkgreen",
+								},
+							},
+						},
+					}}
+					providers={["google", "github"]}
+				/>
+			</div>
+		);
 	} else {
 		return (
 			<div className="flex-row">
@@ -136,11 +154,7 @@ function App() {
 	}
 	return (
 		<SessionContext.Provider value={session}>
-			{session ? (
-				<MainAppContent />
-			) : (
-				<Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} />
-			)}
+			{session ? <MainAppContent /> : <Authentication />}
 		</SessionContext.Provider>
 	);
 }
