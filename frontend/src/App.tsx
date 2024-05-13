@@ -184,7 +184,7 @@ function App() {
 	}
 	return (
 		<div>
-			<Toaster />
+			<Toaster position="top-center" richColors />
 			<SessionContext.Provider value={session}>
 				{session ? <MainAppContent /> : <Authentication />}
 			</SessionContext.Provider>
@@ -233,7 +233,7 @@ function MainAppContent() {
 							name="file"
 							render={() => (
 								<FormItem>
-									<FormLabel>Upload an image</FormLabel>
+									<FormLabel>Upload a Menu image</FormLabel>
 									<FormControl>
 										<Input type="file" {...form.register("file")} />
 									</FormControl>
@@ -241,7 +241,7 @@ function MainAppContent() {
 								</FormItem>
 							)}
 						/>
-						<Button type="submit">Submit</Button>
+						<Button type="submit">Upload</Button>
 					</form>
 				</Form>
 				<div className="w-full"></div>
