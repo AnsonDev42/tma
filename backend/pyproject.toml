@@ -11,6 +11,8 @@ fastapi = "^0.111.0"
 uvicorn = "^0.29.0"
 requests = "^2.31.0"
 opencv-python = "^4.9.0.80"
+openai = "^1.28.1"
+python-jose = "^3.3.0"
 
 
 [tool.poetry.group.dev.dependencies]

@@ -3,8 +3,10 @@ import http
 from io import BytesIO
 from typing import NamedTuple
 
+import pydantic
+from jose import jwt, JWTError
 import requests
-from fastapi import FastAPI, UploadFile, status, HTTPException
+from fastapi import FastAPI, UploadFile, status, HTTPException, Header, Depends
 import json
 import base64
 import cv2
@@ -14,12 +16,27 @@ import httpx
 from dataclasses import dataclass, asdict
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.responses import StreamingResponse
+from openai import AsyncOpenAI
+from dotenv import dotenv_values
 
+config = dotenv_values(".env.dev")
+OPENAI_CLIENT = AsyncOpenAI(
+    api_key=config["OPENAI_API_KEY"], base_url=config["OPENAI_BASE_URL"]
+)
 SEARXNG_API_URL = "http://anson-eq.local:8081/"
 WIKI_API_URL = "https://api.wikimedia.org/core/v1/wikipedia/en/search/page"
 PD_OCR_API_URL = "http://anson-eq.local:9998/ocr/prediction"
-ALLOWED_ORIGINS = ["http://localhost", "http://localhost:8080", "http://localhost:5173", "https://tma.itsya0wen.com"]
-ALLOWED_ORIGIN_REGEX = r"^https://([a-zA-Z0-9-]+\.)*tma-cd3.pages.dev$"  # preview deploy domain
+ALLOWED_ORIGINS = [
+    "http://localhost",
+    "http://localhost:8080",
+    "http://localhost:5173",
+    "https://tma.itsya0wen.com",
+]
+ALLOWED_ORIGIN_REGEX = (
+    r"^https://([a-zA-Z0-9-]+\.)*tma-cd3.pages.dev$"  # preview deploy domain
+)
+JWT_SECRET = config["JWT_SECRET"]
+ALGORITHM = config["JWT_ALGORITHM"]
 TIMEOUT = 10
 
 app = FastAPI()
@@ -63,6 +80,32 @@ class DishSearchError(Exception):
     pass
 
 
+def verify_jwt(token: str):
+    try:
+        payload = jwt.decode(
+            token, JWT_SECRET, algorithms=[ALGORITHM], audience="authenticated"
+        )
+        return payload  # Return the decoded payload if token is valid
+    except JWTError:
+        raise HTTPException(status_code=401, detail="Invalid token")
+
+
+class User(pydantic.BaseModel):
+    role: str
+    user_metadata: dict
+    iat: int
+    exp: int
+
+
+def get_current_user(authorization: str = Header("Authorization")):
+    try:
+        token = authorization.split("Bearer ")[1]
+        payload = verify_jwt(token)
+        return User(**payload)
+    except JWTError:
+        raise HTTPException(status_code=401, detail="Invalid token")
+
+
 def get_ocr_result(file_content: bytes):
     """
     Post uploaded image file content to pdOCR server and return img dimension and OCR results in json format
@@ -91,7 +134,7 @@ async def search_dishes_info(ocr_results: list):
 
     for item in ocr_results:
         dish_name, _ = item[0]
-        tasks.append(search_dish_info_via_wiki(dish_name))
+        tasks.append(search_dish_info_via_OPENAI(dish_name))
 
     search_results = await asyncio.gather(*tasks)
     return search_results
@@ -193,8 +236,57 @@ async def search_dish_info_via_wiki(dish_name: str) -> dict:
     return {"description": None, "image": None, "text": None}
 
 
+async def search_dish_info_via_OPENAI(dish_name: str) -> dict:
+    """
+    serach dish info via OPENAI and using WIKI to get the image
+    """
+    # STEP1: OPENAI EXTRACT DISH-name and DISH-description
+    response = await OPENAI_CLIENT.chat.completions.create(
+        model="gpt-3.5-turbo",
+        response_format={"type": "json_object"},
+        messages=[
+            {
+                "role": "system",
+                "content": "You are a helpful assistant designed to output structured JSON responses.",
+            },
+            {
+                "role": "user",
+                "content": f"Given the OCR result '{dish_name}', generate a JSON object with keys 'dish-name' and 'dish-description'. The 'dish-name' should be the cleaned-up version of the OCR result, and the 'dish-description' should be a brief introduction to the dish based on its name. If you can't find any information, please return values as `unknown`.",
+            },
+        ],
+    )
+    converted_response = json.loads(response.choices[0].message.content)
+    dish_info = {
+        "description": converted_response["dish-description"],
+        "text": converted_response["dish-name"],
+    }
+
+    # STEP2: WIKI SEARCH DISH-NAME
+    if converted_response["dish-name"] == "unknown":
+        dish_info["imgSrc"] = None
+        return dish_info
+    query = {"q": converted_response["dish-name"], "format": "json", "limit": "3"}
+    async with httpx.AsyncClient() as wiki_client:
+        response = await wiki_client.get(WIKI_API_URL, params=query, timeout=TIMEOUT)
+    try:
+        response.raise_for_status()
+        search_results = response.json()
+        if "pages" not in search_results or len(search_results["pages"]) == 0:
+            raise DishSearchError(
+                "No image results found in Wikipedia in OPENAI search chain"
+            )
+    except Exception:
+        dish_info["imgSrc"] = None
+        return dish_info
+    for item in search_results["pages"]:
+        if "thumbnail" in item and item["thumbnail"] is not None:
+            dish_info["imgSrc"] = "https:" + item["thumbnail"]["url"]
+            break
+    return dish_info
+
+
 @app.post("/upload")
-async def upload(file: UploadFile):
+async def upload(file: UploadFile, current_user: User = Depends(get_current_user)):
     """
     pipeline from image to results:
     1. get OCR results
@@ -211,7 +303,10 @@ async def upload(file: UploadFile):
     img_dimension, ocr_results = get_ocr_result(file.file.read())
     dishes_info = await search_dishes_info(ocr_results)
     texts_bboxes = normalize_text_bbox(img_dimension, ocr_results)
-    return {"results": aggregate_dishes_info_and_bbox(dishes_info, texts_bboxes)}
+    return {
+        "results": aggregate_dishes_info_and_bbox(dishes_info, texts_bboxes),
+        "user": current_user,
+    }
 
 
 @app.post("/test")
@@ -228,7 +323,7 @@ async def test_upload(file: UploadFile):
         raise HTTPException(
             status_code=http.HTTPStatus.NO_CONTENT.value, detail="No file upaloaded"
         )
-    with open('test-data/test1-bbox-results.json', 'r', encoding='utf-8') as f:
+    with open("test-data/test1-bbox-results.json", "r", encoding="utf-8") as f:
         data = json.load(f)
         return data
 
@@ -240,7 +335,7 @@ async def dish_info_pipeline(dish: str):
     return a dish info from wikipedia search
     results contains description, image(url), and text
     """
-    dish_info = await search_dish_info_via_wiki(dish)
+    dish_info = await search_dish_info_via_OPENAI(dish)
 
     return {"results": dish_info, "message": "OK"}
 
@@ -251,16 +346,18 @@ async def draw(file: UploadFile):
     img_dimension, ocr_results = get_ocr_result(f)
     texts_bboxes = normalize_text_bbox(img_dimension, ocr_results)
     image_array = np.frombuffer(f, np.uint8)
-    image = cv2.imdecode(image_array, cv2.IMREAD_COLOR)  # Draw bounding boxes on the image
+    image = cv2.imdecode(
+        image_array, cv2.IMREAD_COLOR
+    )  # Draw bounding boxes on the image
     for bbox in texts_bboxes:
-        x = int(bbox['x'] * img_dimension.width / 100)
-        y = int(bbox['y'] * img_dimension.height / 100)
-        w = int(bbox['w'] * img_dimension.width / 100)
-        h = int(bbox['h'] * img_dimension.height / 100)
+        x = int(bbox["x"] * img_dimension.width / 100)
+        y = int(bbox["y"] * img_dimension.height / 100)
+        w = int(bbox["w"] * img_dimension.width / 100)
+        h = int(bbox["h"] * img_dimension.height / 100)
         cv2.rectangle(image, (x, y), (x + w, y + h), (0, 255, 0), 3)
 
     # Encode the image to be able to return it in HTTP response
-    _, buffered = cv2.imencode('.jpg', image)
+    _, buffered = cv2.imencode(".jpg", image)
     io_buf = BytesIO(buffered)
 
     return StreamingResponse(io_buf, media_type="image/jpeg")
