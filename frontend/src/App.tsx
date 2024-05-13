@@ -16,6 +16,23 @@ import { useRef, useState } from "react";
 import { z } from "zod";
 import { Button } from "./components/ui/button";
 
+export type BoundingBoxProps = {
+	x: number;
+	y: number;
+	w: number;
+	h: number;
+};
+
+export type DishProps = {
+	id: number;
+	boundingBox: BoundingBoxProps;
+	info: {
+		text: string;
+		imgSrc: string;
+		description: string;
+	};
+};
+
 const MAX_FILE_SIZE = 25 * 1024 * 1024; // 25MB
 const ACCEPTED_IMAGE_TYPES = [
 	"image/jpeg",
@@ -94,23 +111,6 @@ function App() {
 		</div>
 	);
 }
-
-export type BoundingBoxProps = {
-	x: number;
-	y: number;
-	w: number;
-	h: number;
-};
-
-export type DishProps = {
-	id: number;
-	boundingBox: BoundingBoxProps;
-	info: {
-		text: string;
-		imgSrc: string;
-		description: string;
-	};
-};
 
 export function formatResponseData(results: DishProps[]) {
 	return results
