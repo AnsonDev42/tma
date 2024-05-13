@@ -113,7 +113,6 @@ function Authentication() {
 				>
 					Sign out
 				</Button>
-				<p>here{session.access_token as string} end</p>
 			</div>
 		);
 	}
