@@ -9,15 +9,10 @@ import {
 } from "./components/ui/form";
 import { Input } from "./components/ui/input";
 import "./globals.css";
-import {
-	BoundingBoxProps,
-	DishProps,
-	demoData,
-	uploadData,
-} from "@/components/dish.tsx";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { ImageResults } from "@/components/dish.tsx";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect, useRef, useState } from "react";
+import axios from "axios";
+import { useRef, useState } from "react";
 import { z } from "zod";
 import { Button } from "./components/ui/button";
 
@@ -46,7 +41,7 @@ const formSchema = z.object({
 
 function App() {
 	const [menuSrc, setMenuSrc] = useState<string | ArrayBuffer | null>(null);
-	const [data, setData] = useState(demoData);
+	const [data, setData] = useState([] as DishProps[]);
 	const imageRef = useRef(null);
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
@@ -100,90 +95,63 @@ function App() {
 	);
 }
 
-interface ImageResultsProps {
-	menuSrc: string | ArrayBuffer | null;
-	data: DishProps[];
-	imageRef: React.RefObject<HTMLImageElement>;
-}
+export type BoundingBoxProps = {
+	x: number;
+	y: number;
+	w: number;
+	h: number;
+};
 
-function ImageResults({
-	menuSrc,
-	data,
-	imageRef,
-}: ImageResultsProps): React.ReactElement {
-	const [imgWidth, setImgWidth] = useState(0);
-	const [imgHeight, setImgHeight] = useState(0);
-
-	useEffect(() => {
-		const updateScale = () => {
-			const imageElement = imageRef.current;
-			if (imageElement) {
-				const renderedWidth = imageElement.clientWidth;
-				const renderedHeight = imageElement.clientHeight;
-				setImgWidth(renderedWidth);
-				setImgHeight(renderedHeight);
-			}
-		};
-
-		window.addEventListener("resize", updateScale);
-		window.addEventListener("load", updateScale);
-		window.addEventListener("DOMContentLoaded", updateScale);
-		window.addEventListener("readystatechange", updateScale);
-
-		// Initial scale update when the image loads
-		updateScale();
-
-		return () => window.removeEventListener("resize", updateScale);
-	}, [imageRef, data]);
-
-	const getAdjustedStyles = (boundingBox: BoundingBoxProps) => {
-		// Calculate adjusted bounding box based on the image scale
-		return {
-			width: `${boundingBox.w * imgWidth}px`,
-			height: `${boundingBox.h * imgHeight}px`,
-			left: `${boundingBox.x * imgWidth}px`,
-			top: `${boundingBox.y * imgHeight}px`,
-			background: "rgba(255, 0, 0, 0.5)",
-			border: "1px solid red",
-		};
+export type DishProps = {
+	id: number;
+	boundingBox: BoundingBoxProps;
+	info: {
+		text: string;
+		imgSrc: string;
+		description: string;
 	};
+};
 
-	return (
-		<div className="relative">
-			<img
-				src={menuSrc as string}
-				alt="Uploaded"
-				ref={imageRef}
-				className="absolute max-w-lg"
-			/>
-			{data.map((value, index) => {
-				return (
-					<div>
-						<Dialog key={index}>
-							<DialogTrigger asChild>
-								<div
-									key={index}
-									className="absolute"
-									style={getAdjustedStyles(value.boundingBox)}
-								>
-									<p>{value.info.text}</p>
-								</div>
-							</DialogTrigger>
-							<DialogContent className="sm:max-w-md">
-								<h2>{value.info.text}</h2>
-								{value.info.imgSrc && (
-									<img
-										src={value.info.imgSrc}
-										alt={`${value.info.text} image`}
-									/>
-								)}
-								<p>{value.info.description}</p>
-							</DialogContent>
-						</Dialog>
-					</div>
-				);
-			})}
-		</div>
-	);
+export function formatResponseData(results: DishProps[]) {
+	return results
+		.map((item) => {
+			return {
+				id: item.id,
+				boundingBox: item.boundingBox,
+				info: {
+					text: item.info.text,
+					imgSrc: item.info.imgSrc,
+					description: item.info.description,
+				},
+			};
+		})
+		.filter((item) => item !== null) as DishProps[];
 }
+
+export async function uploadData(
+	formData: FormData,
+	setData: React.Dispatch<React.SetStateAction<DishProps[]>>,
+) {
+	try {
+		const response = await axios.post(
+			"https://api.itsya0wen.com/upload",
+			formData,
+			{
+				headers: { "Content-Type": "multipart/form-data" },
+			},
+		);
+
+		const formattedData = formatResponseData(response.data.results);
+		if (formattedData.length > 0) {
+			setData(formattedData);
+		} else {
+			console.error("No valid data received.");
+			alert("No valid data to display.");
+		}
+	} catch (error) {
+		console.error("Failed to send:", (error as string) || "No response");
+		alert("Failed to send: " + ((error as string) || "Unknown error"));
+	}
+}
+
 export default App;
