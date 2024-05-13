@@ -128,12 +128,12 @@ def get_ocr_result(file_content: bytes):
     return Dimensions(img_width, img_height), ocr_results
 
 
-async def search_dishes_info(ocr_results: list):
+async def search_dishes_info(ocr_results: list, accept_language: str = "en"):
     tasks = []
 
     for item in ocr_results:
         dish_name, _ = item[0]
-        tasks.append(search_dish_info_via_openai(dish_name))
+        tasks.append(search_dish_info_via_openai(dish_name, accept_language))
 
     search_results = await asyncio.gather(*tasks)
     return search_results
@@ -235,7 +235,7 @@ async def search_dish_info_via_wiki(dish_name: str) -> dict:
     return {"description": None, "image": None, "text": None}
 
 
-async def search_dish_info_via_openai(dish_name: str) -> dict:
+async def search_dish_info_via_openai(dish_name: str, accept_language: str) -> dict:
     """
     serach dish info via OPENAI and using WIKI to get the image
     """
@@ -250,7 +250,7 @@ async def search_dish_info_via_openai(dish_name: str) -> dict:
             },
             {
                 "role": "user",
-                "content": f"Given the OCR result '{dish_name}', generate a JSON object with keys 'dish-name' and 'dish-description'. The 'dish-name' should be the cleaned-up version of the OCR result, and the 'dish-description' should be a brief introduction to the dish based on its name. If you can't find any information, please return values as `unknown`.",
+                "content": f"Given the OCR result '{dish_name}', generate a JSON object with keys 'dish-name' and 'dish-description', in the specific target language code: ${accept_language}. The 'dish-name' should be the cleaned-up version of the OCR result, and the 'dish-description' should be a brief introduction to the dish based on its name. If you can't find any information, please return values as `unknown`.",
             },
         ],
     )
@@ -283,7 +283,8 @@ async def search_dish_info_via_openai(dish_name: str) -> dict:
 
 
 @app.post("/upload")
-async def upload(file: UploadFile, current_user: User = Depends(get_user)):
+async def upload(file: UploadFile, current_user: User = Depends(get_user),
+                 accept_language: Optional[str] = Header(None)):
     """
     pipeline from image to results:
     1. get OCR results
@@ -298,7 +299,7 @@ async def upload(file: UploadFile, current_user: User = Depends(get_user)):
         )
 
     img_dimension, ocr_results = get_ocr_result(file.file.read())
-    dishes_info = await search_dishes_info(ocr_results)
+    dishes_info = await search_dishes_info(ocr_results, accept_language)
     texts_bboxes = normalize_text_bbox(img_dimension, ocr_results)
     return {
         "results": aggregate_dishes_info_and_bbox(dishes_info, texts_bboxes),
