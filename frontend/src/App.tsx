@@ -11,8 +11,11 @@ import { Input } from "./components/ui/input";
 import "./globals.css";
 import { ImageResults } from "@/components/dish.tsx";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Auth } from "@supabase/auth-ui-react";
+import { ThemeSupa } from "@supabase/auth-ui-shared";
+import { createClient } from "@supabase/supabase-js";
 import axios from "axios";
-import { useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { z } from "zod";
 import { Button } from "./components/ui/button";
 
@@ -40,6 +43,10 @@ const ACCEPTED_IMAGE_TYPES = [
 	"image/png",
 	"image/webp",
 ];
+const supabase = createClient(
+	"https://scwodhehztemzcpsofzy.supabase.co",
+	"REMOVED",
+);
 
 const formSchema = z.object({
 	file: z
@@ -55,8 +62,99 @@ const formSchema = z.object({
 			"Only .jpg, .jpeg, .png and .webp formats are supported.",
 		),
 });
+const SessionContext = React.createContext(null);
+
+function Authentication() {
+	const [session, setSession] = useState(null);
+
+	useEffect(() => {
+		const fetchSession = async () => {
+			const {
+				data: { session },
+			} = await supabase.auth.getSession();
+			setSession(session);
+		};
+
+		fetchSession();
+		const {
+			data: { subscription },
+		} = supabase.auth.onAuthStateChange((_event, session) => {
+			setSession(session);
+		});
+
+		return () => subscription.unsubscribe();
+	}, []);
+	useEffect(() => {
+		supabase.auth.onAuthStateChange(async (event, _auth) => {
+			if (event == "PASSWORD_RECOVERY") {
+				const newPassword = prompt(
+					"What would you like your new password to be?",
+				);
+				const { data, error } = await supabase.auth.update({
+					password: newPassword,
+				});
+
+				if (data) alert("Password updated successfully!");
+				if (error) alert("There was an error updating your password.");
+			}
+		});
+	}, []);
+
+	if (!session) {
+		return <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} />;
+	} else {
+		return (
+			<div className="flex-row">
+				<h1>Welcome, {session.user.email}</h1>
+				<Button
+					onClick={async () => {
+						await supabase.auth.signOut();
+					}}
+				>
+					Sign out
+				</Button>
+				<p>here{session.access_token as string} end</p>
+			</div>
+		);
+	}
+}
 
 function App() {
+	const [session, setSession] = useState(null);
+	const [loading, setLoading] = useState(true);
+
+	useEffect(() => {
+		const {
+			data: { subscription },
+		} = supabase.auth.onAuthStateChange((_event, session) => {
+			setSession(session);
+			setLoading(false);
+		});
+
+		supabase.auth.getSession().then(({ data: { session } }) => {
+			setSession(session);
+			setLoading(false);
+		});
+
+		return () => subscription.unsubscribe();
+	}, []);
+
+	if (loading) {
+		return <div>Loading...</div>;
+	}
+	return (
+		<SessionContext.Provider value={session}>
+			{session ? (
+				<MainAppContent />
+			) : (
+				<Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} />
+			)}
+		</SessionContext.Provider>
+	);
+}
+
+function MainAppContent() {
+	const session = useContext(SessionContext);
 	const [menuSrc, setMenuSrc] = useState<string | ArrayBuffer | null>(null);
 	const [data, setData] = useState([] as DishProps[]);
 	const imageRef = useRef(null);
@@ -73,17 +171,18 @@ function App() {
 		const formData = new FormData();
 		formData.append("file", file);
 		formData.append("file_name", file.name);
+		const jwt = session.access_token as string;
 
 		const reader = new FileReader();
 		reader.readAsDataURL(file);
 		reader.onload = () => {
 			setMenuSrc(reader.result);
 		};
-		await uploadData(formData, setData);
+		await uploadData(formData, jwt, setData);
 	};
-
 	return (
 		<div>
+			<Authentication />
 			<div className="max-w-lg">
 				<Form {...form}>
 					<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
