@@ -220,7 +220,16 @@ function MainAppContent() {
 		reader.onload = () => {
 			setMenuSrc(reader.result);
 		};
-		await uploadData(formData, jwt, setData);
+		toast.promise(uploadData(formData, jwt), {
+			loading: "Uploading and analyzing your menu...(This may take a while)",
+			success: (data) => {
+				setData(data);
+				return `Menu have been successfully analyzed!`;
+			},
+			error: (err) => {
+				return err.toString();
+			},
+		});
 	};
 	return (
 		<div>
@@ -272,8 +281,7 @@ function formatResponseData(results: DishProps[]) {
 async function uploadData(
 	formData: FormData,
 	jwt: string,
-	setData: React.Dispatch<React.SetStateAction<DishProps[]>>,
-) {
+): Promise<DishProps[]> {
 	try {
 		const response = await axios.post(
 			"https://api.itsya0wen.com/upload",
@@ -288,14 +296,14 @@ async function uploadData(
 
 		const formattedData = formatResponseData(response.data.results);
 		if (formattedData.length > 0) {
-			setData(formattedData);
+			return formattedData;
 		} else {
-			console.error("No valid data received.");
-			alert("No valid data to display.");
+			throw new Error("No valid data received.");
 		}
 	} catch (error) {
-		console.error("Failed to send:", (error as string) || "No response");
-		alert("Failed to send: " + ((error as string) || "Unknown error"));
+		throw new Error(
+			`Failed to send: ${(error as Error).message || "Unknown error"}`,
+		);
 	}
 }
 
