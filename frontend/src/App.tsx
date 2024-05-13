@@ -10,8 +10,19 @@ import {
 import { Input } from "./components/ui/input";
 import "./globals.css";
 import { ImageResults } from "@/components/dish.tsx";
+import {
+	Command,
+	CommandEmpty,
+	CommandGroup,
+	CommandInput,
+	CommandItem,
+	CommandList,
+} from "@/components/ui/command.tsx";
+import { PopoverContent } from "@/components/ui/popover.tsx";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Turnstile } from "@marsidev/react-turnstile";
+import { CaretSortIcon } from "@radix-ui/react-icons";
+import { Popover, PopoverTrigger } from "@radix-ui/react-popover";
 import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
 import { Session } from "@supabase/gotrue-js/src/lib/types";
@@ -66,7 +77,74 @@ const formSchema = z.object({
 		),
 });
 const SessionContext = React.createContext<Session | null>(null);
+const LanguageContext = React.createContext<{
+	selectedLanguage: Language | null;
+	setSelectedLanguage: (language: Language | null) => void;
+}>({
+	selectedLanguage: null,
+	setSelectedLanguage: (_language: Language | null) => {
+		null;
+	},
+});
+type Language = {
+	value: string;
+	label: string;
+};
+const languages: Language[] = [
+	{ value: "en", label: "English" },
+	{ value: "es", label: "Spanish" },
+	{ value: "fr", label: "French" },
+	{ value: "cn", label: "Chinese" },
+];
 
+export function LanguageComboBox() {
+	const [open, setOpen] = React.useState(false);
+	const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext);
+
+	return (
+		<div className="flex items-center space-x-4">
+			<p className="text-sm text-muted-foreground">Target Language</p>
+			<Popover open={open} onOpenChange={setOpen}>
+				<PopoverTrigger asChild>
+					<Button variant="outline" className="w-[200px] justify-between">
+						{selectedLanguage
+							? languages.find(
+									(language) => language.value === selectedLanguage.value,
+								)?.label
+							: "Select language..."}
+						<CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+					</Button>
+				</PopoverTrigger>
+				<PopoverContent className="w-[200px] p-0">
+					<Command>
+						<CommandInput placeholder="Change status..." />
+						<CommandList>
+							<CommandEmpty>No results found.</CommandEmpty>
+							<CommandGroup>
+								{languages.map((status) => (
+									<CommandItem
+										key={status.value}
+										value={status.value}
+										onSelect={(value: string) => {
+											setSelectedLanguage(
+												languages.find(
+													(priority) => priority.value === value,
+												) || null,
+											);
+											setOpen(false);
+										}}
+									>
+										{status.label}
+									</CommandItem>
+								))}
+							</CommandGroup>
+						</CommandList>
+					</Command>
+				</PopoverContent>
+			</Popover>
+		</div>
+	);
+}
 function Authentication() {
 	const [session, setSession] = useState<Session | null>(null);
 	const [captchaToken, setCaptchaToken] = useState<string>("");
@@ -164,6 +242,8 @@ function Authentication() {
 function App() {
 	const [session, setSession] = useState<Session | null>(null);
 	const [loading, setLoading] = useState(true);
+	const [selectedLanguage, setSelectedLanguage] =
+		React.useState<Language | null>(null);
 
 	useEffect(() => {
 		const {
@@ -187,9 +267,13 @@ function App() {
 	return (
 		<div>
 			<Toaster position="top-center" richColors />
-			<SessionContext.Provider value={session}>
-				{session ? <MainAppContent /> : <Authentication />}
-			</SessionContext.Provider>
+			<LanguageContext.Provider
+				value={{ selectedLanguage, setSelectedLanguage }}
+			>
+				<SessionContext.Provider value={session}>
+					{session ? <MainAppContent /> : <Authentication />}
+				</SessionContext.Provider>
+			</LanguageContext.Provider>
 		</div>
 	);
 }
@@ -206,7 +290,7 @@ function MainAppContent() {
 		},
 		mode: "onChange",
 	});
-
+	const { selectedLanguage } = useContext(LanguageContext);
 	const onSubmit = async (payload: z.infer<typeof formSchema>) => {
 		const file = payload.file[0];
 		const formData = new FormData();
@@ -222,7 +306,7 @@ function MainAppContent() {
 		reader.onload = () => {
 			setMenuSrc(reader.result);
 		};
-		toast.promise(uploadData(formData, jwt), {
+		toast.promise(uploadData(formData, jwt, selectedLanguage), {
 			loading: "Uploading and analyzing your menu...(This may take a while)",
 			success: (data) => {
 				setData(data);
@@ -235,6 +319,7 @@ function MainAppContent() {
 	};
 	return (
 		<div>
+			<LanguageComboBox />
 			<Authentication />
 			<div className="max-w-lg">
 				<Form {...form}>
@@ -283,6 +368,7 @@ function formatResponseData(results: DishProps[]) {
 async function uploadData(
 	formData: FormData,
 	jwt: string,
+	selectedLanguage: Language | null,
 ): Promise<DishProps[]> {
 	try {
 		const response = await axios.post(
@@ -292,6 +378,7 @@ async function uploadData(
 				headers: {
 					"Content-Type": "multipart/form-data",
 					Authorization: jwt,
+					"Accept-Language": selectedLanguage?.value || "en",
 				},
 			},
 		);
