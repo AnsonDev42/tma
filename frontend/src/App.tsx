@@ -11,6 +11,7 @@ import { Input } from "./components/ui/input";
 import "./globals.css";
 import { ImageResults } from "@/components/dish.tsx";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Turnstile } from "@marsidev/react-turnstile";
 import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
 import { Session } from "@supabase/gotrue-js/src/lib/types";
@@ -67,6 +68,7 @@ const SessionContext = React.createContext<Session | null>(null);
 
 function Authentication() {
 	const [session, setSession] = useState<Session | null>(null);
+	const [captchaToken, setCaptchaToken] = useState<string>("");
 
 	useEffect(() => {
 		const {
@@ -92,25 +94,48 @@ function Authentication() {
 			}
 		});
 	}, []);
-
+	async function handleAnonymousSignIn() {
+		try {
+			const {
+				data: { session },
+				error,
+			} = await supabase.auth.signInAnonymously({ options: { captchaToken } });
+			if (error) throw error;
+			alert("Signed in anonymously! User ID: " + session?.user?.id);
+			setSession(session); // Manually update the session state
+		} catch (_error) {
+			console.error("Error signing in anonymously.");
+			alert("Failed to sign in anonymously.");
+		}
+	}
 	if (!session) {
 		return (
 			<div className="flex items-center justify-center max-w-full mt-5">
-				<Auth
-					supabaseClient={supabase}
-					appearance={{
-						theme: ThemeSupa,
-						variables: {
-							default: {
-								colors: {
-									brand: "green",
-									brandAccent: "darkgreen",
+				<div className="flex-col items-center justify-center">
+					<Auth
+						supabaseClient={supabase}
+						appearance={{
+							theme: ThemeSupa,
+							variables: {
+								default: {
+									colors: {
+										brand: "green",
+										brandAccent: "darkgreen",
+									},
 								},
 							},
-						},
-					}}
-					providers={["google", "github"]}
-				/>
+						}}
+						providers={["google", "github"]}
+					/>
+					<h1>Demo Sign in : </h1>
+					<Button onClick={handleAnonymousSignIn}>Sign in anonymously</Button>
+					<Turnstile
+						siteKey="0x4AAAAAAAaDaYB6f6UNZHsB"
+						onSuccess={(token) => {
+							setCaptchaToken(token);
+						}}
+					/>
+				</div>
 			</div>
 		);
 	} else {
