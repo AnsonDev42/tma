@@ -13,6 +13,7 @@ import { ImageResults } from "@/components/dish.tsx";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
+import { Session } from "@supabase/gotrue-js/src/lib/types";
 import { createClient } from "@supabase/supabase-js";
 import axios from "axios";
 import React, { useContext, useEffect, useRef, useState } from "react";
@@ -62,20 +63,12 @@ const formSchema = z.object({
 			"Only .jpg, .jpeg, .png and .webp formats are supported.",
 		),
 });
-const SessionContext = React.createContext(null);
+const SessionContext = React.createContext<Session | null>(null);
 
 function Authentication() {
-	const [session, setSession] = useState(null);
+	const [session, setSession] = useState<Session | null>(null);
 
 	useEffect(() => {
-		const fetchSession = async () => {
-			const {
-				data: { session },
-			} = await supabase.auth.getSession();
-			setSession(session);
-		};
-
-		fetchSession();
 		const {
 			data: { subscription },
 		} = supabase.auth.onAuthStateChange((_event, session) => {
@@ -90,8 +83,8 @@ function Authentication() {
 				const newPassword = prompt(
 					"What would you like your new password to be?",
 				);
-				const { data, error } = await supabase.auth.update({
-					password: newPassword,
+				const { data, error } = await supabase.auth.updateUser({
+					password: newPassword as string,
 				});
 
 				if (data) alert("Password updated successfully!");
@@ -119,7 +112,7 @@ function Authentication() {
 }
 
 function App() {
-	const [session, setSession] = useState(null);
+	const [session, setSession] = useState<Session | null>(null);
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
@@ -153,7 +146,7 @@ function App() {
 }
 
 function MainAppContent() {
-	const session = useContext(SessionContext);
+	const session = useContext(SessionContext) as Session;
 	const [menuSrc, setMenuSrc] = useState<string | ArrayBuffer | null>(null);
 	const [data, setData] = useState([] as DishProps[]);
 	const imageRef = useRef(null);
@@ -170,8 +163,11 @@ function MainAppContent() {
 		const formData = new FormData();
 		formData.append("file", file);
 		formData.append("file_name", file.name);
-		const jwt = session.access_token as string;
-
+		if (!session || !session.access_token) {
+			alert("Please refresh to login again. No session found.");
+			return;
+		}
+		const jwt = `Bearer ${session.access_token}`;
 		const reader = new FileReader();
 		reader.readAsDataURL(file);
 		reader.onload = () => {
@@ -210,7 +206,7 @@ function MainAppContent() {
 	);
 }
 
-export function formatResponseData(results: DishProps[]) {
+function formatResponseData(results: DishProps[]) {
 	return results
 		.map((item) => {
 			return {
@@ -226,8 +222,9 @@ export function formatResponseData(results: DishProps[]) {
 		.filter((item) => item !== null) as DishProps[];
 }
 
-export async function uploadData(
+async function uploadData(
 	formData: FormData,
+	jwt: string,
 	setData: React.Dispatch<React.SetStateAction<DishProps[]>>,
 ) {
 	try {
@@ -235,7 +232,10 @@ export async function uploadData(
 			"https://api.itsya0wen.com/upload",
 			formData,
 			{
-				headers: { "Content-Type": "multipart/form-data" },
+				headers: {
+					"Content-Type": "multipart/form-data",
+					Authorization: jwt,
+				},
 			},
 		);
 
