@@ -272,7 +272,7 @@ async def search_dish_info_via_openai(dish_name: str, accept_language: str) -> d
     search_results = response.json()
 
     if "pages" not in search_results or len(search_results["pages"]) == 0:
-        raise SearchError("No search results found")
+        return dish_info
 
     for item in search_results["pages"]:
         if "thumbnail" in item and item["thumbnail"] is not None:
@@ -283,7 +283,7 @@ async def search_dish_info_via_openai(dish_name: str, accept_language: str) -> d
 
 
 @app.post("/upload")
-async def upload(file: UploadFile, current_user: User = Depends(get_user),
+async def upload(file: UploadFile, user: User = Depends(get_user),
                  accept_language: Optional[str] = Header(None)):
     """
     pipeline from image to results:
