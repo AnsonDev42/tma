@@ -55,7 +55,7 @@ ALLOWED_ORIGIN_REGEX = (
 )
 JWT_SECRET = os.getenv("JWT_SECRET")
 ALGORITHM = "HS256"
-TIMEOUT = 10
+TIMEOUT = 6
 
 app = FastAPI()
 app.add_middleware(
@@ -295,7 +295,6 @@ async def search_dish_info_via_openai(dish_name: str, accept_language: str) -> d
     # STEP2: WIKI SEARCH DISH-NAME
     if converted_response["dish-name"] == "unknown":
         return dish_info
-
     query = {"q": converted_response["dish-name"], "format": "json", "limit": "3"}
     async with httpx.AsyncClient() as wiki_client:
         response = await wiki_client.get(WIKI_API_URL, params=query, timeout=TIMEOUT)
