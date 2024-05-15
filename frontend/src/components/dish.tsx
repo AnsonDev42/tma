@@ -17,18 +17,17 @@ export function ImageResults({
 }: ImageResultsProps): React.ReactElement {
 	const [imgWidth, setImgWidth] = useState(0);
 	const [imgHeight, setImgHeight] = useState(0);
+	const updateScale = () => {
+		const imageElement = imageRef.current;
+		if (imageElement) {
+			const renderedWidth = imageElement.clientWidth;
+			const renderedHeight = imageElement.clientHeight;
+			setImgWidth(renderedWidth);
+			setImgHeight(renderedHeight);
+		}
+	};
 
 	useEffect(() => {
-		const updateScale = () => {
-			const imageElement = imageRef.current;
-			if (imageElement) {
-				const renderedWidth = imageElement.clientWidth;
-				const renderedHeight = imageElement.clientHeight;
-				setImgWidth(renderedWidth);
-				setImgHeight(renderedHeight);
-			}
-		};
-
 		window.addEventListener("resize", updateScale);
 		window.addEventListener("load", updateScale);
 		window.addEventListener("DOMContentLoaded", updateScale);
@@ -37,8 +36,19 @@ export function ImageResults({
 		// Initial scale update when the image loads
 		updateScale();
 
-		return () => window.removeEventListener("resize", updateScale);
+		return () => {
+			window.removeEventListener("resize", updateScale);
+			window.removeEventListener("load", updateScale);
+			window.removeEventListener("DOMContentLoaded", updateScale);
+			window.removeEventListener("readystatechange", updateScale);
+		};
 	}, [imageRef]);
+
+	useEffect(() => {
+		// Call updateScale whenever new data is received
+		updateScale();
+	}, [data]);
+
 	const calculateFontSize = (boundingBox: BoundingBoxProps) => {
 		const minFontSize = 10; // Minimum font size in pixels
 		const baseFontSize =
