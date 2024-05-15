@@ -158,7 +158,7 @@ async def search_dishes_info(ocr_results: list, accept_language: str = "en"):
 
     search_results = await asyncio.gather(*tasks)
     logger.info(
-        f"request to OPENAI search ! time: {time.time() - time_start:.6f} seconds"
+        f"request to OPENAI search for {accept_language} ! time: {time.time() - time_start:.6f} seconds"
     )
     return search_results
 
@@ -270,11 +270,18 @@ async def search_dish_info_via_openai(dish_name: str, accept_language: str) -> d
         messages=[
             {
                 "role": "system",
-                "content": "You are a helpful assistant designed to output structured JSON responses.",
+                "content": f"You are a helpful assistant specialized in food industry and translation, designed to "
+                           f"output structured JSON response with keys 'dish-name' and 'dish-description', "
+                           f"in the user's preferred language code: $Target-Language={accept_language}. The "
+                           f"'dish-name' should be the cleaned-up version of the OCR result in $Target-Language; 'dish-name' may contains prices of the dish such as '- 4', please remove them."
+                           f"the 'dish-description' should be a brief introduction to the dish based on its name in $Target-Language."
+                           f"If you don't think the OCR result is revelvant to food, it may due to OCR errors or the texts is "
+                           f"not a dish, like a resturant name, or price info. In this case, please return value of 'dish-name' as its orginial OCR result "
+                           f"and 'dish-description' as 'unknown'.",
             },
             {
                 "role": "user",
-                "content": f"Given the OCR result '{dish_name}', generate a JSON object with keys 'dish-name' and 'dish-description', in the specific target language code: ${accept_language}. The 'dish-name' should be the cleaned-up version of the OCR result, and the 'dish-description' should be a brief introduction to the dish based on its name. If you can't find any information, please return values as `unknown`.",
+                "content": f"OCR result: '{dish_name}'"
             },
         ],
     )
