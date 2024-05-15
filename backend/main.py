@@ -38,7 +38,7 @@ try:
         f"Resolved ML server IP: {ip}; Resolution time: {time.time() - start_time:.6f} seconds"
     )
 except socket.gaierror:
-   logger.error("Failed to resolve hostname.")
+    logger.error("Failed to resolve hostname.")
 
 SEARXNG_API_URL = f"http://{ip}:8081/"
 WIKI_API_URL = "https://api.wikimedia.org/core/v1/wikipedia/en/search/page"
@@ -56,6 +56,7 @@ ALLOWED_ORIGIN_REGEX = (
 JWT_SECRET = os.getenv("JWT_SECRET")
 ALGORITHM = "HS256"
 TIMEOUT = 6
+MAX_IMAGE_WIDTH = 650
 
 app = FastAPI()
 app.add_middleware(
@@ -121,15 +122,43 @@ def get_user(authorization: str = Header("Authorization")):
         raise HTTPException(status_code=http.HTTPStatus.UNAUTHORIZED)
 
 
+def compress_image(img_nparr: np.ndarray):
+    compression_start = time.time()
+
+    img = cv2.imdecode(img_nparr, cv2.IMREAD_COLOR)
+    img_height, img_width = img.shape[:2]
+
+    # scale to width of max of MAX_IMAGE_WIDTH
+    if img_width > MAX_IMAGE_WIDTH:
+        scale_ratio = MAX_IMAGE_WIDTH / img_width
+
+        img_width = int(img_width * scale_ratio)
+        img_height = int(img_height * scale_ratio)
+
+        img = cv2.resize(img, (img_width, img_height), interpolation=cv2.INTER_AREA)
+
+    # encode and compress image
+    encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), 50]  # compression level (100: no compression)
+    _, encimg = cv2.imencode('.jpg', img, encode_param)
+    image = base64.b64encode(encimg).decode("utf8")
+
+    logger.info(
+        f"Compressed image. time: {time.time() - compression_start:.6f} seconds"
+    )
+    return image, img_height, img_width
+
+
 def get_ocr_result(file_content: bytes):
     """
     Post uploaded image file content to pdOCR server and return img dimension and OCR results in json format
     return: (img_height, img_width), ocr_results
     """
     time_start = time.time()
-    image = base64.b64encode(file_content).decode("utf8")
-    nparr = np.frombuffer(file_content, np.uint8)
-    img_height, img_width = cv2.imdecode(nparr, cv2.IMREAD_COLOR).shape[:2]
+
+    # convert image from bytes and compress image
+    img_nparr = np.frombuffer(file_content, np.uint8)
+    image, img_height, img_width = compress_image(img_nparr)
+
     data = {"key": ["image"], "value": [image]}
     response = requests.post(url=PD_OCR_API_URL, data=json.dumps(data), timeout=TIMEOUT)
     response.raise_for_status()
@@ -293,22 +322,30 @@ async def search_dish_info_via_openai(dish_name: str, accept_language: str) -> d
     }
 
     # STEP2: WIKI SEARCH DISH-NAME
-    if converted_response["dish-name"] == "unknown":
+    try:
+        dish_info = await search_img_via_wiki(dish_info)
+    except Exception as e:
+        # probably rate limited by wiki
+        logger.error(f"Failed to search dish info via wiki: {e}")
+    return dish_info
+
+
+async def search_img_via_wiki(dish_info: dict):
+    # not perform search if dish is not a dish
+    if dish_info["text"] == "unknown":
         return dish_info
-    query = {"q": converted_response["dish-name"], "format": "json", "limit": "3"}
+
+    query = {"q": dish_info["text"], "format": "json", "limit": "3"}
     async with httpx.AsyncClient() as wiki_client:
         response = await wiki_client.get(WIKI_API_URL, params=query, timeout=TIMEOUT)
+
     response.raise_for_status()
     search_results = response.json()
-
-    if "pages" not in search_results or len(search_results["pages"]) == 0:
-        return dish_info
 
     for item in search_results["pages"]:
         if "thumbnail" in item and item["thumbnail"] is not None:
             dish_info["imgSrc"] = f"https:{item["thumbnail"]["url"]}"
             break
-
     return dish_info
 
 
