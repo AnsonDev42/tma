@@ -96,12 +96,27 @@ const languages: Language[] = [
 	{ value: "en", label: "English" },
 	{ value: "es", label: "Spanish" },
 	{ value: "fr", label: "French" },
-	{ value: "cn", label: "Chinese" },
+	{ value: "zh", label: "Chinese" },
 ];
 
 export function LanguageComboBox() {
 	const [open, setOpen] = React.useState(false);
 	const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext);
+	// set default language based on browser language
+	useEffect(() => {
+		if (!selectedLanguage) {
+			const browserLanguage = navigator.language || navigator.languages[0];
+			// Get the main language part e.g. "zh" from "zh-cn"
+			const languagePrefix = browserLanguage.split("-")[0];
+			const defaultLanguage =
+				languages.find((language) =>
+					language.value.startsWith(languagePrefix),
+				) ||
+				languages.find((language) => language.value === "en") ||
+				null;
+			setSelectedLanguage(defaultLanguage);
+		}
+	}, [selectedLanguage, setSelectedLanguage]);
 
 	return (
 		<div className="flex items-center space-x-4">
@@ -119,7 +134,7 @@ export function LanguageComboBox() {
 				</PopoverTrigger>
 				<PopoverContent className="w-[200px] p-0">
 					<Command>
-						<CommandInput placeholder="Change status..." />
+						<CommandInput placeholder="Change language..." />
 						<CommandList>
 							<CommandEmpty>No results found.</CommandEmpty>
 							<CommandGroup>
