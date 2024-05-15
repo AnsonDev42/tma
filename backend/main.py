@@ -1,6 +1,8 @@
 import ast
 import http
 import os
+import socket
+import time
 from io import BytesIO
 from typing import NamedTuple, Optional
 
@@ -19,15 +21,29 @@ from fastapi.middleware.cors import CORSMiddleware
 from starlette.responses import StreamingResponse
 from openai import AsyncOpenAI
 from dotenv import load_dotenv
+import logging
+
+logger = logging.getLogger(__name__)
 
 load_dotenv()
 
 OPENAI_CLIENT = AsyncOpenAI(
     api_key=os.getenv("OPENAI_API_KEY"), base_url=os.getenv("OPENAI_BASE_URL")
 )
-SEARXNG_API_URL = "http://anson-eq.local:8081/"
+ip = "anson-eq.local"
+try:
+    start_time = time.time()
+    ip = socket.gethostbyname("anson-eq.local")
+    logger.info(
+        f"Resolved ML server IP: {ip}; Resolution time: {time.time() - start_time:.6f} seconds"
+    )
+except socket.gaierror:
+   logger.error("Failed to resolve hostname.")
+
+SEARXNG_API_URL = f"http://{ip}:8081/"
 WIKI_API_URL = "https://api.wikimedia.org/core/v1/wikipedia/en/search/page"
-PD_OCR_API_URL = "http://anson-eq.local:9998/ocr/prediction"
+PD_OCR_API_URL = f"http://{ip}:9998/ocr/prediction"
+
 ALLOWED_ORIGINS = [
     "http://localhost",
     "http://localhost:8080",
@@ -110,6 +126,7 @@ def get_ocr_result(file_content: bytes):
     Post uploaded image file content to pdOCR server and return img dimension and OCR results in json format
     return: (img_height, img_width), ocr_results
     """
+    time_start = time.time()
     image = base64.b64encode(file_content).decode("utf8")
     nparr = np.frombuffer(file_content, np.uint8)
     img_height, img_width = cv2.imdecode(nparr, cv2.IMREAD_COLOR).shape[:2]
@@ -125,10 +142,14 @@ def get_ocr_result(file_content: bytes):
     ocr_results = ast.literal_eval(ocr_results_str)
     if not isinstance(ocr_results, list) or not ocr_results:
         raise OCRError("OCR results is not a list")
+    logger.info(
+        f"request to OCR endpoint! time: {time.time() - time_start:.6f} seconds"
+    )
     return Dimensions(img_width, img_height), ocr_results
 
 
 async def search_dishes_info(ocr_results: list, accept_language: str = "en"):
+    time_start = time.time()
     tasks = []
 
     for item in ocr_results:
@@ -136,6 +157,9 @@ async def search_dishes_info(ocr_results: list, accept_language: str = "en"):
         tasks.append(search_dish_info_via_openai(dish_name, accept_language))
 
     search_results = await asyncio.gather(*tasks)
+    logger.info(
+        f"request to OPENAI search ! time: {time.time() - time_start:.6f} seconds"
+    )
     return search_results
 
 
