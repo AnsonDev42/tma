@@ -18,7 +18,9 @@ import {
 	CommandItem,
 	CommandList,
 } from "@/components/ui/command.tsx";
+import { Label } from "@/components/ui/label";
 import { PopoverContent } from "@/components/ui/popover.tsx";
+import { Switch } from "@/components/ui/switch";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Turnstile } from "@marsidev/react-turnstile";
 import { CaretSortIcon } from "@radix-ui/react-icons";
@@ -282,6 +284,7 @@ function App() {
 
 function MainAppContent() {
 	const session = useContext(SessionContext) as Session;
+	const [showText, setShowText] = useState(true); // show bounding box text
 	const [menuSrc, setMenuSrc] = useState<string | ArrayBuffer | null>(null);
 	const [data, setData] = useState([] as DishProps[]);
 	const imageRef = useRef(null);
@@ -319,6 +322,10 @@ function MainAppContent() {
 			},
 		});
 	};
+	const handleToggleText = () => {
+		setShowText((prevShowText) => !prevShowText);
+	};
+
 	return (
 		<div>
 			<LanguageComboBox />
@@ -344,8 +351,24 @@ function MainAppContent() {
 				</Form>
 				<div className="w-full"></div>
 			</div>
+			{/* Toggle for showing/hiding text */}
+			<div className="mt-4">
+				<div className="flex items-center space-x-2">
+					<Switch
+						id="Show Bounding Box Text"
+						checked={showText}
+						onCheckedChange={handleToggleText}
+					/>
+					<Label htmlFor="Show-Bounding-Box-Text">Show Bounding Box Text</Label>
+				</div>
+			</div>
 			{menuSrc && (
-				<ImageResults menuSrc={menuSrc} data={data} imageRef={imageRef} />
+				<ImageResults
+					menuSrc={menuSrc}
+					data={data}
+					imageRef={imageRef}
+					showText={showText}
+				/>
 			)}
 		</div>
 	);

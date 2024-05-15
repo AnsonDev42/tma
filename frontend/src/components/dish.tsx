@@ -6,12 +6,14 @@ interface ImageResultsProps {
 	menuSrc: string | ArrayBuffer | null;
 	data: DishProps[];
 	imageRef: React.RefObject<HTMLImageElement>;
+	showText: boolean;
 }
 
 export function ImageResults({
 	menuSrc,
 	data,
 	imageRef,
+	showText,
 }: ImageResultsProps): React.ReactElement {
 	const [imgWidth, setImgWidth] = useState(0);
 	const [imgHeight, setImgHeight] = useState(0);
@@ -80,9 +82,11 @@ export function ImageResults({
 									className="absolute"
 									style={getAdjustedStyles(value.boundingBox)}
 								>
-									<div style={getTextStyle(value.boundingBox)}>
-										{value.info.text}
-									</div>
+									{showText && (
+										<div style={getTextStyle(value.boundingBox)}>
+											{value.info.text}
+										</div>
+									)}
 								</div>
 							</DialogTrigger>
 							<DialogContent className="sm:max-w-md">
