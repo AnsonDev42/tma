@@ -1,5 +1,9 @@
 import { BoundingBoxProps, DishProps } from "@/App.tsx";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import {
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+} from "@/components/ui/popover";
 import { useEffect, useState } from "react";
 
 interface ImageResultsProps {
@@ -74,6 +78,7 @@ export function ImageResults({
 		whiteSpace: "nowrap", // Keeps the text on a single line
 		color: "white",
 	});
+
 	return (
 		<div className="relative">
 			<img
@@ -82,37 +87,58 @@ export function ImageResults({
 				ref={imageRef}
 				className="absolute max-w-lg"
 			/>
-			{data.map((value, index) => {
-				return (
-					<div>
-						<Dialog key={index}>
-							<DialogTrigger asChild>
-								<div
-									key={index}
-									className="absolute"
-									style={getAdjustedStyles(value.boundingBox)}
-								>
-									{showText && (
-										<div style={getTextStyle(value.boundingBox)}>
-											{value.info.text}
-										</div>
-									)}
+			{data.map((value, index) => (
+				<Popover key={index}>
+					<PopoverTrigger asChild>
+						<div
+							key={index}
+							className="absolute"
+							style={getAdjustedStyles(value.boundingBox)}
+						>
+							{showText && (
+								<div style={getTextStyle(value.boundingBox)}>
+									{value.info.text}
 								</div>
-							</DialogTrigger>
-							<DialogContent className="sm:max-w-md">
-								<h2>{value.info.text}</h2>
-								{value.info.imgSrc && (
-									<img
-										src={value.info.imgSrc}
-										alt={`${value.info.text} image`}
-									/>
-								)}
-								<p>{value.info.description}</p>
-							</DialogContent>
-						</Dialog>
-					</div>
-				);
-			})}
+							)}
+						</div>
+					</PopoverTrigger>
+					<PopoverContent className="max-w-sm p-6 bg-white rounded-lg shadow-lg">
+						<div className="flex flex-col items-center">
+							{value.info.imgSrc && (
+								<img
+									src={value.info.imgSrc}
+									alt={`${value.info.text} image`}
+									className="w-full h-40 object-cover rounded-t-lg mb-4"
+								/>
+							)}
+							<h2 className="font-bold text-xl mb-2">{value.info.text}</h2>
+							<p className="text-gray-700 mb-4">{value.info.description}</p>
+							<div className="flex space-x-4">
+								<a
+									href={`https://www.google.com/search?q=${encodeURIComponent(
+										value.info.text,
+									)}`}
+									target="_blank"
+									rel="noopener noreferrer"
+									className="text-blue-500 hover:underline"
+								>
+									Search on Google
+								</a>
+								<a
+									href={`https://wikipedia.org/wiki/${encodeURIComponent(
+										value.info.text,
+									)}`}
+									target="_blank"
+									rel="noopener noreferrer"
+									className="text-blue-500 hover:underline"
+								>
+									View on Wikipedia
+								</a>
+							</div>
+						</div>
+					</PopoverContent>
+				</Popover>
+			))}
 		</div>
 	);
 }
