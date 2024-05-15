@@ -307,6 +307,7 @@ function MainAppContent() {
 	const [menuSrc, setMenuSrc] = useState<string | ArrayBuffer | null>(null);
 	const [data, setData] = useState([] as DishProps[]);
 	const imageRef = useRef(null);
+	const imageResultsRef = useRef<HTMLDivElement | null>(null);
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
@@ -341,6 +342,13 @@ function MainAppContent() {
 			},
 		});
 	};
+
+	useEffect(() => {
+		if (imageResultsRef.current) {
+			imageResultsRef.current.scrollIntoView({ behavior: "smooth" });
+		}
+	}, [menuSrc, showText, data]);
+
 	const handleToggleText = () => {
 		setShowText((prevShowText) => !prevShowText);
 	};
@@ -349,6 +357,7 @@ function MainAppContent() {
 		<div>
 			<LanguageComboBox />
 			<Authentication />
+			<h1 className="text-3xl font-bold text-center mt-5">Menu Analyzer</h1>
 			<div className="max-w-lg">
 				<Form {...form}>
 					<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -387,6 +396,7 @@ function MainAppContent() {
 					data={data}
 					imageRef={imageRef}
 					showText={showText}
+					imageResultsRef={imageResultsRef}
 				/>
 			)}
 		</div>
