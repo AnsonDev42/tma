@@ -34,11 +34,8 @@ ip = "anson-eq.local"
 try:
     start_time = time.time()
     ip = socket.gethostbyname("anson-eq.local")
-    logger.info(
-        f"Resolved ML server IP: {ip}; Resolution time: {time.time() - start_time:.6f} seconds"
-    )
 except socket.gaierror:
-    logger.error("Failed to resolve hostname.")
+    logger.error("Could not resolve hostname, using default hostname")
 
 SEARXNG_API_URL = f"http://{ip}:8081/"
 WIKI_API_URL = "https://api.wikimedia.org/core/v1/wikipedia/en/search/page"
@@ -56,7 +53,7 @@ ALLOWED_ORIGIN_REGEX = (
 JWT_SECRET = os.getenv("JWT_SECRET")
 ALGORITHM = "HS256"
 TIMEOUT = 6
-MAX_IMAGE_WIDTH = 650
+MAX_IMAGE_WIDTH = 550
 
 app = FastAPI()
 app.add_middleware(
@@ -123,7 +120,7 @@ def get_user(authorization: str = Header("Authorization")):
 
 
 def compress_image(img_nparr: np.ndarray):
-    compression_start = time.time()
+    time_start = time.monotonic()
 
     img = cv2.imdecode(img_nparr, cv2.IMREAD_COLOR)
     img_height, img_width = img.shape[:2]
@@ -138,13 +135,11 @@ def compress_image(img_nparr: np.ndarray):
         img = cv2.resize(img, (img_width, img_height), interpolation=cv2.INTER_AREA)
 
     # encode and compress image
-    encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), 50]  # compression level (100: no compression)
-    _, encimg = cv2.imencode('.jpg', img, encode_param)
+    encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), 30]  # compression level (100: no compression)
+    _, encimg = cv2.imencode('.jpeg', img, encode_param)
     image = base64.b64encode(encimg).decode("utf8")
 
-    logger.info(
-        f"Compressed image. time: {time.time() - compression_start:.6f} seconds"
-    )
+    logger.info("Compressed image. time: %s seconds", time.monotonic() - time_start)
     return image, img_height, img_width
 
 
@@ -153,7 +148,7 @@ def get_ocr_result(file_content: bytes):
     Post uploaded image file content to pdOCR server and return img dimension and OCR results in json format
     return: (img_height, img_width), ocr_results
     """
-    time_start = time.time()
+    time_start = time.monotonic()
 
     # convert image from bytes and compress image
     img_nparr = np.frombuffer(file_content, np.uint8)
@@ -171,25 +166,38 @@ def get_ocr_result(file_content: bytes):
     ocr_results = ast.literal_eval(ocr_results_str)
     if not isinstance(ocr_results, list) or not ocr_results:
         raise OCRError("OCR results is not a list")
-    logger.info(
-        f"request to OCR endpoint! time: {time.time() - time_start:.6f} seconds"
-    )
+    logger.info("Request to OCR endpoint completed in: %s seconds", {time.time() - time_start})
     return Dimensions(img_width, img_height), ocr_results
 
 
 async def search_dishes_info(ocr_results: list, accept_language: str = "en"):
-    time_start = time.time()
+    time_start = time.monotonic()
     tasks = []
 
     for item in ocr_results:
-        dish_name, _ = item[0]
-        tasks.append(search_dish_info_via_openai(dish_name, accept_language))
+        ocr_text, _ = item[0]
+        tasks.append(search_dish_with_openai_and_wiki(ocr_text, accept_language))
 
     search_results = await asyncio.gather(*tasks)
-    logger.info(
-        f"request to OPENAI search for {accept_language} ! time: {time.time() - time_start:.6f} seconds"
-    )
+
+    logger.info("search dish info in : %s seconds", {time.monotonic() - time_start})
     return search_results
+
+
+async def search_dish_with_openai_and_wiki(ocr_text: str, accept_language: str):
+    """
+    Using ocr_text to generate dish info via openai, then use generated dish name to search image via wiki
+    """
+
+    dish_info = search_dish_info_via_openai(ocr_text, accept_language)
+
+    try:
+        if src := await search_img_via_wiki(dish_info["text"]):
+            dish_info["src"] = src
+    except Exception as e:
+        logger.error(f"Failed to search image via wiki: (error: %s ),{e}")
+
+    return dish_info
 
 
 def normalize_text_bbox(img_dimension: Dimensions, ocr_results: list):
@@ -320,22 +328,15 @@ async def search_dish_info_via_openai(dish_name: str, accept_language: str) -> d
         "text": converted_response["dish-name"],
         "imgSrc": None,
     }
-
-    # STEP2: WIKI SEARCH DISH-NAME
-    try:
-        dish_info = await search_img_via_wiki(dish_info)
-    except Exception as e:
-        # probably rate limited by wiki
-        logger.error(f"Failed to search dish info via wiki: {e}")
     return dish_info
 
 
-async def search_img_via_wiki(dish_info: dict):
+async def search_img_via_wiki(dish_text: str) -> Optional[str]:
     # not perform search if dish is not a dish
-    if dish_info["text"] == "unknown":
-        return dish_info
+    if dish_text == "unknown":
+        return None
 
-    query = {"q": dish_info["text"], "format": "json", "limit": "3"}
+    query = {"q": dish_text, "format": "json", "limit": "3"}
     async with httpx.AsyncClient() as wiki_client:
         response = await wiki_client.get(WIKI_API_URL, params=query, timeout=TIMEOUT)
 
@@ -344,9 +345,9 @@ async def search_img_via_wiki(dish_info: dict):
 
     for item in search_results["pages"]:
         if "thumbnail" in item and item["thumbnail"] is not None:
-            dish_info["imgSrc"] = f"https:{item["thumbnail"]["url"]}"
-            break
-    return dish_info
+            return f"https:{item["thumbnail"]["url"]}"
+
+    return None
 
 
 @app.post("/upload")
