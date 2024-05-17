@@ -189,11 +189,10 @@ async def search_dish_with_openai_and_wiki(ocr_text: str, accept_language: str):
     Using ocr_text to generate dish info via openai, then use generated dish name to search image via wiki
     """
 
-    dish_info = search_dish_info_via_openai(ocr_text, accept_language)
-
+    dish_info_coroutine = search_dish_info_via_openai(ocr_text, accept_language)
+    dish_info = await dish_info_coroutine
     try:
-        if src := await search_img_via_wiki(dish_info["text"]):
-            dish_info["src"] = src
+        dish_info["imgSrc"] = await search_img_via_wiki(dish_info["text"])
     except Exception as e:
         logger.error(f"Failed to search image via wiki: (error: %s ),{e}")
 
@@ -323,12 +322,11 @@ async def search_dish_info_via_openai(dish_name: str, accept_language: str) -> d
         ],
     )
     converted_response = json.loads(response.choices[0].message.content)
-    dish_info = {
+    return {
         "description": converted_response["dish-description"],
         "text": converted_response["dish-name"],
         "imgSrc": None,
     }
-    return dish_info
 
 
 async def search_img_via_wiki(dish_text: str) -> Optional[str]:
@@ -343,9 +341,10 @@ async def search_img_via_wiki(dish_text: str) -> Optional[str]:
     response.raise_for_status()
     search_results = response.json()
 
-    for item in search_results["pages"]:
-        if "thumbnail" in item and item["thumbnail"] is not None:
-            return f"https:{item["thumbnail"]["url"]}"
+    for item in search_results.get("pages", []):
+        thumbnail = item.get("thumbnail")
+        if thumbnail and "url" in thumbnail:
+            return f"https:{thumbnail['url']}"
 
     return None
 
