@@ -1,7 +1,6 @@
-import {LanguageComboBox} from "@/components/LanguageComboBox";
+import { LanguageComboBox } from "@/components/LanguageComboBox";
+import { ThemeToggle } from "@/components/ThemeToggle.tsx";
 import React from "react";
-import {ThemeToggle} from "@/components/ThemeToggle.tsx";
-
 export function Navbar(): React.ReactElement {
 	return (
 		<div>

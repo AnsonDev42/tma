@@ -93,18 +93,24 @@ export function Authentication() {
 		);
 	} else {
 		return (
-			<div className="flex-row">
-				<h1>
-					Welcome, {session.user.email == "" ? "Demo User" : session.user.email}
-				</h1>
-				<Button
-					onClick={async () => {
-						await supabase.auth.signOut();
-						toast.success("Signed out successfully!");
-					}}
-				>
-					Sign out
-				</Button>
+			<div className="flex justify-between items-center gap-2 m-3">
+				<div className="flex items-center">
+					<h1 className="italic">Welcome, </h1>
+					<h1 className="bold ml-1">
+						{session.user.email === "" ? "Demo User" : session.user.email}
+					</h1>
+				</div>
+				<div>
+					<button
+						className="btn btn-link"
+						onClick={async () => {
+							await supabase.auth.signOut();
+							toast.success("Signed out successfully!");
+						}}
+					>
+						Sign out
+					</button>
+				</div>
 			</div>
 		);
 	}
