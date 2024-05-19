@@ -1,13 +1,4 @@
 import { useForm } from "react-hook-form";
-import {
-	Form,
-	FormControl,
-	FormField,
-	FormItem,
-	FormLabel,
-	FormMessage,
-} from "./components/ui/form";
-import { Input } from "./components/ui/input";
 import "./globals.css";
 import { ImageResults } from "@/components/dish.tsx";
 import {
@@ -394,24 +385,21 @@ function MainAppContent() {
 				</label>
 				<h1 className="text-3xl font-bold text-center mt-5">Menu Analyzer</h1>
 				<div className="max-w-lg">
-					<Form {...form}>
-						<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-							<FormField
-								control={form.control}
-								name="file"
-								render={() => (
-									<FormItem>
-										<FormLabel>Upload a Menu image</FormLabel>
-										<FormControl>
-											<Input type="file" {...form.register("file")} />
-										</FormControl>
-										<FormMessage />
-									</FormItem>
-								)}
+					<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+						<label className="form-control w-full max-w-xs">
+							<div className="label">
+								<span className="label-text">Upload a Menu image</span>
+							</div>
+							<input
+								type="file"
+								className="file-input file-input-bordered w-full max-w-xs"
+								{...form.register("file")}
 							/>
-							<Button type="submit">Upload</Button>
-						</form>
-					</Form>
+						</label>
+						<button type="submit" className="btn btn-primary">
+							Upload Menu
+						</button>
+					</form>
 					<div className="w-full"></div>
 				</div>
 				{/* Toggle for showing/hiding text */}
