@@ -46,7 +46,7 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({
 	initialLanguage,
 }) => {
 	const [selectedLanguage, setSelectedLanguage] =
-		React.useState<Language>(initialLanguage);
+		React.useState<Language | null>(initialLanguage);
 
 	return (
 		<LanguageContext.Provider value={{ selectedLanguage, setSelectedLanguage }}>

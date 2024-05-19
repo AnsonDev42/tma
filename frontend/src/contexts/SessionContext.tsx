@@ -1,6 +1,6 @@
 import { AuthChangeEvent, Session } from "@supabase/gotrue-js";
 import { createClient } from "@supabase/supabase-js";
-import React, { createContext, useEffect, useState, ReactNode } from "react";
+import { ReactNode, createContext, useEffect, useState } from "react";
 
 const supabase = createClient(
 	"https://scwodhehztemzcpsofzy.supabase.co",
