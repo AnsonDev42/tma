@@ -1,9 +1,9 @@
-import { BoundingBoxProps, DishProps } from "@/App.tsx";
 import {
 	Popover,
 	PopoverContent,
 	PopoverTrigger,
 } from "@/components/ui/popover";
+import { BoundingBoxProps, DishProps } from "@/types/DishProps.tsx";
 import React, { useEffect, useState } from "react";
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
 
