@@ -12,7 +12,6 @@ interface ImageResultsProps {
 	data: DishProps[];
 	imageRef: React.RefObject<HTMLImageElement>;
 	showText: boolean;
-	imageResultsRef: React.RefObject<HTMLDivElement>;
 }
 
 export function ImageResults({
@@ -20,7 +19,6 @@ export function ImageResults({
 	data,
 	imageRef,
 	showText,
-	imageResultsRef,
 }: ImageResultsProps): React.ReactElement {
 	const [imgWidth, setImgWidth] = useState(0);
 	const [imgHeight, setImgHeight] = useState(0);
@@ -83,34 +81,31 @@ export function ImageResults({
 	});
 
 	return (
-		<div
-			ref={imageResultsRef}
-			className="flex justify-center items-center p-3 m-2 bg-blue-500 border border-gray-300 rounded-2xl "
-		>
+		<div className="flex justify-center items-center p-3 m-2 bg-blue-500 border border-gray-300 rounded-2xl ">
 			<TransformWrapper>
 				<TransformComponent>
 					<div className=" relative  max-w-full max-h-screen flex items-start">
 						<img
 							src={menuSrc as string}
 							alt="Uploaded"
-							ref={imageRef}
 							className="max-w-full max-h-screen relative"
 						/>
 
 						{data.map((value, index) => (
 							<Popover key={index}>
 								<PopoverTrigger asChild>
-									<div
-										key={index}
-										className="absolute"
-										style={getAdjustedStyles(value.boundingBox)}
-									>
-										{showText && (
+									{showText && (
+										<div
+											key={index}
+											className="absolute"
+											style={getAdjustedStyles(value.boundingBox)}
+										>
 											<div style={getTextStyle(value.boundingBox)}>
 												{value.info.text}
 											</div>
-										)}
-									</div>
+											)
+										</div>
+									)}
 								</PopoverTrigger>
 								<PopoverContent className="max-w-sm p-6 bg-white rounded-lg shadow-lg">
 									<div className="flex flex-col items-center">
