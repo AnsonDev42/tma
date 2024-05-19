@@ -1,4 +1,4 @@
-import { LanguageComboBox } from "@/App.tsx";
+import { LanguageComboBox } from "@/components/LanguageComboBox";
 import React from "react";
 
 function ThemeToggle(): React.JSX.Element {
