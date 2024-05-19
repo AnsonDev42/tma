@@ -1,10 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 export function ThemeToggle(): React.JSX.Element {
+	const [isDarkMode, setIsDarkMode] = useState(false);
+	useEffect(() => {
+		// Load the initial theme from local storage or default to light theme
+		const savedTheme = localStorage.getItem("theme") || "light";
+		document.documentElement.setAttribute("data-theme", savedTheme);
+		setIsDarkMode(savedTheme === "dark");
+	}, []);
+
+	const handleThemeChange = () => {
+		const newTheme = isDarkMode ? "light" : "dark";
+		document.documentElement.setAttribute("data-theme", newTheme);
+		localStorage.setItem("theme", newTheme);
+		setIsDarkMode(!isDarkMode);
+	};
+
 	return (
 		<label className="swap swap-rotate">
 			{/* this hidden checkbox controls the state */}
-			<input type="checkbox" className="theme-controller" value="dark" />
+			<input
+				type="checkbox"
+				className="theme-controller"
+				checked={isDarkMode}
+				onChange={handleThemeChange}
+			/>
 
 			{/* sun icon */}
 			<svg
