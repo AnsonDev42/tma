@@ -43,9 +43,11 @@ function MainAppContent() {
 		<div data-theme="">
 			<Navbar />
 			<div className="flex flex-col mx-2">
+				{/* authentication */}
 				<Authentication />
 				<div className="divider divider-neutral"></div>
 
+				{/* upload form */}
 				<div className="max-w-lg">
 					<UploadForm onUploadComplete={setData} setMenuSrc={setMenuSrc} />
 					<div className="w-full"></div>
@@ -65,6 +67,8 @@ function MainAppContent() {
 						</Label>
 					</div>
 				</div>
+
+				{/* image results */}
 				{menuSrc && (
 					<ImageResults
 						menuSrc={menuSrc}
