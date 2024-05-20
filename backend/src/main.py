@@ -23,6 +23,9 @@ from openai import AsyncOpenAI
 from dotenv import load_dotenv
 import logging
 
+from src.api import api_router
+from src.core.config import settings
+
 logger = logging.getLogger(__name__)
 
 load_dotenv()
@@ -56,14 +59,19 @@ TIMEOUT = 6
 MAX_IMAGE_WIDTH = 550
 
 app = FastAPI()
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=ALLOWED_ORIGINS,
-    allow_origin_regex=ALLOWED_ORIGIN_REGEX,
-    allow_credentials=True,
-    allow_methods=["*"],  # Allows all methods
-    allow_headers=["*"],  # Allows all headers
-)
+
+if settings.BACKEND_CORS_ORIGINS:
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=[
+            str(origin).strip("/") for origin in settings.BACKEND_CORS_ORIGINS
+        ],
+        allow_origin_regex=settings.BACKEND_CORS_ORIGINS_REGEX,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
+
+app.include_router(api_router)
 
 
 @dataclass
@@ -96,11 +104,6 @@ class SearchError(Exception):
     pass
 
 
-def verify_jwt(token: str):
-    payload = jwt.decode(
-        token, JWT_SECRET, algorithms=[ALGORITHM], audience="authenticated"
-    )
-    return payload
 
 
 class User(pydantic.BaseModel):
