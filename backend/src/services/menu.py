@@ -98,9 +98,9 @@ async def get_dish_image(dish_name: str | None) -> str | None:
     return None
 
 
-def get_dish_data(dish_name: str, accept_language: str) -> dict:
-    data = get_dish_info_via_openai(dish_name, accept_language)
-    img_src = get_dish_image(data)
+async def get_dish_data(dish_name: str, accept_language: str) -> dict:
+    data = await get_dish_info_via_openai(dish_name, accept_language)
+    img_src = await get_dish_image(data)
     return data | {"img_src": img_src}
 
 
