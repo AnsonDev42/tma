@@ -77,6 +77,29 @@ const UploadForm: React.FC<UploadFormProps> = ({
 		});
 	};
 
+	const handleDemoUpload = async () => {
+		await new Promise((resolve) => setTimeout(resolve, 500));
+		setMenuSrc("/demoMenu1.jpg");
+
+		toast.promise(
+			(async () => {
+				await new Promise((resolve) => setTimeout(resolve, 2000));
+				const response = await fetch("/demoData.json");
+				const data = await response.json();
+				const formattedData = formatResponseData(data.results);
+				onUploadComplete(formattedData); // hook the data
+				return data;
+			})(),
+			{
+				loading:
+					"Uploading and analyzing your demo menu...(This may take a while)",
+				success:
+					"Demo menu has been successfully analyzed! Try click the dishes.",
+				error: "Failed to load demo data.",
+			},
+		);
+	};
+
 	return (
 		<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
 			<label className="form-control w-full max-w-xs">
@@ -91,6 +114,13 @@ const UploadForm: React.FC<UploadFormProps> = ({
 			</label>
 			<button type="submit" className="btn btn-primary">
 				Upload Menu
+			</button>
+			<button
+				type="button"
+				className="btn btn-secondary ml-5"
+				onClick={handleDemoUpload}
+			>
+				Try with Demo image
 			</button>
 		</form>
 	);
