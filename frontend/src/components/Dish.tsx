@@ -75,7 +75,6 @@ export function ImageResults({
 		top: `${boundingBox.y * imgHeight}px`,
 		background: "rgba(255, 0, 0, 0.5)",
 		border: "1px solid red",
-		position: "absolute",
 	});
 
 	const getTextStyle = (boundingBox: BoundingBoxProps) => ({
