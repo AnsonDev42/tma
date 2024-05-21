@@ -33,19 +33,26 @@ export function ImageResults({
 	};
 
 	useEffect(() => {
-		window.addEventListener("resize", updateScale);
-		window.addEventListener("load", updateScale);
-		window.addEventListener("DOMContentLoaded", updateScale);
-		window.addEventListener("readystatechange", updateScale);
+		const imageElement = imageRef.current;
 
-		// Initial scale update when the image loads
-		updateScale();
+		const handleImageLoad = () => {
+			updateScale();
+		};
+
+		if (imageElement) {
+			imageElement.addEventListener("load", handleImageLoad);
+			if (imageElement.complete) {
+				handleImageLoad();
+			}
+		}
+
+		window.addEventListener("resize", updateScale);
 
 		return () => {
+			if (imageElement) {
+				imageElement.removeEventListener("load", handleImageLoad);
+			}
 			window.removeEventListener("resize", updateScale);
-			window.removeEventListener("load", updateScale);
-			window.removeEventListener("DOMContentLoaded", updateScale);
-			window.removeEventListener("readystatechange", updateScale);
 		};
 	}, [imageRef]);
 
@@ -61,17 +68,16 @@ export function ImageResults({
 		return Math.max(baseFontSize, minFontSize);
 	};
 
-	const getAdjustedStyles = (boundingBox: BoundingBoxProps) => {
-		// Calculate adjusted bounding box based on the image scale
-		return {
-			width: `${boundingBox.w * imgWidth}px`,
-			height: `${boundingBox.h * imgHeight}px`,
-			left: `${boundingBox.x * imgWidth}px`,
-			top: `${boundingBox.y * imgHeight}px`,
-			background: "rgba(255, 0, 0, 0.5)",
-			border: "1px solid red",
-		};
-	};
+	const getAdjustedStyles = (boundingBox: BoundingBoxProps) => ({
+		width: `${boundingBox.w * imgWidth}px`,
+		height: `${boundingBox.h * imgHeight}px`,
+		left: `${boundingBox.x * imgWidth}px`,
+		top: `${boundingBox.y * imgHeight}px`,
+		background: "rgba(255, 0, 0, 0.5)",
+		border: "1px solid red",
+		position: "absolute",
+	});
+
 	const getTextStyle = (boundingBox: BoundingBoxProps) => ({
 		fontSize: `${calculateFontSize(boundingBox)}px`,
 		overflow: "hidden", // Ensures that text does not overflow the bounding box
@@ -84,17 +90,18 @@ export function ImageResults({
 		<div className="flex justify-center items-center p-3 m-2 bg-blue-500 border border-gray-300 rounded-2xl ">
 			<TransformWrapper>
 				<TransformComponent>
-					<div className=" relative  max-w-full max-h-screen flex items-start">
+					<div className="relative max-w-full max-h-screen flex items-start">
 						<img
 							src={menuSrc as string}
 							alt="Uploaded"
 							className="max-w-full max-h-screen relative"
+							ref={imageRef}
 						/>
 
 						{data.map((value, index) => (
 							<Popover key={index}>
-								<PopoverTrigger asChild>
-									{showText && (
+								{showText && (
+									<PopoverTrigger asChild>
 										<div
 											key={index}
 											className="absolute"
@@ -103,10 +110,9 @@ export function ImageResults({
 											<div style={getTextStyle(value.boundingBox)}>
 												{value.info.text}
 											</div>
-											)
 										</div>
-									)}
-								</PopoverTrigger>
+									</PopoverTrigger>
+								)}
 								<PopoverContent className="max-w-sm p-6 bg-white rounded-lg shadow-lg">
 									<div className="flex flex-col items-center">
 										{value.info.imgSrc && (
