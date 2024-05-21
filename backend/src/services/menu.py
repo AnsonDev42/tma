@@ -33,8 +33,11 @@ def process_image(image: bytes) -> tuple[str, int, int]:
         img = cv2.resize(img, (img_width, img_height), interpolation=cv2.INTER_AREA)
 
     # encode and compress image
-    encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), 30]  # compression level (100: no compression)
-    _, encimg = cv2.imencode('.jpeg', img, encode_param)
+    encode_param = [
+        int(cv2.IMWRITE_JPEG_QUALITY),
+        30,
+    ]  # compression level (100: no compression)
+    _, encimg = cv2.imencode(".jpeg", img, encode_param)
     image = base64.b64encode(encimg).decode("utf8")
     return image, img_height, img_width
 
@@ -47,7 +50,9 @@ def run_ocr(image: bytes) -> Any:
     """
     # convert image from bytes and compress image
     data = {"key": ["image"], "value": [image]}
-    response = requests.post(url=PD_OCR_API_URL, data=ujson.dumps(data), timeout=TIMEOUT)
+    response = requests.post(
+        url=PD_OCR_API_URL, data=ujson.dumps(data), timeout=TIMEOUT
+    )
     response.raise_for_status()
     result = response.json()
 
@@ -117,9 +122,7 @@ def normalize_text_bbox(img_width, img_height, ocr_results: list):
     return texts_bboxes
 
 
-def normalize_bounding_box(
-        img_width, img_height, bounding_box: list
-) -> BoundingBox:
+def normalize_bounding_box(img_width, img_height, bounding_box: list) -> BoundingBox:
     """
     Calculate the bounding box of the detected text in image
     """
@@ -139,6 +142,6 @@ def normalize_bounding_box(
 def serialize_dish_data(dish_data: list, bounding_boxes: list):
     results = []
     for dish_info, dish_bbox in zip(dish_data, bounding_boxes, strict=True):
-        dish = { "info": dish_info, "boundingBox": dish_bbox }
+        dish = {"info": dish_info, "boundingBox": dish_bbox}
         results.append(dish)
     return results

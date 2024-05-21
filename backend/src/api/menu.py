@@ -8,8 +8,14 @@ from starlette.responses import StreamingResponse
 
 from src.api.deps import get_user
 from src.models import User
-from src.services.menu import run_ocr, process_ocr_results, compress_image, process_image, normalize_text_bbox, \
-    serialize_dish_data, get_dish_info_via_openai
+from src.services.menu import (
+    run_ocr,
+    process_ocr_results,
+    process_image,
+    normalize_text_bbox,
+    serialize_dish_data,
+    get_dish_info_via_openai,
+)
 from src.test.fixtures import FIXTURES
 
 router = APIRouter()
@@ -18,7 +24,9 @@ router = APIRouter()
 @router.post("/upload")
 async def upload(file: UploadFile, user: User = Depends(get_user)):
     if not file or not file.filename:
-        raise HTTPException(status_code=http.HTTPStatus.BAD_REQUEST, detail="No file uploaded")
+        raise HTTPException(
+            status_code=http.HTTPStatus.BAD_REQUEST, detail="No file uploaded"
+        )
 
     image, img_height, img_width = process_image(file)
     ocr_results = run_ocr(image)
@@ -31,10 +39,13 @@ async def upload(file: UploadFile, user: User = Depends(get_user)):
 @router.post("/test")
 async def test_upload(file: UploadFile):
     if not file or not file.filename:
-        raise HTTPException(status_code=http.HTTPStatus.BAD_REQUEST, detail="No file uploaded")
+        raise HTTPException(
+            status_code=http.HTTPStatus.BAD_REQUEST, detail="No file uploaded"
+        )
 
     with open(FIXTURES, "test1-bbox-results.json", encoding="utf-8") as f:
         return ujson.load(f)
+
 
 @router.get("/get_dish_info")
 async def dish_info_pipeline(dish: str):
