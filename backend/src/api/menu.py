@@ -28,7 +28,7 @@ async def upload(file: UploadFile, user: User = Depends(get_user)):
             status_code=http.HTTPStatus.BAD_REQUEST, detail="No file uploaded"
         )
 
-    image, img_height, img_width = process_image(file)
+    image, img_height, img_width = process_image(file.file.read())
     ocr_results = run_ocr(image)
     dish_info = await process_ocr_results(ocr_results)
     bounding_box = normalize_text_bbox(img_width, img_height, ocr_results)
