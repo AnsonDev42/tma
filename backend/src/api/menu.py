@@ -1,9 +1,10 @@
 import http
 from io import BytesIO
+from typing import Optional
 
 import cv2
 import ujson
-from fastapi import APIRouter, Depends, UploadFile, HTTPException
+from fastapi import APIRouter, Depends, UploadFile, HTTPException, Header
 from starlette.responses import StreamingResponse
 
 from src.api.deps import get_user
@@ -22,7 +23,11 @@ router = APIRouter()
 
 
 @router.post("/upload")
-async def upload(file: UploadFile, user: User = Depends(get_user)):
+async def upload(
+    file: UploadFile,
+    user: User = Depends(get_user),
+    accept_language: Optional[str] = Header(None),
+):
     if not file or not file.filename:
         raise HTTPException(
             status_code=http.HTTPStatus.BAD_REQUEST, detail="No file uploaded"
@@ -30,7 +35,7 @@ async def upload(file: UploadFile, user: User = Depends(get_user)):
 
     image, img_height, img_width = process_image(file.file.read())
     ocr_results = run_ocr(image)
-    dish_info = await process_ocr_results(ocr_results)
+    dish_info = await process_ocr_results(ocr_results, accept_language)
     bounding_box = normalize_text_bbox(img_width, img_height, ocr_results)
     data = serialize_dish_data(dish_info, bounding_box)
     return {"results": data}
