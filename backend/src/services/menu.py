@@ -1,8 +1,7 @@
 import ast
 import asyncio
-import base64
 from dataclasses import asdict
-from typing import Any
+from typing import Any, List
 
 import cv2
 import numpy as np
@@ -10,6 +9,7 @@ import requests
 import ujson
 from httpx import AsyncClient
 
+from src.core.config import settings
 from src.core.vendor import PD_OCR_API_URL, client, WIKI_API_URL
 from src.services.exceptions import OCRError
 from src.services.utils import duration, PROMPT, BoundingBox
@@ -38,12 +38,12 @@ def process_image(image: bytes) -> tuple[str, int, int]:
         30,
     ]  # compression level (100: no compression)
     _, encimg = cv2.imencode(".jpeg", img, encode_param)
-    image = base64.b64encode(encimg).decode("utf8")
+    image = encimg.tobytes()
     return image, img_height, img_width
 
 
 @duration
-def run_ocr(image: bytes) -> Any:
+def run_ocr_via_pdserving(image: bytes) -> Any:
     """
     Post uploaded image file content to pdOCR server and return img dimension and OCR results in json format
     return: (img_height, img_width), ocr_results
@@ -63,6 +63,26 @@ def run_ocr(image: bytes) -> Any:
     ocr_results = ast.literal_eval(ocr_results_str)
     if not isinstance(ocr_results, list) or not ocr_results:
         raise OCRError("Failed to parse OCR results")
+
+    return ocr_results
+
+
+@duration
+def run_ocr(image: bytes) -> Any:
+    """
+    Post uploaded image file content to Azure OCR server and return img dimension and OCR results in json format
+    return: (img_height, img_width), ocr_results
+    """
+    headers = {
+        "Content-Type": "application/octet-stream",
+        "Ocp-Apim-Subscription-Key": settings.AZURE_OCR_API_KEY,
+    }
+    url = f"{settings.AZURE_OCR_BASE_URL}/computervision/imageanalysis:analyze?api-version=2024-02-01&features=read"
+    response = requests.post(url=url, headers=headers, data=image, timeout=TIMEOUT)
+    response.raise_for_status()
+    result = response.json()
+
+    ocr_results = result["readResult"]["blocks"][0]["lines"]
 
     return ocr_results
 
@@ -106,36 +126,41 @@ async def get_dish_data(dish_name: str, accept_language: str) -> dict:
 
 async def process_ocr_results(ocr_results: list) -> list[dict]:
     tasks = []
-    for item in ocr_results:
-        dish_name, _ = item[0]
+
+    for line in ocr_results:
+        dish_name = line["text"].strip()
         tasks.append(get_dish_data(dish_name, "en"))
     return await asyncio.gather(*tasks)
 
 
 def normalize_text_bbox(img_width, img_height, ocr_results: list):
     texts_bboxes = []
-    for item in ocr_results:
-        bounding_boxes = item[1]
+    for line in ocr_results:
+        bounding_boxes = line["boundingPolygon"]
         texts_bboxes.append(
             asdict(normalize_bounding_box(img_width, img_height, bounding_boxes))
         )
     return texts_bboxes
 
 
-def normalize_bounding_box(img_width, img_height, bounding_box: list) -> BoundingBox:
+def normalize_bounding_box(
+    img_width, img_height, bounding_polygon: List[dict]
+) -> BoundingBox:
     """
     Calculate the bounding box of the detected text in image
     """
-    x_min = min([x[0] for x in bounding_box])
-    x_max = max([x[0] for x in bounding_box])
-    y_min = min([x[1] for x in bounding_box])
-    y_max = max([x[1] for x in bounding_box])
+    x_coords = [point["x"] for point in bounding_polygon]
+    y_coords = [point["y"] for point in bounding_polygon]
+
+    x_min = min(x_coords)
+    x_max = max(x_coords)
+    y_min = min(y_coords)
+    y_max = max(y_coords)
 
     x_percentage = x_min / img_width
     y_percentage = y_min / img_height
     w_percentage = (x_max - x_min) / img_width
     h_percentage = (y_max - y_min) / img_height
-
     return BoundingBox(x=x_percentage, y=y_percentage, w=w_percentage, h=h_percentage)
 
 
