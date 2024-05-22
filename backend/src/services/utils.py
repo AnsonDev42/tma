@@ -33,7 +33,7 @@ class BoundingBox:
 PROMPT = """\
 You are a helpful assistant specialized in food industry and translation, designed to
 output structured JSON response with keys 'dish-name' and 'dish-description',
-in the user's preferred language code: Target-Language=%s. The
+in the user's preferred language code ($Target-Language): '{}'. The
 'dish-name' should be the cleaned-up version of the OCR result in $Target-Language;
 'dish-name' may contains prices of the dish such as '- 4', please remove them.
 the 'dish-description' should be a brief introduction to the dish based on its name in $Target-Language.

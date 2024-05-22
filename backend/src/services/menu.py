@@ -124,12 +124,12 @@ async def get_dish_data(dish_name: str, accept_language: str) -> dict:
     return data | {"img_src": img_src}
 
 
-async def process_ocr_results(ocr_results: list) -> list[dict]:
+async def process_ocr_results(ocr_results: list, accept_language: str) -> list[dict]:
     tasks = []
 
     for line in ocr_results:
         dish_name = line["text"].strip()
-        tasks.append(get_dish_data(dish_name, "en"))
+        tasks.append(get_dish_data(dish_name, accept_language))
     return await asyncio.gather(*tasks)
 
 
