@@ -3,6 +3,7 @@ import { SessionContext } from "@/contexts/SessionContext.tsx";
 import { DishProps } from "@/types/DishProps.tsx";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
+import * as changeKeys from "change-case/keys";
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -160,6 +161,8 @@ async function uploadData(
 function formatResponseData(results: DishProps[]) {
 	return results
 		.map((item) => {
+			// fix the keys to camelCase e.g. img_src -> imgSrc
+			item.info = changeKeys.camelCase(item.info) as DishProps["info"];
 			return {
 				id: item.id,
 				boundingBox: item.boundingBox,
