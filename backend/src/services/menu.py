@@ -7,12 +7,13 @@ import cv2
 import numpy as np
 import requests
 import ujson
-from httpx import AsyncClient
+from httpx import AsyncClient, HTTPStatusError
 
 from src.core.config import settings
-from src.core.vendor import PD_OCR_API_URL, client, WIKI_API_URL
+from src.core.vendor import PD_OCR_API_URL, WIKI_API_URL, chain
+from src.models import Dish
 from src.services.exceptions import OCRError
-from src.services.utils import duration, PROMPT, BoundingBox
+from src.services.utils import duration, BoundingBox, clean_dish_name
 
 MAX_IMAGE_WIDTH = 550
 TIMEOUT = 60
@@ -87,18 +88,20 @@ def run_ocr(image: bytes) -> Any:
     return ocr_results
 
 
-async def get_dish_info_via_openai(dish_name: str, accept_language: str) -> dict:
+async def get_dish_info_via_openai(
+    dish_name: str, accept_language: str, model: str = "gpt-3.5-turbo"
+) -> dict:
     """Search dish info via OPENAI and using WIKI to get the image"""
-    response = await client.chat.completions.create(
-        model="gpt-3.5-turbo",
-        response_format={"type": "json_object"},
-        messages=[
-            {"role": "system", "content": PROMPT.format(accept_language)},
-            {"role": "user", "content": f"OCR result: '{dish_name}'"},
-        ],
+    print(f"Searching dish info for {dish_name} in {accept_language}")
+    dish: Dish = await chain.ainvoke(
+        {"dish_name": dish_name, "accept_language": accept_language}
     )
-    content = ujson.loads(response.choices[0].message.content)
-    return {"description": content["dish-description"], "text": content["dish-name"]}
+
+    return {
+        "description": dish.dish_description,
+        "text": dish.dish_name,
+        "text-translation": dish.dish_translation,
+    }
 
 
 async def get_dish_image(dish_name: str | None) -> str | None:
@@ -119,9 +122,23 @@ async def get_dish_image(dish_name: str | None) -> str | None:
 
 
 async def get_dish_data(dish_name: str, accept_language: str) -> dict:
-    data = await get_dish_info_via_openai(dish_name, accept_language)
-    img_src = await get_dish_image(data)
-    return data | {"img_src": img_src}
+    # regex to clean up dish name
+    dish_name = clean_dish_name(dish_name)
+
+    dish = await get_dish_info_via_openai(dish_name, accept_language)
+
+    # use original dish text to search for image
+    # might got rate limit from wiki
+    try:
+        img_src = await get_dish_image(dish)
+    except HTTPStatusError:
+        img_src = None
+
+    # replace the original text with the translated text if available
+    if dish["text-translation"]:
+        dish["text"] = dish["text-translation"]
+
+    return dish | {"img_src": img_src}
 
 
 async def process_ocr_results(ocr_results: list, accept_language: str) -> list[dict]:

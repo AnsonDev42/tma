@@ -1,13 +1,11 @@
 import logging
 import socket
 
-from openai import AsyncOpenAI
-
-from src.core.config import settings
+from src.services.utils import build_search_chain
 
 logger = logging.getLogger(__name__)
 
-client = AsyncOpenAI(api_key=settings.OPENAI_API_KEY, base_url=settings.OPENAI_BASE_URL)
+chain = build_search_chain(model="gpt-4o")
 
 try:
     IP = socket.gethostbyname("anson-eq.local")
