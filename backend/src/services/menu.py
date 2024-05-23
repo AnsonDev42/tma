@@ -92,7 +92,7 @@ async def get_dish_info_via_openai(
     dish_name: str, accept_language: str, model: str = "gpt-3.5-turbo"
 ) -> dict:
     """Search dish info via OPENAI and using WIKI to get the image"""
-    print(f"Searching dish info for {dish_name} in {accept_language}")
+
     dish: Dish = await chain.ainvoke(
         {"dish_name": dish_name, "accept_language": accept_language}
     )
