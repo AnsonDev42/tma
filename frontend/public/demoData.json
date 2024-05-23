@@ -1,1 +1,382 @@
-{"results":[{"info":{"description":"unknown","text":"FATTO A MANO","imgSrc":"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Dolce_%26_Gabbana_Store_%2851396804775%29.jpg/60px-Dolce_%26_Gabbana_Store_%2851396804775%29.jpg"},"boundingBox":{"x":0.2781818181818182,"y":0.07503410641200546,"w":0.4509090909090909,"h":0.04229195088676671}},{"info":{"description":"unknown","text":"PIZZERIA","imgSrc":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Old_Pizzeria_-_Napoli.jpg/60px-Old_Pizzeria_-_Napoli.jpg"},"boundingBox":{"x":0.37636363636363634,"y":0.12551159618008187,"w":0.2581818181818182,"h":0.02592087312414734}},{"info":{"description":"A classic Italian dessert made with layers of coffee-soaked ladyfingers and a creamy mixture of eggs, sugar, and mascarpone cheese, dusted with cocoa powder.","text":"TIRAMISU","imgSrc":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Tiramisu_-_Raffaele_Diomede.jpg/60px-Tiramisu_-_Raffaele_Diomede.jpg"},"boundingBox":{"x":0.3890909090909091,"y":0.17871759890859482,"w":0.23272727272727273,"h":0.02592087312414734}},{"info":{"description":"A decadent dessert featuring coffee liqueur soaked sponge layers with rich mascarpone and chocolate flavors.","text":"Coffee liqueur soaked sponge mascarpone chocolate","imgSrc":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Tiramisu_-_Raffaele_Diomede.jpg/60px-Tiramisu_-_Raffaele_Diomede.jpg"},"boundingBox":{"x":0.22363636363636363,"y":0.20054570259208732,"w":0.5545454545454546,"h":0.03274215552523874}},{"info":{"description":"A delicious combination of Scugniziellinutella and gelato","text":"Scugniziellinutella & Gelato","imgSrc":null},"boundingBox":{"x":0.2781818181818182,"y":0.23601637107776263,"w":0.44545454545454544,"h":0.030013642564802184}},{"info":{"description":"A delicious combination of mini pizza doughnuts topped with Nutella and served with vanilla gelato.","text":"Mini Pizza Doughnuts Nutella Vanilla Gelato","imgSrc":"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/The_7_Breakfasts_-_Caf%C3%A9_Caf%C3%A9.jpg/60px-The_7_Breakfasts_-_Caf%C3%A9_Caf%C3%A9.jpg"},"boundingBox":{"x":0.23272727272727273,"y":0.2605729877216917,"w":0.5327272727272727,"h":0.034106412005457026}},{"info":{"description":"A classic Italian dessert, typically made by pouring a shot of hot espresso over a scoop of vanilla gelato.","text":"Affogato","imgSrc":"https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Vinoteca%2C_Smithfield%2C_London_%284485849609%29.jpg/60px-Vinoteca%2C_Smithfield%2C_London_%284485849609%29.jpg"},"boundingBox":{"x":0.4218181818181818,"y":0.3015006821282401,"w":0.16,"h":0.021828103683492497}},{"info":{"description":"A delightful combination of creamy vanilla gelato and bold espresso, perfect for coffee and dessert lovers alike.","text":"Vanilla Gelato Espresso","imgSrc":"https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/CafeMia.jpg/60px-CafeMia.jpg"},"boundingBox":{"x":0.3781818181818182,"y":0.3246930422919509,"w":0.24909090909090909,"h":0.030013642564802184}},{"info":{"description":"A delicious Italian dessert made with a scoop of vanilla ice cream or gelato topped with a shot of hot espresso and a splash of Limoncello liqueur.","text":"Affogato Limoncello","imgSrc":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Spaghetti_vongole_2.jpg/60px-Spaghetti_vongole_2.jpg"},"boundingBox":{"x":0.30363636363636365,"y":0.3601637107776262,"w":0.38727272727272727,"h":0.027285129604365622}},{"info":{"description":"A refreshing and tangy lemon sorbet made with freshly squeezed lemons.","text":"Sorbetto al limone","imgSrc":null},"boundingBox":{"x":0.3654545454545455,"y":0.3874488403819918,"w":0.26545454545454544,"h":0.02455661664392906}},{"info":{"description":"A delicious and unique treat made of creamy gelato sandwiched between two cookies or wafers.","text":"GELATO SANDWICH","imgSrc":"https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/IceCreamSandwich.jpg/60px-IceCreamSandwich.jpg"},"boundingBox":{"x":0.3509090909090909,"y":0.4665757162346521,"w":0.2909090909090909,"h":0.02455661664392906}},{"info":{"description":"A classic dessert made with lemon curd and fluffy meringue topping.","text":"LEMON MERINGUE","imgSrc":"https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Theres_always_room_for_pie_%287859650026%29.jpg/60px-Theres_always_room_for_pie_%287859650026%29.jpg"},"boundingBox":{"x":0.37454545454545457,"y":0.5075034106412005,"w":0.24363636363636362,"h":0.020463847203274217}},{"info":{"description":"A delightful dessert featuring a vanilla biscuit paired with creamy vanilla gelato.","text":"Vanilla biscuit with vanilla gelato","imgSrc":"https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Bunnings_Sausage_sizzle.jpg/60px-Bunnings_Sausage_sizzle.jpg"},"boundingBox":{"x":0.28909090909090907,"y":0.5306957708049114,"w":0.4072727272727273,"h":0.02455661664392906}},{"info":{"description":"A delicious dessert made with a tangy lemon filling and fluffy meringue topping.","text":"Lemon Meringue","imgSrc":"https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Theres_always_room_for_pie_%287859650026%29.jpg/60px-Theres_always_room_for_pie_%287859650026%29.jpg"},"boundingBox":{"x":0.37272727272727274,"y":0.5538881309686221,"w":0.24181818181818182,"h":0.023192360163710776}},{"info":{"description":"unknown","text":"CHOCOLATE SALTED CARAMELT","imgSrc":null},"boundingBox":{"x":0.3054545454545455,"y":0.5866302864938608,"w":0.37636363636363634,"h":0.02455661664392906}},{"info":{"description":"A delicious biscuit filled with rich chocolate, perfect for a sweet treat.","text":"Chocolate dipped biscuit filled with","imgSrc":"https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Bunnings_Sausage_sizzle.jpg/60px-Bunnings_Sausage_sizzle.jpg"},"boundingBox":{"x":0.3109090909090909,"y":0.6139154160982264,"w":0.3654545454545455,"h":0.023192360163710776}},{"info":{"description":"A delicious dessert made with creamy gelato flavored with salted caramel","text":"salted caramel gelato","imgSrc":"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Anita_Gelato_official_logo.jpg/60px-Anita_Gelato_official_logo.jpg"},"boundingBox":{"x":0.37636363636363634,"y":0.635743519781719,"w":0.2290909090909091,"h":0.023192360163710776}},{"info":{"description":"A delicious chocolate and orange flavored dessert.","text":"CHOCOLATE ORANGEDE","imgSrc":null},"boundingBox":{"x":0.3290909090909091,"y":0.6725784447476125,"w":0.32545454545454544,"h":0.023192360163710776}},{"info":{"description":"unknown","text":"Chocolarebiseuifilledwithchocolateorangesrelaro","imgSrc":null},"boundingBox":{"x":0.22,"y":0.6971350613915416,"w":0.54,"h":0.02455661664392906}},{"info":{"description":"A digestive or digestif is a beverage served at the end of a meal to aid digestion. It is usually alcohol-based and is meant to be sipped slowly.","text":"Digestivo","imgSrc":"https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Hanky_Panky_cocktail.jpg/60px-Hanky_Panky_cocktail.jpg"},"boundingBox":{"x":0.2872727272727273,"y":0.7762619372442019,"w":0.1709090909090909,"h":0.0286493860845839}},{"info":{"description":"A traditional Italian lemon liqueur, perfect as a refreshing after-dinner digestif.","text":"LIMONCELLO","imgSrc":"https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Pallini_Limoncello.jpg/60px-Pallini_Limoncello.jpg"},"boundingBox":{"x":0.2509090909090909,"y":0.8171896316507503,"w":0.2381818181818182,"h":0.023192360163710776}},{"info":{"description":"A hot beverage made from roasted coffee beans, typically served in a cup.","text":"Coffee","imgSrc":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Latte_and_dark_coffee.jpg/60px-Latte_and_dark_coffee.jpg"},"boundingBox":{"x":0.6145454545454545,"y":0.8062755798090041,"w":0.12181818181818181,"h":0.02455661664392906}},{"info":{"description":"A creamy pistachio dessert.","text":"Crema di Pistacchio","imgSrc":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Spaghetti_vongole_2.jpg/60px-Spaghetti_vongole_2.jpg"},"boundingBox":{"x":0.20545454545454545,"y":0.844474761255116,"w":0.33090909090909093,"h":0.020463847203274217}},{"info":{"description":"unknown","text":"AMARODELCAPO","imgSrc":null},"boundingBox":{"x":0.22363636363636363,"y":0.869031377899045,"w":0.2909090909090909,"h":0.023192360163710776}},{"info":{"description":"A macchiato is a coffee drink with a small amount of milk.","text":"Macchiato","imgSrc":"https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Caff%C3%A8_Espresso_Macchiato_Schiumato.jpg/60px-Caff%C3%A8_Espresso_Macchiato_Schiumato.jpg"},"boundingBox":{"x":0.5818181818181818,"y":0.8731241473396999,"w":0.18545454545454546,"h":0.019099590723055934}},{"info":{"description":"A refreshing melon-based liqueur originating from Italy.","text":"MELONCELLOSMI","imgSrc":null},"boundingBox":{"x":0.2509090909090909,"y":0.897680763983629,"w":0.2381818181818182,"h":0.019099590723055934}}],"user":{"role":"test","user_metadata":{},"iat":0,"exp":0}}
+{
+	"results": [
+		{
+			"info": {
+				"description": null,
+				"text": null,
+				"text-translation": null,
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.27454545454545454,
+				"y": 0.0723055934515689,
+				"w": 0.4618181818181818,
+				"h": 0.047748976807639835
+			}
+		},
+		{
+			"info": {
+				"description": null,
+				"text": null,
+				"text-translation": null,
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.37272727272727274,
+				"y": 0.12278308321964529,
+				"w": 0.26181818181818184,
+				"h": 0.030013642564802184
+			}
+		},
+		{
+			"info": {
+				"description": "Tiramisu is a classic Italian dessert made of layers of coffee-soaked ladyfingers and a rich cream made of mascarpone cheese, eggs, and sugar, often flavored with cocoa.",
+				"text": "Tiramisu",
+				"text-translation": "Tiramisu",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.38545454545454544,
+				"y": 0.17871759890859482,
+				"w": 0.23636363636363636,
+				"h": 0.02455661664392906
+			}
+		},
+		{
+			"info": {
+				"description": "This dish likely refers to Tiramisu, a classic Italian dessert made with layers of coffee-soaked sponge cake, mascarpone cheese, and cocoa or chocolate. It is a popular and beloved dessert known for its rich flavors and creamy texture.",
+				"text": "Coffee liqueur soaked sponge, mascarpone, chocolate",
+				"text-translation": "Coffee liqueur soaked sponge, mascarpone, chocolate",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.22181818181818183,
+				"y": 0.20054570259208732,
+				"w": 0.5581818181818182,
+				"h": 0.034106412005457026
+			}
+		},
+		{
+			"info": {
+				"description": "Scugnizielli are a type of fried dough, often enjoyed as a dessert in Italy. This dish is served with Nutella and ice cream, making it a sweet and indulgent treat.",
+				"text": "Scugnizielli with Nutella and Ice Cream",
+				"text-translation": "Scugnizielli with Nutella and Ice Cream",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.27454545454545454,
+				"y": 0.2373806275579809,
+				"w": 0.45454545454545453,
+				"h": 0.0286493860845839
+			}
+		},
+		{
+			"info": {
+				"description": "These are small doughnuts made from pizza dough, typically fried to have a crispy exterior and soft interior. They can be savory or sweet, often topped with various ingredients.",
+				"text": "Fried Mini Pizza Doughnuts",
+				"text-translation": "Fried Mini Pizza Doughnuts",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.2309090909090909,
+				"y": 0.2605729877216917,
+				"w": 0.5363636363636364,
+				"h": 0.03274215552523874
+			}
+		},
+		{
+			"info": {
+				"description": "An Italian coffee-based dessert typically consisting of a scoop of vanilla gelato or ice cream topped with a shot of hot espresso.",
+				"text": "Affogato",
+				"text-translation": "Affogato",
+				"img_src": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Coffee_drinks.jpg/60px-Coffee_drinks.jpg"
+			},
+			"boundingBox": {
+				"x": 0.4218181818181818,
+				"y": 0.30286493860845837,
+				"w": 0.16,
+				"h": 0.020463847203274217
+			}
+		},
+		{
+			"info": {
+				"description": "Vanilla gelato is a popular Italian frozen dessert made from milk, cream, sugar, and vanilla. It is known for its smooth texture and rich flavor.",
+				"text": "Vanilla gelato",
+				"text-translation": "Vanilla gelato",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.37636363636363634,
+				"y": 0.32605729877216916,
+				"w": 0.2509090909090909,
+				"h": 0.02592087312414734
+			}
+		},
+		{
+			"info": {
+				"description": "Limoncello Affogato is a variation of the traditional Italian affogato dessert, where a scoop of gelato or ice cream is 'drowned' in a shot of limoncello, an Italian lemon liqueur.",
+				"text": "Limoncello Affogato",
+				"text-translation": "Limoncello Affogato",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.30363636363636365,
+				"y": 0.3615279672578445,
+				"w": 0.39090909090909093,
+				"h": 0.027285129604365622
+			}
+		},
+		{
+			"info": {
+				"description": "Lemon sorbet is a refreshing frozen dessert made from lemon juice, sugar, and water. Limoncello is a traditional Italian lemon liqueur.",
+				"text": "Lemon sorbet, limoncello",
+				"text-translation": "Lemon sorbet, limoncello",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.3654545454545455,
+				"y": 0.3874488403819918,
+				"w": 0.2690909090909091,
+				"h": 0.023192360163710776
+			}
+		},
+		{
+			"info": {
+				"description": "A Gelato Sandwich is a dessert that consists of gelato (Italian ice cream) placed between two pieces of pastry, cookies, or biscuits. It offers a delightful combination of creamy gelato and a crunchy or soft outer layer.",
+				"text": "Gelato Sandwich",
+				"text-translation": "Gelato Sandwich",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.3490909090909091,
+				"y": 0.46521145975443384,
+				"w": 0.29454545454545455,
+				"h": 0.02592087312414734
+			}
+		},
+		{
+			"info": {
+				"description": "Lemon Meringue is a dessert made with a lemon custard filling topped with a fluffy meringue. It is often served as a pie.",
+				"text": "Lemon Meringue",
+				"text-translation": "Lemon Meringue",
+				"img_src": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Carrot_cake_at_America_Graffiti_%28cropped%29.jpg/60px-Carrot_cake_at_America_Graffiti_%28cropped%29.jpg"
+			},
+			"boundingBox": {
+				"x": 0.3709090909090909,
+				"y": 0.5075034106412005,
+				"w": 0.24909090909090909,
+				"h": 0.020463847203274217
+			}
+		},
+		{
+			"info": {
+				"description": "A dessert dish consisting of a vanilla-flavored biscuit that is filled with creamy vanilla gelato, offering a delightful combination of textures and flavors.",
+				"text": "Vanilla biscuit filled with vanilla gelato",
+				"text-translation": "Vanilla biscuit filled with vanilla gelato",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.2872727272727273,
+				"y": 0.5306957708049114,
+				"w": 0.4127272727272727,
+				"h": 0.02592087312414734
+			}
+		},
+		{
+			"info": {
+				"description": "Lemon Curd and Meringue is a dessert featuring a tangy lemon curd topped or combined with sweet, fluffy meringue. It's often used in pies, tarts, or standalone desserts.",
+				"text": "Lemon Curd and Meringue",
+				"text-translation": "Lemon Curd and Meringue",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.3709090909090909,
+				"y": 0.5552523874488404,
+				"w": 0.24727272727272728,
+				"h": 0.020463847203274217
+			}
+		},
+		{
+			"info": {
+				"description": "A dessert or treat that combines rich chocolate with salted caramel, offering a balance of sweet and salty flavors.",
+				"text": "Chocolate Salted Caramel",
+				"text-translation": "Chocolate Salted Caramel",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.30363636363636365,
+				"y": 0.5893587994542974,
+				"w": 0.38,
+				"h": 0.023192360163710776
+			}
+		},
+		{
+			"info": {
+				"description": "A chocolate dipped biscuit is a type of cookie that is partially or fully coated in chocolate. It is often filled with various ingredients such as cream, jam, or other sweet fillings.",
+				"text": "Chocolate dipped biscuit",
+				"text-translation": "Chocolate dipped biscuit",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.30727272727272725,
+				"y": 0.6139154160982264,
+				"w": 0.37272727272727274,
+				"h": 0.023192360163710776
+			}
+		},
+		{
+			"info": {
+				"description": "Salted Caramel Gelato is a creamy Italian-style ice cream flavored with a blend of sweet caramel and a hint of salt. It offers a perfect balance of sweet and salty flavors, making it a popular dessert choice.",
+				"text": "Salted Caramel Gelato",
+				"text-translation": "Salted Caramel Gelato",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.37636363636363634,
+				"y": 0.6371077762619373,
+				"w": 0.2290909090909091,
+				"h": 0.021828103683492497
+			}
+		},
+		{
+			"info": {
+				"description": "Chocolate Orange is a confectionery that typically combines the rich taste of chocolate with a hint of orange flavor. It can come in various forms such as chocolate bars, truffles, or slices shaped like orange segments.",
+				"text": "Chocolate Orange",
+				"text-translation": "Chocolate Orange",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.32545454545454544,
+				"y": 0.6725784447476125,
+				"w": 0.3290909090909091,
+				"h": 0.02455661664392906
+			}
+		},
+		{
+			"info": {
+				"description": "A delicious dessert consisting of a chocolate biscuit filled with creamy chocolate orange gelato. The combination of rich chocolate and fresh orange flavors creates a delightful treat.",
+				"text": "Chocolate biscuit filled with chocolate orange gelato",
+				"text-translation": "Chocolate biscuit filled with chocolate orange gelato",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.21818181818181817,
+				"y": 0.694406548431105,
+				"w": 0.5472727272727272,
+				"h": 0.0286493860845839
+			}
+		},
+		{
+			"info": {
+				"description": "A digestif is an alcoholic beverage served after a meal to aid digestion. Common examples include brandy, fortified wines, and herbal liqueurs.",
+				"text": "Digestif",
+				"text-translation": "Digestif",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.28545454545454546,
+				"y": 0.7789904502046384,
+				"w": 0.1709090909090909,
+				"h": 0.023192360163710776
+			}
+		},
+		{
+			"info": {
+				"description": "Limoncello is an Italian lemon liqueur mainly produced in Southern Italy, especially in the region around the Gulf of Naples. It is made from lemon zest, water, alcohol, and sugar.",
+				"text": "Limoncello",
+				"text-translation": "Limoncello",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.2509090909090909,
+				"y": 0.8171896316507503,
+				"w": 0.24,
+				"h": 0.023192360163710776
+			}
+		},
+		{
+			"info": {
+				"description": "Coffee is a popular brewed drink made from roasted coffee beans, which are the seeds of berries from the Coffea plant. It is enjoyed worldwide for its stimulating effects due to its caffeine content.",
+				"text": "Coffee",
+				"text-translation": "Coffee",
+				"img_src": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Latte_and_dark_coffee.jpg/60px-Latte_and_dark_coffee.jpg"
+			},
+			"boundingBox": {
+				"x": 0.6145454545454545,
+				"y": 0.8090040927694406,
+				"w": 0.12181818181818181,
+				"h": 0.021828103683492497
+			}
+		},
+		{
+			"info": {
+				"description": "Pistachio cream is a sweet and smooth spread made from ground pistachios, often used in desserts, pastries, or as a topping for bread and crackers.",
+				"text": "Pistachio Cream",
+				"text-translation": "Pistachio Cream",
+				"img_src": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Pastry_assortment.jpg/60px-Pastry_assortment.jpg"
+			},
+			"boundingBox": {
+				"x": 0.20363636363636364,
+				"y": 0.8431105047748977,
+				"w": 0.3327272727272727,
+				"h": 0.021828103683492497
+			}
+		},
+		{
+			"info": {
+				"description": "Espresso is a concentrated form of coffee served in small, strong shots. It is made by forcing hot water through finely-ground coffee beans and is the base for many other coffee drinks.",
+				"text": "Espresso",
+				"text-translation": "Espresso",
+				"img_src": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Latte_and_dark_coffee.jpg/60px-Latte_and_dark_coffee.jpg"
+			},
+			"boundingBox": {
+				"x": 0.5872727272727273,
+				"y": 0.8472032742155525,
+				"w": 0.17272727272727273,
+				"h": 0.019099590723055934
+			}
+		},
+		{
+			"info": {
+				"description": null,
+				"text": null,
+				"text-translation": null,
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.22545454545454546,
+				"y": 0.869031377899045,
+				"w": 0.29454545454545455,
+				"h": 0.021828103683492497
+			}
+		},
+		{
+			"info": {
+				"description": "A macchiato is an espresso coffee drink with a small amount of milk, usually foamed. The name macchiato means 'stained' or 'spotted' in Italian, referring to the way the milk is added to the espresso.",
+				"text": "Macchiato",
+				"text-translation": "Macchiato",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.5781818181818181,
+				"y": 0.8731241473396999,
+				"w": 0.1890909090909091,
+				"h": 0.019099590723055934
+			}
+		},
+		{
+			"info": {
+				"description": "Meloncello is a type of Italian liqueur made from cantaloupe or other melons. It is similar to Limoncello but with a melon flavor. Typically served chilled, it is a sweet and refreshing beverage.",
+				"text": "Meloncello",
+				"text-translation": "Meloncello",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.24909090909090909,
+				"y": 0.8963165075034106,
+				"w": 0.24181818181818182,
+				"h": 0.020463847203274217
+			}
+		}
+	]
+}
