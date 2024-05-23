@@ -1,4 +1,5 @@
-import { AuthChangeEvent, Session } from "@supabase/gotrue-js";
+import { AuthChangeEvent } from "@supabase/gotrue-js";
+import { Session } from "@supabase/gotrue-js/src/lib/types.ts";
 import { createClient } from "@supabase/supabase-js";
 import { ReactNode, createContext, useEffect, useState } from "react";
 
@@ -30,10 +31,7 @@ export const SessionProvider = ({ children }: { children: ReactNode }) => {
 			},
 		);
 
-		supabase.auth.getSession().then(({ data: { session } }) => {
-			setSession(session);
-			setLoading(false);
-		});
+		setSession(supabase.auth.getSession());
 
 		return () => subscription.unsubscribe();
 	}, []);

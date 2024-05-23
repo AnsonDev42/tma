@@ -19,14 +19,18 @@ export function Authentication() {
 	useEffect(() => {
 		const {
 			data: { subscription },
-		} = supabase.auth.onAuthStateChange((_event, session) => {
+			// 	workaround for build error
+			// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+		} = supabase.auth.onAuthStateChange((_event: any, session: any) => {
 			setSession(session);
 		});
 
 		return () => subscription.unsubscribe();
 	}, []);
 	useEffect(() => {
-		supabase.auth.onAuthStateChange(async (event, _auth) => {
+		// workaround for build error
+		// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+		supabase.auth.onAuthStateChange(async (event: any, _auth: any) => {
 			if (event == "PASSWORD_RECOVERY") {
 				const newPassword = prompt("Enter your a new password ");
 				const { data, error } = await supabase.auth.updateUser({
@@ -78,7 +82,9 @@ export function Authentication() {
 						}}
 						providers={["google", "github"]}
 					/>
-					<h1>Demo Sign in : </h1>
+					<h1>
+						<b>***Demo Sign in*** : </b>
+					</h1>
 					<Button onClick={handleAnonymousSignIn} className="m-3">
 						Sign in anonymously
 					</Button>
