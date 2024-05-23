@@ -13,6 +13,5 @@ except socket.gaierror:
     IP = "anson-eq.local"
     logger.error("Could not resolve hostname, using default hostname")
 
-SEARXNG_API_URL = f"http://{IP}:8081/"
 WIKI_API_URL = "https://api.wikimedia.org/core/v1/wikipedia/en/search/page"
 PD_OCR_API_URL = f"http://{IP}:9998/ocr/prediction"
