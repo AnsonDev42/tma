@@ -27,6 +27,7 @@
 		"@supabase/gotrue-js": "^2.62.2",
 		"@supabase/supabase-js": "^2.43.3",
 		"axios": "^1.7.2",
+		"change-case": "^5.4.4",
 		"class-variance-authority": "^0.7.0",
 		"clsx": "^2.1.1",
 		"cmdk": "^1.0.0",
