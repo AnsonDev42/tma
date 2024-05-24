@@ -1,5 +1,6 @@
+import { SearchButtons } from "@/components/DishSearchButtons.tsx";
 import { BoundingBoxProps, DishProps } from "@/types/DishProps.tsx";
-import React, { useEffect, useState } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
 
 interface ImageResultsProps {
@@ -9,6 +10,8 @@ interface ImageResultsProps {
 	showText: boolean;
 }
 
+const DishImageCarousel = lazy(() => import("@/components/DishImageCarousel"));
+
 export function ImageResults({
 	menuSrc,
 	data,
@@ -17,6 +20,9 @@ export function ImageResults({
 }: ImageResultsProps): React.ReactElement {
 	const [imgWidth, setImgWidth] = useState(0);
 	const [imgHeight, setImgHeight] = useState(0);
+	// track the currently open modal index, used for loading the specific dish image carousel
+	const [openModalIndex, setOpenModalIndex] = useState<number | null>(null);
+
 	const updateScale = () => {
 		const imageElement = imageRef.current;
 		if (imageElement) {
@@ -80,11 +86,26 @@ export function ImageResults({
 		color: "white",
 	});
 
+	const handleOpenModal = (index: number) => {
+		setOpenModalIndex(index);
+		const modalElement = document.getElementById(
+			`modal_${index}`,
+		) as HTMLDialogElement | null;
+		modalElement?.showModal();
+	};
+
+	const handleCloseModal = () => {
+		setOpenModalIndex(null);
+	};
+
 	return (
 		<div className="flex justify-center items-center p-3 m-2 bg-blue-500 border border-gray-300 rounded-2xl ">
 			<TransformWrapper>
 				<TransformComponent>
-					<div className="relative max-w-full max-h-screen flex items-start">
+					<div
+						className="relative max-w-full max-h-screen flex items-start"
+						key={menuSrc as string}
+					>
 						<img
 							src={menuSrc as string}
 							alt="Uploaded"
@@ -93,17 +114,12 @@ export function ImageResults({
 						/>
 
 						{data.map((value, index) => (
-							<>
+							<React.Fragment key={index}>
 								{showText && (
 									<div
 										className="absolute"
 										style={getAdjustedStyles(value.boundingBox)}
-										onClick={() => {
-											const modalElement = document.getElementById(
-												`modal_${index}`,
-											) as HTMLDialogElement | null;
-											modalElement?.showModal();
-										}}
+										onClick={() => handleOpenModal(index)}
 									>
 										<div style={getTextStyle(value.boundingBox)}>
 											{value.info.text}
@@ -118,49 +134,28 @@ export function ImageResults({
 										<p className="text-gray-700 mb-4">
 											{value.info.description}
 										</p>
-
-										{value.info.imgSrc && (
-											<div className="carousel carousel-center max-w-md p-4 space-x-4 bg-neutral rounded-box">
-												{value.info.imgSrc.map((src, imgIndex) => (
-													<div className="carousel-item" key={imgIndex}>
-														<img
-															src={src}
-															className="rounded-box max-h-[300px] object-contain"
-															alt={`${value.info.text} -img ${imgIndex}`}
-														/>
+										{openModalIndex === index && (
+											<Suspense
+												fallback={
+													<div>
+														<span className="loading loading-dots loading-lg"></span>
 													</div>
-												))}
-											</div>
+												}
+											>
+												<DishImageCarousel dish={value} />
+											</Suspense>
 										)}
-
-										<div className="flex space-x-4">
-											<a
-												href={`https://www.google.com/search?q=${encodeURIComponent(
-													value.info.text,
-												)}`}
-												target="_blank"
-												rel="noopener noreferrer"
-												className="text-blue-500 hover:underline"
-											>
-												Search on Google
-											</a>
-											<a
-												href={`https://wikipedia.org/wiki/${encodeURIComponent(
-													value.info.text,
-												)}`}
-												target="_blank"
-												rel="noopener noreferrer"
-												className="text-blue-500 hover:underline"
-											>
-												View on Wikipedia
-											</a>
-										</div>
+										<SearchButtons dishname={value.info.text as string} />
 									</div>
-									<form method="dialog" className="modal-backdrop">
-										<button>close</button>
+									<form
+										method="dialog"
+										className="modal-backdrop"
+										onClick={handleCloseModal}
+									>
+										<button>Close</button>
 									</form>
 								</dialog>
-							</>
+							</React.Fragment>
 						))}
 					</div>
 				</TransformComponent>
