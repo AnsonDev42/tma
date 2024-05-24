@@ -1,8 +1,3 @@
-import {
-	Popover,
-	PopoverContent,
-	PopoverTrigger,
-} from "@/components/ui/popover";
 import { BoundingBoxProps, DishProps } from "@/types/DishProps.tsx";
 import React, { useEffect, useState } from "react";
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
@@ -62,9 +57,9 @@ export function ImageResults({
 	}, [data]);
 
 	const calculateFontSize = (boundingBox: BoundingBoxProps) => {
-		const minFontSize = 10; // Minimum font size in pixels
+		const minFontSize = 7; // Minimum font size in pixels
 		const baseFontSize =
-			Math.min(boundingBox.w * imgWidth, boundingBox.h * imgHeight) * 0.2; // Adjust scale factor as needed
+			Math.min(boundingBox.w * imgWidth, boundingBox.h * imgHeight) * 0.3; // Adjust scale factor as needed
 		return Math.max(baseFontSize, minFontSize);
 	};
 
@@ -98,34 +93,25 @@ export function ImageResults({
 						/>
 
 						{data.map((value, index) => (
-							<Popover key={index}>
+							<>
 								{showText && (
-									<PopoverTrigger asChild>
-										<div
-											key={index}
-											className="absolute"
-											style={getAdjustedStyles(value.boundingBox)}
-										>
-											<div style={getTextStyle(value.boundingBox)}>
-												{value.info.text}
-											</div>
+									<div
+										className="absolute"
+										style={getAdjustedStyles(value.boundingBox)}
+										onClick={() => {
+											const modalElement = document.getElementById(
+												`modal_${index}`,
+											) as HTMLDialogElement | null;
+											modalElement?.showModal();
+										}}
+									>
+										<div style={getTextStyle(value.boundingBox)}>
+											{value.info.text}
 										</div>
-									</PopoverTrigger>
+									</div>
 								)}
-								<PopoverContent className="max-w-sm p-6 bg-white rounded-lg shadow-lg">
-									<div className="flex flex-col items-center">
-										{value.info.imgSrc && (
-											<div className="carousel carousel-center max-w-md p-4 space-x-4 bg-neutral rounded-box">
-												{value.info.imgSrc.map((src, index) => (
-													<div className="carousel-item" key={index}>
-														<img
-															src={src}
-															className="rounded-box max-h-[300px] object-contain"
-														/>
-													</div>
-												))}
-											</div>
-										)}
+								<dialog id={`modal_${index}`} className="modal">
+									<div className="modal-box">
 										<h2 className="font-bold text-xl mb-2">
 											{value.info.text}
 										</h2>
@@ -133,11 +119,20 @@ export function ImageResults({
 											{value.info.description}
 										</p>
 
-										{/*<script*/}
-										{/*	async*/}
-										{/*	src="https://www.googleapis.com/customsearch/v1?cx=568f25ff55dc6456a&searchType=image"*/}
-										{/*></script>*/}
-										{/*<div className="gcse-search"></div>*/}
+										{value.info.imgSrc && (
+											<div className="carousel carousel-center max-w-md p-4 space-x-4 bg-neutral rounded-box">
+												{value.info.imgSrc.map((src, imgIndex) => (
+													<div className="carousel-item" key={imgIndex}>
+														<img
+															src={src}
+															className="rounded-box max-h-[300px] object-contain"
+															alt={`${value.info.text} -img ${imgIndex}`}
+														/>
+													</div>
+												))}
+											</div>
+										)}
+
 										<div className="flex space-x-4">
 											<a
 												href={`https://www.google.com/search?q=${encodeURIComponent(
@@ -161,8 +156,11 @@ export function ImageResults({
 											</a>
 										</div>
 									</div>
-								</PopoverContent>
-							</Popover>
+									<form method="dialog" className="modal-backdrop">
+										<button>close</button>
+									</form>
+								</dialog>
+							</>
 						))}
 					</div>
 				</TransformComponent>
