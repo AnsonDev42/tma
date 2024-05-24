@@ -27,6 +27,9 @@ class Settings(BaseSettings):
         list[AnyUrl] | str, BeforeValidator(parse_cors)
     ] = []
     BACKEND_CORS_ORIGINS_REGEX: str | None = None
+    GOOGLE_IMG_SEARCH_URL: str = "https://www.googleapis.com/customsearch/v1"
+    GOOGLE_IMG_SEARCH_CX: str
+    GOOGLE_IMG_SEARCH_KEY: str
 
 
 settings = Settings()

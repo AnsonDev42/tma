@@ -115,11 +115,16 @@ export function ImageResults({
 								<PopoverContent className="max-w-sm p-6 bg-white rounded-lg shadow-lg">
 									<div className="flex flex-col items-center">
 										{value.info.imgSrc && (
-											<img
-												src={value.info.imgSrc}
-												alt={`${value.info.text} image`}
-												className="w-full h-40 object-cover rounded-t-lg mb-4"
-											/>
+											<div className="carousel carousel-center max-w-md p-4 space-x-4 bg-neutral rounded-box">
+												{value.info.imgSrc.map((src, index) => (
+													<div className="carousel-item" key={index}>
+														<img
+															src={src}
+															className="rounded-box max-h-[300px] object-contain"
+														/>
+													</div>
+												))}
+											</div>
 										)}
 										<h2 className="font-bold text-xl mb-2">
 											{value.info.text}
@@ -127,6 +132,12 @@ export function ImageResults({
 										<p className="text-gray-700 mb-4">
 											{value.info.description}
 										</p>
+
+										{/*<script*/}
+										{/*	async*/}
+										{/*	src="https://www.googleapis.com/customsearch/v1?cx=568f25ff55dc6456a&searchType=image"*/}
+										{/*></script>*/}
+										{/*<div className="gcse-search"></div>*/}
 										<div className="flex space-x-4">
 											<a
 												href={`https://www.google.com/search?q=${encodeURIComponent(
