@@ -9,7 +9,7 @@ export type DishProps = {
 	boundingBox: BoundingBoxProps;
 	info: {
 		text: string;
-		imgSrc: string;
+		imgSrc: string[];
 		description: string;
 	};
 };
