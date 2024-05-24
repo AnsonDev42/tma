@@ -100,7 +100,7 @@ export function ImageResults({
 
 	return (
 		<div className="flex justify-center items-center p-3 m-2 bg-blue-500 border border-gray-300 rounded-2xl ">
-			<TransformWrapper>
+			<TransformWrapper doubleClick={{ mode: "reset" }}>
 				<TransformComponent>
 					<div
 						className="relative max-w-full max-h-screen flex items-start"
