@@ -1,6 +1,6 @@
-import { SearchButtons } from "@/components/DishSearchButtons.tsx";
+import DishImageCard from "@/components/DishImageCard.tsx";
 import { BoundingBoxProps, DishProps } from "@/types/DishProps.tsx";
-import React, { lazy, Suspense, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
 
 interface ImageResultsProps {
@@ -9,8 +9,6 @@ interface ImageResultsProps {
 	imageRef: React.RefObject<HTMLImageElement>;
 	showText: boolean;
 }
-
-const DishImageCarousel = lazy(() => import("@/components/DishImageCarousel"));
 
 export function ImageResults({
 	menuSrc,
@@ -94,31 +92,29 @@ export function ImageResults({
 		modalElement?.showModal();
 	};
 
-	const handleCloseModal = () => {
-		setOpenModalIndex(null);
-	};
-
 	return (
 		<div className="flex justify-center items-center p-3 m-2 bg-blue-500 border border-gray-300 rounded-2xl ">
 			<TransformWrapper
 				doubleClick={{ mode: "reset" }}
 				pinch={{ disabled: openModalIndex !== null }}
 				wheel={{ disabled: openModalIndex !== null }}
+				disabled={openModalIndex !== null}
 			>
 				<TransformComponent>
 					<div
 						className="relative max-w-full max-h-screen flex items-start"
 						key={menuSrc as string}
 					>
+						{/* the menu image */}
 						<img
 							src={menuSrc as string}
 							alt="Uploaded"
 							className="max-w-full max-h-screen relative"
 							ref={imageRef}
 						/>
-
+						{/*bounding box and texts */}
 						{data.map((value, index) => (
-							<React.Fragment key={index}>
+							<>
 								{showText && (
 									<div
 										className="absolute"
@@ -130,36 +126,16 @@ export function ImageResults({
 										</div>
 									</div>
 								)}
-								<dialog id={`modal_${index}`} className="modal">
-									<div className="modal-box">
-										<h2 className="font-bold text-xl mb-2">
-											{value.info.text}
-										</h2>
-										<p className="text-gray-700 mb-4">
-											{value.info.description}
-										</p>
-										{openModalIndex === index && (
-											<Suspense
-												fallback={
-													<div>
-														<span className="loading loading-dots loading-lg"></span>
-													</div>
-												}
-											>
-												<DishImageCarousel dish={value} />
-											</Suspense>
-										)}
-										<SearchButtons dishname={value.info.text as string} />
-									</div>
-									<form
-										method="dialog"
-										className="modal-backdrop"
-										onClick={handleCloseModal}
-									>
-										<button>Close</button>
-									</form>
-								</dialog>
-							</React.Fragment>
+								{/*modal card*/}
+
+								<DishImageCard
+									key={index}
+									dish={value}
+									openModalIndex={openModalIndex}
+									setOpenModalIndex={setOpenModalIndex}
+									index={index}
+								/>
+							</>
 						))}
 					</div>
 				</TransformComponent>

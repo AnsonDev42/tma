@@ -6,12 +6,12 @@ export function SearchButtons({
 	dishname: string;
 }): React.ReactElement {
 	return (
-		<div className="flex space-x-4">
+		<div className="flex flex-col space-y-2 ">
 			<a
 				href={`https://www.google.com/search?q=${encodeURIComponent(dishname)}`}
 				target="_blank"
 				rel="noopener noreferrer"
-				className="text-blue-500 hover:underline"
+				className="btn btn-sm btn-secondary  hover:underline"
 			>
 				Search on Google
 			</a>
@@ -19,7 +19,7 @@ export function SearchButtons({
 				href={`https://wikipedia.org/wiki/${encodeURIComponent(dishname)}`}
 				target="_blank"
 				rel="noopener noreferrer"
-				className="text-blue-500 hover:underline"
+				className="btn btn-sm btn-secondary hover:underline"
 			>
 				View on Wikipedia
 			</a>
