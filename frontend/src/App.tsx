@@ -67,7 +67,11 @@ function MainAppContent() {
 						</Label>
 					</div>
 				</div>
-
+				<script
+					async
+					src="https://cse.google.com/cse.js?cx=568f25ff55dc6456a"
+				></script>
+				<div className="gcse-search"></div>
 				{/* image results */}
 				{menuSrc && (
 					<ImageResults

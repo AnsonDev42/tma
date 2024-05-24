@@ -104,7 +104,7 @@ async def get_dish_info_via_openai(
     }
 
 
-async def get_dish_image(dish_name: str | None) -> str | None:
+async def get_dish_image_via_wiki(dish_name: str | None) -> str | None:
     if dish_name is None:
         return None
 
@@ -119,6 +119,36 @@ async def get_dish_image(dish_name: str | None) -> str | None:
         if thumbnail and "url" in thumbnail:
             return f"https:{thumbnail['url']}"
     return None
+
+
+async def get_dish_image(dish_name: str | None, num_img=10) -> List[str] | None:
+    if dish_name is None:
+        return None
+
+    querystring = {
+        "cx": settings.GOOGLE_IMG_SEARCH_CX,
+        "searchType": "image",
+        "q": dish_name,
+        "key": settings.GOOGLE_IMG_SEARCH_KEY,
+    }
+
+    async with AsyncClient() as ac:
+        response = await ac.get(settings.GOOGLE_IMG_SEARCH_URL, params=querystring)
+
+    response.raise_for_status()
+    result = response.json()
+    with open("google_search.json", "w") as f:
+        ujson.dump(result, f)
+
+    # return None if no items found
+    if not result.get("items"):
+        return None
+
+    #  limit the number of images to return
+    num_img = min(len(result.get("items")), num_img)
+    image_links = [item["link"] for item in result.get("items", [])[:num_img]]
+
+    return image_links
 
 
 async def get_dish_data(dish_name: str, accept_language: str) -> dict:
