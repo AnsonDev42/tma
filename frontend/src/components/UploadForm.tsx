@@ -84,7 +84,7 @@ const UploadForm: React.FC<UploadFormProps> = ({
 
 		toast.promise(
 			(async () => {
-				await new Promise((resolve) => setTimeout(resolve, 2000));
+				// await new Promise((resolve) => setTimeout(resolve, 2000));
 				const response = await fetch("/demoData.json");
 				const data = await response.json();
 				const formattedData = formatResponseData(data.results);
