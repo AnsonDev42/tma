@@ -30,7 +30,7 @@ export function LanguageComboBox() {
 				className="text-md text-muted-foreground"
 				htmlFor="language-select"
 			>
-				Translate to a language.
+				Target Language
 			</label>
 			<div className="form-control w-full max-w-xs">
 				<select
