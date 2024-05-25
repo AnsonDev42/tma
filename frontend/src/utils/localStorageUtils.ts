@@ -23,7 +23,11 @@ export const addUploadToLocalStorage = (
 	data: DishProps[],
 ) => {
 	const uploads = (getFromLocalStorage("uploads") as UploadProps[]) || [];
-	const newUpload = { imageSrc, data, timestamp: new Date().toISOString() };
+	const newUpload = {
+		imageSrc,
+		data,
+		timestamp: new Date().toISOString(),
+	} as UploadProps;
 	uploads.push(newUpload);
 	saveToLocalStorage("uploads", uploads);
 };
