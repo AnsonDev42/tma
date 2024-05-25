@@ -1,10 +1,9 @@
 import "./globals.css";
+import { Authentication } from "@/components/Authentication.tsx";
 import { ImageResults } from "@/components/Dish.tsx";
 import { Navbar } from "@/components/Navbar.tsx";
+import Sidebar from "@/components/SideBar.tsx";
 import UploadForm from "@/components/UploadForm.tsx";
-
-import { Authentication } from "@/components/Authentication.tsx";
-import SavedResultsList from "@/components/SavedResultsList.tsx";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { SessionContext, SessionProvider } from "@/contexts/SessionContext";
@@ -46,48 +45,60 @@ function MainAppContent() {
 
 	return (
 		<div data-theme="">
-			<Navbar />
-			<div className="flex flex-col mx-2">
-				{/* authentication */}
-				<Authentication />
-				<div className="divider divider-neutral"></div>
+			<div className="drawer lg:drawer-open">
+				<input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
+				<div className="drawer-content flex flex-col">
+					<Navbar />
+					{/*	content */}
+					<div className="flex flex-col mx-2">
+						{/* authentication */}
+						<Authentication />
+						<div className="divider divider-neutral"></div>
 
-				{/* upload form */}
-				<div className="max-w-lg">
-					<UploadForm onUploadComplete={setData} setMenuSrc={setMenuSrc} />
-					<div className="w-full"></div>
-				</div>
-				<div className="divider divider-neutral" ref={imageResultsRef}></div>
+						{/* upload form */}
+						<div className="max-w-lg">
+							<UploadForm onUploadComplete={setData} setMenuSrc={setMenuSrc} />
+							<div className="w-full"></div>
+						</div>
+						<div
+							className="divider divider-neutral"
+							ref={imageResultsRef}
+						></div>
 
-				{/* bounding box toggle*/}
-				<div className="mt-4">
-					<div className="flex items-center space-x-2">
-						<Switch
-							id="Show Bounding Box Text"
-							checked={showText}
-							onCheckedChange={handleToggleText}
-						/>
-						<Label htmlFor="Show-Bounding-Box-Text">
-							Show Bounding Box Text
-						</Label>
+						{/* bounding box toggle*/}
+						<div className="mt-4">
+							<div className="flex items-center space-x-2">
+								<Switch
+									id="Show Bounding Box Text"
+									checked={showText}
+									onCheckedChange={handleToggleText}
+								/>
+								<Label htmlFor="Show-Bounding-Box-Text">
+									Show Bounding Box Text
+								</Label>
+							</div>
+						</div>
+
+						{/* image results */}
+						{menuSrc && (
+							<ImageResults
+								menuSrc={menuSrc}
+								data={data}
+								imageRef={imageRef}
+								showText={showText}
+							/>
+						)}
 					</div>
 				</div>
-				<script
-					async
-					src="https://cse.google.com/cse.js?cx=568f25ff55dc6456a"
-				></script>
-				<div className="gcse-search"></div>
-				{/* image results */}
-				{menuSrc && (
-					<ImageResults
-						menuSrc={menuSrc}
-						data={data}
-						imageRef={imageRef}
-						showText={showText}
-					/>
-				)}
+				<div className="drawer-side">
+					<label
+						htmlFor="my-drawer-3"
+						aria-label="close sidebar"
+						className="drawer-overlay"
+					></label>
+					<Sidebar onSelectUpload={handleSelectUpload} />
+				</div>
 			</div>
-			<SavedResultsList onSelectUpload={handleSelectUpload} />
 		</div>
 	);
 }
