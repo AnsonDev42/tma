@@ -1,5 +1,6 @@
 import History from "@/components/HistoryList.tsx";
 import { DishProps } from "@/types/DishProps.tsx";
+import React from "react";
 
 type SidebarProps = {
 	onSelectUpload: (imageSrc: string, data: DishProps[]) => void;
@@ -8,7 +9,7 @@ type SidebarProps = {
 const Sidebar: React.FC<SidebarProps> = ({ onSelectUpload }) => {
 	return (
 		/*  sidebar is a menu component */
-		<ul className="menu max-h-full max-w-3/4  bg-main-content  rounded-box mt-20 ">
+		<ul className="menu max-h-full max-w-3/4 bg-main-content rounded-box mt-20 overflow-hidden overflow-y-auto">
 			{/* currently sidebar has tabs including: history...  */}
 			<div role="tablist" className="tabs tabs-boxed tabs-lg">
 				<input
