@@ -48,7 +48,9 @@ function MainAppContent() {
 			<div className="drawer lg:drawer-open">
 				<input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
 				<div className="drawer-content flex flex-col">
-					<Navbar />
+					<div className="fixed top-0 left-0 right-0 z-50">
+						<Navbar />
+					</div>
 					{/*	content */}
 					<div className="flex flex-col mx-2">
 						{/* authentication */}
