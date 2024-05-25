@@ -54,27 +54,39 @@ const HistoryList: React.FC<HistoryProps> = ({ onSelectUpload }) => {
 	const { today, yesterday, previous3Days, earlier } =
 		groupUploadsByTimeRange();
 
+	const renderDishes = (dishes: DishProps[]) => {
+		return dishes.map((dish, index) => (
+			<li key={index} className="ml-4 break-words text-wrap">
+				{index} - {dish.info.text}
+			</li>
+		));
+	};
 	const renderUploads = (uploads: UploadProps[]) => {
 		return uploads.map((upload, index) => (
 			<li key={index} className="flex flex-col border p-2 mb-2">
-				<button
-					onClick={() => onSelectUpload(upload.imageSrc, upload.data)}
-					className="text-info underline"
-				>
-					{new Date(upload.timestamp).toLocaleString()}
-				</button>
-				<button
-					onClick={() => handleDelete(upload.timestamp)}
-					className=" text-red-500 underline ml-2"
-				>
-					Delete
-				</button>
+				<details open>
+					<summary>
+						<button
+							onClick={() => onSelectUpload(upload.imageSrc, upload.data)}
+							className="text-info underline"
+						>
+							{new Date(upload.timestamp).toLocaleString()}
+						</button>
+						<button
+							onClick={() => handleDelete(upload.timestamp)}
+							className=" text-red-500 underline ml-2"
+						>
+							Delete
+						</button>
+					</summary>
+					<ul>{renderDishes(upload.data)}</ul>
+				</details>
 			</li>
 		));
 	};
 
 	return (
-		<ul className="menu ">
+		<ul className="menu max-w-fit">
 			<li>
 				<li>
 					<a>*We store your data in your browser.</a>
