@@ -4,6 +4,7 @@ import { Navbar } from "@/components/Navbar.tsx";
 import UploadForm from "@/components/UploadForm.tsx";
 
 import { Authentication } from "@/components/Authentication.tsx";
+import SavedResultsList from "@/components/SavedResultsList.tsx";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { SessionContext, SessionProvider } from "@/contexts/SessionContext";
@@ -33,10 +34,14 @@ function MainAppContent() {
 		if (imageResultsRef.current) {
 			imageResultsRef.current.scrollIntoView({ behavior: "smooth" });
 		}
-	}, [menuSrc, showText, data]);
+	}, [menuSrc, data, imageRef]);
 
 	const handleToggleText = () => {
 		setShowText((prevShowText) => !prevShowText);
+	};
+	const handleSelectUpload = (imageSrc: string, data: DishProps[]) => {
+		setMenuSrc(imageSrc);
+		setData(data);
 	};
 
 	return (
@@ -82,6 +87,7 @@ function MainAppContent() {
 					/>
 				)}
 			</div>
+			<SavedResultsList onSelectUpload={handleSelectUpload} />
 		</div>
 	);
 }
