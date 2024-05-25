@@ -5,7 +5,7 @@ import {
 	getUploadsFromLocalStorage,
 	removeUploadFromLocalStorage,
 } from "@/utils/localStorageUtils.ts";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 type HistoryProps = {
 	onSelectUpload: (imageSrc: string, data: DishProps[]) => void;
@@ -14,8 +14,19 @@ type HistoryProps = {
 const HistoryList: React.FC<HistoryProps> = ({ onSelectUpload }) => {
 	const [uploads, setUploads] = useState(getUploadsFromLocalStorage());
 
+	// Listen for storage changes and update the history list
 	useEffect(() => {
-		setUploads(getUploadsFromLocalStorage());
+		const handleStorageChange = () => {
+			setUploads(getUploadsFromLocalStorage());
+		};
+
+		// Listen for storage changes
+		window.addEventListener("storage", handleStorageChange);
+
+		return () => {
+			// Clean up the event listener on component unmount
+			window.removeEventListener("storage", handleStorageChange);
+		};
 	}, []);
 
 	const handleDelete = (timestamp: string) => {
