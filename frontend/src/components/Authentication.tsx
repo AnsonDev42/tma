@@ -1,3 +1,4 @@
+import { LanguageComboBox } from "@/components/LanguageComboBox.tsx";
 import { Button } from "@/components/ui/button.tsx";
 import { Turnstile } from "@marsidev/react-turnstile";
 import { Auth } from "@supabase/auth-ui-react";
@@ -99,25 +100,30 @@ export function Authentication() {
 		);
 	} else {
 		return (
-			<div className="flex justify-between items-center gap-2 m-3">
-				<div className="flex items-center">
-					<h1 className="italic">Welcome, </h1>
-					<h1 className="bold ml-1">
-						{session.user.email === "" ? "Demo User" : session.user.email}
-					</h1>
+			<>
+				<div className="flex justify-between items-center gap-2 m-3">
+					<div className="flex items-center">
+						<h1 className="italic">Welcome, </h1>
+						<h1 className="bold ml-1">
+							{session.user.email === "" ? "Demo User" : session.user.email}
+						</h1>
+					</div>
+					<div>
+						<button
+							className="btn btn-link"
+							onClick={async () => {
+								await supabase.auth.signOut();
+								toast.success("Signed out successfully!");
+							}}
+						>
+							Sign out
+						</button>
+					</div>
 				</div>
-				<div>
-					<button
-						className="btn btn-link"
-						onClick={async () => {
-							await supabase.auth.signOut();
-							toast.success("Signed out successfully!");
-						}}
-					>
-						Sign out
-					</button>
+				<div className=" max-w-xs ml-5 m-3">
+					<LanguageComboBox />
 				</div>
-			</div>
+			</>
 		);
 	}
 }

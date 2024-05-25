@@ -111,15 +111,13 @@ const UploadForm: React.FC<UploadFormProps> = ({
 	return (
 		<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
 			<label className="form-control w-full max-w-xs">
-				<div className="label">
-					<span className="label-text">Upload a Menu image</span>
-				</div>
 				<input
 					type="file"
 					className="file-input file-input-bordered w-full max-w-xs"
 					{...form.register("file")}
 				/>
 			</label>
+
 			<button type="submit" className="btn btn-primary">
 				Upload Menu
 			</button>
