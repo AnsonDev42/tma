@@ -1,6 +1,7 @@
 import { Language, useLanguageContext } from "@/contexts/LanguageContext.tsx";
 import { SessionContext } from "@/contexts/SessionContext.tsx";
 import { DishProps } from "@/types/DishProps.tsx";
+import { addUploadToLocalStorage } from "@/utils/localStorageUtils.ts";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import * as changeKeys from "change-case/keys";
@@ -64,23 +65,28 @@ const UploadForm: React.FC<UploadFormProps> = ({
 		const reader = new FileReader();
 		reader.readAsDataURL(file);
 		reader.onload = () => {
-			setMenuSrc(reader.result);
+			const imageSrc = reader.result as string;
+			setMenuSrc(imageSrc);
+
+			toast.promise(uploadData(formData, jwt, selectedLanguage), {
+				loading: "Uploading and analyzing your menu...(This may take a while)",
+				success: (data) => {
+					onUploadComplete(data);
+					addUploadToLocalStorage(imageSrc, data);
+
+					return `Menu has been successfully analyzed!`;
+				},
+				error: (err) => {
+					return err.toString();
+				},
+			});
 		};
-		toast.promise(uploadData(formData, jwt, selectedLanguage), {
-			loading: "Uploading and analyzing your menu...(This may take a while)",
-			success: (data) => {
-				onUploadComplete(data);
-				return `Menu has been successfully analyzed!`;
-			},
-			error: (err) => {
-				return err.toString();
-			},
-		});
 	};
 
 	const handleDemoUpload = async () => {
 		await new Promise((resolve) => setTimeout(resolve, 500));
-		setMenuSrc("/demoMenu1.jpg");
+		const imageSrc = "/demoMenu1.jpg";
+		setMenuSrc(imageSrc);
 
 		toast.promise(
 			(async () => {
@@ -88,7 +94,8 @@ const UploadForm: React.FC<UploadFormProps> = ({
 				const response = await fetch("/demoData.json");
 				const data = await response.json();
 				const formattedData = formatResponseData(data.results);
-				onUploadComplete(formattedData); // hook the data
+				onUploadComplete(formattedData);
+				addUploadToLocalStorage(imageSrc, formattedData);
 				return data;
 			})(),
 			{
