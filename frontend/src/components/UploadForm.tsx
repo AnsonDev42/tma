@@ -36,11 +36,13 @@ const formSchema = z.object({
 type UploadFormProps = {
 	onUploadComplete: (data: DishProps[]) => void;
 	setMenuSrc: (src: string | ArrayBuffer | null) => void;
+	setImgTimestamp: (timestamp: string) => void;
 };
 
 const UploadForm: React.FC<UploadFormProps> = ({
 	onUploadComplete,
 	setMenuSrc,
+	setImgTimestamp,
 }) => {
 	const session = useContext(SessionContext)?.session;
 	const { selectedLanguage } = useLanguageContext();
@@ -72,8 +74,8 @@ const UploadForm: React.FC<UploadFormProps> = ({
 				loading: "Uploading and analyzing your menu...(This may take a while)",
 				success: (data) => {
 					onUploadComplete(data);
-					addUploadToLocalStorage(imageSrc, data);
-
+					const imgTimeStamp: string = addUploadToLocalStorage(imageSrc, data);
+					setImgTimestamp(imgTimeStamp);
 					return `Menu has been successfully analyzed!`;
 				},
 				error: (err) => {
@@ -95,7 +97,11 @@ const UploadForm: React.FC<UploadFormProps> = ({
 				const data = await response.json();
 				const formattedData = formatResponseData(data.results);
 				onUploadComplete(formattedData);
-				addUploadToLocalStorage(imageSrc, formattedData);
+				const imgTimeStamp: string = addUploadToLocalStorage(
+					imageSrc,
+					formattedData,
+				);
+				setImgTimestamp(imgTimeStamp);
 				return data;
 			})(),
 			{

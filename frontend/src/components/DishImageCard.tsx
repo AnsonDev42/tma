@@ -1,18 +1,50 @@
 import { SearchButtons } from "@/components/DishSearchButtons.tsx";
 import { DishProps } from "@/types/DishProps.tsx";
-import React, { useEffect, useRef } from "react";
+import {
+	CartItem,
+	addDishToCart,
+	getCartByName,
+	removeDishFromCart,
+} from "@/utils/localStorageUtils.ts";
+import React, { useEffect, useRef, useState } from "react";
 export function DishImageCard({
 	dish,
 	openModalIndex,
 	setOpenModalIndex,
 	index,
+	timeStamp,
 }: {
 	dish: DishProps;
 	openModalIndex: number | null;
 	setOpenModalIndex: React.Dispatch<React.SetStateAction<number | null>>;
 	index: number;
+	timeStamp: string;
 }): React.ReactElement {
 	const modalRef = useRef<HTMLDialogElement>(null);
+	const cartName = "My Cart"; // Define a cart name (could be dynamic)
+	const [isChecked, setIsChecked] = useState(false);
+	// hacky way to get the latest image timestamp from local storage to save to cart
+
+	useEffect(() => {
+		const cart = getCartByName(cartName);
+		if (cart) {
+			const isInCart = cart.items.some(
+				(item: CartItem) =>
+					item.dishId === dish.id && item.uploadTimestamp === timeStamp,
+			);
+			setIsChecked(isInCart);
+		}
+	}, [dish.id, timeStamp]);
+
+	const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		const checked = event.target.checked;
+		setIsChecked(checked);
+		if (checked) {
+			addDishToCart(cartName, dish.id, timeStamp);
+		} else {
+			removeDishFromCart(cartName, dish.id, timeStamp);
+		}
+	};
 
 	// fix safari modal positioning
 	useEffect(() => {
@@ -62,6 +94,17 @@ export function DishImageCard({
 							)}
 							<div className="card-body flex-1 overflow-y-auto">
 								<h2 className="card-title">{dish.info.text}</h2>
+								<div className="form-control">
+									<label className="cursor-pointer label">
+										<span className="label-text">Remember me</span>
+										<input
+											type="checkbox"
+											className="checkbox checkbox-secondary"
+											checked={isChecked}
+											onChange={handleCheckboxChange}
+										/>
+									</label>
+								</div>
 								<p className="text-gray-700 mb-4">{dish.info.description}</p>
 								<SearchButtons dishname={dish.info.text} />
 							</div>

@@ -8,6 +8,7 @@ interface ImageResultsProps {
 	data: DishProps[];
 	imageRef: React.RefObject<HTMLImageElement>;
 	showText: boolean;
+	timeStamp: string;
 }
 
 export function ImageResults({
@@ -15,6 +16,7 @@ export function ImageResults({
 	data,
 	imageRef,
 	showText,
+	timeStamp,
 }: ImageResultsProps): React.ReactElement {
 	const [imgWidth, setImgWidth] = useState(0);
 	const [imgHeight, setImgHeight] = useState(0);
@@ -127,13 +129,13 @@ export function ImageResults({
 									</div>
 								)}
 								{/*modal card*/}
-
 								<DishImageCard
 									key={index}
 									dish={value}
 									openModalIndex={openModalIndex}
 									setOpenModalIndex={setOpenModalIndex}
 									index={index}
+									timeStamp={timeStamp}
 								/>
 							</>
 						))}
