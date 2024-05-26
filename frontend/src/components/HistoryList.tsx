@@ -72,8 +72,11 @@ const HistoryList: React.FC<HistoryProps> = ({ onSelectUpload }) => {
 
 	const renderDishes = (dishes: DishProps[]) => {
 		return dishes.map((dish, index) => (
-			<li key={index} className="ml-4 break-words text-wrap">
-				{index} - {dish.info.text}
+			<li
+				key={index}
+				className="flex items-start justify-start m-0.5 grid grid-flow-col text-wrap break-words"
+			>
+				<input type="checkbox" className="checkbox" /> {index} -{dish.info.text}
 			</li>
 		));
 	};
