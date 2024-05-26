@@ -164,9 +164,8 @@ async def get_dish_data(dish_name: str, accept_language: str) -> dict:
     except HTTPStatusError:
         img_src = None
 
-    # replace the original text with the translated text if available
     if dish["text-translation"]:
-        dish["text"] = dish["text-translation"]
+        dish["text_translation"] = dish["text-translation"]
 
     return dish | {"img_src": img_src}
 
