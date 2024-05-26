@@ -39,7 +39,7 @@ const Sidebar: React.FC<SidebarProps> = ({ onSelectUpload }) => {
 					role="tabpanel"
 					className="tab-content bg-base-100 border-base-300 rounded-box p-6"
 				>
-					Tab content 2
+					<CartView />
 				</div>
 			</div>
 		</ul>

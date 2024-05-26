@@ -26,14 +26,14 @@ function MainAppContent() {
 	const [showText, setShowText] = useState(true); // show bounding box text
 	const [menuSrc, setMenuSrc] = useState<string | ArrayBuffer | null>(null);
 	const [data, setData] = useState([] as DishProps[]);
+	const [imgTimestamp, setImgTimestamp] = useState<string | null>(null);
 	const imageRef = useRef(null);
 	const imageResultsRef = useRef<HTMLDivElement | null>(null);
-
 	useEffect(() => {
 		if (imageResultsRef.current) {
 			imageResultsRef.current.scrollIntoView({ behavior: "smooth" });
 		}
-	}, [menuSrc, data, imageRef]);
+	}, [showText, data, imageRef]);
 
 	const handleToggleText = () => {
 		setShowText((prevShowText) => !prevShowText);
@@ -59,16 +59,21 @@ function MainAppContent() {
 
 						{/* upload form */}
 						<div className="max-w-lg">
-							<UploadForm onUploadComplete={setData} setMenuSrc={setMenuSrc} />
+							<UploadForm
+								onUploadComplete={setData}
+								setMenuSrc={setMenuSrc}
+								setImgTimestamp={setImgTimestamp}
+							/>
 							<div className="w-full"></div>
 						</div>
 						<div
 							className="divider divider-neutral"
 							ref={imageResultsRef}
 						></div>
-
 						{/* bounding box toggle*/}
 						<div className="mt-4">
+							<div> {imgTimestamp}</div>
+
 							<div className="flex items-center space-x-2">
 								<Switch
 									id="Show Bounding Box Text"
@@ -88,6 +93,7 @@ function MainAppContent() {
 								data={data}
 								imageRef={imageRef}
 								showText={showText}
+								timeStamp={imgTimestamp as string}
 							/>
 						)}
 					</div>
