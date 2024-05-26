@@ -2,7 +2,7 @@ import "./globals.css";
 import { Authentication } from "@/components/Authentication.tsx";
 import { ImageResults } from "@/components/Dish.tsx";
 import { Navbar } from "@/components/Navbar.tsx";
-import Sidebar from "@/components/SideBar.tsx";
+import Sidebar from "@/components/Sidebar.tsx";
 import UploadForm from "@/components/UploadForm.tsx";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
