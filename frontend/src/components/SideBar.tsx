@@ -22,7 +22,7 @@ const Sidebar: React.FC<SidebarProps> = ({ onSelectUpload }) => {
 				/>
 				<div
 					role="tabpanel"
-					className="tab-content bg-base-100 border-base-300 rounded-box p-6"
+					className="tab-content bg-base-100 border-base-300 rounded-box p-6 "
 				>
 					<History onSelectUpload={onSelectUpload} />
 				</div>
@@ -32,7 +32,7 @@ const Sidebar: React.FC<SidebarProps> = ({ onSelectUpload }) => {
 					name="my_tabs_2"
 					role="tab"
 					className="tab"
-					aria-label="Tab 2"
+					aria-label="Cart"
 				/>
 				<div
 					role="tabpanel"
