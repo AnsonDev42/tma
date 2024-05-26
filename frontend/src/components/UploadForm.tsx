@@ -171,18 +171,18 @@ async function uploadData(
 
 function formatResponseData(results: DishProps[]) {
 	return results
-		.map((item) => {
+		.map((item, index) => {
 			// fix the keys to camelCase e.g. img_src -> imgSrc
 			item.info = changeKeys.camelCase(item.info) as DishProps["info"];
 			return {
-				id: item.id,
+				id: index,
 				boundingBox: item.boundingBox,
 				info: {
 					text: item.info.text,
 					imgSrc: item.info.imgSrc,
 					description: item.info.description,
 				},
-			};
+			} as DishProps;
 		})
 		.filter((item) => item !== null) as DishProps[];
 }

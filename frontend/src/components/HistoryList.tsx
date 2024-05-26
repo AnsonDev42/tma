@@ -80,8 +80,8 @@ const HistoryList: React.FC<HistoryProps> = ({ onSelectUpload }) => {
 		));
 	};
 	const renderUploads = (uploads: UploadProps[]) => {
-		return uploads.map((upload, index) => (
-			<li key={index} className="flex flex-col border p-2 mb-2">
+		return uploads.map((upload) => (
+			<li className="flex flex-col border p-2 mb-2">
 				<details open>
 					<summary>
 						<button
