@@ -1,3 +1,4 @@
+import * as process from "node:process";
 import { Language, useLanguageContext } from "@/contexts/LanguageContext.tsx";
 import { SessionContext } from "@/contexts/SessionContext.tsx";
 import { DishProps } from "@/types/DishProps.tsx";
@@ -156,7 +157,7 @@ async function uploadMenuData(
 ): Promise<DishProps[]> {
 	try {
 		const response = await axios.post(
-			"https://api.itsya0wen.com/upload",
+			process.env.uploadMenuData as string,
 			formData,
 			{
 				headers: {
