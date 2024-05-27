@@ -42,7 +42,7 @@ export function DishImageCard({
 		setIsChecked(checked);
 		if (checked) {
 			toast.success(
-				`${dish.info.text} ${dish.info.textTranslation} added to cart`,
+				`${dish.info.text} (${dish.info.textTranslation}) added to cart`,
 			);
 			addDishToCart(cartName, dish.id, timeStamp);
 		} else {
@@ -97,9 +97,10 @@ export function DishImageCard({
 								</>
 							)}
 							<div className="card-body flex-1 overflow-y-auto">
-								<h2 className="card-title">
-									{dish.info.text} {dish.info.textTranslation}
+								<h2 className="card-title text-2xl font-bold ">
+									{dish.info.textTranslation}
 								</h2>
+								<p className="text-gray-500 mb-2 italic">{dish.info.text}</p>
 								<div className="form-control">
 									<label className="cursor-pointer label">
 										<span className="label-text">Remember me</span>
