@@ -79,6 +79,7 @@ function MainAppContent() {
 					{/*	content */}
 					<div className="flex flex-col mx-2">
 						{/* authentication */}
+						<div className="divider divider-neutral"></div>
 						<Authentication />
 						<div className="divider divider-neutral"></div>
 
@@ -116,7 +117,6 @@ function MainAppContent() {
 								</label>
 							</div>
 						</div>
-
 						{/* image results */}
 						{menuSrc && (
 							<MenuResults
