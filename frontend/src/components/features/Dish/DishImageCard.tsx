@@ -1,7 +1,7 @@
 import { SearchButtons } from "@/components/features/Dish/DishSearchButtons.tsx";
+import { CartItem } from "@/types/CartTypes.ts";
 import { DishProps } from "@/types/DishProps.tsx";
 import {
-	CartItem,
 	addDishToCart,
 	getCartByName,
 	removeDishFromCart,
