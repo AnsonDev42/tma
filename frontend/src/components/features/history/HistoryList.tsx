@@ -3,7 +3,7 @@ import {
 	UploadProps,
 	getUploadsFromLocalStorage,
 	removeUploadFromLocalStorage,
-} from "@/utils/localStorageUtils.ts";
+} from "@/utils/localStorageUploadUtils.ts";
 import React, { useEffect, useState } from "react";
 
 type HistoryProps = {
