@@ -1,9 +1,12 @@
 import "./globals.css";
-import { Authentication } from "@/components/Authentication.tsx";
-import { ImageResults, ShowTextState } from "@/components/Dish.tsx";
-import { Navbar } from "@/components/Navbar.tsx";
-import Sidebar from "@/components/Sidebar.tsx";
-import UploadForm from "@/components/UploadForm.tsx";
+import { Authentication } from "@/components/features/Authentication/Authentication.tsx";
+import {
+	MenuResults,
+	ShowTextState,
+} from "@/components/features/Menu/Menu.tsx";
+import UploadForm from "@/components/features/Menu/UploadForm.tsx";
+import { Navbar } from "@/components/ui/Navbar.tsx";
+import Sidebar from "@/components/ui/Sidebar.tsx";
 import { SessionContext, SessionProvider } from "@/contexts/SessionContext";
 import { DishProps } from "@/types/DishProps.tsx";
 import { useContext, useEffect, useRef, useState } from "react";
@@ -116,7 +119,7 @@ function MainAppContent() {
 
 						{/* image results */}
 						{menuSrc && (
-							<ImageResults
+							<MenuResults
 								menuSrc={menuSrc}
 								data={data}
 								imageRef={imageRef}
