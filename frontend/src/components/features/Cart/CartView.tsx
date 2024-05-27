@@ -1,7 +1,6 @@
+import { Cart, CartItem } from "@/types/CartTypes.ts";
 import { DishProps } from "@/types/DishProps.tsx";
 import {
-	Cart,
-	CartItem,
 	deleteCart,
 	getCartByName,
 	getDishInfoByIdAndTimestamp,

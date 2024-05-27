@@ -1,19 +1,10 @@
+import { Cart, CartItem } from "@/types/CartTypes.ts";
 import { DishProps } from "@/types/DishProps.tsx";
-import { UploadProps } from "@/utils/localStorageUploadUtils.ts";
+import { UploadProps } from "@/types/UploadProps.ts";
 import {
 	getFromLocalStorage,
 	saveToLocalStorage,
 } from "@/utils/localStorageUtils.ts";
-
-export interface CartItem {
-	dishId: number;
-	uploadTimestamp: string;
-}
-
-export interface Cart {
-	name: string;
-	items: CartItem[];
-}
 
 export const addDishToCart = (
 	cartName: string,
