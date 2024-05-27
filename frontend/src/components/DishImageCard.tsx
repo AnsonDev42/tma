@@ -103,7 +103,7 @@ export function DishImageCard({
 								<p className="text-gray-500 mb-2 italic">{dish.info.text}</p>
 								<div className="form-control">
 									<label className="cursor-pointer label">
-										<span className="label-text">Remember me</span>
+										<span className="label-text">Add to Cart</span>
 										<input
 											type="checkbox"
 											className="checkbox checkbox-secondary"
