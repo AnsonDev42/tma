@@ -61,7 +61,7 @@ const CartView = () => {
 				{/* biome-ignore lint/suspicious/noExplicitAny: <explanation> */}
 				{dishes.map((dish: any, index) => (
 					<li className="flex items-start justify-between m-0.5 grid grid-flow-col text-wrap break-words">
-						<h1 key={index}>{dish.dish.info.text}</h1>
+						<h1 key={index}>{dish.dish?.info?.text}</h1>
 						<button
 							onClick={() =>
 								removeDishFromCart(cart.name, dish.dish.id, dish.timestamp)
