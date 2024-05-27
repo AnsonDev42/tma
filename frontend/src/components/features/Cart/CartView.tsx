@@ -6,7 +6,7 @@ import {
 	getCartByName,
 	getDishInfoByIdAndTimestamp,
 	removeDishFromCart,
-} from "@/utils/localStorageUtils.ts";
+} from "@/utils/localStorageCartUtils.ts";
 import { useEffect, useState } from "react";
 
 const CartView = () => {

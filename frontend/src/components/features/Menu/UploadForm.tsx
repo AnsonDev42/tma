@@ -1,7 +1,7 @@
 import { Language, useLanguageContext } from "@/contexts/LanguageContext.tsx";
 import { SessionContext } from "@/contexts/SessionContext.tsx";
 import { DishProps } from "@/types/DishProps.tsx";
-import { addUploadToLocalStorage } from "@/utils/localStorageUtils.ts";
+import { addUploadToLocalStorage } from "@/utils/localStorageUploadUtils.ts";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import * as changeKeys from "change-case/keys";
