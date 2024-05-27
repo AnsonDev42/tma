@@ -49,7 +49,7 @@ const CartView = () => {
 	return (
 		<div>
 			<ul>
-				<div className="flex items-start justify-between m-0.5 grid grid-flow-col text-wrap break-words">
+				<div className="items-start justify-between m-0.5 grid grid-flow-col text-wrap break-words">
 					{cart.name} ({dishes.length})
 					<button
 						onClick={() => deleteCart(cart.name)}
@@ -60,13 +60,21 @@ const CartView = () => {
 				</div>
 				{/* biome-ignore lint/suspicious/noExplicitAny: <explanation> */}
 				{dishes.map((dish: any, index) => (
-					<li className="flex items-start justify-between m-0.5 grid grid-flow-col text-wrap break-words">
-						<h1 key={index}>{dish.dish?.info?.text}</h1>
+					<li
+						key={index}
+						className=" items-start justify-between m-0.5 grid grid-flow-col text-wrap break-words"
+					>
+						<div>
+							<h1 className="text-xl font-semibold text-gray-900">
+								{dish.dish?.info?.textTranslation}
+							</h1>
+							<p className="text-gray-500 italic">{dish.dish?.info?.text}</p>
+						</div>
 						<button
 							onClick={() =>
 								removeDishFromCart(cart.name, dish.dish.id, dish.timestamp)
 							}
-							className=" text-red-500 underline ml-2"
+							className="text-red-500 underline ml-2"
 						>
 							Delete
 						</button>
