@@ -62,10 +62,12 @@ const CartView = () => {
 						className=" items-start justify-between m-0.5 grid grid-flow-col text-wrap break-words"
 					>
 						<div>
-							<h1 className="text-xl font-semibold text-gray-900">
+							<h1 className="text-xl font-semibold accent-content">
 								{dish.dish?.info?.textTranslation}
 							</h1>
-							<p className="text-gray-500 italic">{dish.dish?.info?.text}</p>
+							<p className="text-neutral-content italic">
+								{dish.dish?.info?.text}
+							</p>
 						</div>
 						<button
 							onClick={() =>
