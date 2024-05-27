@@ -116,7 +116,7 @@ export const addUploadToLocalStorage = (
 	imageSrc: string,
 	data: DishProps[],
 ) => {
-	const uploads = (getFromLocalStorage("uploads") as UploadProps[]) || [];
+	const uploads = getUploadsFromLocalStorage();
 	const newUpload = {
 		imageSrc,
 		data,
@@ -128,7 +128,7 @@ export const addUploadToLocalStorage = (
 };
 
 export const getUploadsFromLocalStorage = () => {
-	return getFromLocalStorage("uploads") || [];
+	return (getFromLocalStorage("uploads") || []) as UploadProps[];
 };
 export const removeUploadFromLocalStorage = (timestamp: string) => {
 	let uploads = getFromLocalStorage("uploads") || [];

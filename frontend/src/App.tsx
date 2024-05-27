@@ -35,6 +35,12 @@ function MainAppContent() {
 		}
 	}, [showText, data, imageRef]);
 
+	useEffect(() => {
+		if (imgTimestamp) {
+			setImgTimestamp(imgTimestamp);
+		}
+	}, [data]);
+
 	const handleToggleText = () => {
 		setShowText((prevShowText) => !prevShowText);
 	};

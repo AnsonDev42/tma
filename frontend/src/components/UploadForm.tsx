@@ -36,7 +36,7 @@ const formSchema = z.object({
 type UploadFormProps = {
 	onUploadComplete: (data: DishProps[]) => void;
 	setMenuSrc: (src: string | ArrayBuffer | null) => void;
-	setImgTimestamp: (timestamp: string) => void;
+	setImgTimestamp: (timestamp: string | null) => void;
 };
 
 const UploadForm: React.FC<UploadFormProps> = ({
@@ -85,15 +85,13 @@ const UploadForm: React.FC<UploadFormProps> = ({
 		};
 	};
 
-	const handleDemoUpload = async () => {
-		await new Promise((resolve) => setTimeout(resolve, 500));
-		const imageSrc = "/demoMenu1.jpg";
+	const handleDemoUpload = async (imageSrc: string, demoDataUrl: string) => {
 		setMenuSrc(imageSrc);
 
 		toast.promise(
 			(async () => {
-				// await new Promise((resolve) => setTimeout(resolve, 2000));
-				const response = await fetch("/demoData.json");
+				await new Promise((resolve) => setTimeout(resolve, 500));
+				const response = await fetch(demoDataUrl);
 				const data = await response.json();
 				const formattedData = formatResponseData(data.results);
 				onUploadComplete(formattedData);
@@ -105,11 +103,9 @@ const UploadForm: React.FC<UploadFormProps> = ({
 				return data;
 			})(),
 			{
-				loading:
-					"Uploading and analyzing your demo menu...(This may take a while)",
-				success:
-					"Demo menu has been successfully analyzed! Try click the dishes.",
-				error: "Failed to load demo data.",
+				loading: `Uploading and analyzing your demo menu...(This may take a while)`,
+				success: `Demo menu has been successfully analyzed! Try click the dishes.`,
+				error: `Failed to load demo data.`,
 			},
 		);
 	};
@@ -130,9 +126,16 @@ const UploadForm: React.FC<UploadFormProps> = ({
 			<button
 				type="button"
 				className="btn btn-secondary ml-5"
-				onClick={handleDemoUpload}
+				onClick={() => handleDemoUpload("/demoMenu1.jpg", "/demoDataEN.json")}
 			>
-				Try with Demo image
+				Try Demo
+			</button>
+			<button
+				type="button"
+				className="btn btn-secondary ml-5"
+				onClick={() => handleDemoUpload("/demoMenu1.jpg", "/demoDataCN.json")}
+			>
+				Try zh-CN
 			</button>
 		</form>
 	);
@@ -181,10 +184,11 @@ function formatResponseData(results: DishProps[]) {
 					text: item.info.text,
 					imgSrc: item.info.imgSrc,
 					description: item.info.description,
+					textTranslation: item.info.textTranslation,
 				},
 			} as DishProps;
 		})
-		.filter((item) => item !== null) as DishProps[];
+		.filter((item) => item.info.text !== null) as DishProps[];
 }
 
 export default UploadForm;
