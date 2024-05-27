@@ -5,7 +5,7 @@ import {
 	addDishToCart,
 	getCartByName,
 	removeDishFromCart,
-} from "@/utils/localStorageUtils.ts";
+} from "@/utils/localStorageCartUtils.ts";
 import React, { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 export function DishImageCard({
