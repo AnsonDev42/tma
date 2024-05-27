@@ -70,7 +70,7 @@ export const renameCart = (oldName: string, newName: string) => {
 
 export const deleteCart = (name: string) => {
 	let carts = getFromLocalStorage("carts") || [];
-	if (confirm("Are you sure you want to delete this cart?") === false) {
+	if (!confirm("Are you sure you want to delete this cart?")) {
 		return;
 	}
 	carts = carts.filter((cart: Cart) => cart.name !== name);
