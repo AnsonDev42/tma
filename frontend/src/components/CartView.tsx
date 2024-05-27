@@ -14,7 +14,6 @@ const CartView = () => {
 
 	useEffect(() => {
 		const handleStorageEvent = () => {
-			console.log("Storage event detected");
 			setCart(getCartByName("My Cart"));
 		};
 
@@ -22,7 +21,6 @@ const CartView = () => {
 
 		return () => {
 			window.removeEventListener("storage", handleStorageEvent);
-			console.log("Storage event listener removed");
 		};
 	}, []);
 

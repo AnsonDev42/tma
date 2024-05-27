@@ -1,11 +1,9 @@
 import "./globals.css";
 import { Authentication } from "@/components/Authentication.tsx";
-import { ImageResults } from "@/components/Dish.tsx";
+import { ImageResults, ShowTextState } from "@/components/Dish.tsx";
 import { Navbar } from "@/components/Navbar.tsx";
 import Sidebar from "@/components/Sidebar.tsx";
 import UploadForm from "@/components/UploadForm.tsx";
-import { Label } from "@/components/ui/label";
-import { Switch } from "@/components/ui/switch";
 import { SessionContext, SessionProvider } from "@/contexts/SessionContext";
 import { DishProps } from "@/types/DishProps.tsx";
 import { useContext, useEffect, useRef, useState } from "react";
@@ -22,18 +20,23 @@ function App() {
 		</div>
 	);
 }
+
 function MainAppContent() {
-	const [showText, setShowText] = useState(true); // show bounding box text
+	const [showTextState, setShowTextState] = useState(
+		ShowTextState.SHOW_ONLY_TRANSLATION,
+	);
 	const [menuSrc, setMenuSrc] = useState<string | ArrayBuffer | null>(null);
 	const [data, setData] = useState([] as DishProps[]);
 	const [imgTimestamp, setImgTimestamp] = useState<string | null>(null);
 	const imageRef = useRef(null);
 	const imageResultsRef = useRef<HTMLDivElement | null>(null);
+	const toggleRef = useRef<HTMLInputElement | null>(null);
+
 	useEffect(() => {
 		if (imageResultsRef.current) {
 			imageResultsRef.current.scrollIntoView({ behavior: "smooth" });
 		}
-	}, [showText, data, imageRef]);
+	}, [showTextState, data, imageRef]);
 
 	useEffect(() => {
 		if (imgTimestamp) {
@@ -41,9 +44,22 @@ function MainAppContent() {
 		}
 	}, [data]);
 
-	const handleToggleText = () => {
-		setShowText((prevShowText) => !prevShowText);
+	useEffect(() => {
+		if (toggleRef.current) {
+			if (showTextState == ShowTextState.SHOW_ONLY_TRANSLATION) {
+				toggleRef.current.indeterminate = true;
+				toggleRef.current.checked = false;
+			} else {
+				toggleRef.current.indeterminate = false;
+				toggleRef.current.checked = showTextState === ShowTextState.SHOW_BOTH;
+			}
+		}
+	}, [showTextState]);
+
+	const handleToggleTextState = () => {
+		setShowTextState((prev) => (prev + 1) % 3);
 	};
+
 	const handleSelectUpload = (imageSrc: string, data: DishProps[]) => {
 		setMenuSrc(imageSrc);
 		setData(data);
@@ -81,14 +97,20 @@ function MainAppContent() {
 							<div> {imgTimestamp}</div>
 
 							<div className="flex items-center space-x-2">
-								<Switch
-									id="Show Bounding Box Text"
-									checked={showText}
-									onCheckedChange={handleToggleText}
+								<input
+									type="checkbox"
+									id="Show-Bounding-Box-Text"
+									className="toggle"
+									ref={toggleRef}
+									onChange={handleToggleTextState}
 								/>
-								<Label htmlFor="Show-Bounding-Box-Text">
-									Show Bounding Box Text
-								</Label>
+								<label htmlFor="Show-Bounding-Box-Text">
+									{showTextState === ShowTextState.HIDE_ALL
+										? "Hide all"
+										: showTextState === ShowTextState.SHOW_ONLY_TRANSLATION
+											? "Show Only Translation"
+											: "Show Both Text and Translation"}
+								</label>
 							</div>
 						</div>
 
@@ -98,7 +120,7 @@ function MainAppContent() {
 								menuSrc={menuSrc}
 								data={data}
 								imageRef={imageRef}
-								showText={showText}
+								showTextState={showTextState}
 								timeStamp={imgTimestamp as string}
 							/>
 						)}
