@@ -1,4 +1,4 @@
-import DishImageCard from "@/components/DishImageCard.tsx";
+import DishImageCard from "@/components/features/Dish/DishImageCard.tsx";
 import { BoundingBoxProps, DishProps } from "@/types/DishProps.tsx";
 import React, { useEffect, useState } from "react";
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
@@ -15,7 +15,7 @@ export const ShowTextState = {
 	SHOW_ONLY_TRANSLATION: 1,
 	SHOW_BOTH: 2,
 };
-export function ImageResults({
+export function MenuResults({
 	menuSrc,
 	data,
 	imageRef,

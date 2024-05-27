@@ -1,4 +1,4 @@
-import { ThemeToggle } from "@/components/ThemeToggle.tsx";
+import { ThemeToggle } from "@/components/ui/ThemeToggle.tsx";
 import React from "react";
 export function Navbar(): React.ReactElement {
 	return (

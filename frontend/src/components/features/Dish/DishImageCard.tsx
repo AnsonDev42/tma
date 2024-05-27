@@ -1,4 +1,4 @@
-import { SearchButtons } from "@/components/DishSearchButtons.tsx";
+import { SearchButtons } from "@/components/features/Dish/DishSearchButtons.tsx";
 import { DishProps } from "@/types/DishProps.tsx";
 import {
 	CartItem,
@@ -113,7 +113,7 @@ export function DishImageCard({
 									</label>
 								</div>
 								<p className="text-gray-700 mb-4">{dish.info.description}</p>
-								<SearchButtons dishname={dish.info.text} />
+								<SearchButtons dishName={dish.info.text} />
 							</div>
 							<form method="dialog" onClick={() => setOpenModalIndex(null)}>
 								{/* if there is a button in form, it will close the modal */}
