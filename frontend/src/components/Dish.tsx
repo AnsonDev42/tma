@@ -7,15 +7,19 @@ interface ImageResultsProps {
 	menuSrc: string | ArrayBuffer | null;
 	data: DishProps[];
 	imageRef: React.RefObject<HTMLImageElement>;
-	showText: boolean;
+	showTextState: number;
 	timeStamp: string;
 }
-
+export const ShowTextState = {
+	HIDE_ALL: 0,
+	SHOW_ONLY_TRANSLATION: 1,
+	SHOW_BOTH: 2,
+};
 export function ImageResults({
 	menuSrc,
 	data,
 	imageRef,
-	showText,
+	showTextState,
 	timeStamp,
 }: ImageResultsProps): React.ReactElement {
 	const [imgWidth, setImgWidth] = useState(0);
@@ -65,7 +69,7 @@ export function ImageResults({
 	const calculateFontSize = (boundingBox: BoundingBoxProps) => {
 		const minFontSize = 7; // Minimum font size in pixels
 		const baseFontSize =
-			Math.min(boundingBox.w * imgWidth, boundingBox.h * imgHeight) * 0.5; // Adjust scale factor as needed
+			Math.min(boundingBox.w * imgWidth, boundingBox.h * imgHeight) * 0.4; // Adjust scale factor as needed
 		return Math.max(baseFontSize, minFontSize);
 	};
 
@@ -117,14 +121,16 @@ export function ImageResults({
 						{/*bounding box and texts */}
 						{data.map((value, index) => (
 							<>
-								{showText && (
+								{showTextState !== ShowTextState.HIDE_ALL && (
 									<div
 										className="absolute"
 										style={getAdjustedStyles(value.boundingBox)}
 										onClick={() => handleOpenModal(index)}
 									>
 										<div style={getTextStyle(value.boundingBox)}>
-											{value.info.text}
+											{showTextState === ShowTextState.SHOW_ONLY_TRANSLATION
+												? value.info.textTranslation
+												: `${value.info.textTranslation}/${value.info.text}`}
 										</div>
 									</div>
 								)}
