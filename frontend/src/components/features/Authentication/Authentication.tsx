@@ -1,4 +1,4 @@
-import { LanguageComboBox } from "@/components/LanguageComboBox.tsx";
+import { LanguageComboBox } from "@/components/ui/LanguageComboBox.tsx";
 import { Button } from "@/components/ui/button.tsx";
 import { Turnstile } from "@marsidev/react-turnstile";
 import { Auth } from "@supabase/auth-ui-react";

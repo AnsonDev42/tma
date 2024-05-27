@@ -1,5 +1,5 @@
-import CartView from "@/components/CartView.tsx";
-import History from "@/components/HistoryList.tsx";
+import CartView from "@/components/features/Cart/CartView.tsx";
+import History from "@/components/features/history/HistoryList.tsx";
 import { DishProps } from "@/types/DishProps.tsx";
 import React from "react";
 

@@ -46,7 +46,7 @@ const UploadForm: React.FC<UploadFormProps> = ({
 }) => {
 	const session = useContext(SessionContext)?.session;
 	const { selectedLanguage } = useLanguageContext();
-	const form = useForm<z.infer<typeof formSchema>>({
+	const formMethods = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
 			file: undefined,
@@ -54,7 +54,7 @@ const UploadForm: React.FC<UploadFormProps> = ({
 		mode: "onChange",
 	});
 
-	const onSubmit = async (payload: z.infer<typeof formSchema>) => {
+	const handleSubmit = async (payload: z.infer<typeof formSchema>) => {
 		const file = payload.file[0];
 		const formData = new FormData();
 		formData.append("file", file);
@@ -66,26 +66,29 @@ const UploadForm: React.FC<UploadFormProps> = ({
 		const jwt = `Bearer ${session.access_token}`;
 		const reader = new FileReader();
 		reader.readAsDataURL(file);
-		reader.onload = () => {
-			const imageSrc = reader.result as string;
-			setMenuSrc(imageSrc);
+		reader.onload = () =>
+			processFileRead(reader.result as string, formData, jwt);
+	};
+	const processFileRead = async (
+		imageSrc: string,
+		formData: FormData,
+		jwt: string,
+	) => {
+		setMenuSrc(imageSrc);
 
-			toast.promise(uploadData(formData, jwt, selectedLanguage), {
-				loading: "Uploading and analyzing your menu...(This may take a while)",
-				success: (data) => {
-					onUploadComplete(data);
-					const imgTimeStamp: string = addUploadToLocalStorage(imageSrc, data);
-					setImgTimestamp(imgTimeStamp);
-					return `Menu has been successfully analyzed!`;
-				},
-				error: (err) => {
-					return err.toString();
-				},
-			});
-		};
+		toast.promise(uploadMenuData(formData, jwt, selectedLanguage), {
+			loading: "Uploading and analyzing your menu...(This may take a while)",
+			success: (data) => {
+				onUploadComplete(data);
+				const imgTimeStamp: string = addUploadToLocalStorage(imageSrc, data);
+				setImgTimestamp(imgTimeStamp);
+				return `Menu has been successfully analyzed!`;
+			},
+			error: (err) => err.toString(),
+		});
 	};
 
-	const handleDemoUpload = async (imageSrc: string, demoDataUrl: string) => {
+	const handleDemoSubmit = async (imageSrc: string, demoDataUrl: string) => {
 		setMenuSrc(imageSrc);
 
 		toast.promise(
@@ -103,20 +106,25 @@ const UploadForm: React.FC<UploadFormProps> = ({
 				return data;
 			})(),
 			{
-				loading: `Uploading and analyzing your demo menu...(This may take a while)`,
-				success: `Demo menu has been successfully analyzed! Try click the dishes.`,
-				error: `Failed to load demo data.`,
+				loading:
+					"Uploading and analyzing your demo menu...(This may take a while)",
+				success:
+					"Demo menu has been successfully analyzed! Try click the dishes.",
+				error: "Failed to load demo data.",
 			},
 		);
 	};
 
 	return (
-		<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+		<form
+			onSubmit={formMethods.handleSubmit(handleSubmit)}
+			className="space-y-8"
+		>
 			<label className="form-control w-full max-w-xs">
 				<input
 					type="file"
 					className="file-input file-input-bordered w-full max-w-xs"
-					{...form.register("file")}
+					{...formMethods.register("file")}
 				/>
 			</label>
 
@@ -126,14 +134,14 @@ const UploadForm: React.FC<UploadFormProps> = ({
 			<button
 				type="button"
 				className="btn btn-secondary ml-5"
-				onClick={() => handleDemoUpload("/demoMenu1.jpg", "/demoDataEN.json")}
+				onClick={() => handleDemoSubmit("/demoMenu1.jpg", "/demoDataEN.json")}
 			>
 				Try Demo
 			</button>
 			<button
 				type="button"
 				className="btn btn-secondary ml-5"
-				onClick={() => handleDemoUpload("/demoMenu1.jpg", "/demoDataCN.json")}
+				onClick={() => handleDemoSubmit("/demoMenu1.jpg", "/demoDataCN.json")}
 			>
 				Try zh-CN
 			</button>
@@ -141,7 +149,7 @@ const UploadForm: React.FC<UploadFormProps> = ({
 	);
 };
 
-async function uploadData(
+async function uploadMenuData(
 	formData: FormData,
 	jwt: string,
 	selectedLanguage: Language | null,
