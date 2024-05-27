@@ -1,6 +1,6 @@
 import { DishProps } from "@/types/DishProps.tsx";
+import { UploadProps } from "@/types/UploadProps.ts";
 import {
-	UploadProps,
 	getUploadsFromLocalStorage,
 	removeUploadFromLocalStorage,
 } from "@/utils/localStorageUploadUtils.ts";

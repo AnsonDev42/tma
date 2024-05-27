@@ -1,14 +1,9 @@
 import { DishProps } from "@/types/DishProps.tsx";
+import { UploadProps } from "@/types/UploadProps.ts";
 import {
 	getFromLocalStorage,
 	saveToLocalStorage,
 } from "@/utils/localStorageUtils.ts";
-
-export interface UploadProps {
-	imageSrc: string;
-	data: DishProps[];
-	timestamp: string;
-}
 
 export const addUploadToLocalStorage = (
 	imageSrc: string,
