@@ -7,6 +7,7 @@ import {
 	removeDishFromCart,
 } from "@/utils/localStorageUtils.ts";
 import React, { useEffect, useRef, useState } from "react";
+import { toast } from "sonner";
 export function DishImageCard({
 	dish,
 	openModalIndex,
@@ -34,12 +35,15 @@ export function DishImageCard({
 			);
 			setIsChecked(isInCart);
 		}
-	}, [dish.id, timeStamp]);
+	}, [index, timeStamp]);
 
 	const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const checked = event.target.checked;
 		setIsChecked(checked);
 		if (checked) {
+			toast.success(
+				`${dish.info.text} ${dish.info.textTranslation} added to cart`,
+			);
 			addDishToCart(cartName, dish.id, timeStamp);
 		} else {
 			removeDishFromCart(cartName, dish.id, timeStamp);
@@ -93,7 +97,9 @@ export function DishImageCard({
 								</>
 							)}
 							<div className="card-body flex-1 overflow-y-auto">
-								<h2 className="card-title">{dish.info.text}</h2>
+								<h2 className="card-title">
+									{dish.info.text} {dish.info.textTranslation}
+								</h2>
 								<div className="form-control">
 									<label className="cursor-pointer label">
 										<span className="label-text">Remember me</span>

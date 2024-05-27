@@ -11,5 +11,6 @@ export type DishProps = {
 		text: string;
 		imgSrc: string[];
 		description: string;
+		textTranslation: string;
 	};
 };

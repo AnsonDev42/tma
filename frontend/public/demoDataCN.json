@@ -1,0 +1,519 @@
+{
+	"results": [
+		{
+			"info": {
+				"description": null,
+				"text": null,
+				"text-translation": null,
+				"img_src": [
+					"https://m.media-amazon.com/images/I/9141ZOZXjEL._AC_UF1000,1000_QL80_.jpg",
+					"https://c8.alamy.com/comp/2WH9JGF/arabic-calligraphy-of-4th-kalma-touheed-translation-there-is-none-worthy-of-worship-except-allah-he-is-alone-and-has-no-partner-2WH9JGF.jpg",
+					"https://m.media-amazon.com/images/I/71NO9b+bEsL._AC_UF1000,1000_QL80_.jpg",
+					"https://pbs.twimg.com/media/GG7dVkSXQAAoswc.jpg",
+					"https://m.media-amazon.com/images/I/3178Y4hdOgL._AC_UF1000,1000_QL80_.jpg"
+				]
+			},
+			"boundingBox": {
+				"x": 0.27454545454545454,
+				"y": 0.0723055934515689,
+				"w": 0.4618181818181818,
+				"h": 0.047748976807639835
+			}
+		},
+		{
+			"info": {
+				"description": null,
+				"text": null,
+				"text-translation": null,
+				"img_src": [
+					"https://m.media-amazon.com/images/I/9141ZOZXjEL._AC_UF1000,1000_QL80_.jpg",
+					"https://c8.alamy.com/comp/2WH9JGF/arabic-calligraphy-of-4th-kalma-touheed-translation-there-is-none-worthy-of-worship-except-allah-he-is-alone-and-has-no-partner-2WH9JGF.jpg",
+					"https://m.media-amazon.com/images/I/71NO9b+bEsL._AC_UF1000,1000_QL80_.jpg",
+					"https://pbs.twimg.com/media/GG7dVkSXQAAoswc.jpg",
+					"https://m.media-amazon.com/images/I/3178Y4hdOgL._AC_UF1000,1000_QL80_.jpg"
+				]
+			},
+			"boundingBox": {
+				"x": 0.37272727272727274,
+				"y": 0.12278308321964529,
+				"w": 0.26181818181818184,
+				"h": 0.030013642564802184
+			}
+		},
+		{
+			"info": {
+				"description": "\u63d0\u62c9\u7c73\u82cf\u662f\u4e00\u79cd\u610f\u5927\u5229\u7ecf\u5178\u751c\u70b9\uff0c\u901a\u5e38\u7531\u624b\u6307\u997c\u5e72\u3001\u5496\u5561\u3001\u9a6c\u65af\u5361\u5f6d\u5976\u916a\u3001\u9e21\u86cb\u3001\u7cd6\u548c\u53ef\u53ef\u7c89\u5236\u6210\u3002",
+				"text": "Fatto Tiramisu",
+				"text-translation": "\u63d0\u62c9\u7c73\u82cf",
+				"text_translation": "\u63d0\u62c9\u7c73\u82cf",
+				"img_src": [
+					"https://pic1.zhimg.com/80/v2-963790b01e899a5f6e5042a1637138cc_1440w.webp",
+					"https://pic4.zhimg.com/80/v2-ad7395d85ff942940cdc80e030e7ac9b_1440w.webp",
+					"https://pic1.zhimg.com/80/v2-1122f656c71daef6af8f7084960a21e8_1440w.webp",
+					"https://pic4.zhimg.com/80/v2-08879d9bada1135f7ca5f2358f51670f_1440w.webp",
+					"https://pic1.zhimg.com/v2-1122f656c71daef6af8f7084960a21e8_b.jpg"
+				]
+			},
+			"boundingBox": {
+				"x": 0.38545454545454544,
+				"y": 0.17871759890859482,
+				"w": 0.23636363636363636,
+				"h": 0.02455661664392906
+			}
+		},
+		{
+			"info": {
+				"description": "\u8fd9\u9053\u751c\u70b9\u901a\u5e38\u662f\u63d0\u62c9\u7c73\u82cf\uff0c\u7531\u5496\u5561\u5229\u53e3\u9152\u6d78\u6ce1\u7684\u6d77\u7ef5\u86cb\u7cd5\u5c42\u3001\u9a6c\u65af\u5361\u5f6d\u5976\u916a\u548c\u5de7\u514b\u529b\u7ec4\u6210\u3002",
+				"text": "Coffee liqueur soaked sponge, mascarpone, chocolate",
+				"text-translation": "\u5496\u5561\u5229\u53e3\u9152\u6d78\u6ce1\u7684\u6d77\u7ef5\u86cb\u7cd5\u3001\u9a6c\u65af\u5361\u5f6d\u5976\u916a\u3001\u5de7\u514b\u529b",
+				"text_translation": "\u5496\u5561\u5229\u53e3\u9152\u6d78\u6ce1\u7684\u6d77\u7ef5\u86cb\u7cd5\u3001\u9a6c\u65af\u5361\u5f6d\u5976\u916a\u3001\u5de7\u514b\u529b",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.22181818181818183,
+				"y": 0.20054570259208732,
+				"w": 0.5581818181818182,
+				"h": 0.034106412005457026
+			}
+		},
+		{
+			"info": {
+				"description": "\u65af\u5e93\u5c3c\u9f50\u8036\u5229\u610f\u5f0f\u714e\u997c\u662f\u4e00\u79cd\u4f20\u7edf\u7684\u610f\u5927\u5229\u714e\u997c\uff0c\u901a\u5e38\u4f1a\u642d\u914d\u699b\u5b50\u9171\u548c\u51b0\u6dc7\u6dcb\uff0c\u4e3a\u60a8\u5e26\u6765\u751c\u7f8e\u7684\u5473\u89c9\u4eab\u53d7\u3002",
+				"text": "SCUGNIZIELLI NUTELLA & GELATO",
+				"text-translation": "\u65af\u5e93\u5c3c\u9f50\u8036\u5229\u610f\u5f0f\u714e\u997c\u914d\u699b\u5b50\u9171\u548c\u51b0\u6dc7\u6dcb",
+				"text_translation": "\u65af\u5e93\u5c3c\u9f50\u8036\u5229\u610f\u5f0f\u714e\u997c\u914d\u699b\u5b50\u9171\u548c\u51b0\u6dc7\u6dcb",
+				"img_src": [
+					"https://ylakea.shop/wp-content/uploads/1713/58/ourbonds2pcsleepsetnwtsize5consignmentlineisavailableatanaffordableprice1.jpg",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3365324145881044353",
+					"https://ylakea.shop/wp-content/uploads/1713/58/ourbonds2pcsleepsetnwtsize5consignmentlineisavailableatanaffordableprice0.jpg",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3373484963922523134",
+					"https://yedemr.shop/wp-content/uploads/1713/03/unlockthepowerofinnovationdiaminescribblepurple80mlglassbottlediamine0.png"
+				]
+			},
+			"boundingBox": {
+				"x": 0.27454545454545454,
+				"y": 0.2373806275579809,
+				"w": 0.45454545454545453,
+				"h": 0.0286493860845839
+			}
+		},
+		{
+			"info": {
+				"description": "\u70b8\u8ff7\u4f60\u62ab\u8428\u751c\u751c\u5708\u662f\u4e00\u79cd\u521b\u65b0\u7684\u751c\u70b9\uff0c\u5c06\u8ff7\u4f60\u62ab\u8428\u548c\u751c\u751c\u5708\u7684\u98ce\u5473\u7ed3\u5408\u5728\u4e00\u8d77\uff0c\u5916\u9165\u5185\u8f6f\uff0c\u901a\u5e38\u642d\u914d\u5de7\u514b\u529b\u9171\u6216\u5176\u4ed6\u751c\u5473\u9171\u6599\u3002",
+				"text": "Fried mini pizza doughnuts",
+				"text-translation": "\u70b8\u8ff7\u4f60\u62ab\u8428\u751c\u751c\u5708",
+				"text_translation": "\u70b8\u8ff7\u4f60\u62ab\u8428\u751c\u751c\u5708",
+				"img_src": [
+					"https://img.yumpu.com/312737/1/500x640/312737.jpg",
+					"https://image.isu.pub/131202170726-c7670876198ec89c2f428e8f09f2c69e/jpg/page_1_thumb_large.jpg",
+					"https://www.yumpu.com/xx/image/facebook/312737.jpg",
+					"https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=10216826302248682",
+					"https://image.isu.pub/140324120452-90ff5b2f089017fcde3abd92d21606be/jpg/page_1_thumb_large.jpg"
+				]
+			},
+			"boundingBox": {
+				"x": 0.2309090909090909,
+				"y": 0.2605729877216917,
+				"w": 0.5363636363636364,
+				"h": 0.03274215552523874
+			}
+		},
+		{
+			"info": {
+				"description": "\u963f\u8299\u4f73\u6735\u662f\u4e00\u79cd\u610f\u5927\u5229\u751c\u70b9\uff0c\u7531\u4e00\u52fa\u51b0\u6dc7\u6dcb\u548c\u4e00\u4efd\u6d53\u7f29\u5496\u5561\u7ec4\u6210\u3002\u901a\u5e38\u4f7f\u7528\u9999\u8349\u51b0\u6dc7\u6dcb\uff0c\u6d53\u7f29\u5496\u5561\u5219\u5012\u5728\u51b0\u6dc7\u6dcb\u4e0a\u3002",
+				"text": "Affogato",
+				"text-translation": "\u963f\u8299\u4f73\u6735",
+				"text_translation": "\u963f\u8299\u4f73\u6735",
+				"img_src": [
+					"https://hgcombt.shop/wp-content/uploads/1713/22/exploreourcollectionofskymax20garmentbaggarmentbagdelseythatwillhelpyoubecomethebestthatyoucanbe0.jpg",
+					"https://opengraph.githubassets.com/1de385c82e532bef6f5ac316cd8e1ddd4eb3a19545adaa9a95e5d8afdced424c/ReubenBond/LdcChineseWordlists",
+					"https://hgcombt.shop/wp-content/uploads/1713/22/exploreourcollectionofskymax20garmentbaggarmentbagdelseythatwillhelpyoubecomethebestthatyoucanbe1.jpg",
+					"https://cziyil.shop/wp-content/uploads/1713/45/findyourperfectmatchshopourintrepidblackmultiflorsheimmensintrepidmoctoepennydriverloaferblackmilledwithbrownsmoothbrandyflorsheimnow3.png",
+					"https://xvhrel.shop/wp-content/uploads/1713/56/theplacetofindunbeatabledealsthesourceforunbeatabledealsoakleyturbinesunglassesmatteblackwithprizmblacklensesoakley3.png"
+				]
+			},
+			"boundingBox": {
+				"x": 0.4218181818181818,
+				"y": 0.30286493860845837,
+				"w": 0.16,
+				"h": 0.020463847203274217
+			}
+		},
+		{
+			"info": {
+				"description": "\u9999\u8349\u51b0\u6dc7\u6dcb\u914d\u6d53\u7f29\u5496\u5561\u662f\u4e00\u79cd\u7ecf\u5178\u7684\u610f\u5f0f\u751c\u70b9\uff0c\u5c06\u9999\u8349\u51b0\u6dc7\u6dcb\u4e0e\u6d53\u7f29\u5496\u5561\u7ed3\u5408\uff0c\u53e3\u611f\u4e30\u5bcc\u4e14\u5e26\u6709\u72ec\u7279\u7684\u9999\u5473\u3002",
+				"text": "Vanilla Gelato with Espresso",
+				"text-translation": "\u9999\u8349\u51b0\u6dc7\u6dcb\u914d\u6d53\u7f29\u5496\u5561",
+				"text_translation": "\u9999\u8349\u51b0\u6dc7\u6dcb\u914d\u6d53\u7f29\u5496\u5561",
+				"img_src": [
+					"https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=100063478541943",
+					"https://img.yumpu.com/59202068/1/500x640/get6th-magazine-final.jpg",
+					"x-raw-image:///863215435a0dae94ca33a062b006aa50c2a9c961d6f6dc8038c4ef8a3d26d410",
+					"https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=3886074084840717",
+					"x-raw-image:///0cd64d507282307466dd314bab6911a98363965a646610564eaeebb41ba080b4"
+				]
+			},
+			"boundingBox": {
+				"x": 0.37636363636363634,
+				"y": 0.32605729877216916,
+				"w": 0.2509090909090909,
+				"h": 0.02592087312414734
+			}
+		},
+		{
+			"info": {
+				"description": "\u67e0\u6aac\u9152\u963f\u8299\u4f73\u6735\u662f\u4e00\u79cd\u610f\u5927\u5229\u751c\u70b9\uff0c\u5c06\u9999\u8349\u51b0\u6dc7\u6dcb\u4e0e\u67e0\u6aac\u751c\u9152\u878d\u5408\uff0c\u53e3\u611f\u6e05\u723d\u72ec\u7279\u3002",
+				"text": "Affogato Limoncello",
+				"text-translation": "\u67e0\u6aac\u9152\u963f\u8299\u4f73\u6735",
+				"text_translation": "\u67e0\u6aac\u9152\u963f\u8299\u4f73\u6735",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.30363636363636365,
+				"y": 0.3615279672578445,
+				"w": 0.39090909090909093,
+				"h": 0.027285129604365622
+			}
+		},
+		{
+			"info": {
+				"description": "\u67e0\u6aac\u51b0\u7cd5\u662f\u4e00\u79cd\u6e05\u51c9\u7684\u751c\u70b9\uff0c\u901a\u5e38\u7531\u67e0\u6aac\u6c41\u3001\u7cd6\u548c\u6c34\u5236\u6210\uff0c\u5177\u6709\u6e05\u723d\u7684\u67e0\u6aac\u5473\uff0c\u975e\u5e38\u9002\u5408\u5728\u708e\u70ed\u7684\u5929\u6c14\u4eab\u7528\u3002",
+				"text": "Lemon sorbet",
+				"text-translation": "\u67e0\u6aac\u51b0\u7cd5",
+				"text_translation": "\u67e0\u6aac\u51b0\u7cd5",
+				"img_src": [
+					"https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=100063635181133",
+					"https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=170513528374425&get_thumbnail=1",
+					"https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=2020304081602620",
+					"https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=2720018084964546",
+					"https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=2658124481153907"
+				]
+			},
+			"boundingBox": {
+				"x": 0.3654545454545455,
+				"y": 0.3874488403819918,
+				"w": 0.2690909090909091,
+				"h": 0.023192360163710776
+			}
+		},
+		{
+			"info": {
+				"description": "\u51b0\u6dc7\u6dcb\u4e09\u660e\u6cbb\u662f\u4e00\u79cd\u751c\u70b9\uff0c\u7531\u4e24\u7247\u997c\u5e72\u6216\u86cb\u7cd5\u5939\u7740\u51b0\u6dc7\u6dcb\u5236\u4f5c\u800c\u6210\uff0c\u5e38\u89c1\u4e8e\u610f\u5927\u5229\u548c\u5168\u7403\u5404\u5730\u7684\u51b0\u6dc7\u6dcb\u5e97\u3002",
+				"text": "Gelato Sandwich",
+				"text-translation": "\u51b0\u6dc7\u6dcb\u4e09\u660e\u6cbb",
+				"text_translation": "\u51b0\u6dc7\u6dcb\u4e09\u660e\u6cbb",
+				"img_src": [
+					"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjUhFBWHnVdmkh3OKjGQu45qvDHNKMEvsL-PEEa12nNNJU3rMtd5msl62qpkH_O92sJ_mzlA_dt0l1-4u9XbDK9xtauJacz7R7f6MJljdRiikXijnBTkkwBGdqpkck19cqeQwqspvmqjjiQ0Xxbuwp9wz4BSgGzNypd49cRJab5yDwb2kAETi3yGxMA/w640-h640/1.jpg",
+					"https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=5515939981754474",
+					"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgL3163ICbeDsDc7B6KHHkkFrey5G7SR1GAy5roJciWCAnenGsNoI2-yMSJPFC_si1IHHsaXMz6DeSzOLpdwhxz9ZrvnSkU49bthgXTxFxoThJ8Gm8rLgXbsqoMRGzgRKQUISfRKv1KC884po9Ceu-CpW7-65rZft-xTOT6L2dGsrVwTrfW69mirPCV/w480-h640/10.JPG",
+					"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhf7oLhF0G6DA72aribYdPQwwOhACX8Q22PECTovfatG4dYELuH9OCuYumcpY7AKaPfZnGhCHFDg8Ec2LJLDwHP43cc0KQ3YyVwMuNLCb_NW_1YyPN3tKEN7dmcH9Ju2fYZUmiRyAilYGHtMkQk7NsfFhgLUlWqi26K3ptaIWi6zTZBTTHjSJauzMsd/w480-h640/2.JPG",
+					"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgK4vXAHlaKxfekeWnnWk7Y8UguYzVQ0fmecQZBcFnkx-j9k2KTkiJk9ZHFnNJCq2xUvBjaO22Lj36tLqdnOXO-YE1BJwVPEkXRcBkr-jiZqHJ24wqCfWv93Q3Ug1zOdEjzjt2s0pU4odmS_XaVGlfkWYwJZSyDR-A4xsMPH3wZU_KKQxf0R10RgbnQsEs/w480-h640/29.JPG"
+				]
+			},
+			"boundingBox": {
+				"x": 0.3490909090909091,
+				"y": 0.46521145975443384,
+				"w": 0.29454545454545455,
+				"h": 0.02592087312414734
+			}
+		},
+		{
+			"info": {
+				"description": "\u67e0\u6aac\u86cb\u767d\u751c\u997c\u662f\u4e00\u79cd\u7ecf\u5178\u7684\u751c\u70b9\uff0c\u7531\u67e0\u6aac\u9985\u548c\u4e0a\u9762\u7684\u86cb\u767d\u971c\u7ec4\u6210\uff0c\u53e3\u611f\u9178\u751c\u9002\u4e2d\u3002",
+				"text": "LEMON MERINGUE",
+				"text-translation": "\u67e0\u6aac\u86cb\u767d\u751c\u997c",
+				"text_translation": "\u67e0\u6aac\u86cb\u767d\u751c\u997c",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.3709090909090909,
+				"y": 0.5075034106412005,
+				"w": 0.24909090909090909,
+				"h": 0.020463847203274217
+			}
+		},
+		{
+			"info": {
+				"description": "\u8fd9\u662f\u4e00\u79cd\u7531\u9999\u8349\u997c\u5e72\u5939\u7740\u9999\u8349\u51b0\u6dc7\u6dcb\u7684\u751c\u70b9\u3002\u9999\u8349\u51b0\u6dc7\u6dcb\u6ed1\u5ae9\u9999\u751c\uff0c\u9999\u8349\u997c\u5e72\u9165\u8106\u53ef\u53e3\uff0c\u4e24\u8005\u642d\u914d\u5728\u4e00\u8d77\uff0c\u53e3\u611f\u4e30\u5bcc\u3002",
+				"text": "Vanilla biscuit filled with vanilla gelato",
+				"text-translation": "\u9999\u8349\u997c\u5e72\u5939\u9999\u8349\u51b0\u6dc7\u6dcb",
+				"text_translation": "\u9999\u8349\u997c\u5e72\u5939\u9999\u8349\u51b0\u6dc7\u6dcb",
+				"img_src": [
+					"https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=10157767992395458",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3353947837437468001",
+					"https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=4087821001332862",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3356106531647967025",
+					"https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=10158795972898229"
+				]
+			},
+			"boundingBox": {
+				"x": 0.2872727272727273,
+				"y": 0.5306957708049114,
+				"w": 0.4127272727272727,
+				"h": 0.02592087312414734
+			}
+		},
+		{
+			"info": {
+				"description": "\u67e0\u6aac\u9171\u548c\u86cb\u767d\u9165\u76ae\u662f\u4e00\u9053\u7ecf\u5178\u7684\u751c\u70b9\uff0c\u901a\u5e38\u7531\u9178\u751c\u7684\u67e0\u6aac\u9171\u548c\u8f7b\u76c8\u677e\u8106\u7684\u86cb\u767d\u9165\u76ae\u7ec4\u6210\u3002\u8fd9\u9053\u751c\u70b9\u53e3\u611f\u4e30\u5bcc\uff0c\u5473\u9053\u72ec\u7279\uff0c\u6df1\u53d7\u559c\u7231\u3002",
+				"text": "lemon curd & meringue",
+				"text-translation": "\u67e0\u6aac\u9171\u548c\u86cb\u767d\u9165\u76ae",
+				"text_translation": "\u67e0\u6aac\u9171\u548c\u86cb\u767d\u9165\u76ae",
+				"img_src": [
+					"https://picture01.52hrttpic.com/image/infoImage/202305/08/G1683270777345.jpg?720x910",
+					"https://pic4.zhimg.com/80/v2-f4d0fdc273c3f0aba350bd2f68340b0b_1440w.webp",
+					"https://picture01.52hrttpic.com/image/infoImage/202305/08/F1683270848448.jpg?692x629",
+					"https://pic4.zhimg.com/80/v2-d0d6b456adbdb54c0f0b6d1065086e47_1440w.webp",
+					"https://picture01.52hrttpic.com/image/infoImage/202305/08/F1683270850107.jpg?720x759"
+				]
+			},
+			"boundingBox": {
+				"x": 0.3709090909090909,
+				"y": 0.5552523874488404,
+				"w": 0.24727272727272728,
+				"h": 0.020463847203274217
+			}
+		},
+		{
+			"info": {
+				"description": "\u5de7\u514b\u529b\u54b8\u7126\u7cd6\u662f\u4e00\u79cd\u751c\u70b9\uff0c\u5c06\u6d53\u90c1\u7684\u5de7\u514b\u529b\u4e0e\u54b8\u5473\u7126\u7cd6\u5b8c\u7f8e\u7ed3\u5408\uff0c\u53e3\u611f\u4e30\u5bcc\uff0c\u751c\u800c\u4e0d\u817b\u3002",
+				"text": "CHOCOLATE SALTED CARAMEL",
+				"text-translation": "\u5de7\u514b\u529b\u54b8\u7126\u7cd6",
+				"text_translation": "\u5de7\u514b\u529b\u54b8\u7126\u7cd6",
+				"img_src": [
+					"https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=1522023531679959",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3280755149437853825",
+					"https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=523375421833636",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3256915089366139021",
+					"https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=1510747936140852"
+				]
+			},
+			"boundingBox": {
+				"x": 0.30363636363636365,
+				"y": 0.5893587994542974,
+				"w": 0.38,
+				"h": 0.023192360163710776
+			}
+		},
+		{
+			"info": {
+				"description": "\u5de7\u514b\u529b\u8638\u997c\u5e72\u662f\u4e00\u79cd\u7f8e\u5473\u7684\u751c\u70b9\uff0c\u901a\u5e38\u7531\u8106\u8106\u7684\u997c\u5e72\u5916\u5c42\u548c\u8986\u76d6\u5728\u5176\u4e0a\u7684\u6d53\u90c1\u5de7\u514b\u529b\u7ec4\u6210\u3002",
+				"text": "Chocolate dipped biscuit",
+				"text-translation": "\u5de7\u514b\u529b\u8638\u997c\u5e72",
+				"text_translation": "\u5de7\u514b\u529b\u8638\u997c\u5e72",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.30727272727272725,
+				"y": 0.6139154160982264,
+				"w": 0.37272727272727274,
+				"h": 0.023192360163710776
+			}
+		},
+		{
+			"info": {
+				"description": "\u54b8\u7126\u7cd6\u51b0\u6dc7\u6dcb\u662f\u4e00\u79cd\u610f\u5927\u5229\u51b0\u6dc7\u6dcb\uff0c\u4ee5\u5176\u72ec\u7279\u7684\u54b8\u751c\u53e3\u5473\u8457\u79f0\u3002\u5b83\u901a\u5e38\u7531\u7126\u7cd6\u3001\u76d0\u548c\u5976\u6cb9\u5236\u6210\uff0c\u53e3\u611f\u4e30\u5bcc\u800c\u987a\u6ed1\u3002",
+				"text": "salted caramel gelato",
+				"text-translation": "\u54b8\u7126\u7cd6\u51b0\u6dc7\u6dcb",
+				"text_translation": "\u54b8\u7126\u7cd6\u51b0\u6dc7\u6dcb",
+				"img_src": [
+					"https://img.yumpu.com/23922745/1/500x640/tk11-icons-of-the-empire.jpg",
+					"https://image.isu.pub/140324120452-90ff5b2f089017fcde3abd92d21606be/jpg/page_1_thumb_large.jpg",
+					"https://www.yumpu.com/en/image/facebook/23922745.jpg",
+					"https://image.isu.pub/190319123436-1d8fb6cb9b97426c1887d0adc724df11/jpg/page_1_thumb_large.jpg",
+					"https://picx.zhimg.com/50/v2-40b079960b7a39324baea91a696b0d26_720w.jpg?source=1def8aca"
+				]
+			},
+			"boundingBox": {
+				"x": 0.37636363636363634,
+				"y": 0.6371077762619373,
+				"w": 0.2290909090909091,
+				"h": 0.021828103683492497
+			}
+		},
+		{
+			"info": {
+				"description": "\u5de7\u514b\u529b\u6a59\u5b50\u662f\u4e00\u79cd\u7ed3\u5408\u4e86\u5de7\u514b\u529b\u548c\u6a59\u5b50\u98ce\u5473\u7684\u751c\u70b9\u6216\u7cd6\u679c\uff0c\u901a\u5e38\u5177\u6709\u72ec\u7279\u7684\u751c\u7f8e\u548c\u9178\u751c\u53e3\u611f\u3002",
+				"text": "CHOCOLATE ORANGE",
+				"text-translation": "\u5de7\u514b\u529b\u6a59\u5b50",
+				"text_translation": "\u5de7\u514b\u529b\u6a59\u5b50",
+				"img_src": [
+					"x-raw-image:///863215435a0dae94ca33a062b006aa50c2a9c961d6f6dc8038c4ef8a3d26d410",
+					"https://opengraph.githubassets.com/1de385c82e532bef6f5ac316cd8e1ddd4eb3a19545adaa9a95e5d8afdced424c/ReubenBond/LdcChineseWordlists",
+					"x-raw-image:///0cd64d507282307466dd314bab6911a98363965a646610564eaeebb41ba080b4",
+					"x-raw-image:///a8d7abe96718ae2f1a01367280732c5e638f9a8d5fe9d179a2bf660d731eac1f",
+					"x-raw-image:///41a999fbc272a78cdecf79ddd68822be6503097c6c1f44b53f727cb28496f208"
+				]
+			},
+			"boundingBox": {
+				"x": 0.32545454545454544,
+				"y": 0.6725784447476125,
+				"w": 0.3290909090909091,
+				"h": 0.02455661664392906
+			}
+		},
+		{
+			"info": {
+				"description": "\u8fd9\u662f\u4e00\u79cd\u7531\u5de7\u514b\u529b\u997c\u5e72\u548c\u5de7\u514b\u529b\u6a59\u5473\u51b0\u6dc7\u6dcb\u7ec4\u6210\u7684\u751c\u70b9\u3002\u5de7\u514b\u529b\u997c\u5e72\u9165\u8106\u9999\u751c\uff0c\u5939\u7740\u6d53\u90c1\u7684\u5de7\u514b\u529b\u6a59\u5473\u51b0\u6dc7\u6dcb\uff0c\u53e3\u611f\u4e30\u5bcc\uff0c\u662f\u4e00\u9053\u7f8e\u5473\u7684\u751c\u70b9\u3002",
+				"text": "Chocolate biscuit filled with chocolate orange gelato",
+				"text-translation": "\u5de7\u514b\u529b\u997c\u5e72\u5939\u5de7\u514b\u529b\u6a59\u5473\u51b0\u6dc7\u6dcb",
+				"text_translation": "\u5de7\u514b\u529b\u997c\u5e72\u5939\u5de7\u514b\u529b\u6a59\u5473\u51b0\u6dc7\u6dcb",
+				"img_src": [
+					"https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=100065933522167",
+					"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjUhFBWHnVdmkh3OKjGQu45qvDHNKMEvsL-PEEa12nNNJU3rMtd5msl62qpkH_O92sJ_mzlA_dt0l1-4u9XbDK9xtauJacz7R7f6MJljdRiikXijnBTkkwBGdqpkck19cqeQwqspvmqjjiQ0Xxbuwp9wz4BSgGzNypd49cRJab5yDwb2kAETi3yGxMA/w640-h640/1.jpg",
+					"https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=309770237180883",
+					"https://opengraph.githubassets.com/b51e8f75acc87160af11da418a0d8301ef17c02d629dafab4377b6cce14e8073/andre-test/phraseapp-github-sync-test",
+					"https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=3468542333434983"
+				]
+			},
+			"boundingBox": {
+				"x": 0.21818181818181817,
+				"y": 0.694406548431105,
+				"w": 0.5472727272727272,
+				"h": 0.0286493860845839
+			}
+		},
+		{
+			"info": {
+				"description": "\u6d88\u5316\u9152\u662f\u4e00\u79cd\u996d\u540e\u996e\u54c1\uff0c\u901a\u5e38\u7528\u4e8e\u5e2e\u52a9\u6d88\u5316\u3002\u5e38\u89c1\u7684\u6d88\u5316\u9152\u5305\u62ec\u5229\u53e3\u9152\u3001\u767d\u5170\u5730\u548c\u8349\u836f\u9152\u7b49\u3002",
+				"text": "Digestivo",
+				"text-translation": "\u6d88\u5316\u9152",
+				"text_translation": "\u6d88\u5316\u9152",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.28545454545454546,
+				"y": 0.7789904502046384,
+				"w": 0.1709090909090909,
+				"h": 0.023192360163710776
+			}
+		},
+		{
+			"info": {
+				"description": "\u67e0\u6aac\u9152\u662f\u4e00\u79cd\u610f\u5927\u5229\u7684\u4f20\u7edf\u67e0\u6aac\u5229\u53e3\u9152\uff0c\u901a\u5e38\u5728\u9910\u540e\u996e\u7528\uff0c\u5177\u6709\u6e05\u65b0\u723d\u53e3\u7684\u67e0\u6aac\u98ce\u5473\u3002",
+				"text": "Limoncello",
+				"text-translation": "\u67e0\u6aac\u9152",
+				"text_translation": "\u67e0\u6aac\u9152",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.2509090909090909,
+				"y": 0.8171896316507503,
+				"w": 0.24,
+				"h": 0.023192360163710776
+			}
+		},
+		{
+			"info": {
+				"description": "\u5496\u5561\u662f\u4e00\u79cd\u7531\u5496\u5561\u8c46\u5236\u6210\u3001\u7ecf\u8fc7\u70d8\u7119\u548c\u7814\u78e8\u540e\u51b2\u6ce1\u800c\u6210\u7684\u996e\u54c1\uff0c\u5e38\u7528\u4e8e\u63d0\u795e\u548c\u4eab\u53d7\u3002",
+				"text": "COFFEE",
+				"text-translation": "\u5496\u5561",
+				"text_translation": "\u5496\u5561",
+				"img_src": [
+					"https://image.isu.pub/100324232202-107e05a2fb664510919acc9c9036378d/jpg/page_1_thumb_large.jpg",
+					"x-raw-image:///863215435a0dae94ca33a062b006aa50c2a9c961d6f6dc8038c4ef8a3d26d410",
+					"https://image.isu.pub/100324232202-107e05a2fb664510919acc9c9036378d/jpg/page_1.jpg",
+					"x-raw-image:///0cd64d507282307466dd314bab6911a98363965a646610564eaeebb41ba080b4",
+					"https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=104056955631259"
+				]
+			},
+			"boundingBox": {
+				"x": 0.6145454545454545,
+				"y": 0.8090040927694406,
+				"w": 0.12181818181818181,
+				"h": 0.021828103683492497
+			}
+		},
+		{
+			"info": {
+				"description": "\u5f00\u5fc3\u679c\u9171\u662f\u4e00\u79cd\u7528\u5f00\u5fc3\u679c\u5236\u6210\u7684\u5976\u6cb9\u6216\u9171\u6599\uff0c\u5e38\u7528\u4e8e\u751c\u70b9\u3001\u9762\u5305\u6216\u5176\u4ed6\u98df\u54c1\u4e2d\u3002",
+				"text": "Crema di Pistachio",
+				"text-translation": "\u5f00\u5fc3\u679c\u9171",
+				"text_translation": "\u5f00\u5fc3\u679c\u9171",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.20363636363636364,
+				"y": 0.8431105047748977,
+				"w": 0.3327272727272727,
+				"h": 0.021828103683492497
+			}
+		},
+		{
+			"info": {
+				"description": null,
+				"text": null,
+				"text-translation": null,
+				"img_src": [
+					"https://m.media-amazon.com/images/I/9141ZOZXjEL._AC_UF1000,1000_QL80_.jpg",
+					"https://c8.alamy.com/comp/2WH9JGF/arabic-calligraphy-of-4th-kalma-touheed-translation-there-is-none-worthy-of-worship-except-allah-he-is-alone-and-has-no-partner-2WH9JGF.jpg",
+					"https://m.media-amazon.com/images/I/71NO9b+bEsL._AC_UF1000,1000_QL80_.jpg",
+					"https://pbs.twimg.com/media/GG7dVkSXQAAoswc.jpg",
+					"https://m.media-amazon.com/images/I/3178Y4hdOgL._AC_UF1000,1000_QL80_.jpg"
+				]
+			},
+			"boundingBox": {
+				"x": 0.5872727272727273,
+				"y": 0.8472032742155525,
+				"w": 0.17272727272727273,
+				"h": 0.019099590723055934
+			}
+		},
+		{
+			"info": {
+				"description": null,
+				"text": null,
+				"text-translation": null,
+				"img_src": [
+					"https://m.media-amazon.com/images/I/9141ZOZXjEL._AC_UF1000,1000_QL80_.jpg",
+					"https://c8.alamy.com/comp/2WH9JGF/arabic-calligraphy-of-4th-kalma-touheed-translation-there-is-none-worthy-of-worship-except-allah-he-is-alone-and-has-no-partner-2WH9JGF.jpg",
+					"https://m.media-amazon.com/images/I/71NO9b+bEsL._AC_UF1000,1000_QL80_.jpg",
+					"https://pbs.twimg.com/media/GG7dVkSXQAAoswc.jpg",
+					"https://m.media-amazon.com/images/I/3178Y4hdOgL._AC_UF1000,1000_QL80_.jpg"
+				]
+			},
+			"boundingBox": {
+				"x": 0.22545454545454546,
+				"y": 0.869031377899045,
+				"w": 0.29454545454545455,
+				"h": 0.021828103683492497
+			}
+		},
+		{
+			"info": {
+				"description": "\u739b\u5947\u6735\u662f\u4e00\u79cd\u610f\u5927\u5229\u5496\u5561\u996e\u54c1\uff0c\u901a\u5e38\u7531\u610f\u5f0f\u6d53\u7f29\u5496\u5561\u548c\u5c11\u91cf\u5976\u6ce1\u5236\u6210\u3002",
+				"text": "Macchiato",
+				"text-translation": "\u739b\u5947\u6735",
+				"text_translation": "\u739b\u5947\u6735",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.5781818181818181,
+				"y": 0.8731241473396999,
+				"w": 0.1890909090909091,
+				"h": 0.019099590723055934
+			}
+		},
+		{
+			"info": {
+				"description": "\u871c\u74dc\u9152\u662f\u4e00\u79cd\u4ee5\u751c\u74dc\u4e3a\u4e3b\u8981\u6210\u5206\u5236\u6210\u7684\u751c\u9152\uff0c\u901a\u5e38\u4f5c\u4e3a\u9910\u540e\u751c\u9152\u4eab\u7528\uff0c\u5177\u6709\u6d53\u90c1\u7684\u6c34\u679c\u9999\u6c14\u548c\u751c\u7f8e\u7684\u53e3\u611f\u3002",
+				"text": "Meloncello",
+				"text-translation": "\u871c\u74dc\u9152",
+				"text_translation": "\u871c\u74dc\u9152",
+				"img_src": [
+					"https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=6092982920770932",
+					"x-raw-image:///b6ebeceec05e9dfafe6c65997381e5e7307fca8bf32c1cb4bbcd7bded6f739c0",
+					"https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=804697735029476",
+					"https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=1068661147267951",
+					"https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=1077101899757209"
+				]
+			},
+			"boundingBox": {
+				"x": 0.24909090909090909,
+				"y": 0.8963165075034106,
+				"w": 0.24181818181818182,
+				"h": 0.020463847203274217
+			}
+		}
+	]
+}
