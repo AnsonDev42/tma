@@ -1,14 +1,14 @@
-import { Cart, CartItem } from "@/types/CartTypes.ts";
-import { DishProps } from "@/types/DishProps.tsx";
+import { Cart, CartItem } from "@/types/CartTypes";
+import { DishProps } from "@/types/DishProps";
 import {
 	deleteCart,
 	getCartByName,
 	getDishInfoByIdAndTimestamp,
 	removeDishFromCart,
-} from "@/utils/localStorageCartUtils.ts";
-import { useEffect, useState } from "react";
+} from "@/utils/localStorageCartUtils";
+import React, { useEffect, useState } from "react";
 
-const CartView = () => {
+const CartView: React.FC = () => {
 	const [cart, setCart] = useState<Cart | null>(getCartByName("My Cart"));
 
 	useEffect(() => {
@@ -27,13 +27,7 @@ const CartView = () => {
 		return <div>No cart found</div>;
 	}
 
-	if (!cart) {
-		return <div>No cart found</div>;
-	}
-
-	//  query the dishes in the cart
-	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-	const dishes = cart.items.map((item: CartItem): any => {
+	const dishes = cart.items.map((item: CartItem) => {
 		return {
 			dish: getDishInfoByIdAndTimestamp(
 				item.dishId,
@@ -43,23 +37,32 @@ const CartView = () => {
 		};
 	});
 
+	const handleDeleteCart = () => {
+		deleteCart(cart.name);
+		setCart(null);
+	};
+
+	const handleRemoveDish = (dishId: number, timestamp: string) => {
+		removeDishFromCart(cart.name, dishId, timestamp);
+		setCart(getCartByName("My Cart"));
+	};
+
 	return (
 		<div>
+			<div className="items-start justify-between m-0.5 grid grid-flow-col text-wrap break-words">
+				{cart.name} ({dishes.length})
+				<button
+					onClick={handleDeleteCart}
+					className="btn btn-warning btn-xs l-2"
+				>
+					Delete All
+				</button>
+			</div>
 			<ul>
-				<div className="items-start justify-between m-0.5 grid grid-flow-col text-wrap break-words">
-					{cart.name} ({dishes.length})
-					<button
-						onClick={() => deleteCart(cart.name)}
-						className=" btn btn-warning btn-xs l-2"
-					>
-						Delete All
-					</button>
-				</div>
-				{/* biome-ignore lint/suspicious/noExplicitAny: <explanation> */}
-				{dishes.map((dish: any, index) => (
+				{dishes.map((dish, index) => (
 					<li
 						key={index}
-						className=" items-start justify-between m-0.5 grid grid-flow-col text-wrap break-words"
+						className="items-start justify-between m-0.5 grid grid-flow-col text-wrap break-words"
 					>
 						<div>
 							<h1 className="text-xl font-semibold accent-content">
@@ -70,9 +73,7 @@ const CartView = () => {
 							</p>
 						</div>
 						<button
-							onClick={() =>
-								removeDishFromCart(cart.name, dish.dish.id, dish.timestamp)
-							}
+							onClick={() => handleRemoveDish(dish.dish.id, dish.timestamp)}
 							className="text-red-500 underline ml-2"
 						>
 							Delete
