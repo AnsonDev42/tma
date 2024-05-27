@@ -112,7 +112,9 @@ export function DishImageCard({
 										/>
 									</label>
 								</div>
-								<p className="text-gray-700 mb-4">{dish.info.description}</p>
+								<p className="text-neutral-content mb-4">
+									{dish.info.description}
+								</p>
 								<SearchButtons dishName={dish.info.text} />
 							</div>
 							<form method="dialog" onClick={() => setOpenModalIndex(null)}>
