@@ -142,7 +142,7 @@ const HistoryList: React.FC<HistoryProps> = ({ onSelectUpload }) => {
 						return;
 					}}
 				>
-					Nuke it all !
+					Nuke them all !
 				</button>
 			</li>
 		</ul>
