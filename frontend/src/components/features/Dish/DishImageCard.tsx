@@ -1,6 +1,6 @@
 import { SearchButtons } from "@/components/features/Dish/DishSearchButtons.tsx";
 import { CartItem } from "@/types/CartTypes.ts";
-import { DishProps } from "@/types/DishProps.tsx";
+import { DishImageCardProps } from "@/types/DishImageCardType.ts";
 import {
 	addDishToCart,
 	getCartByName,
@@ -8,19 +8,14 @@ import {
 } from "@/utils/localStorageCartUtils.ts";
 import React, { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
+
 export function DishImageCard({
 	dish,
 	openModalIndex,
 	setOpenModalIndex,
 	index,
 	timeStamp,
-}: {
-	dish: DishProps;
-	openModalIndex: number | null;
-	setOpenModalIndex: React.Dispatch<React.SetStateAction<number | null>>;
-	index: number;
-	timeStamp: string;
-}): React.ReactElement {
+}: DishImageCardProps) {
 	const modalRef = useRef<HTMLDialogElement>(null);
 	const cartName = "My Cart"; // Define a cart name (could be dynamic)
 	const [isChecked, setIsChecked] = useState(false);
@@ -35,7 +30,7 @@ export function DishImageCard({
 			);
 			setIsChecked(isInCart);
 		}
-	}, [index, timeStamp]);
+	}, [timeStamp, dish.id]);
 
 	const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const checked = event.target.checked;
