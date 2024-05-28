@@ -3,6 +3,7 @@ import { DishProps } from "@/types/DishProps.tsx";
 import {
 	deleteCart,
 	getCartByName,
+	getCarts,
 	getDishInfoByIdAndTimestamp,
 	removeDishFromCart,
 } from "@/utils/localStorageCartUtils.ts";
@@ -25,12 +26,11 @@ export const useCart = (cartName: string) => {
 
 	const deleteCurrentCart = () => {
 		deleteCart(cartName);
-		setCart(null);
+		setCart(getCarts()[0]);
 	};
 
 	const removeDish = (dishId: number, timestamp: string) => {
 		removeDishFromCart(cartName, dishId, timestamp);
-		setCart(getCartByName(cartName));
 	};
 
 	const dishes =
