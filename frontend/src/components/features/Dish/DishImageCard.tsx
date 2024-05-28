@@ -1,13 +1,7 @@
 import { SearchButtons } from "@/components/features/Dish/DishSearchButtons.tsx";
-import { CartItem } from "@/types/CartTypes.ts";
 import { DishImageCardProps } from "@/types/DishImageCardType.ts";
-import {
-	addDishToCart,
-	getCartByName,
-	removeDishFromCart,
-} from "@/utils/localStorageCartUtils.ts";
-import React, { useEffect, useRef, useState } from "react";
-import { toast } from "sonner";
+import { useCartState } from "@/utils/hooks/useCartState.ts";
+import { useModal } from "@/utils/hooks/useModal.ts";
 
 export function DishImageCard({
 	dish,
@@ -16,50 +10,14 @@ export function DishImageCard({
 	index,
 	timeStamp,
 }: DishImageCardProps) {
-	const modalRef = useRef<HTMLDialogElement>(null);
+	const modalRef = useModal(openModalIndex, index, setOpenModalIndex);
 	const cartName = "My Cart"; // Define a cart name (could be dynamic)
-	const [isChecked, setIsChecked] = useState(false);
+	const [isChecked, handleCheckboxChange] = useCartState(
+		dish.id,
+		timeStamp,
+		cartName,
+	);
 	// hacky way to get the latest image timestamp from local storage to save to cart
-
-	useEffect(() => {
-		const cart = getCartByName(cartName);
-		if (cart) {
-			const isInCart = cart.items.some(
-				(item: CartItem) =>
-					item.dishId === dish.id && item.uploadTimestamp === timeStamp,
-			);
-			setIsChecked(isInCart);
-		}
-	}, [timeStamp, dish.id]);
-
-	const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		const checked = event.target.checked;
-		setIsChecked(checked);
-		if (checked) {
-			toast.success(
-				`${dish.info.text} (${dish.info.textTranslation}) added to cart`,
-			);
-			addDishToCart(cartName, dish.id, timeStamp);
-		} else {
-			removeDishFromCart(cartName, dish.id, timeStamp);
-		}
-	};
-
-	// fix safari modal positioning
-	useEffect(() => {
-		if (openModalIndex === index && modalRef.current) {
-			const modal = modalRef.current;
-			if (typeof modal.showModal === "function") {
-				modal.showModal();
-			}
-			modal.addEventListener("close", () => setOpenModalIndex(null));
-
-			// Trigger a reflow to ensure the modal is centered
-			modal.style.display = "none";
-			modal.offsetHeight; // Trigger a reflow
-			modal.style.display = "";
-		}
-	}, [openModalIndex, index, setOpenModalIndex]);
 
 	return (
 		<>
@@ -103,7 +61,7 @@ export function DishImageCard({
 											type="checkbox"
 											className="checkbox checkbox-secondary"
 											checked={isChecked}
-											onChange={handleCheckboxChange}
+											onChange={(e) => handleCheckboxChange(e.target.checked)}
 										/>
 									</label>
 								</div>
