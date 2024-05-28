@@ -1,5 +1,5 @@
 import CartView from "@/components/features/Cart/CartView.tsx";
-import History from "@/components/features/history/HistoryList.tsx";
+import History from "@/components/features/History/HistoryList.tsx";
 import { SidebarProps } from "@/components/types/SidebarProps.tsx";
 import React from "react";
 
