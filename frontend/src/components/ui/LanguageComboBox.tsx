@@ -1,5 +1,5 @@
 import { languages, useLanguageContext } from "@/contexts/LanguageContext.tsx";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 
 export function LanguageComboBox() {
 	const { selectedLanguage, setSelectedLanguage } = useLanguageContext();

@@ -1,13 +1,9 @@
 import CartView from "@/components/features/Cart/CartView.tsx";
 import History from "@/components/features/history/HistoryList.tsx";
-import { DishProps } from "@/types/DishProps.tsx";
+import { SidebarProps } from "@/components/types/SidebarProps.tsx";
 import React from "react";
 
-type SidebarProps = {
-	onSelectUpload: (imageSrc: string, data: DishProps[]) => void;
-};
-
-const Sidebar: React.FC<SidebarProps> = ({ onSelectUpload }) => {
+function Sidebar({ onSelectUpload }: SidebarProps): React.ReactElement {
 	return (
 		/*  sidebar is a menu component */
 		<ul className="menu max-h-full max-w-3/4 bg-main-content rounded-box mt-20 overflow-hidden overflow-y-auto">
@@ -44,6 +40,6 @@ const Sidebar: React.FC<SidebarProps> = ({ onSelectUpload }) => {
 			</div>
 		</ul>
 	);
-};
+}
 
 export default Sidebar;
