@@ -13,11 +13,4 @@ export default defineConfig({
 			"@": path.resolve(__dirname, "./src"),
 		},
 	},
-	define: {
-		"process.env": {
-			uploadMenuData: "https://api.itsya0wen.com/upload",
-			googleSearchUrl: "https://www.google.com/search?q=",
-			wikipediaUrl: "https://wikipedia.org/wiki/",
-		},
-	},
 });
