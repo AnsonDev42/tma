@@ -59,11 +59,10 @@ export const renameCart = (oldName: string, newName: string) => {
 };
 export const deleteCart = (name: string) => {
 	let carts = getFromLocalStorage("carts") || [];
-	if (!confirm("Are you sure you want to delete this cart?")) {
-		return;
+	if (confirm("Are you sure you want to delete this cart?")) {
+		carts = carts.filter((cart: Cart) => cart.name !== name);
+		saveCartToLocalStorage(carts);
 	}
-	carts = carts.filter((cart: Cart) => cart.name !== name);
-	saveCartToLocalStorage(carts);
 };
 export const getCarts = () => {
 	return getFromLocalStorage("carts") || [];
