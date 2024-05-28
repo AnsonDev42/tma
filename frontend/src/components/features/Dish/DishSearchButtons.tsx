@@ -1,10 +1,8 @@
-import * as process from "node:process";
-
 const SEARCH_URLS = {
 	google: (query: string) =>
-		`${process.env.googleSearchUrl}${encodeURIComponent(query)}`,
+		`https://www.google.com/search?q=${encodeURIComponent(query)}`,
 	wikipedia: (query: string) =>
-		`${process.env.wikipediaUrl}${encodeURIComponent(query)}`,
+		`https://wikipedia.org/wiki/${encodeURIComponent(query)}`,
 };
 
 export function SearchButtons({ dishName }: { dishName: string }) {
