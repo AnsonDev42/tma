@@ -6,6 +6,11 @@ import {
 	saveToLocalStorage,
 } from "@/utils/localStorageUtils.ts";
 
+function saveCartToLocalStorage(carts: Cart[]) {
+	saveToLocalStorage("carts", carts);
+	window.dispatchEvent(new Event("storage"));
+}
+
 export const addDishToCart = (
 	cartName: string,
 	dishId: number,
@@ -20,8 +25,7 @@ export const addDishToCart = (
 	} else {
 		carts.push({ name: cartName, items: [newCartItem] });
 	}
-	saveToLocalStorage("carts", carts);
-	window.dispatchEvent(new Event("storage"));
+	saveCartToLocalStorage(carts);
 };
 export const removeDishFromCart = (
 	cartName: string,
@@ -35,14 +39,14 @@ export const removeDishFromCart = (
 			(item: CartItem) =>
 				item.dishId !== dishId || item.uploadTimestamp !== uploadTimestamp,
 		);
-		saveToLocalStorage("carts", carts);
+		saveCartToLocalStorage(carts);
 	}
 };
 export const createCart = (name: string) => {
 	const carts = getFromLocalStorage("carts") || [];
 	if (!carts.find((cart: Cart) => cart.name === name)) {
 		carts.push({ name, items: [] });
-		saveToLocalStorage("carts", carts);
+		saveCartToLocalStorage(carts);
 	}
 };
 export const renameCart = (oldName: string, newName: string) => {
@@ -50,7 +54,7 @@ export const renameCart = (oldName: string, newName: string) => {
 	const cart = carts.find((cart: Cart) => cart.name === oldName);
 	if (cart) {
 		cart.name = newName;
-		saveToLocalStorage("carts", carts);
+		saveCartToLocalStorage(carts);
 	}
 };
 export const deleteCart = (name: string) => {
@@ -59,7 +63,7 @@ export const deleteCart = (name: string) => {
 		return;
 	}
 	carts = carts.filter((cart: Cart) => cart.name !== name);
-	saveToLocalStorage("carts", carts);
+	saveCartToLocalStorage(carts);
 };
 export const getCarts = () => {
 	return getFromLocalStorage("carts") || [];
