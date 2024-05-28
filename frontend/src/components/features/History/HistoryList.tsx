@@ -1,74 +1,21 @@
+import { HistoryProps } from "@/components/types/HistoryProps.ts";
 import { DishProps } from "@/types/DishProps.tsx";
 import { UploadProps } from "@/types/UploadProps.ts";
-import {
-	getUploadsFromLocalStorage,
-	removeUploadFromLocalStorage,
-} from "@/utils/localStorageUploadUtils.ts";
-import React, { useEffect, useState } from "react";
-
-type HistoryProps = {
-	onSelectUpload: (imageSrc: string, data: DishProps[]) => void;
-};
+import { useGroupedUploads } from "@/utils/hooks/useGroupedUploads.ts";
+import { useUploadsState } from "@/utils/hooks/useUploadsState.ts";
+import React from "react";
 
 const HistoryList: React.FC<HistoryProps> = ({ onSelectUpload }) => {
-	const [uploads, setUploads] = useState(getUploadsFromLocalStorage());
-
-	// Listen for storage changes and update the history list
-	useEffect(() => {
-		const handleStorageChange = () => {
-			setUploads(getUploadsFromLocalStorage());
-		};
-
-		// Listen for storage changes
-		window.addEventListener("storage", handleStorageChange);
-
-		return () => {
-			// Clean up the event listener on component unmount
-			window.removeEventListener("storage", handleStorageChange);
-		};
-	}, []);
-
+	const { uploads, deleteUpload } = useUploadsState();
+	const { today, yesterday, previous3Days, earlier } =
+		useGroupedUploads(uploads);
 	const handleDelete = (timestamp: string) => {
 		if (
-			!window.confirm("Are you sure you want to delete this menu from history?")
+			window.confirm("Are you sure you want to delete this menu from history?")
 		) {
-			return;
+			deleteUpload(timestamp);
 		}
-		removeUploadFromLocalStorage(timestamp);
-		setUploads(getUploadsFromLocalStorage()); // Update the state
 	};
-
-	const groupUploadsByTimeRange = () => {
-		const now = new Date();
-		const today = uploads.filter(
-			(upload: UploadProps) =>
-				new Date(upload.timestamp).toDateString() === now.toDateString(),
-		);
-		const yesterday = uploads.filter((upload: UploadProps) => {
-			const date = new Date(upload.timestamp);
-			return (
-				date.toDateString() ===
-				new Date(now.setDate(now.getDate() - 1)).toDateString()
-			);
-		});
-		const previous3Days = uploads.filter((upload: UploadProps) => {
-			const date = new Date(upload.timestamp);
-			return (
-				date >= new Date(now.setDate(now.getDate() - 4)) &&
-				date < new Date(now.setDate(now.getDate() + 1))
-			);
-		});
-		const earlier = uploads.filter((upload: UploadProps) => {
-			const date = new Date(upload.timestamp);
-			return date < new Date(now.setDate(now.getDate() - 4));
-		});
-
-		return { today, yesterday, previous3Days, earlier };
-	};
-
-	const { today, yesterday, previous3Days, earlier } =
-		groupUploadsByTimeRange();
-
 	const renderDishes = (dishes: DishProps[]) => {
 		return dishes.map((dish, index) => (
 			<li
