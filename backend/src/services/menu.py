@@ -160,7 +160,7 @@ async def get_dish_data(dish_name: str, accept_language: str) -> dict:
     # use original dish text to search for image
     # might got rate limit from wiki
     try:
-        img_src = await get_dish_image(dish)
+        img_src = await get_dish_image(dish.get("text", None))
     except HTTPStatusError:
         img_src = None
 
