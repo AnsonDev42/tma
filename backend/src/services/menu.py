@@ -8,9 +8,10 @@ import numpy as np
 import requests
 import ujson
 from httpx import AsyncClient, HTTPStatusError
+from postgrest import APIError
 
 from src.core.config import settings
-from src.core.vendor import PD_OCR_API_URL, WIKI_API_URL, chain
+from src.core.vendor import PD_OCR_API_URL, WIKI_API_URL, chain, supabase, logger
 from src.models import Dish
 from src.services.exceptions import OCRError
 from src.services.utils import duration, BoundingBox, clean_dish_name
@@ -121,7 +122,21 @@ async def get_dish_image_via_wiki(dish_name: str | None) -> str | None:
     return None
 
 
-async def get_dish_image(dish_name: str | None, num_img=10) -> List[str] | None:
+def retrieve_dish_image(dish_name: str, num_img=10) -> list[str]:
+    response = (
+        supabase.table("dish").select("img_urls").eq("dish_name", dish_name).execute()
+    )
+    urls = response.data[0]["img_urls"]
+    return urls[:num_img]
+
+
+def cache_dish_image(dish_name: str, image_links: list[str]):
+    data = {"dish_name": dish_name, "img_urls": image_links}
+
+    supabase.table("dish").insert(data).execute()
+
+
+async def query_dish_image_via_google(dish_name: str | None) -> List[str] | None:
     if dish_name is None:
         return None
 
@@ -137,18 +152,38 @@ async def get_dish_image(dish_name: str | None, num_img=10) -> List[str] | None:
 
     response.raise_for_status()
     result = response.json()
-    with open("google_search.json", "w") as f:
-        ujson.dump(result, f)
 
     # return None if no items found
     if not result.get("items"):
         return None
 
-    #  limit the number of images to return
-    num_img = min(len(result.get("items")), num_img)
-    image_links = [item["link"] for item in result.get("items", [])[:num_img]]
+    return [item["link"] for item in result.get("items", [])]
 
-    return image_links
+
+async def get_dish_image(dish_name: str | None, num_img=10) -> List[str] | None:
+    """get dish image links from Google search api and cache the results in database"""
+
+    if dish_name is None:
+        return None
+
+    normalize_dish_name = dish_name.lower().replace(" ", "_")
+
+    # try to get cached results from database first
+    try:
+        if cached_results := retrieve_dish_image(normalize_dish_name, num_img):
+            return cached_results
+    except APIError:
+        logger.error("Error fetching data from Supabase")
+
+    image_links = query_dish_image_via_google(normalize_dish_name)
+
+    # save the image links to database, may raise exception
+    try:
+        cache_dish_image(normalize_dish_name, image_links)
+    except APIError:
+        logger.error("Error inserting data into Supabase")
+    finally:
+        return image_links[:num_img]
 
 
 async def get_dish_data(dish_name: str, accept_language: str) -> dict:
@@ -156,16 +191,16 @@ async def get_dish_data(dish_name: str, accept_language: str) -> dict:
     dish_name = clean_dish_name(dish_name)
 
     dish = await get_dish_info_via_openai(dish_name, accept_language)
+    if dish["text-translation"]:
+        dish["text_translation"] = dish["text-translation"]
 
-    # use original dish text to search for image
-    # might got rate limit from wiki
     try:
         img_src = await get_dish_image(dish.get("text", None))
     except HTTPStatusError:
         img_src = None
-
-    if dish["text-translation"]:
-        dish["text_translation"] = dish["text-translation"]
+    except APIError:
+        logger.error("Error in Supabase")
+        img_src = None
 
     return dish | {"img_src": img_src}
 
