@@ -1,5 +1,5 @@
-import { DishProps } from "@/types/DishProps.tsx";
+import { UploadProps } from "@/types/UploadProps.ts";
 
 export type HistoryProps = {
-	onSelectUpload: (imageSrc: string, data: DishProps[]) => void;
+	onSelectUpload: (upload: UploadProps) => void;
 };
