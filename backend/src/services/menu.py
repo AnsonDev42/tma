@@ -20,7 +20,7 @@ TIMEOUT = 60
 
 
 @duration
-def process_image(image: bytes) -> tuple[str, int, int]:
+def process_image(image: bytes) -> tuple[bytes, int, int]:
     data = np.frombuffer(image, np.uint8)
     img = cv2.imdecode(data, cv2.IMREAD_COLOR)
     img_height, img_width, _ = img.shape

@@ -58,7 +58,7 @@ def clean_dish_name(dish_name: str) -> str:
 
 def build_search_chain(model: str = "gpt-3.5-turbo") -> RunnableSerializable:
     llm = ChatOpenAI(
-        model=model,
+        model_name=model,
         openai_api_base=settings.OPENAI_BASE_URL,
         openai_api_key=settings.OPENAI_API_KEY,
     )
