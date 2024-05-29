@@ -1,11 +1,16 @@
 import logging
 import socket
 
+from supabase import create_client, Client
+
+from src.core.config import settings
 from src.services.utils import build_search_chain
 
 logger = logging.getLogger(__name__)
 
 chain = build_search_chain(model="gpt-4o")
+
+supabase: Client = create_client(settings.SUPABASE_URL, settings.SUPABASE_KEY)
 
 try:
     IP = socket.gethostbyname("anson-eq.local")

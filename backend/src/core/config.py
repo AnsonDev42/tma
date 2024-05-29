@@ -30,6 +30,8 @@ class Settings(BaseSettings):
     GOOGLE_IMG_SEARCH_URL: str = "https://www.googleapis.com/customsearch/v1"
     GOOGLE_IMG_SEARCH_CX: str
     GOOGLE_IMG_SEARCH_KEY: str
+    SUPABASE_URL: str
+    SUPABASE_KEY: str
 
 
 settings = Settings()
