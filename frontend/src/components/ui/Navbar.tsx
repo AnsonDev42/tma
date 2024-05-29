@@ -3,7 +3,7 @@ import React from "react";
 export function Navbar(): React.ReactElement {
 	return (
 		<div>
-			<div className="w-full navbar bg-base-100">
+			<div className="w-full navbar bg-base-300 text-base-content">
 				<div className="flex-none lg:hidden">
 					<label
 						htmlFor="my-drawer-3"
