@@ -126,6 +126,8 @@ def retrieve_dish_image(dish_name: str, num_img=10) -> list[str]:
     response = (
         supabase.table("dish").select("img_urls").eq("dish_name", dish_name).execute()
     )
+    if not response.data or len(response.data) == 0 or not response.data[0]["img_urls"]:
+        return None
     urls = response.data[0]["img_urls"]
     return urls[:num_img]
 
@@ -175,7 +177,7 @@ async def get_dish_image(dish_name: str | None, num_img=10) -> List[str] | None:
     except APIError:
         logger.error("Error fetching data from Supabase")
 
-    image_links = query_dish_image_via_google(normalize_dish_name)
+    image_links = await query_dish_image_via_google(normalize_dish_name)
 
     # save the image links to database, may raise exception
     try:
