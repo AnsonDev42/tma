@@ -10,6 +10,8 @@ import { Navbar } from "@/components/ui/Navbar.tsx";
 import Sidebar from "@/components/ui/Sidebar.tsx";
 import { SessionContext, SessionProvider } from "@/contexts/SessionContext";
 import { DishProps } from "@/types/DishProps.tsx";
+import { UploadProps } from "@/types/UploadProps.ts";
+import { useUploadsState } from "@/utils/hooks/useUploadsState.ts";
 import { useContext, useEffect, useRef, useState } from "react";
 import { Toaster } from "sonner";
 
@@ -42,11 +44,11 @@ function MainAppContent() {
 		}
 	}, [showTextState, data, imageRef]);
 
-	useEffect(() => {
-		if (imgTimestamp) {
-			setImgTimestamp(imgTimestamp);
-		}
-	}, [data]);
+	// useEffect(() => {
+	// 	if (imgTimestamp) {
+	// 		setImgTimestamp(imgTimestamp);
+	// 	}
+	// }, [data]);
 
 	useEffect(() => {
 		if (toggleRef.current) {
@@ -64,9 +66,11 @@ function MainAppContent() {
 		setShowTextState((prev) => (prev + 1) % 3);
 	};
 
-	const handleSelectUpload = (imageSrc: string, data: DishProps[]) => {
-		setMenuSrc(imageSrc);
-		setData(data);
+	const handleSelectUpload = (upload: UploadProps) => {
+		// setMenuSrc(upload.imageSrc);
+		setData(upload.data);
+		setMenuSrc(upload.imageSrc);
+		setImgTimestamp(upload.timestamp);
 	};
 
 	return (
@@ -86,11 +90,7 @@ function MainAppContent() {
 
 						{/* upload form */}
 						<div className="max-w-lg">
-							<UploadForm
-								onUploadComplete={setData}
-								setMenuSrc={setMenuSrc}
-								setImgTimestamp={setImgTimestamp}
-							/>
+							<UploadForm onSelectUpload={handleSelectUpload} />
 							<div className="w-full"></div>
 						</div>
 						<div
