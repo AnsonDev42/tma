@@ -32,7 +32,7 @@ const HistoryList: React.FC<HistoryProps> = ({ onSelectUpload }) => {
 				<details open>
 					<summary>
 						<button
-							onClick={() => onSelectUpload(upload.imageSrc, upload.data)}
+							onClick={() => onSelectUpload(upload)}
 							className="text-info underline"
 						>
 							{new Date(upload.timestamp).toLocaleString()}

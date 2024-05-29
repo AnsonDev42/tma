@@ -1,6 +1,8 @@
+import { HistoryProps } from "@/components/types/HistoryProps.ts";
 import { Language, useLanguageContext } from "@/contexts/LanguageContext.tsx";
 import { SessionContext } from "@/contexts/SessionContext.tsx";
 import { DishProps } from "@/types/DishProps.tsx";
+import { UploadProps } from "@/types/UploadProps.ts";
 import { addUploadToLocalStorage } from "@/utils/localStorageUploadUtils.ts";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
@@ -33,17 +35,7 @@ const formSchema = z.object({
 		),
 });
 
-type UploadFormProps = {
-	onUploadComplete: (data: DishProps[]) => void;
-	setMenuSrc: (src: string | ArrayBuffer | null) => void;
-	setImgTimestamp: (timestamp: string | null) => void;
-};
-
-const UploadForm: React.FC<UploadFormProps> = ({
-	onUploadComplete,
-	setMenuSrc,
-	setImgTimestamp,
-}) => {
+const UploadForm: React.FC<HistoryProps> = ({ onSelectUpload }) => {
 	const session = useContext(SessionContext)?.session;
 	const { selectedLanguage } = useLanguageContext();
 	const formMethods = useForm<z.infer<typeof formSchema>>({
@@ -74,14 +66,15 @@ const UploadForm: React.FC<UploadFormProps> = ({
 		formData: FormData,
 		jwt: string,
 	) => {
-		setMenuSrc(imageSrc);
-
 		toast.promise(uploadMenuData(formData, jwt, selectedLanguage), {
 			loading: "Uploading and analyzing your menu...(This may take a while)",
 			success: (data) => {
-				onUploadComplete(data);
 				const imgTimeStamp: string = addUploadToLocalStorage(imageSrc, data);
-				setImgTimestamp(imgTimeStamp);
+				onSelectUpload({
+					imageSrc: imageSrc,
+					data: data,
+					timestamp: imgTimeStamp,
+				} as UploadProps);
 				return `Menu has been successfully analyzed!`;
 			},
 			error: (err) => err.toString(),
@@ -89,20 +82,21 @@ const UploadForm: React.FC<UploadFormProps> = ({
 	};
 
 	const handleDemoSubmit = async (imageSrc: string, demoDataUrl: string) => {
-		setMenuSrc(imageSrc);
-
 		toast.promise(
 			(async () => {
 				await new Promise((resolve) => setTimeout(resolve, 500));
 				const response = await fetch(demoDataUrl);
 				const data = await response.json();
 				const formattedData = formatResponseData(data.results);
-				onUploadComplete(formattedData);
 				const imgTimeStamp: string = addUploadToLocalStorage(
 					imageSrc,
 					formattedData,
 				);
-				setImgTimestamp(imgTimeStamp);
+				onSelectUpload({
+					imageSrc: imageSrc,
+					data: data,
+					timestamp: imgTimeStamp,
+				} as UploadProps);
 				return data;
 			})(),
 			{
