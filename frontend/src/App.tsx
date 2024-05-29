@@ -5,6 +5,7 @@ import {
 	ShowTextState,
 } from "@/components/features/Menu/Menu.tsx";
 import UploadForm from "@/components/features/Menu/UploadForm.tsx";
+import Footer from "@/components/ui/Footer.tsx";
 import { Navbar } from "@/components/ui/Navbar.tsx";
 import Sidebar from "@/components/ui/Sidebar.tsx";
 import { SessionContext, SessionProvider } from "@/contexts/SessionContext";
@@ -137,6 +138,9 @@ function MainAppContent() {
 					></label>
 					<Sidebar onSelectUpload={handleSelectUpload} />
 				</div>
+			</div>
+			<div className="mt-4">
+				<Footer />
 			</div>
 		</div>
 	);
