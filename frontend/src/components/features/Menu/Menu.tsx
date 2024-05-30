@@ -1,6 +1,6 @@
 import DishImageCard from "@/components/features/Dish/DishImageCard.tsx";
 import { BoundingBoxProps, DishProps } from "@/types/DishProps.tsx";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
 
 interface ImageResultsProps {
@@ -26,7 +26,7 @@ export function MenuResults({
 	const [imgHeight, setImgHeight] = useState(0);
 	// track the currently open modal index, used for loading the specific dish image carousel
 	const [openModalIndex, setOpenModalIndex] = useState<number | null>(null);
-
+	imageRef = useRef(null);
 	const updateScale = () => {
 		const imageElement = imageRef.current;
 		if (imageElement) {
