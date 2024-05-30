@@ -37,12 +37,13 @@ function MainAppContent() {
 	const imageRef = useRef(null);
 	const imageResultsRef = useRef<HTMLDivElement | null>(null);
 	const toggleRef = useRef<HTMLInputElement | null>(null);
+	const { uploads } = useUploadsState();
 
 	useEffect(() => {
 		if (imageResultsRef.current) {
 			imageResultsRef.current.scrollIntoView({ behavior: "smooth" });
 		}
-	}, [showTextState, data, imageRef]);
+	}, [showTextState, data, imageRef, menuSrc, imgTimestamp]);
 
 	// useEffect(() => {
 	// 	if (imgTimestamp) {
@@ -119,15 +120,41 @@ function MainAppContent() {
 							</div>
 						</div>
 						{/* image results */}
-						{menuSrc && (
-							<MenuResults
-								menuSrc={menuSrc}
-								data={data}
-								imageRef={imageRef}
-								showTextState={showTextState}
-								timeStamp={imgTimestamp as string}
-							/>
-						)}
+						<div className="carousel w-full">
+							{uploads.map((upload, index) => (
+								<div
+									id={`slide${index + 1}`}
+									className="carousel-item relative w-full"
+									key={upload.timestamp}
+								>
+									<MenuResults
+										menuSrc={upload.imageSrc}
+										data={upload.data}
+										imageRef={imageRef}
+										showTextState={showTextState}
+										timeStamp={upload.timestamp}
+									/>
+									<div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+										<a
+											href={`#slide${index === 0 ? uploads.length : index}`}
+											onClick={() => handleSelectUpload(upload)}
+											className="btn btn-circle"
+										>
+											❮
+										</a>
+										<a
+											href={`#slide${((index + 1) % uploads.length) + 1}`}
+											className="btn btn-circle"
+											onClick={() => {
+												handleSelectUpload(upload);
+											}}
+										>
+											❯
+										</a>
+									</div>
+								</div>
+							))}
+						</div>
 					</div>
 				</div>
 				<div className="drawer-side">
