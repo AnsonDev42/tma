@@ -1,9 +1,7 @@
 import "./globals.css";
 import { Authentication } from "@/components/features/Authentication/Authentication.tsx";
-import {
-	MenuResults,
-	ShowTextState,
-} from "@/components/features/Menu/Menu.tsx";
+import ImageCarousel from "@/components/features/Menu/ImageCarousel.tsx";
+import { ShowTextState } from "@/components/features/Menu/Menu.tsx";
 import UploadForm from "@/components/features/Menu/UploadForm.tsx";
 import Footer from "@/components/ui/Footer.tsx";
 import { Navbar } from "@/components/ui/Navbar.tsx";
@@ -113,35 +111,11 @@ function MainAppContent() {
 							</div>
 						</div>
 						{/* image results */}
-						<div className="carousel w-full">
-							{uploads.map((upload, index) => (
-								<div
-									id={`slide${index + 1}`}
-									className="carousel-item relative w-full"
-									key={upload.timestamp}
-								>
-									<MenuResults upload={upload} showTextState={showTextState} />
-									<div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-										<a
-											href={`#slide${index === 0 ? uploads.length : index}`}
-											onClick={() => handleSelectUpload(upload)}
-											className="btn btn-circle"
-										>
-											❮
-										</a>
-										<a
-											href={`#slide${((index + 1) % uploads.length) + 1}`}
-											className="btn btn-circle"
-											onClick={() => {
-												handleSelectUpload(upload);
-											}}
-										>
-											❯
-										</a>
-									</div>
-								</div>
-							))}
-						</div>
+						<ImageCarousel
+							showTextState={showTextState}
+							uploads={uploads}
+							handleSelectUpload={handleSelectUpload}
+						/>
 					</div>
 				</div>
 				<div className="drawer-side">
