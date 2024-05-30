@@ -5,9 +5,12 @@ from typing import Optional
 import cv2
 import ujson
 from fastapi import APIRouter, Depends, UploadFile, HTTPException, Header
+from httpx import HTTPStatusError
+from postgrest import APIError
 from starlette.responses import StreamingResponse
 
 from src.api.deps import get_user
+from src.core.vendor import logger
 from src.models import User
 from src.services.menu import (
     run_ocr,
@@ -16,6 +19,7 @@ from src.services.menu import (
     normalize_text_bbox,
     serialize_dish_data,
     get_dish_info_via_openai,
+    get_dish_image,
 )
 from src.test.fixtures import FIXTURES
 
@@ -59,8 +63,16 @@ async def dish_info_pipeline(dish: str):
     return a dish info from wikipedia search
     results contains description, image(url), and text
     """
-    dish_info = await get_dish_info_via_openai(dish, "en")
-    return {"results": dish_info, "message": "OK"}
+    dish = await get_dish_info_via_openai(dish, "en")
+    try:
+        img_src = await get_dish_image(dish.get("text", None))
+    except HTTPStatusError:
+        img_src = None
+    except APIError:
+        logger.error("Error in Supabase")
+        img_src = None
+
+    return dish | {"img_src": img_src}
 
 
 @router.post("/draw")

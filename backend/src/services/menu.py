@@ -11,7 +11,13 @@ from httpx import AsyncClient, HTTPStatusError
 from postgrest import APIError
 
 from src.core.config import settings
-from src.core.vendor import PD_OCR_API_URL, WIKI_API_URL, chain, supabase, logger
+from src.core.vendor import (
+    PD_OCR_API_URL,
+    WIKI_API_URL,
+    chain,
+    logger,
+    get_supabase_client,
+)
 from src.models import Dish
 from src.services.exceptions import OCRError
 from src.services.utils import duration, BoundingBox, clean_dish_name
@@ -122,9 +128,14 @@ async def get_dish_image_via_wiki(dish_name: str | None) -> str | None:
     return None
 
 
-def retrieve_dish_image(dish_name: str, num_img=10) -> list[str]:
+async def retrieve_dish_image(dish_name: str, num_img=10) -> list[str]:
+    supabase = await get_supabase_client()
+
     response = (
-        supabase.table("dish").select("img_urls").eq("dish_name", dish_name).execute()
+        await supabase.table("dish")
+        .select("img_urls")
+        .eq("dish_name", dish_name)
+        .execute()
     )
     if not response.data or len(response.data) == 0 or not response.data[0]["img_urls"]:
         return None
@@ -132,10 +143,10 @@ def retrieve_dish_image(dish_name: str, num_img=10) -> list[str]:
     return urls[:num_img]
 
 
-def cache_dish_image(dish_name: str, image_links: list[str]):
+async def cache_dish_image(dish_name: str, image_links: list[str]):
     data = {"dish_name": dish_name, "img_urls": image_links}
-
-    supabase.table("dish").insert(data).execute()
+    supabase = await get_supabase_client()
+    await supabase.table("dish").insert(data).execute()
 
 
 async def query_dish_image_via_google(dish_name: str | None) -> List[str] | None:
@@ -162,6 +173,7 @@ async def query_dish_image_via_google(dish_name: str | None) -> List[str] | None
     return [item["link"] for item in result.get("items", [])]
 
 
+@duration
 async def get_dish_image(dish_name: str | None, num_img=10) -> List[str] | None:
     """get dish image links from Google search api and cache the results in database"""
 
@@ -172,7 +184,7 @@ async def get_dish_image(dish_name: str | None, num_img=10) -> List[str] | None:
 
     # try to get cached results from database first
     try:
-        if cached_results := retrieve_dish_image(normalize_dish_name, num_img):
+        if cached_results := await retrieve_dish_image(normalize_dish_name, num_img):
             return cached_results
     except APIError:
         logger.error("Error fetching data from Supabase")
@@ -181,7 +193,7 @@ async def get_dish_image(dish_name: str | None, num_img=10) -> List[str] | None:
 
     # save the image links to database, may raise exception
     try:
-        cache_dish_image(normalize_dish_name, image_links)
+        await cache_dish_image(normalize_dish_name, image_links)
     except APIError:
         logger.error("Error inserting data into Supabase")
     finally:
