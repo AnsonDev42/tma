@@ -1,13 +1,12 @@
 import DishImageCard from "@/components/features/Dish/DishImageCard.tsx";
-import { BoundingBoxProps, DishProps } from "@/types/DishProps.tsx";
+import { BoundingBoxProps } from "@/types/DishProps.tsx";
+import { UploadProps } from "@/types/UploadProps.ts";
 import React, { useEffect, useRef, useState } from "react";
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
 
 interface ImageResultsProps {
-	menuSrc: string | ArrayBuffer | null;
-	data: DishProps[];
+	upload: UploadProps;
 	showTextState: number;
-	timeStamp: string;
 }
 export const ShowTextState = {
 	HIDE_ALL: 0,
@@ -15,10 +14,8 @@ export const ShowTextState = {
 	SHOW_BOTH: 2,
 };
 export function MenuResults({
-	menuSrc,
-	data,
+	upload,
 	showTextState,
-	timeStamp,
 }: ImageResultsProps): React.ReactElement {
 	const [imgWidth, setImgWidth] = useState(0);
 	const [imgHeight, setImgHeight] = useState(0);
@@ -36,33 +33,9 @@ export function MenuResults({
 	};
 
 	useEffect(() => {
-		const imageElement = imageRef.current;
-
-		const handleImageLoad = () => {
-			updateScale();
-		};
-
-		if (imageElement) {
-			imageElement.addEventListener("load", handleImageLoad);
-			if (imageElement.complete) {
-				handleImageLoad();
-			}
-		}
-
-		window.addEventListener("resize", updateScale);
-
-		return () => {
-			if (imageElement) {
-				imageElement.removeEventListener("load", handleImageLoad);
-			}
-			window.removeEventListener("resize", updateScale);
-		};
-	}, [imageRef]);
-
-	useEffect(() => {
 		// Call updateScale whenever new data is received
 		updateScale();
-	}, [data]);
+	}, [upload]);
 
 	const calculateFontSize = (boundingBox: BoundingBoxProps) => {
 		const minFontSize = 7; // Minimum font size in pixels
@@ -107,17 +80,17 @@ export function MenuResults({
 				<TransformComponent>
 					<div
 						className="relative max-w-full max-h-screen flex items-start"
-						key={menuSrc as string}
+						key={upload.imageSrc as string}
 					>
 						{/* the menu image */}
 						<img
-							src={menuSrc as string}
+							src={upload.imageSrc as string}
 							alt="Uploaded"
 							className="max-w-full max-h-screen relative"
 							ref={imageRef}
 						/>
 						{/*bounding box and texts */}
-						{data.map((value, index) => (
+						{upload.data.map((value, index) => (
 							<>
 								{showTextState !== ShowTextState.HIDE_ALL && (
 									<div
@@ -139,7 +112,7 @@ export function MenuResults({
 									openModalIndex={openModalIndex}
 									setOpenModalIndex={setOpenModalIndex}
 									index={index}
-									timeStamp={timeStamp}
+									timeStamp={upload.timestamp}
 								/>
 							</>
 						))}

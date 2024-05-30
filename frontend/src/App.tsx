@@ -44,12 +44,6 @@ function MainAppContent() {
 		}
 	}, [showTextState, data, menuSrc, imgTimestamp]);
 
-	// useEffect(() => {
-	// 	if (imgTimestamp) {
-	// 		setImgTimestamp(imgTimestamp);
-	// 	}
-	// }, [data]);
-
 	useEffect(() => {
 		if (toggleRef.current) {
 			if (showTextState == ShowTextState.SHOW_ONLY_TRANSLATION) {
@@ -126,12 +120,7 @@ function MainAppContent() {
 									className="carousel-item relative w-full"
 									key={upload.timestamp}
 								>
-									<MenuResults
-										menuSrc={upload.imageSrc}
-										data={upload.data}
-										showTextState={showTextState}
-										timeStamp={upload.timestamp}
-									/>
+									<MenuResults upload={upload} showTextState={showTextState} />
 									<div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
 										<a
 											href={`#slide${index === 0 ? uploads.length : index}`}
