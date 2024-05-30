@@ -6,6 +6,7 @@ import { ThemeSupa } from "@supabase/auth-ui-shared";
 import { Session } from "@supabase/gotrue-js/src/lib/types.ts";
 import { createClient } from "@supabase/supabase-js";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
 const supabase = createClient(
@@ -16,6 +17,7 @@ const supabase = createClient(
 export function Authentication() {
 	const [session, setSession] = useState<Session | null>(null);
 	const [captchaToken, setCaptchaToken] = useState<string>("");
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		const {
@@ -58,6 +60,7 @@ export function Authentication() {
 			}
 			toast.success("Signed in anonymously!");
 			setSession(session);
+			navigate("/home", { replace: true });
 		} catch (_error) {
 			console.error("Error signing in anonymously.");
 			alert("Failed to sign in anonymously.");
