@@ -1,6 +1,6 @@
 import CartView from "@/components/features/Cart/CartView.tsx";
 import History from "@/components/features/History/HistoryList.tsx";
-import { SidebarProps } from "@/components/types/SidebarProps.tsx";
+import { SidebarProps } from "@/components/types/SidebarProps";
 import React from "react";
 
 function Sidebar({ onSelectUpload }: SidebarProps): React.ReactElement {
