@@ -6,7 +6,6 @@ import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
 interface ImageResultsProps {
 	menuSrc: string | ArrayBuffer | null;
 	data: DishProps[];
-	imageRef: React.RefObject<HTMLImageElement>;
 	showTextState: number;
 	timeStamp: string;
 }
@@ -18,7 +17,6 @@ export const ShowTextState = {
 export function MenuResults({
 	menuSrc,
 	data,
-	imageRef,
 	showTextState,
 	timeStamp,
 }: ImageResultsProps): React.ReactElement {
@@ -26,7 +24,7 @@ export function MenuResults({
 	const [imgHeight, setImgHeight] = useState(0);
 	// track the currently open modal index, used for loading the specific dish image carousel
 	const [openModalIndex, setOpenModalIndex] = useState<number | null>(null);
-	imageRef = useRef(null);
+	const imageRef = useRef<HTMLImageElement>(null); // Specify the type here
 	const updateScale = () => {
 		const imageElement = imageRef.current;
 		if (imageElement) {

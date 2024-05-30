@@ -34,7 +34,6 @@ function MainAppContent() {
 	const [menuSrc, setMenuSrc] = useState<string | ArrayBuffer | null>(null);
 	const [data, setData] = useState([] as DishProps[]);
 	const [imgTimestamp, setImgTimestamp] = useState<string | null>(null);
-	const imageRef = useRef(null);
 	const imageResultsRef = useRef<HTMLDivElement | null>(null);
 	const toggleRef = useRef<HTMLInputElement | null>(null);
 	const { uploads } = useUploadsState();
@@ -43,7 +42,7 @@ function MainAppContent() {
 		if (imageResultsRef.current) {
 			imageResultsRef.current.scrollIntoView({ behavior: "smooth" });
 		}
-	}, [showTextState, data, imageRef, menuSrc, imgTimestamp]);
+	}, [showTextState, data, menuSrc, imgTimestamp]);
 
 	// useEffect(() => {
 	// 	if (imgTimestamp) {
@@ -130,7 +129,6 @@ function MainAppContent() {
 									<MenuResults
 										menuSrc={upload.imageSrc}
 										data={upload.data}
-										imageRef={imageRef}
 										showTextState={showTextState}
 										timeStamp={upload.timestamp}
 									/>
