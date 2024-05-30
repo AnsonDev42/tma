@@ -193,11 +193,11 @@ async def get_dish_image(dish_name: str | None, num_img=10) -> List[str] | None:
 
     # save the image links to database, may raise exception
     try:
-        await cache_dish_image(normalize_dish_name, image_links)
+        asyncio.create_task(cache_dish_image(normalize_dish_name, image_links))
     except APIError:
         logger.error("Error inserting data into Supabase")
-    finally:
-        return image_links[:num_img] if image_links else None
+
+    return image_links[:num_img] if image_links else None
 
 
 async def get_dish_data(dish_name: str, accept_language: str) -> dict:
