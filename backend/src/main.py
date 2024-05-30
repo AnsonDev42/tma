@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from src.api import api_router
 from src.core.config import settings
+from src.core.vendor import initialize_supabase
 
 app = FastAPI()
 
@@ -18,3 +19,8 @@ if settings.BACKEND_CORS_ORIGINS:
     )
 
 app.include_router(api_router)
+
+
+@app.on_event("startup")
+async def startup_event():
+    await initialize_supabase()
