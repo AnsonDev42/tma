@@ -1,18 +1,18 @@
 import { MenuResults } from "@/components/features/Menu/Menu.tsx";
 import { UploadProps } from "@/types/UploadProps.ts";
+import { useUploadsState } from "@/utils/hooks/useUploadsState.ts";
 import { useRef } from "react";
 
 interface ImageCarouselProps {
-	uploads: UploadProps[];
 	showTextState: number;
 	handleSelectUpload: (upload: UploadProps) => void;
 }
 
 function ImageCarousel({
-	uploads,
 	showTextState,
 	handleSelectUpload,
 }: ImageCarouselProps) {
+	const { uploads } = useUploadsState();
 	const imageResultsRef = useRef<HTMLDivElement | null>(null);
 
 	return (

@@ -14,8 +14,8 @@ export function HomePage() {
 	const [showTextState, setShowTextState] = useState(
 		ShowTextState.SHOW_ONLY_TRANSLATION,
 	);
-	const [menuSrc, setMenuSrc] = useState<string | ArrayBuffer | null>(null);
-	const [data, setData] = useState([] as DishProps[]);
+	const [_menuSrc, setMenuSrc] = useState<string | ArrayBuffer | null>(null);
+	const [_data, setData] = useState([] as DishProps[]);
 	const [imgTimestamp, setImgTimestamp] = useState<string | null>(null);
 	const imageResultsRef = useRef<HTMLDivElement | null>(null);
 	const toggleRef = useRef<HTMLInputElement | null>(null);
@@ -25,7 +25,21 @@ export function HomePage() {
 		if (imageResultsRef.current) {
 			imageResultsRef.current.scrollIntoView({ behavior: "smooth" });
 		}
-	}, [showTextState, data, menuSrc, imgTimestamp]);
+		if (uploads.length !== 0) {
+			// 	jump to anker of the last upload
+			const latestSlide = document.querySelector<HTMLDivElement>(
+				`#slide${uploads.length}`,
+			)!;
+			if (latestSlide) {
+				setImgTimestamp(uploads[uploads.length - 1].timestamp);
+				latestSlide.scrollIntoView({
+					behavior: "smooth",
+					block: "center",
+					inline: "center",
+				});
+			}
+		}
+	}, [uploads]);
 
 	useEffect(() => {
 		if (toggleRef.current) {
@@ -44,7 +58,6 @@ export function HomePage() {
 	};
 
 	const handleSelectUpload = (upload: UploadProps) => {
-		// setMenuSrc(upload.imageSrc);
 		setData(upload.data);
 		setMenuSrc(upload.imageSrc);
 		setImgTimestamp(upload.timestamp);
@@ -93,7 +106,6 @@ export function HomePage() {
 					{/* image results */}
 					<ImageCarousel
 						showTextState={showTextState}
-						uploads={uploads}
 						handleSelectUpload={handleSelectUpload}
 					/>
 				</div>
