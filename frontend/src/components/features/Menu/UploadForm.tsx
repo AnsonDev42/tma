@@ -69,12 +69,14 @@ const UploadForm: React.FC<HistoryProps> = ({ onSelectUpload }) => {
 		toast.promise(uploadMenuData(formData, jwt, selectedLanguage), {
 			loading: "Uploading and analyzing your menu...(This may take a while)",
 			success: (data) => {
-				const imgTimeStamp: string = addUploadToLocalStorage(imageSrc, data);
-				onSelectUpload({
-					imageSrc: imageSrc,
-					data: data,
-					timestamp: imgTimeStamp,
-				} as UploadProps);
+				const newUpload: UploadProps = {
+					imageSrc,
+					data,
+					timestamp: new Date().toISOString(),
+				} as UploadProps;
+
+				addUploadToLocalStorage(newUpload);
+				onSelectUpload(newUpload);
 				return `Menu has been successfully analyzed!`;
 			},
 			error: (err) => err.toString(),
@@ -88,16 +90,17 @@ const UploadForm: React.FC<HistoryProps> = ({ onSelectUpload }) => {
 				const response = await fetch(demoDataUrl);
 				const data = await response.json();
 				const formattedData = formatResponseData(data.results);
-				const imgTimeStamp: string = addUploadToLocalStorage(
+
+				const newUpload: UploadProps = {
 					imageSrc,
-					formattedData,
-				);
-				onSelectUpload({
-					imageSrc: imageSrc,
-					data: data,
-					timestamp: imgTimeStamp,
-				} as UploadProps);
-				return data;
+					data: formattedData,
+					timestamp: new Date().toISOString(),
+				} as UploadProps;
+
+				addUploadToLocalStorage(newUpload);
+				onSelectUpload(newUpload);
+
+				return formattedData;
 			})(),
 			{
 				loading:
