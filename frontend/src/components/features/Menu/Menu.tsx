@@ -17,38 +17,37 @@ export function MenuResults({
 	upload,
 	showTextState,
 }: ImageResultsProps): React.ReactElement {
-	const [imgWidth, setImgWidth] = useState(0);
-	const [imgHeight, setImgHeight] = useState(0);
-	// track the currently open modal index, used for loading the specific dish image carousel
+	const [imgDimensions, setImgDimensions] = useState({ width: 0, height: 0 });
+	const [imageLoaded, setImageLoaded] = useState(false);
 	const [openModalIndex, setOpenModalIndex] = useState<number | null>(null);
-	const imageRef = useRef<HTMLImageElement>(null); // Specify the type here
-	const updateScale = () => {
-		const imageElement = imageRef.current;
-		if (imageElement) {
-			const renderedWidth = imageElement.clientWidth;
-			const renderedHeight = imageElement.clientHeight;
-			setImgWidth(renderedWidth);
-			setImgHeight(renderedHeight);
-		}
+	const imageRef = useRef<HTMLImageElement>(null);
+
+	const handleImageLoad = () => {
+		setImageLoaded(true);
 	};
 
 	useEffect(() => {
-		// Call updateScale whenever new data is received
-		updateScale();
-	}, [upload]);
+		if (imageLoaded && imageRef.current) {
+			const { clientWidth, clientHeight } = imageRef.current;
+			setImgDimensions({ width: clientWidth, height: clientHeight });
+		}
+	}, [imageLoaded, upload.imageSrc]);
 
 	const calculateFontSize = (boundingBox: BoundingBoxProps) => {
-		const minFontSize = 7; // Minimum font size in pixels
+		const minFontSize = 7;
 		const baseFontSize =
-			Math.min(boundingBox.w * imgWidth, boundingBox.h * imgHeight) * 0.4; // Adjust scale factor as needed
+			Math.min(
+				boundingBox.w * imgDimensions.width,
+				boundingBox.h * imgDimensions.height,
+			) * 0.4;
 		return Math.max(baseFontSize, minFontSize);
 	};
 
 	const getAdjustedStyles = (boundingBox: BoundingBoxProps) => ({
-		width: `${boundingBox.w * imgWidth}px`,
-		height: `${boundingBox.h * imgHeight}px`,
-		left: `${boundingBox.x * imgWidth}px`,
-		top: `${boundingBox.y * imgHeight}px`,
+		width: `${boundingBox.w * imgDimensions.width}px`,
+		height: `${boundingBox.h * imgDimensions.height}px`,
+		left: `${boundingBox.x * imgDimensions.width}px`,
+		top: `${boundingBox.y * imgDimensions.height}px`,
 		background: "rgba(255, 0, 0, 0.5)",
 		border: "1px solid red",
 	});
@@ -88,34 +87,39 @@ export function MenuResults({
 							alt="Uploaded"
 							className="max-w-full max-h-screen relative"
 							ref={imageRef}
+							onLoad={handleImageLoad}
 						/>
-						{/*bounding box and texts */}
-						{upload.data.map((value, index) => (
-							<>
-								{showTextState !== ShowTextState.HIDE_ALL && (
-									<div
-										className="absolute"
-										style={getAdjustedStyles(value.boundingBox)}
-										onClick={() => handleOpenModal(index)}
-									>
-										<div style={getTextStyle(value.boundingBox)}>
-											{showTextState === ShowTextState.SHOW_ONLY_TRANSLATION
-												? value.info.textTranslation
-												: `${value.info.textTranslation}/${value.info.text}`}
-										</div>
-									</div>
-								)}
-								{/*modal card*/}
-								<DishImageCard
-									key={index}
-									dish={value}
-									openModalIndex={openModalIndex}
-									setOpenModalIndex={setOpenModalIndex}
-									index={index}
-									timeStamp={upload.timestamp}
-								/>
-							</>
-						))}
+						{imageLoaded &&
+							imgDimensions.width > 0 &&
+							imgDimensions.height > 0 && (
+								<>
+									{upload.data.map((value, index) => (
+										<React.Fragment key={index}>
+											{showTextState !== ShowTextState.HIDE_ALL && (
+												<div
+													className="absolute"
+													style={getAdjustedStyles(value.boundingBox)}
+													onClick={() => handleOpenModal(index)}
+												>
+													<div style={getTextStyle(value.boundingBox)}>
+														{showTextState ===
+														ShowTextState.SHOW_ONLY_TRANSLATION
+															? value.info.textTranslation
+															: `${value.info.textTranslation}/${value.info.text}`}
+													</div>
+												</div>
+											)}
+											<DishImageCard
+												dish={value}
+												openModalIndex={openModalIndex}
+												setOpenModalIndex={setOpenModalIndex}
+												index={index}
+												timeStamp={upload.timestamp}
+											/>
+										</React.Fragment>
+									))}
+								</>
+							)}
 					</div>
 				</TransformComponent>
 			</TransformWrapper>
