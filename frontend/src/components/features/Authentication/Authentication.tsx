@@ -20,12 +20,21 @@ export function Authentication() {
 	const navigate = useNavigate();
 
 	useEffect(() => {
+		if (session) {
+			navigate("/home", { replace: true });
+		}
+	}, [session, navigate]);
+
+	useEffect(() => {
 		const {
 			data: { subscription },
 			// 	workaround for build error
 			// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-		} = supabase.auth.onAuthStateChange((_event: any, session: any) => {
+		} = supabase.auth.onAuthStateChange((event: any, session: any) => {
 			setSession(session);
+			if (event === "SIGNED_IN") {
+				navigate("/home", { replace: true });
+			}
 		});
 
 		return () => subscription.unsubscribe();
@@ -67,6 +76,7 @@ export function Authentication() {
 			toast.error("Failed to sign in anonymously.");
 		}
 	}
+
 	if (!session) {
 		return (
 			<div className="flex items-center justify-center max-w-full mt-5">
