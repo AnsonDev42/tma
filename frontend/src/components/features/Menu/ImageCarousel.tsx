@@ -1,20 +1,37 @@
 import { MenuResults } from "@/components/features/Menu/Menu.tsx";
 import { UploadProps } from "@/types/UploadProps.ts";
 import { useUploadsState } from "@/utils/hooks/useUploadsState.ts";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 interface ImageCarouselProps {
 	showTextState: number;
 	handleSelectUpload: (upload: UploadProps) => void;
+	imgTimestamp: string | null;
 }
 
 function ImageCarousel({
 	showTextState,
 	handleSelectUpload,
+	imgTimestamp,
 }: ImageCarouselProps) {
 	const { uploads } = useUploadsState();
-	const imageResultsRef = useRef<HTMLDivElement | null>(null);
 
+	const imageResultsRef = useRef<HTMLDivElement | null>(null);
+	useEffect(() => {
+		if (uploads.length !== 0) {
+			// 	jump to anker of the last upload
+			const latestSlide = document.querySelector<HTMLDivElement>(
+				`#slide${uploads.length}`,
+			)!;
+			if (latestSlide) {
+				latestSlide.scrollIntoView({
+					behavior: "smooth",
+					block: "center",
+					inline: "center",
+				});
+			}
+		}
+	}, [imgTimestamp]);
 	return (
 		<div ref={imageResultsRef}>
 			<div className="carousel w-full">
