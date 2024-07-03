@@ -21,9 +21,9 @@ function App() {
 						<Routes>
 							<Route element={<ProtectedRoute />}>
 								<Route path="/home" element={<HomePage />} />
+								<Route path="*" element={<Navigate to="/home" />} />
 							</Route>
 							<Route path="/login" element={<Authentication />} />
-							<Route path="*" element={<Navigate to="/home" />} />
 						</Routes>
 					</Router>
 				</div>
