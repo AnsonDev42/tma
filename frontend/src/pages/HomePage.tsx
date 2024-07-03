@@ -107,6 +107,7 @@ export function HomePage() {
 					<ImageCarousel
 						showTextState={showTextState}
 						handleSelectUpload={handleSelectUpload}
+						imgTimestamp={imgTimestamp}
 					/>
 				</div>
 			</div>
