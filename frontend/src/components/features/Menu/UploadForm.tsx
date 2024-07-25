@@ -3,6 +3,7 @@ import { Language, useLanguageContext } from "@/contexts/LanguageContext.tsx";
 import { SessionContext } from "@/contexts/SessionContext.tsx";
 import { DishProps } from "@/types/DishProps.tsx";
 import { UploadProps } from "@/types/UploadProps.ts";
+import resizeFile from "@/utils/localImageCompmressor.ts";
 import { addUploadToLocalStorage } from "@/utils/localStorageUploadUtils.ts";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
@@ -47,10 +48,22 @@ const UploadForm: React.FC<HistoryProps> = ({ onSelectUpload }) => {
 	});
 
 	const handleSubmit = async (payload: z.infer<typeof formSchema>) => {
-		const file = payload.file[0];
+		const raw_file: File = payload.file[0];
+		console.log("size of the original file: ", raw_file.size);
+		// resize file
+		if (!raw_file) {
+			alert("No file selected.");
+			return;
+		}
+		const file = await resizeFile(raw_file);
+		console.log("size of the compressed file: ", file.size);
+
 		const formData = new FormData();
 		formData.append("file", file);
-		formData.append("file_name", file.name);
+		formData.append(
+			"file_name",
+			raw_file.name.split(".")[0] + "_compressed.jpg",
+		);
 		if (!session || !session.access_token) {
 			alert("Please refresh to login again. No session found.");
 			return;
