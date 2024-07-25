@@ -1,5 +1,6 @@
 import "./globals.css";
 import { Authentication } from "@/components/features/Authentication/Authentication.tsx";
+import Footer from "@/components/ui/Footer.tsx";
 import { SessionProvider } from "@/contexts/SessionContext";
 import { HomePage } from "@/pages/HomePage.tsx";
 import { ProtectedRoute } from "@/routers/router.tsx";
@@ -26,6 +27,9 @@ function App() {
 							<Route path="/login" element={<Authentication />} />
 						</Routes>
 					</Router>
+					<div className="mt-4">
+						<Footer />
+					</div>
 				</div>
 			</SessionProvider>
 		</div>
