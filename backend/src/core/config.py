@@ -33,8 +33,6 @@ class Settings(BaseSettings):
     SUPABASE_URL: str
     SUPABASE_KEY: str
 
-    class Config:
-        env_file = ".env"  # This allows it to still optionally load from .env if present
-        env_file_encoding = 'utf-8'
 
 settings = Settings()
+print(settings.dict())
