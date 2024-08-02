@@ -1,3 +1,4 @@
+import { AIRecommendationButton } from "@/components/features/AIRecommendations/AIRecommendationButton.tsx";
 import { Authentication } from "@/components/features/Authentication/Authentication.tsx";
 import ImageCarousel from "@/components/features/Menu/ImageCarousel.tsx";
 import { ShowTextState } from "@/components/features/Menu/Menu.tsx";
@@ -62,6 +63,10 @@ export function HomePage() {
 		setImgTimestamp(upload.timestamp);
 	};
 
+	const handleRecommendation = (recommendation: string) => {
+		alert(recommendation);
+	};
+
 	return (
 		<>
 			<div className="drawer lg:drawer-open">
@@ -82,6 +87,11 @@ export function HomePage() {
 							className="divider divider-neutral"
 							ref={imageResultsRef}
 						></div>
+						<AIRecommendationButton
+							dishes={_data.map((dish) => dish.info.text)}
+							onRecommendation={handleRecommendation}
+						/>
+
 						<div className="mt-4">
 							<div>{imgTimestamp}</div>
 							<div className="flex items-center space-x-2">
