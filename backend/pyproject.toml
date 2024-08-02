@@ -25,6 +25,7 @@ mediawikiapi = "^1.2"
 supabase = "^2.5.0"
 postgrest = "^0.16.9"
 ujson = "^5.10.0"
+gunicorn = "^22.0.0"
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^3.7.0"
