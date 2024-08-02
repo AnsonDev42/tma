@@ -42,10 +42,15 @@ function ImageCarousel({
 						key={upload.timestamp}
 					>
 						<MenuResults upload={upload} showTextState={showTextState} />
+						{/* the pagination arrows */}
 						<div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
 							<a
 								href={`#slide${index === 0 ? uploads.length : index}`}
-								onClick={() => handleSelectUpload(upload)}
+								onClick={() =>
+									handleSelectUpload(
+										uploads[index === 0 ? uploads.length - 1 : index - 1],
+									)
+								}
 								className="btn btn-circle"
 							>
 								❮
@@ -53,9 +58,9 @@ function ImageCarousel({
 							<a
 								href={`#slide${((index + 1) % uploads.length) + 1}`}
 								className="btn btn-circle"
-								onClick={() => {
-									handleSelectUpload(upload);
-								}}
+								onClick={() =>
+									handleSelectUpload(uploads[(index + 1) % uploads.length])
+								}
 							>
 								❯
 							</a>
