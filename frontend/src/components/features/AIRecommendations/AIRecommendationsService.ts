@@ -1,6 +1,6 @@
 import axios from "axios";
 
-interface AIRecommendationPayload {
+export interface AIRecommendationPayload {
 	dishes: string[];
 	mode: string;
 	additional_info: string;
