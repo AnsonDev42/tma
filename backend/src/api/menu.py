@@ -4,7 +4,7 @@ from typing import Optional, List
 from fastapi import APIRouter, Depends, UploadFile, HTTPException, Header
 from pydantic import BaseModel
 
-from src.api.deps import get_user
+from src.api.deps import get_user, get_pro_user
 from src.models import User
 from src.services.menu import (
     run_ocr,
@@ -20,9 +20,9 @@ router = APIRouter()
 
 @router.post("/upload")
 async def upload(
-    file: UploadFile,
-    user: User = Depends(get_user),
-    accept_language: Optional[str] = Header(None),
+        file: UploadFile,
+        user: User = Depends(get_user),
+        accept_language: Optional[str] = Header(None),
 ):
     if not file or not file.filename:
         raise HTTPException(
@@ -45,8 +45,10 @@ class AISuggestionsRequest(BaseModel):
 
 @router.post("/ai-suggestions")
 async def ai_suggestions(
-    request: AISuggestionsRequest,
-    user: User = Depends(get_user),
+        request: AISuggestionsRequest,
+        user: User = Depends(get_pro_user),
+        # user: User = Depends(get_user),
+
 ):
     """
     Ai suggestions for what dish to order based on all the dish name,
