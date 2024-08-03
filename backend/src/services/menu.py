@@ -272,7 +272,6 @@ async def recommend_dishes(request) -> dict:
     """Recommend dishes based on the dish names and the language of the dish names"""
     input_data = {
         "dish_names": ", ".join(request.dishes),
-        "mode": request.mode,
         "additional_info": request.additional_info
         or "No additional information provided.",
         "language": request.language,

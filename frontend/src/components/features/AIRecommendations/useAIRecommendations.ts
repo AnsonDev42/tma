@@ -25,7 +25,6 @@ export const useAIRecommendations = () => {
 		try {
 			const payload = {
 				dishes,
-				mode: "recommend for me",
 				additional_info: additionalInfo,
 				language: selectedLanguage?.label || "en",
 			};
