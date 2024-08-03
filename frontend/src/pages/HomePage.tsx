@@ -87,10 +87,12 @@ export function HomePage() {
 							className="divider divider-neutral"
 							ref={imageResultsRef}
 						></div>
-						<AIRecommendationButton
-							dishes={_data.map((dish) => dish.info.text)}
-							onRecommendation={handleRecommendation}
-						/>
+						<div className="mb-4">
+							<AIRecommendationButton
+								dishes={_data.map((dish) => dish.info.text)}
+								onRecommendation={handleRecommendation}
+							/>
+						</div>
 
 						<div className="mt-4">
 							<div>{imgTimestamp}</div>
