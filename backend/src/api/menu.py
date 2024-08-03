@@ -1,16 +1,10 @@
 import http
-from io import BytesIO
-from typing import Optional
+from typing import Optional, List
 
-import cv2
-import ujson
 from fastapi import APIRouter, Depends, UploadFile, HTTPException, Header
-from httpx import HTTPStatusError
-from postgrest import APIError
-from starlette.responses import StreamingResponse
+from pydantic import BaseModel
 
 from src.api.deps import get_user
-from src.core.vendor import logger
 from src.models import User
 from src.services.menu import (
     run_ocr,
@@ -18,10 +12,8 @@ from src.services.menu import (
     process_image,
     normalize_text_bbox,
     serialize_dish_data,
-    get_dish_info_via_openai,
-    get_dish_image,
+    recommend_dishes,
 )
-from src.test.fixtures import FIXTURES
 
 router = APIRouter()
 
@@ -43,3 +35,24 @@ async def upload(
     bounding_box = normalize_text_bbox(img_width, img_height, ocr_results)
     data = serialize_dish_data(dish_info, bounding_box)
     return {"results": data}
+
+
+class AISuggestionsRequest(BaseModel):
+    dishes: List[str]
+    mode: str
+    additional_info: Optional[str]
+    language: str
+
+
+@router.post("/ai-suggestions")
+async def ai_suggestions(
+    request: AISuggestionsRequest,
+    user: User = Depends(get_user),
+):
+    """
+    Ai suggestions for what dish to order based on all the dish name,
+    and the language of the dish name
+    """
+
+    suggestions = await recommend_dishes(request)
+    return {"suggestions": suggestions}
