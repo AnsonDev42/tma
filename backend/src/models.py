@@ -5,12 +5,22 @@ from pydantic import BaseModel
 # langchain currently only supports pydantic v1
 from langchain_core.pydantic_v1 import BaseModel as BaseModelV1, Field as FieldV1
 
+from enum import Enum
+
+class Role(str, Enum):
+    FREE = "free"
+    TRIAL = "trial"
+    PRO = "pro"
 
 class User(BaseModel):
     role: str
     user_metadata: dict
     iat: int
     exp: int
+
+    @property
+    def user_role(self):
+        return Role(self.user_metadata.get("user_role", Role.FREE))
 
 
 class Dish(BaseModelV1):
