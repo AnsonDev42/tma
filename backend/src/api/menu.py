@@ -39,7 +39,6 @@ async def upload(
 
 class AISuggestionsRequest(BaseModel):
     dishes: List[str]
-    mode: str
     additional_info: Optional[str]
     language: str
 
