@@ -27,11 +27,10 @@ export const useAIRecommendations = () => {
 
 		try {
 			const payload = {
-				dishes,
-				additional_info: additionalInfo,
+				dishes: dishes,
+				additional_info: additionalInfo || "",
 				language: selectedLanguage?.label || "en",
 			} as AIRecommendationPayload;
-
 			const jwt = `Bearer ${session.access_token}`;
 			const suggestion = await getAIRecommendations(payload, jwt);
 			setIsLoading(false);
