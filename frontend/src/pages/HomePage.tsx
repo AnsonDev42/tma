@@ -83,16 +83,17 @@ export function HomePage() {
 							<UploadForm onSelectUpload={handleSelectUpload} />
 							<div className="w-full"></div>
 						</div>
-						<div
-							className="divider divider-neutral"
-							ref={imageResultsRef}
-						></div>
-						<div className="mb-4">
+						<div className="divider divider-neutral"></div>
+						<div className="mb-4 w-full max-w-md">
 							<AIRecommendationButton
 								dishes={_data.map((dish) => dish.info.text)}
 								onRecommendation={handleRecommendation}
 							/>
 						</div>
+						<div
+							className="divider divider-neutral"
+							ref={imageResultsRef}
+						></div>
 
 						<div className="mt-4">
 							<div>{imgTimestamp}</div>
