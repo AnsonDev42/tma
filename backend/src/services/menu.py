@@ -15,6 +15,7 @@ from src.core.vendor import (
     PD_OCR_API_URL,
     WIKI_API_URL,
     chain,
+    recommendation_chain,
     logger,
     get_supabase_client,
 )
@@ -265,3 +266,17 @@ def serialize_dish_data(dish_data: list, bounding_boxes: list):
         dish = {"info": dish_info, "boundingBox": dish_bbox}
         results.append(dish)
     return results
+
+
+async def recommend_dishes(request) -> dict:
+    """Recommend dishes based on the dish names and the language of the dish names"""
+    input_data = {
+        "dish_names": ", ".join(request.dishes),
+        "mode": request.mode,
+        "additional_info": request.additional_info
+        or "No additional information provided.",
+        "language": request.language,
+    }
+
+    output = await recommendation_chain.ainvoke(input_data)
+    return output.content

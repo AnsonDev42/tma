@@ -4,11 +4,12 @@ import socket
 from supabase._async.client import AsyncClient, create_client
 
 from src.core.config import settings
-from src.services.utils import build_search_chain
+from src.services.utils import build_search_chain, build_recommendation_chain
 
 logger = logging.getLogger(__name__)
 
 chain = build_search_chain(model="gpt-4o-mini")
+recommendation_chain = build_recommendation_chain(model="gpt-4o-mini")
 
 supabase: AsyncClient = None  # This will be initialized during startup
 
