@@ -2,7 +2,10 @@ import { useLanguageContext } from "@/contexts/LanguageContext";
 import { SessionContext } from "@/contexts/SessionContext";
 import { useState } from "react";
 import { useContext } from "react";
-import { getAIRecommendations } from "./AIRecommendationsService";
+import {
+	AIRecommendationPayload,
+	getAIRecommendations,
+} from "./AIRecommendationsService";
 
 export const useAIRecommendations = () => {
 	const [isLoading, setIsLoading] = useState(false);
@@ -27,7 +30,7 @@ export const useAIRecommendations = () => {
 				dishes,
 				additional_info: additionalInfo,
 				language: selectedLanguage?.label || "en",
-			};
+			} as AIRecommendationPayload;
 
 			const jwt = `Bearer ${session.access_token}`;
 			const suggestion = await getAIRecommendations(payload, jwt);
