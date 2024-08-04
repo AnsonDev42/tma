@@ -17,6 +17,7 @@ class User(BaseModel):
     user_metadata: dict
     iat: int
     exp: int
+    sub: str
 
     @property
     def user_role(self):
