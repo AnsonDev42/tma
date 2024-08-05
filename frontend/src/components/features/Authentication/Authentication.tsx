@@ -142,8 +142,10 @@ export function Authentication() {
 						<h1 className="bold ml-1">
 							{session.user.email === "" ? "Demo User" : session.user.email}
 						</h1>
-						<h1 className="italic">( {role} user)</h1>
-						you can ask AI for {remainingAsk}/ {askDailyLimit} times today
+						<h1 className="italic">( {role} tier)</h1>
+						<h1>
+							ask AI for {remainingAsk}/ {askDailyLimit} times today
+						</h1>
 					</div>
 					<div>
 						<button
