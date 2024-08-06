@@ -2,6 +2,7 @@ import "./globals.css";
 import { Authentication } from "@/components/features/Authentication/Authentication.tsx";
 import Footer from "@/components/ui/Footer.tsx";
 import { SessionProvider } from "@/contexts/SessionContext";
+import { UserInfoProvider } from "@/contexts/UserInfoContext.tsx";
 import { HomePage } from "@/pages/HomePage.tsx";
 import { ProtectedRoute } from "@/routers/router.tsx";
 import {
@@ -17,20 +18,22 @@ function App() {
 		<div>
 			<Toaster position="top-center" richColors />
 			<SessionProvider>
-				<div data-theme="">
-					<Router>
-						<Routes>
-							<Route element={<ProtectedRoute />}>
-								<Route path="/home" element={<HomePage />} />
-								<Route path="*" element={<Navigate to="/home" />} />
-							</Route>
-							<Route path="/login" element={<Authentication />} />
-						</Routes>
-					</Router>
-					<div className="mt-4">
-						<Footer />
+				<UserInfoProvider>
+					<div data-theme="">
+						<Router>
+							<Routes>
+								<Route element={<ProtectedRoute />}>
+									<Route path="/home" element={<HomePage />} />
+									<Route path="*" element={<Navigate to="/home" />} />
+								</Route>
+								<Route path="/login" element={<Authentication />} />
+							</Routes>
+						</Router>
+						<div className="mt-4">
+							<Footer />
+						</div>
 					</div>
-				</div>
+				</UserInfoProvider>
 			</SessionProvider>
 		</div>
 	);
