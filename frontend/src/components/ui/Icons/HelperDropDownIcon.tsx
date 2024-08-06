@@ -1,4 +1,4 @@
-export function AISuggestionSettingIcon() {
+export function HelperDropDownIcon() {
 	return (
 		<svg
 			tabIndex={0}

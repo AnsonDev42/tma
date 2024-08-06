@@ -1,6 +1,5 @@
 import { LanguageComboBox } from "@/components/ui/LanguageComboBox.tsx";
 import { Button } from "@/components/ui/button.tsx";
-import { useUserInfo } from "@/contexts/UserInfoContext.tsx";
 import { Turnstile } from "@marsidev/react-turnstile";
 import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
@@ -9,6 +8,7 @@ import { createClient } from "@supabase/supabase-js";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import { UserInfoDropdown } from "./UserInfoDropdown.tsx";
 
 const supabase = createClient(
 	"https://scwodhehztemzcpsofzy.supabase.co",
@@ -19,7 +19,6 @@ export function Authentication() {
 	const [session, setSession] = useState<Session | null>(null);
 	const [captchaToken, setCaptchaToken] = useState<string>("");
 	const navigate = useNavigate();
-	const role = useUserInfo().userInfo?.role || "free";
 	useEffect(() => {
 		if (session) {
 			navigate("/home", { replace: true });
@@ -121,18 +120,18 @@ export function Authentication() {
 						<h1 className="bold ml-1">
 							{session.user.email === "" ? "Demo User " : session.user.email}
 						</h1>
-						<h1 className="italic"> ( {role} tier) </h1>
-					</div>
-					<div>
-						<button
-							className="btn btn-link"
-							onClick={async () => {
-								await supabase.auth.signOut();
-								toast.success("Signed out successfully!");
-							}}
-						>
-							Sign out
-						</button>
+						<UserInfoDropdown />
+						<div>
+							<button
+								className="btn btn-link"
+								onClick={async () => {
+									await supabase.auth.signOut();
+									toast.success("Signed out successfully!");
+								}}
+							>
+								Sign out
+							</button>
+						</div>
 					</div>
 				</div>
 				<div className=" max-w-xs ml-5 m-3">

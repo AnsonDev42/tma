@@ -1,5 +1,5 @@
 import { AIRecommendationChatBubble } from "@/components/features/AIRecommendations/AIRecommendationChatBubble.tsx";
-import { AISuggestionSettingIcon } from "@/components/ui/Icons/AISuggestionSettingIcon.tsx";
+import { HelperDropDownIcon } from "@/components/ui/Icons/HelperDropDownIcon.tsx";
 import { useUserInfo } from "@/contexts/UserInfoContext.tsx";
 import React, { useEffect, useState } from "react";
 import { useAIRecommendations } from "./useAIRecommendations";
@@ -62,7 +62,7 @@ export const AIRecommendationButton: React.FC<AIRecommendationButtonProps> = ({
 						role="button"
 						className="btn btn-circle btn-ghost btn-xs text-info"
 					>
-						<AISuggestionSettingIcon />
+						<HelperDropDownIcon />
 					</div>
 					<div
 						tabIndex={0}

@@ -3,7 +3,7 @@ import { createContext } from "react";
 import { ReactNode, useContext, useEffect, useState } from "react";
 import { useSession } from "./SessionContext";
 
-interface UserInfo {
+export interface UserInfo {
 	role: string;
 	daily_limit: number;
 	remaining_accesses: number;
