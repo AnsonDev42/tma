@@ -165,17 +165,13 @@ async function uploadMenuData(
 	selectedLanguage: Language | null,
 ): Promise<DishProps[]> {
 	try {
-		const response = await axios.post(
-			"https://api.itsya0wen.com/upload",
-			formData,
-			{
-				headers: {
-					"Content-Type": "multipart/form-data",
-					Authorization: jwt,
-					"Accept-Language": selectedLanguage?.value || "en",
-				},
+		const response = await axios.post(`${__API_URL__}/upload`, formData, {
+			headers: {
+				"Content-Type": "multipart/form-data",
+				Authorization: jwt,
+				"Accept-Language": selectedLanguage?.value || "en",
 			},
-		);
+		});
 
 		const formattedData = formatResponseData(response.data.results);
 		if (formattedData.length > 0) {

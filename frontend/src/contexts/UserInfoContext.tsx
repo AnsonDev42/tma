@@ -27,14 +27,9 @@ export const UserInfoProvider = ({ children }: { children: ReactNode }) => {
 		const fetchUserInfo = async () => {
 			if (session) {
 				try {
-					// "http://localhost:8000/user-info"
-					//"https://api.itsya0wen.com/user-info"
-					const response = await axios.get(
-						"https://api.itsya0wen.com/user-info",
-						{
-							headers: { Authorization: `Bearer ${session?.access_token}` },
-						},
-					);
+					const response = await axios.get(`${__API_URL__}/user-info`, {
+						headers: { Authorization: `Bearer ${session?.access_token}` },
+					});
 					setUserInfo(response.data);
 					// return response.data;
 				} catch (error) {
