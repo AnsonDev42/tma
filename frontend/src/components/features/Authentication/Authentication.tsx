@@ -1,11 +1,11 @@
 import { LanguageComboBox } from "@/components/ui/LanguageComboBox.tsx";
 import { Button } from "@/components/ui/button.tsx";
+import { useUserInfo } from "@/contexts/UserInfoContext.tsx";
 import { Turnstile } from "@marsidev/react-turnstile";
 import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
 import { Session } from "@supabase/gotrue-js/src/lib/types.ts";
 import { createClient } from "@supabase/supabase-js";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
@@ -19,13 +19,9 @@ export function Authentication() {
 	const [session, setSession] = useState<Session | null>(null);
 	const [captchaToken, setCaptchaToken] = useState<string>("");
 	const navigate = useNavigate();
-	const [role, setRole] = useState("free");
-	const [remainingAsk, setRemainingAsk] = useState(0);
-	const [askDailyLimit, setAskDailyLimit] = useState(0);
-
+	const role = useUserInfo().userInfo?.role || "free";
 	useEffect(() => {
 		if (session) {
-			getUserInfo();
 			navigate("/home", { replace: true });
 		}
 	}, [session, navigate]);
@@ -82,23 +78,6 @@ export function Authentication() {
 		}
 	}
 
-	async function getUserInfo() {
-		try {
-			// "http://localhost:8000/user-info"
-			const response = await axios.get("https://api.itsya0wen.com/user-info", {
-				headers: { Authorization: `Bearer ${session?.access_token}` },
-			});
-			const data = response.data;
-			setRole(data.role);
-			setRemainingAsk(data.remaining_accesses);
-			setAskDailyLimit(data.daily_limit);
-			return data.role;
-		} catch (error) {
-			console.error("Error fetching user info:", error);
-			return null;
-		}
-	}
-
 	if (!session) {
 		return (
 			<div className="flex items-center justify-center max-w-full mt-5">
@@ -140,12 +119,9 @@ export function Authentication() {
 					<div className="flex items-center">
 						<h1 className="italic">Welcome, </h1>
 						<h1 className="bold ml-1">
-							{session.user.email === "" ? "Demo User" : session.user.email}
+							{session.user.email === "" ? "Demo User " : session.user.email}
 						</h1>
-						<h1 className="italic">( {role} tier)</h1>
-						<h1>
-							ask AI for {remainingAsk}/ {askDailyLimit} times today
-						</h1>
+						<h1 className="italic"> ( {role} tier) </h1>
 					</div>
 					<div>
 						<button
