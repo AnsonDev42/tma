@@ -1,5 +1,6 @@
 import { AIRecommendationChatBubble } from "@/components/features/AIRecommendations/AIRecommendationChatBubble.tsx";
 import { AISuggestionSettingIcon } from "@/components/ui/Icons/AISuggestionSettingIcon.tsx";
+import { useUserInfo } from "@/contexts/UserInfoContext.tsx";
 import React, { useState } from "react";
 import { useAIRecommendations } from "./useAIRecommendations";
 
@@ -15,6 +16,7 @@ export const AIRecommendationButton: React.FC<AIRecommendationButtonProps> = ({
 	const [recommendation, setRecommendation] = useState<string | null>(null);
 	const [numberOfPeople, setNumberOfPeople] = useState<string>("1");
 	const [additionalInfo, setAdditionalInfo] = useState<string>("");
+	const { userInfo } = useUserInfo();
 
 	const handleClick = async () => {
 		setRecommendation(null);
@@ -31,6 +33,11 @@ export const AIRecommendationButton: React.FC<AIRecommendationButtonProps> = ({
 		<div className="flex flex-col items-start gap-4 w-full max-w-md z-50 ">
 			<div className="flex flex-row items-start gap-4 w-full max-w-md z-50 ">
 				<div className="flex items-center gap-4">
+					<div className="text-lg">AI Recommendation</div>
+					<h1>
+						You are on {userInfo && userInfo.role} plan, You have remaining asks{" "}
+						{userInfo?.remaining_accesses}/{userInfo?.daily_limit}{" "}
+					</h1>
 					<button
 						className="btn btn-primary"
 						onClick={handleClick}
@@ -42,7 +49,6 @@ export const AIRecommendationButton: React.FC<AIRecommendationButtonProps> = ({
 						<span className="loading loading-dots loading-lg"></span>
 					)}
 				</div>
-
 				<div className="dropdown dropdown-end">
 					<div
 						tabIndex={0}
