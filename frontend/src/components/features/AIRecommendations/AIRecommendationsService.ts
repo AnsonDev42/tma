@@ -12,8 +12,8 @@ export const getAIRecommendations = async (
 ): Promise<string> => {
 	try {
 		const response = await axios.post(
-			"https://api.itsya0wen.com/ai-suggestions",
-			// "http://localhost:8000/ai-suggestions",
+			`${__API_URL__}/ai-suggestions`,
+
 			payload,
 			{
 				headers: {
