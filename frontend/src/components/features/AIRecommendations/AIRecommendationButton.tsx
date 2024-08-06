@@ -41,10 +41,9 @@ export const AIRecommendationButton: React.FC<AIRecommendationButtonProps> = ({
 		<div className="flex flex-col items-start gap-4 w-full max-w-md z-50 ">
 			<div className="flex flex-row items-start gap-4 w-full max-w-md z-50 ">
 				<div className="flex items-center gap-4">
-					<div className="text-lg">AI Recommendation</div>
 					<h1>
-						You are on {userInfo && userInfo.role} plan, You have remaining asks{" "}
-						{remainingAccesses}/{userInfo?.daily_limit}{" "}
+						You are on {userInfo && userInfo.role} plan ( remaining asks{" "}
+						{remainingAccesses}/{userInfo?.daily_limit} )
 					</h1>
 					<button
 						className="btn btn-primary"
