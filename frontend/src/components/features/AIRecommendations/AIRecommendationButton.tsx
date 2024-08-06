@@ -1,7 +1,7 @@
 import { AIRecommendationChatBubble } from "@/components/features/AIRecommendations/AIRecommendationChatBubble.tsx";
 import { AISuggestionSettingIcon } from "@/components/ui/Icons/AISuggestionSettingIcon.tsx";
 import { useUserInfo } from "@/contexts/UserInfoContext.tsx";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAIRecommendations } from "./useAIRecommendations";
 
 interface AIRecommendationButtonProps {
@@ -17,7 +17,14 @@ export const AIRecommendationButton: React.FC<AIRecommendationButtonProps> = ({
 	const [numberOfPeople, setNumberOfPeople] = useState<string>("1");
 	const [additionalInfo, setAdditionalInfo] = useState<string>("");
 	const { userInfo } = useUserInfo();
-
+	const [remainingAccesses, setRemainingAccesses] = useState<number>(
+		userInfo?.remaining_accesses || 0,
+	);
+	useEffect(() => {
+		if (userInfo) {
+			setRemainingAccesses(userInfo.remaining_accesses);
+		}
+	}, [userInfo]);
 	const handleClick = async () => {
 		setRecommendation(null);
 		const result = await askAIRecommendation(
@@ -26,6 +33,7 @@ export const AIRecommendationButton: React.FC<AIRecommendationButtonProps> = ({
 		);
 		if (result) {
 			setRecommendation(result);
+			setRemainingAccesses(remainingAccesses - 1);
 		}
 	};
 
@@ -36,12 +44,12 @@ export const AIRecommendationButton: React.FC<AIRecommendationButtonProps> = ({
 					<div className="text-lg">AI Recommendation</div>
 					<h1>
 						You are on {userInfo && userInfo.role} plan, You have remaining asks{" "}
-						{userInfo?.remaining_accesses}/{userInfo?.daily_limit}{" "}
+						{remainingAccesses}/{userInfo?.daily_limit}{" "}
 					</h1>
 					<button
 						className="btn btn-primary"
 						onClick={handleClick}
-						disabled={isLoading}
+						disabled={isLoading || remainingAccesses <= 0}
 					>
 						Get AI Recommendation
 					</button>
