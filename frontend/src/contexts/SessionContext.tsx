@@ -1,7 +1,7 @@
 import { AuthChangeEvent } from "@supabase/gotrue-js";
 import { Session } from "@supabase/gotrue-js/src/lib/types.ts";
 import { createClient } from "@supabase/supabase-js";
-import { ReactNode, createContext, useEffect, useState } from "react";
+import React, { ReactNode, createContext, useEffect, useState } from "react";
 
 const supabase = createClient(
 	"https://scwodhehztemzcpsofzy.supabase.co",
@@ -45,4 +45,12 @@ export const SessionProvider = ({ children }: { children: ReactNode }) => {
 			{children}
 		</SessionContext.Provider>
 	);
+};
+
+export const useSession = () => {
+	const context = React.useContext(SessionContext);
+	if (context === undefined) {
+		throw new Error("useSession must be used within a SessionProvider");
+	}
+	return context;
 };
