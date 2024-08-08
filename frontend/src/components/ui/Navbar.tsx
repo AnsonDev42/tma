@@ -2,7 +2,7 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle.tsx";
 import { useSession } from "@/contexts/SessionContext";
 import { useUserInfo } from "@/contexts/UserInfoContext.tsx";
 import supabase from "@/lib/supabaseClient";
-import React from "react";
+import React, { useEffect } from "react";
 import { toast } from "sonner";
 
 export function Navbar(): React.ReactElement {
@@ -13,6 +13,22 @@ export function Navbar(): React.ReactElement {
 		setSession(null); // Update the session context
 		toast.success("Signed out successfully!");
 	};
+
+	useEffect(() => {
+		const {
+			data: { subscription },
+			// 	workaround for build error
+			// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+		} = supabase.auth.onAuthStateChange((event: any, session: any) => {
+			setSession(session);
+			if (event === "SIGNED_OUT") {
+				toast.success("Signed out successfully!");
+			}
+		});
+
+		return () => subscription.unsubscribe();
+	}, []);
+
 	const name =
 		session?.user?.user_metadata?.full_name ||
 		session?.user?.email ||
