@@ -1,8 +1,8 @@
 import { AIRecommendationButton } from "@/components/features/AIRecommendations/AIRecommendationButton.tsx";
 import { Authentication } from "@/components/features/Authentication/Authentication.tsx";
+import { BBoxTextToggle } from "@/components/features/Menu/BBoxTextToggle.tsx";
 import ImageCarousel from "@/components/features/Menu/ImageCarousel.tsx";
 import UploadForm from "@/components/features/Menu/UploadForm.tsx";
-import { MenuToggle } from "@/components/features/Menu/MenuToggle.tsx";
 import { Navbar } from "@/components/ui/Navbar.tsx";
 import Sidebar from "@/components/ui/Sidebar.tsx";
 import { useMenuState } from "@/utils/hooks/useMenuState.ts";
@@ -14,7 +14,7 @@ export function HomePage() {
 		data,
 		imgTimestamp,
 		handleToggleTextState,
-		handleSelectUpload
+		handleSelectUpload,
 	} = useMenuState();
 
 	const imageResultsRef = useRef<HTMLDivElement | null>(null);
@@ -46,8 +46,10 @@ export function HomePage() {
 					</div>
 					<div className="divider divider-neutral" ref={imageResultsRef}></div>
 					<div className="mt-4">
-						<div>{imgTimestamp}</div>
-						<MenuToggle showTextState={showTextState} onToggle={handleToggleTextState} />
+						<BBoxTextToggle
+							showTextState={showTextState}
+							onToggle={handleToggleTextState}
+						/>
 					</div>
 					<ImageCarousel
 						showTextState={showTextState}
@@ -57,7 +59,11 @@ export function HomePage() {
 				</div>
 			</div>
 			<div className="drawer-side">
-				<label htmlFor="my-drawer-3" aria-label="close sidebar" className="drawer-overlay"></label>
+				<label
+					htmlFor="my-drawer-3"
+					aria-label="close sidebar"
+					className="drawer-overlay"
+				></label>
 				<Sidebar onSelectUpload={handleSelectUpload} />
 			</div>
 		</div>
