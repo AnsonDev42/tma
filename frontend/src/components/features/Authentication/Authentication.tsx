@@ -1,14 +1,10 @@
-import { LanguageComboBox } from "@/components/ui/LanguageComboBox.tsx";
-import { Button } from "@/components/ui/button.tsx";
-import { Turnstile } from "@marsidev/react-turnstile";
-import { Auth } from "@supabase/auth-ui-react";
-import { ThemeSupa } from "@supabase/auth-ui-shared";
 import { Session } from "@supabase/gotrue-js/src/lib/types.ts";
 import { createClient } from "@supabase/supabase-js";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
-import { UserInfoDropdown } from "./UserInfoDropdown.tsx";
+import { LoginForm } from "./LoginForm.tsx";
+import { UserWelcomeBanner } from "./UserWelcomeBanner.tsx";
 
 const supabase = createClient(
 	"https://scwodhehztemzcpsofzy.supabase.co",
@@ -17,13 +13,7 @@ const supabase = createClient(
 
 export function Authentication() {
 	const [session, setSession] = useState<Session | null>(null);
-	const [captchaToken, setCaptchaToken] = useState<string>("");
 	const navigate = useNavigate();
-	useEffect(() => {
-		if (session) {
-			navigate("/home", { replace: true });
-		}
-	}, [session, navigate]);
 
 	useEffect(() => {
 		const {
@@ -58,86 +48,10 @@ export function Authentication() {
 			}
 		});
 	}, []);
-	async function handleAnonymousSignIn() {
-		try {
-			const {
-				data: { session },
-				error,
-			} = await supabase.auth.signInAnonymously({ options: { captchaToken } });
-			if (error) {
-				throw error;
-			}
-			toast.success("Signed in anonymously!");
-			setSession(session);
-			navigate("/home", { replace: true });
-		} catch (_error) {
-			console.error("Error signing in anonymously.");
-			alert("Failed to sign in anonymously.");
-			toast.error("Failed to sign in anonymously.");
-		}
-	}
 
 	if (!session) {
-		return (
-			<div className="flex items-center justify-center max-w-full mt-5">
-				<div className="flex-col items-center justify-center">
-					<Auth
-						supabaseClient={supabase}
-						appearance={{
-							theme: ThemeSupa,
-							variables: {
-								default: {
-									colors: {
-										brand: "green",
-										brandAccent: "darkgreen",
-									},
-								},
-							},
-						}}
-						providers={["google", "github"]}
-					/>
-					<h1>
-						<b>***Demo Sign in*** : </b>
-					</h1>
-					<Button onClick={handleAnonymousSignIn} className="m-3">
-						Sign in anonymously
-					</Button>
-					<Turnstile
-						siteKey="0x4AAAAAAAaDaYB6f6UNZHsB"
-						onSuccess={(token) => {
-							setCaptchaToken(token);
-						}}
-					/>
-				</div>
-			</div>
-		);
+		return <LoginForm supabase={supabase} setSession={setSession} />;
 	} else {
-		return (
-			<>
-				<div className="flex justify-between items-center gap-2 m-3">
-					<div className="flex items-center">
-						<h1 className="italic">Welcome, </h1>
-						<h1 className="bold ml-1">
-							{session.user.email === "" ? "Demo User " : session.user.email}
-						</h1>
-						<UserInfoDropdown />
-						<div>
-							<button
-								className="btn btn-link"
-								onClick={async () => {
-									await supabase.auth.signOut();
-									toast.success("Signed out successfully!");
-								}}
-							>
-								Sign out
-							</button>
-						</div>
-					</div>
-				</div>
-				<div className=" max-w-xs ml-5 m-3">
-					<LanguageComboBox />
-				</div>
-			</>
-		);
+		return <UserWelcomeBanner session={session} supabase={supabase} />;
 	}
 }
