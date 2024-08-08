@@ -1,6 +1,10 @@
 import { ThemeToggle } from "@/components/ui/ThemeToggle.tsx";
+import { useSession } from "@/contexts/SessionContext";
+import { supabase } from "@supabase/auth-ui-shared";
 import React from "react";
+import { toast } from "sonner";
 export function Navbar(): React.ReactElement {
+	const session = useSession()?.session;
 	return (
 		<div>
 			<div className="w-full navbar bg-base-300 text-base-content">
@@ -28,8 +32,48 @@ export function Navbar(): React.ReactElement {
 				<a className="btn btn-ghost text-xl">The Menu App</a>
 				<div className="flex-none hidden lg:block"></div>
 				{/* more navi bar content here */}
-				<div className="navbar-end mr-10 ">
+				<div className="navbar-end md-5">
 					<ThemeToggle />
+					<div className="dropdown dropdown-end">
+						<div
+							tabIndex={0}
+							role="button"
+							className="btn btn-ghost btn-circle avatar"
+						>
+							<div className="avatar placeholder">
+								<div className="bg-neutral text-neutral-content w-12 rounded-full">
+									<span>
+										{session?.user.user_metadata?.full_name || "Demo"}
+									</span>
+								</div>
+							</div>
+						</div>
+						<ul
+							tabIndex={0}
+							className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+						>
+							<li>
+								<a className="justify-between">
+									Profile
+									<span className="badge">New</span>
+								</a>
+							</li>
+							<li>
+								<a>Settings</a>
+							</li>
+							<li>
+								<a
+									className=""
+									onClick={async () => {
+										await supabase.auth.signOut();
+										toast.success("Signed out successfully!");
+									}}
+								>
+									Sign out
+								</a>
+							</li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>
