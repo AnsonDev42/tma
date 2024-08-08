@@ -37,8 +37,8 @@ export const AIRecommendationButton: React.FC<AIRecommendationButtonProps> = ({
 	};
 
 	return (
-		<div className="flex flex-col items-start gap-4 w-full max-w-md z-50 ">
-			<div className="flex flex-row items-start gap-4 w-full max-w-md z-50 ">
+		<div className="flex flex-col items-start gap-4 w-full max-w-md">
+			<div className="flex flex-row items-start gap-4 w-full max-w-md">
 				<div className="flex items-center gap-4">
 					<h1>
 						You are on {userInfo && userInfo.role} plan ( remaining asks{" "}
