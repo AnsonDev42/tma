@@ -6,7 +6,6 @@ import { useAIRecommendations } from "./useAIRecommendations";
 
 interface AIRecommendationButtonProps {
 	dishes: string[];
-	onRecommendation: (recommendation: string) => void;
 }
 
 export const AIRecommendationButton: React.FC<AIRecommendationButtonProps> = ({

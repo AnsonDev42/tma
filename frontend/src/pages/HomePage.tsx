@@ -19,9 +19,6 @@ export function HomePage() {
 
 	const imageResultsRef = useRef<HTMLDivElement | null>(null);
 
-	const handleRecommendation = (recommendation: string) => {
-		alert(recommendation);
-	};
 
 	return (
 		<div className="drawer lg:drawer-open">
@@ -41,7 +38,6 @@ export function HomePage() {
 					<div className="mb-4 w-full max-w-md">
 						<AIRecommendationButton
 							dishes={data.map((dish) => dish.info.text)}
-							onRecommendation={handleRecommendation}
 						/>
 					</div>
 					<div className="divider divider-neutral" ref={imageResultsRef}></div>
