@@ -1,20 +1,14 @@
+import supabase from "@/lib/supabaseClient";
 import { Session } from "@supabase/gotrue-js/src/lib/types.ts";
-import { createClient } from "@supabase/supabase-js";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { LoginForm } from "./LoginForm.tsx";
 import { UserWelcomeBanner } from "./UserWelcomeBanner.tsx";
 
-const supabase = createClient(
-	"https://scwodhehztemzcpsofzy.supabase.co",
-	"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNjd29kaGVoenRlbXpjcHNvZnp5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTUxMjA3MTksImV4cCI6MjAzMDY5NjcxOX0.j4O3aKoITFoJi36sQiPoh5PUWSDwwDDh02hhmMRF8HY",
-);
-
 export function Authentication() {
 	const [session, setSession] = useState<Session | null>(null);
 	const navigate = useNavigate();
-
 	useEffect(() => {
 		const {
 			data: { subscription },
@@ -52,6 +46,6 @@ export function Authentication() {
 	if (!session) {
 		return <LoginForm supabase={supabase} setSession={setSession} />;
 	} else {
-		return <UserWelcomeBanner session={session} supabase={supabase} />;
+		return <UserWelcomeBanner session={session} />;
 	}
 }

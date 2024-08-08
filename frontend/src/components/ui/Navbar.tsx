@@ -1,10 +1,18 @@
 import { ThemeToggle } from "@/components/ui/ThemeToggle.tsx";
 import { useSession } from "@/contexts/SessionContext";
-import { supabase } from "@supabase/auth-ui-shared";
 import React from "react";
 import { toast } from "sonner";
+import supabase from "@/lib/supabaseClient";
+
 export function Navbar(): React.ReactElement {
 	const session = useSession()?.session;
+	const setSession = useSession()?.setSession;
+	const handleSignOut = async () => {
+		await supabase.auth.signOut();
+		setSession(null); // Update the session context
+		toast.success("Signed out successfully!");
+	};
+
 	return (
 		<div>
 			<div className="w-full navbar bg-base-300 text-base-content">
@@ -63,11 +71,7 @@ export function Navbar(): React.ReactElement {
 							</li>
 							<li>
 								<a
-									className=""
-									onClick={async () => {
-										await supabase.auth.signOut();
-										toast.success("Signed out successfully!");
-									}}
+									onClick={handleSignOut}
 								>
 									Sign out
 								</a>
