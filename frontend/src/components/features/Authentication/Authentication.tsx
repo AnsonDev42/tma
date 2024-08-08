@@ -1,20 +1,14 @@
+import supabase from "@/lib/supabaseClient";
 import { Session } from "@supabase/gotrue-js/src/lib/types.ts";
-import { createClient } from "@supabase/supabase-js";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { LoginForm } from "./LoginForm.tsx";
 import { UserWelcomeBanner } from "./UserWelcomeBanner.tsx";
 
-const supabase = createClient(
-	"https://scwodhehztemzcpsofzy.supabase.co",
-	"REMOVED",
-);
-
 export function Authentication() {
 	const [session, setSession] = useState<Session | null>(null);
 	const navigate = useNavigate();
-
 	useEffect(() => {
 		const {
 			data: { subscription },
@@ -52,6 +46,6 @@ export function Authentication() {
 	if (!session) {
 		return <LoginForm supabase={supabase} setSession={setSession} />;
 	} else {
-		return <UserWelcomeBanner session={session} supabase={supabase} />;
+		return <UserWelcomeBanner session={session} />;
 	}
 }
