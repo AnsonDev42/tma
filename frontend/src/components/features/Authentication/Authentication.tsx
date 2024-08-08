@@ -46,6 +46,6 @@ export function Authentication() {
 	if (!session) {
 		return <LoginForm supabase={supabase} setSession={setSession} />;
 	} else {
-		return <UserWelcomeBanner session={session} />;
+		return <UserWelcomeBanner />;
 	}
 }

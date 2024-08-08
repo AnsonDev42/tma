@@ -69,6 +69,9 @@ export const AIRecommendationButton: React.FC<AIRecommendationButtonProps> = ({
 					>
 						<div tabIndex={0} className="card-body">
 							<h2 className="card-title">Customize Recommendation</h2>
+							<div className="label ">
+								<span className="label-text">No. people for suggestions </span>
+							</div>
 							<select
 								className="select select-warning w-full"
 								value={numberOfPeople}
@@ -82,7 +85,7 @@ export const AIRecommendationButton: React.FC<AIRecommendationButtonProps> = ({
 								))}
 							</select>
 							<label className="form-control w-full">
-								<div className="label bg-info-content">
+								<div className="label ">
 									<span className="label-text">Additional Requirements</span>
 								</div>
 								<textarea
