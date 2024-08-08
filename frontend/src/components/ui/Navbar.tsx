@@ -1,8 +1,9 @@
 import { ThemeToggle } from "@/components/ui/ThemeToggle.tsx";
 import { useSession } from "@/contexts/SessionContext";
+import { useUserInfo } from "@/contexts/UserInfoContext.tsx";
+import supabase from "@/lib/supabaseClient";
 import React from "react";
 import { toast } from "sonner";
-import supabase from "@/lib/supabaseClient";
 
 export function Navbar(): React.ReactElement {
 	const session = useSession()?.session;
@@ -12,7 +13,12 @@ export function Navbar(): React.ReactElement {
 		setSession(null); // Update the session context
 		toast.success("Signed out successfully!");
 	};
+	const name =
+		session?.user?.user_metadata?.full_name ||
+		session?.user?.email ||
+		"Anonymous User";
 
+	const userRole = useUserInfo()?.userInfo?.role || "Free";
 	return (
 		<div>
 			<div className="w-full navbar bg-base-300 text-base-content">
@@ -51,7 +57,7 @@ export function Navbar(): React.ReactElement {
 							<div className="avatar placeholder">
 								<div className="bg-neutral text-neutral-content w-12 rounded-full">
 									<span>
-										{session?.user.user_metadata?.full_name || "Demo"}
+										{session?.user.user_metadata?.full_name || "Demo User"}
 									</span>
 								</div>
 							</div>
@@ -62,19 +68,15 @@ export function Navbar(): React.ReactElement {
 						>
 							<li>
 								<a className="justify-between">
-									Profile
-									<span className="badge">New</span>
+									<span>{name}</span>
+									<span className="badge">{userRole}</span>
 								</a>
 							</li>
 							<li>
 								<a>Settings</a>
 							</li>
 							<li>
-								<a
-									onClick={handleSignOut}
-								>
-									Sign out
-								</a>
+								<a onClick={handleSignOut}>Sign out</a>
 							</li>
 						</ul>
 					</div>
