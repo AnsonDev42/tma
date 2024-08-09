@@ -25,9 +25,9 @@ jobs:
         docker build -t tmmanson/tma-backend:latest ./backend/.
         docker push tmmanson/tma-backend:latest
 
- - name: Trigger webhook
+    - name: Trigger webhook
       run: |
         curl -X POST https://hook.itsya0wen.com/hooks/update-tma-backend \
-        -H "Content-Type: application/json" \
-        -H "x-header-v: ${{ secrets.HEADER_KEY }}" \
-        -d '{"action":"push"}'
+          -H "Content-Type: application/json" \
+          -H "x-header-v: ${{ secrets.HEADER_KEY }}" \
+          -d '{"action":"push"}'
