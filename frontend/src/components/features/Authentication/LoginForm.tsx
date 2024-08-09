@@ -1,21 +1,17 @@
 import { Button } from "@/components/ui/button";
+import { useSession } from "@/contexts/SessionContext.tsx";
+import supabase from "@/lib/supabaseClient.ts";
 import { Turnstile } from "@marsidev/react-turnstile";
 import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
-import { Session } from "@supabase/gotrue-js/src/lib/types";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
-interface LoginFormProps {
-	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-	supabase: any;
-	setSession: (session: Session | null) => void;
-}
-
-export function LoginForm({ supabase, setSession }: LoginFormProps) {
+export function LoginForm() {
 	const [captchaToken, setCaptchaToken] = useState<string>("");
 	const navigate = useNavigate();
+	const setSession = useSession()?.setSession;
 
 	async function handleAnonymousSignIn() {
 		try {
