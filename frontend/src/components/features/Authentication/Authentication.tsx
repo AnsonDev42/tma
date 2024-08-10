@@ -10,6 +10,8 @@ export function Authentication() {
 	const [session, setSession] = useState<Session | null>(null);
 	const navigate = useNavigate();
 	const loginFormRef = useRef<HTMLDivElement>(null);
+	const [isLoading, setIsLoading] = useState(true);
+
 	useEffect(() => {
 		const {
 			data: { subscription },
@@ -17,9 +19,18 @@ export function Authentication() {
 			// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 		} = supabase.auth.onAuthStateChange((event: any, session: any) => {
 			setSession(session);
+			setIsLoading(false);
 			if (event === "SIGNED_IN") {
 				navigate("/home", { replace: true });
 			}
+		});
+
+		// Initial session check
+		// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+		// @ts-ignore
+		supabase.auth.getSession().then(({ data: { session } }) => {
+			setSession(session);
+			setIsLoading(false);
 		});
 
 		return () => subscription.unsubscribe();
@@ -48,6 +59,9 @@ export function Authentication() {
 	const handleGetStarted = () => {
 		loginFormRef.current?.scrollIntoView({ behavior: "smooth" });
 	};
+	if (isLoading) {
+		return <div>Loading...</div>; // Or a loading spinner component
+	}
 
 	if (session) {
 		return <UserWelcomeBanner />;
