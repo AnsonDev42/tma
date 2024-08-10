@@ -47,12 +47,16 @@ export function Navbar(): React.ReactElement {
 						aria-label="open sidebar"
 						className="btn btn-square btn-ghost"
 					>
-						<div className="indicator">
-							<span className="indicator-item badge badge-primary">
-								{dishes.length}
-							</span>
-							<SandwichIcon />
-						</div>
+						{
+							<div className="indicator">
+								{dishes.length > 0 && (
+									<span className="indicator-item badge badge-primary">
+										{dishes.length}
+									</span>
+								)}
+								<SandwichIcon />
+							</div>
+						}
 					</label>
 				</div>
 				<a className="btn btn-ghost text-xl">The Menu App</a>
