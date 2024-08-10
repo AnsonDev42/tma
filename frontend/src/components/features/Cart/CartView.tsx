@@ -1,12 +1,14 @@
 import { useCart } from "@/utils/hooks/useCart.ts";
 import React from "react";
-
+import { GlobalDishCard } from "@/components/features/Dish/GlobalDishCard";
+import { ShowTextState } from "@/components/features/Menu/Menu";
 const CartView: React.FC = () => {
 	const { cart, dishes, deleteCurrentCart, removeDish } = useCart("My Cart");
 
 	if (!cart) {
-		return <div>No cart found</div>;
+		return <div>No cart found. Add any dish in dish card to get started!</div>;
 	}
+
 
 	return (
 		<div>
@@ -26,12 +28,7 @@ const CartView: React.FC = () => {
 						className="items-start justify-between m-0.5 grid grid-flow-col text-wrap break-words"
 					>
 						<div>
-							<h1 className="text-xl font-semibold accent-content">
-								{dish.dish?.info?.textTranslation}
-							</h1>
-							<p className="text-base-content italic">
-								{dish.dish?.info?.text}
-							</p>
+							<GlobalDishCard dish={dish.dish} timeStamp={dish.timestamp} showTextState={ShowTextState.SHOW_BOTH} isCartView={1} />
 						</div>
 						<button
 							onClick={() => removeDish(dish.dish.id, dish.timestamp)}
