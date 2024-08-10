@@ -89,7 +89,7 @@ function DishContent({
 					/>
 				</label>
 			</div>
-			<p className="text-neutral-content mb-4">{dish.info.description}</p>
+			<p className="text-base-content mb-4">{dish.info.description}</p>
 			<SearchButtons dishName={dish.info.text} />
 		</div>
 	);
