@@ -74,10 +74,12 @@ function DishContent({
 }) {
 	return (
 		<div className="card-body flex-1 overflow-y-auto">
-			<h2 className="card-title text-2xl font-bold">
+			<div className="card-title text-2xl font-bold text-wrap">
 				{dish.info.textTranslation}
-			</h2>
-			<p className="text-gray-500 mb-2 italic">{dish.info.text}</p>
+			</div>
+			<div className="text-gray-500 mb-2 italic text-xl text-wrap">
+				{dish.info.text}
+			</div>
 			<div className="form-control">
 				<label className="cursor-pointer label">
 					<span className="label-text">Add to Cart</span>
@@ -89,7 +91,9 @@ function DishContent({
 					/>
 				</label>
 			</div>
-			<p className="text-base-content mb-4">{dish.info.description}</p>
+			<div className="text-base-content text-base text-wrap ">
+				{dish.info.description}
+			</div>
 			<SearchButtons dishName={dish.info.text} />
 		</div>
 	);
