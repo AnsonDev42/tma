@@ -1,3 +1,4 @@
+import LandingPageHero from "@/components/ui/LandingPageHero";
 import supabase from "@/lib/supabaseClient.ts";
 import { Session } from "inspector";
 import { useEffect, useRef, useState } from "react";
@@ -48,30 +49,13 @@ export function Authentication() {
 		loginFormRef.current?.scrollIntoView({ behavior: "smooth" });
 	};
 
+	if (session) {
+		return <UserWelcomeBanner />;
+	}
 	return (
 		<div>
-			<div className="hero bg-base-200 min-h-screen">
-				<div className="hero-content flex-col lg:flex-row-reverse">
-					<img
-						src="/tma-icon.jpeg"
-						className="max-w-sm rounded-lg shadow-2xl"
-						alt="Hero image"
-					/>
-					<div>
-						<h1 className="text-5xl font-bold">Welcome to The Menu App!</h1>
-						<p className="py-6">
-							Discover and explore menus from various restaurants. Get
-							AI-powered recommendations and manage your favorite dishes.
-						</p>
-						<button className="btn btn-primary" onClick={handleGetStarted}>
-							Get Started
-						</button>
-					</div>
-				</div>
-			</div>
-			<div ref={loginFormRef}>
-				{!session ? <LoginForm /> : <UserWelcomeBanner />}
-			</div>
+			<LandingPageHero handleGetStarted={handleGetStarted} />
+			<div ref={loginFormRef}>{<LoginForm />}</div>
 		</div>
 	);
 }
