@@ -29,7 +29,7 @@ const CartView: React.FC = () => {
 							<h1 className="text-xl font-semibold accent-content">
 								{dish.dish?.info?.textTranslation}
 							</h1>
-							<p className="text-neutral-content italic">
+							<p className="text-base-content italic">
 								{dish.dish?.info?.text}
 							</p>
 						</div>
