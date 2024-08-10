@@ -1,8 +1,8 @@
-import DishImageCard from "@/components/features/Dish/DishImageCard";
 import { BoundingBoxProps, DishProps } from "@/types/DishProps";
 import { UploadProps } from "@/types/UploadProps";
 import React, { useState, useRef, useEffect } from "react";
-import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
+import { GlobalDishCard } from "../Dish/GlobalDishCard";
 
 export const ShowTextState = {
 	HIDE_ALL: 0,
@@ -17,7 +17,7 @@ interface MenuProps {
 
 export function Menu({ upload, showTextState }: MenuProps): React.ReactElement {
 	const [imgDimensions, setImgDimensions] = useState({ width: 0, height: 0 });
-	const [openModalIndex, setOpenModalIndex] = useState<number | null>(null);
+	const [openModalIndex] = useState<number | null>(null);
 	const imageRef = useRef<HTMLImageElement>(null);
 	const containerRef = useRef<HTMLDivElement>(null);
 
@@ -30,8 +30,8 @@ export function Menu({ upload, showTextState }: MenuProps): React.ReactElement {
 
 	useEffect(() => {
 		updateImageDimensions();
-		window.addEventListener('resize', updateImageDimensions);
-		return () => window.removeEventListener('resize', updateImageDimensions);
+		window.addEventListener("resize", updateImageDimensions);
+		return () => window.removeEventListener("resize", updateImageDimensions);
 	}, [upload.imageSrc]);
 
 	// Use ResizeObserver to detect changes in the container size
@@ -52,7 +52,10 @@ export function Menu({ upload, showTextState }: MenuProps): React.ReactElement {
 				disabled={openModalIndex !== null}
 			>
 				<TransformComponent>
-					<div ref={containerRef} className="relative max-w-full max-h-screen flex items-start">
+					<div
+						ref={containerRef}
+						className="relative max-w-full max-h-screen flex items-start"
+					>
 						<img
 							src={upload.imageSrc as string}
 							alt="Uploaded"
@@ -66,11 +69,8 @@ export function Menu({ upload, showTextState }: MenuProps): React.ReactElement {
 									<DishOverlay
 										key={index}
 										dish={dish}
-										index={index}
 										showTextState={showTextState}
 										imgDimensions={imgDimensions}
-										openModalIndex={openModalIndex}
-										setOpenModalIndex={setOpenModalIndex}
 										uploadTimestamp={upload.timestamp}
 									/>
 								))}
@@ -85,51 +85,42 @@ export function Menu({ upload, showTextState }: MenuProps): React.ReactElement {
 
 interface DishOverlayProps {
 	dish: DishProps;
-	index: number;
 	showTextState: number;
 	imgDimensions: { width: number; height: number };
-	openModalIndex: number | null;
-	setOpenModalIndex: React.Dispatch<React.SetStateAction<number | null>>;
 	uploadTimestamp: string;
 }
 
 function DishOverlay({
 	dish,
-	index,
 	showTextState,
 	imgDimensions,
-	openModalIndex,
-	setOpenModalIndex,
 	uploadTimestamp,
 }: DishOverlayProps) {
-	const handleOpenModal = () => setOpenModalIndex(index);
-
 	const overlayStyle = getOverlayStyle(dish.boundingBox, imgDimensions);
 	const textStyle = getTextStyle(dish.boundingBox, imgDimensions);
 
 	return (
 		<>
 			{showTextState !== ShowTextState.HIDE_ALL && (
-				<div className="absolute" style={overlayStyle} onClick={handleOpenModal}>
+				<div className="absolute" style={overlayStyle}>
 					<div style={textStyle}>
-						{showTextState === ShowTextState.SHOW_ONLY_TRANSLATION
-							? dish.info.textTranslation
-							: `${dish.info.textTranslation}/${dish.info.text}`}
+						<GlobalDishCard
+							dish={dish}
+							timeStamp={uploadTimestamp}
+							showTextState={showTextState}
+							isCartView={0}
+						/>
 					</div>
 				</div>
 			)}
-			<DishImageCard
-				dish={dish}
-				openModalIndex={openModalIndex}
-				setOpenModalIndex={setOpenModalIndex}
-				index={index}
-				timeStamp={uploadTimestamp}
-			/>
 		</>
 	);
 }
 
-function getOverlayStyle(boundingBox: BoundingBoxProps, imgDimensions: { width: number; height: number }) {
+function getOverlayStyle(
+	boundingBox: BoundingBoxProps,
+	imgDimensions: { width: number; height: number },
+) {
 	return {
 		width: `${boundingBox.w * imgDimensions.width}px`,
 		height: `${boundingBox.h * imgDimensions.height}px`,
@@ -140,10 +131,16 @@ function getOverlayStyle(boundingBox: BoundingBoxProps, imgDimensions: { width: 
 	};
 }
 
-function getTextStyle(boundingBox: BoundingBoxProps, imgDimensions: { width: number; height: number }) {
+function getTextStyle(
+	boundingBox: BoundingBoxProps,
+	imgDimensions: { width: number; height: number },
+) {
 	const fontSize = Math.max(
-		Math.min(boundingBox.w * imgDimensions.width, boundingBox.h * imgDimensions.height) * 0.4,
-		7
+		Math.min(
+			boundingBox.w * imgDimensions.width,
+			boundingBox.h * imgDimensions.height,
+		) * 0.4,
+		7,
 	);
 
 	return {
