@@ -4,11 +4,11 @@ import { useCart } from "@/utils/hooks/useCart.ts";
 import React from "react";
 const CartView: React.FC = () => {
 	const { cart, dishes, deleteCurrentCart, removeDish } = useCart("My Cart");
+	const [_openModal, setOpenModal] = React.useState<boolean>(false);
 
 	if (!cart) {
 		return <div>No cart found. Add any dish in dish card to get started!</div>;
 	}
-	const [_openModal, setOpenModal] = React.useState<boolean>(false);
 	return (
 		<div>
 			<div className="items-start justify-between m-0.5 grid grid-flow-col text-wrap break-words">
