@@ -1,7 +1,9 @@
+import { SandwichIcon } from "@/components/ui/Icons/SandwichIcon.tsx";
 import { ThemeToggle } from "@/components/ui/ThemeToggle.tsx";
 import { useSession } from "@/contexts/SessionContext";
 import { useUserInfo } from "@/contexts/UserInfoContext.tsx";
 import supabase from "@/lib/supabaseClient";
+import { useCart } from "@/utils/hooks/useCart.ts";
 import React, { useEffect } from "react";
 import { toast } from "sonner";
 
@@ -35,6 +37,7 @@ export function Navbar(): React.ReactElement {
 		"Anonymous User";
 
 	const userRole = useUserInfo()?.userInfo?.role || "Free";
+	const { dishes } = useCart("My Cart");
 	return (
 		<div>
 			<div className="w-full navbar bg-base-300 text-base-content">
@@ -44,19 +47,12 @@ export function Navbar(): React.ReactElement {
 						aria-label="open sidebar"
 						className="btn btn-square btn-ghost"
 					>
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							fill="none"
-							viewBox="0 0 24 24"
-							className="inline-block w-6 h-6 stroke-current"
-						>
-							<path
-								strokeLinecap="round"
-								strokeLinejoin="round"
-								strokeWidth="2"
-								d="M4 6h16M4 12h16M4 18h16"
-							></path>
-						</svg>
+						<div className="indicator">
+							<span className="indicator-item badge badge-primary">
+								{dishes.length}
+							</span>
+							<SandwichIcon />
+						</div>
 					</label>
 				</div>
 				<a className="btn btn-ghost text-xl">The Menu App</a>
