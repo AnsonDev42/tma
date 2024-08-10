@@ -17,7 +17,7 @@ interface MenuProps {
 
 export function Menu({ upload, showTextState }: MenuProps): React.ReactElement {
 	const [imgDimensions, setImgDimensions] = useState({ width: 0, height: 0 });
-	const [openModalIndex] = useState<number | null>(null);
+	const [openModal, setOpenModal] = useState(false);
 	const imageRef = useRef<HTMLImageElement>(null);
 	const containerRef = useRef<HTMLDivElement>(null);
 
@@ -47,9 +47,9 @@ export function Menu({ upload, showTextState }: MenuProps): React.ReactElement {
 		<div className="flex justify-center items-center p-3 m-2 bg-blue-500 border border-gray-300 rounded-2xl">
 			<TransformWrapper
 				doubleClick={{ mode: "reset" }}
-				pinch={{ disabled: openModalIndex !== null }}
-				wheel={{ disabled: openModalIndex !== null }}
-				disabled={openModalIndex !== null}
+				pinch={{ disabled: openModal }}
+				wheel={{ disabled: openModal }}
+				disabled={openModal}
 			>
 				<TransformComponent>
 					<div
@@ -72,6 +72,7 @@ export function Menu({ upload, showTextState }: MenuProps): React.ReactElement {
 										showTextState={showTextState}
 										imgDimensions={imgDimensions}
 										uploadTimestamp={upload.timestamp}
+										setOpenModal={setOpenModal}
 									/>
 								))}
 							</>
@@ -88,6 +89,7 @@ interface DishOverlayProps {
 	showTextState: number;
 	imgDimensions: { width: number; height: number };
 	uploadTimestamp: string;
+	setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 function DishOverlay({
@@ -95,6 +97,7 @@ function DishOverlay({
 	showTextState,
 	imgDimensions,
 	uploadTimestamp,
+	setOpenModal,
 }: DishOverlayProps) {
 	const overlayStyle = getOverlayStyle(dish.boundingBox, imgDimensions);
 	const textStyle = getTextStyle(dish.boundingBox, imgDimensions);
@@ -109,6 +112,7 @@ function DishOverlay({
 							timeStamp={uploadTimestamp}
 							showTextState={showTextState}
 							isCartView={0}
+							setOpenModal={setOpenModal}
 						/>
 					</div>
 				</div>
