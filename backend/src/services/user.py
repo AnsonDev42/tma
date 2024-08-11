@@ -2,7 +2,7 @@ import datetime
 
 from fastapi import HTTPException
 
-from src.core.vendor import SupabaseClient
+from src.core.vendors.supabase.client import SupabaseClient
 from src.models import User
 
 
