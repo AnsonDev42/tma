@@ -1,11 +1,18 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from contextlib import asynccontextmanager
 
 from src.api import api_router
 from src.core.config import settings
 from src.core.vendor import initialize_supabase
 
-app = FastAPI()
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    await initialize_supabase()
+    yield
+
+
+app = FastAPI(lifespan=lifespan)
 
 if settings.BACKEND_CORS_ORIGINS:
     app.add_middleware(
@@ -20,7 +27,3 @@ if settings.BACKEND_CORS_ORIGINS:
 
 app.include_router(api_router)
 
-
-@app.on_event("startup")
-async def startup_event():
-    await initialize_supabase()
