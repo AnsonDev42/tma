@@ -17,7 +17,7 @@ from src.core.vendor import (
     chain,
     recommendation_chain,
     logger,
-    get_supabase_client,
+    SupabaseClient,
 )
 from src.models import Dish
 from src.services.exceptions import OCRError
@@ -130,7 +130,7 @@ async def get_dish_image_via_wiki(dish_name: str | None) -> str | None:
 
 
 async def retrieve_dish_image(dish_name: str, num_img=10) -> list[str]:
-    supabase = await get_supabase_client()
+    supabase = await SupabaseClient.get_client()
 
     response = (
         await supabase.table("dish")
@@ -146,7 +146,7 @@ async def retrieve_dish_image(dish_name: str, num_img=10) -> list[str]:
 
 async def cache_dish_image(dish_name: str, image_links: list[str]):
     data = {"dish_name": dish_name, "img_urls": image_links}
-    supabase = await get_supabase_client()
+    supabase = await SupabaseClient.get_client()
     await supabase.table("dish").insert(data).execute()
 
 
