@@ -7,10 +7,12 @@ from langchain_core.pydantic_v1 import BaseModel as BaseModelV1, Field as FieldV
 
 from enum import Enum
 
+
 class Role(str, Enum):
     FREE = "free"
     TRIAL = "trial"
     PRO = "pro"
+
 
 class User(BaseModel):
     role: str
