@@ -21,9 +21,9 @@ router = APIRouter()
 
 @router.post("/upload")
 async def upload(
-        file: UploadFile,
-        user: User = Depends(get_user),
-        accept_language: Optional[str] = Header(None),
+    file: UploadFile,
+    user: User = Depends(get_user),
+    accept_language: Optional[str] = Header(None),
 ):
     if not file or not file.filename:
         raise HTTPException(
@@ -46,9 +46,8 @@ class AISuggestionsRequest(BaseModel):
 
 @router.post("/ai-suggestions")
 async def ai_suggestions(
-        request: AISuggestionsRequest,
-        user: User = Depends(get_user),
-
+    request: AISuggestionsRequest,
+    user: User = Depends(get_user),
 ):
     """
     Ai suggestions for what dish to order based on all the dish name,
@@ -56,8 +55,10 @@ async def ai_suggestions(
     """
     # Check if the user has remaining accesses
     access_limits = await get_access_limits(user)
-    if access_limits.get("remaining_accesses",0) == 0:
-        return {"suggestions": "Sorry, you have exceeded your daily limit, please try again tomorrow."}
+    if access_limits.get("remaining_accesses", 0) == 0:
+        return {
+            "suggestions": "Sorry, you have exceeded your daily limit, please try again tomorrow."
+        }
 
     suggestions = await recommend_dishes(request)
     await record_access(user)

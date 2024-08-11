@@ -17,7 +17,9 @@ def get_user(authorization: str = Header("Authorization")) -> User:
 
 def check_user_role(user: User, required_roles: list[Role]):
     if user.user_role not in required_roles:
-        raise HTTPException(status_code=http.HTTPStatus.FORBIDDEN, detail="Insufficient privileges")
+        raise HTTPException(
+            status_code=http.HTTPStatus.FORBIDDEN, detail="Insufficient privileges"
+        )
     return user
 
 

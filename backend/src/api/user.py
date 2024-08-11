@@ -13,5 +13,3 @@ async def get_user_info(user: User = Depends(get_user)):
     return the user role, usage and limits
     """
     return await get_access_limits(user)
-
-
