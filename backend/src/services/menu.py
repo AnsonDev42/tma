@@ -11,14 +11,8 @@ from httpx import AsyncClient, HTTPStatusError
 from postgrest import APIError
 
 from src.core.config import settings
-from src.core.vendor import (
-    PD_OCR_API_URL,
-    WIKI_API_URL,
-    chain,
-    recommendation_chain,
-    logger,
-    SupabaseClient,
-)
+from src.core.vendors.utilities.client import logger, chain, recommendation_chain, WIKI_API_URL, PD_OCR_API_URL
+from src.core.vendors.supabase.client import SupabaseClient
 from src.models import Dish
 from src.services.exceptions import OCRError
 from src.services.utils import duration, BoundingBox, clean_dish_name

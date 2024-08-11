@@ -4,13 +4,14 @@ from contextlib import asynccontextmanager
 
 from src.api import api_router
 from src.core.config import settings
-from src.core.vendor import initialize_supabase, initialize_fatsecret
+from src.core.vendors.fatsecret.client import FatSecretClient
+from src.core.vendors.supabase.client import SupabaseClient
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    await initialize_supabase()
-    await initialize_fatsecret()
+    await SupabaseClient.initialize()
+    FatSecretClient()
     yield
 
 
