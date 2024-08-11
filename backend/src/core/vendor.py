@@ -5,6 +5,7 @@ from supabase._async.client import AsyncClient, create_client
 
 from src.core.config import settings
 from src.services.utils import build_search_chain, build_recommendation_chain
+from src.core.vendors.fatsecret.client import FatSecretClient
 
 logger = logging.getLogger(__name__)
 
@@ -12,6 +13,8 @@ chain = build_search_chain(model="gpt-4o-mini")
 recommendation_chain = build_recommendation_chain(model="gpt-4o-mini")
 
 supabase: AsyncClient = None  # This will be initialized during startup
+
+fatscret = None
 
 
 async def initialize_supabase():
@@ -24,6 +27,17 @@ async def get_supabase_client() -> AsyncClient:
     if supabase is None:
         raise ValueError("Supabase client is not initialized")
     return supabase
+
+
+async def initialize_fatsecret():
+    global fatscret
+    fatscret = FatSecretClient()
+
+
+async def get_fatsecret_client():
+    if fatscret is None:
+        raise ValueError("Fatsecret client is not initialized")
+    return fatscret
 
 
 try:

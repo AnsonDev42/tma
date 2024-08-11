@@ -32,6 +32,10 @@ class Settings(BaseSettings):
     GOOGLE_IMG_SEARCH_KEY: str
     SUPABASE_URL: str
     SUPABASE_KEY: str
+    FATSECRET_TOKEN_URL: str
+    FATSECRET_CLIENT_ID: str
+    FATSECRET_CLIENT_SECRET: str
+    FATSECRET_BASE_URL: str
 
 
 settings = Settings()
