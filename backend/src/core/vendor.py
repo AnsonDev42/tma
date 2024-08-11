@@ -12,21 +12,23 @@ logger = logging.getLogger(__name__)
 chain = build_search_chain(model="gpt-4o-mini")
 recommendation_chain = build_recommendation_chain(model="gpt-4o-mini")
 
-supabase: AsyncClient = None  # This will be initialized during startup
-
 fatscret = None
 
 
-async def initialize_supabase():
-    """this would be called during startup to initialize the supabase client, in main.py"""
-    global supabase
-    supabase = await create_client(settings.SUPABASE_URL, settings.SUPABASE_KEY)
+class SupabaseClient:
+    _instance: AsyncClient = None
 
+    @classmethod
+    async def initialize(cls):
+        if cls._instance is None:
+            cls._instance = await create_client(settings.SUPABASE_URL, settings.SUPABASE_KEY)
+            logger.info("Supabase client initialized")
 
-async def get_supabase_client() -> AsyncClient:
-    if supabase is None:
-        raise ValueError("Supabase client is not initialized")
-    return supabase
+    @classmethod
+    async def get_client(cls) -> AsyncClient:
+        if cls._instance is None:
+            raise ValueError("Supabase client is not initialized")
+        return cls._instance
 
 
 async def initialize_fatsecret():

@@ -2,13 +2,13 @@ import datetime
 
 from fastapi import HTTPException
 
-from src.core.vendor import get_supabase_client
+from src.core.vendor import SupabaseClient
 from src.models import User
 
 
 async def get_access_limits(user: User):
     user_id = user.sub
-    supabase = await get_supabase_client()
+    supabase = await SupabaseClient.get_client()
 
     # Get the user's role
     # TODO: for now assume the role is simply based on user_roles, skip check for expired subscriptions
@@ -80,7 +80,7 @@ async def get_access_limits(user: User):
 
 async def record_access(user: User):
     user_id = user.sub
-    supabase = await get_supabase_client()
+    supabase = await SupabaseClient.get_client()
 
     data = {
         "user_id": user_id,
