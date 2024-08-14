@@ -1,7 +1,9 @@
 import ast
 import asyncio
+import base64
+import time
 from dataclasses import asdict
-from typing import Any, List
+from typing import Any, List, Union
 
 import cv2
 import numpy as np
@@ -17,7 +19,7 @@ from src.models import Dish
 from src.services.exceptions import OCRError
 from src.services.utils import duration, BoundingBox, clean_dish_name
 
-MAX_IMAGE_WIDTH = 550
+MAX_IMAGE_WIDTH = 1500
 TIMEOUT = 60
 
 
@@ -25,7 +27,26 @@ TIMEOUT = 60
 def process_image(image: bytes) -> tuple[bytes, int, int]:
     data = np.frombuffer(image, np.uint8)
     img = cv2.imdecode(data, cv2.IMREAD_COLOR)
-    img_height, img_width, _ = img.shape
+    with open("original.jpg", "wb") as f:
+        f.write(image)
+    # Convert to grayscale
+    gray_image = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+    # Apply histogram equalization
+    equalized_image = cv2.equalizeHist(gray_image)
+
+    # Apply Gaussian blur to reduce noise
+    blurred_image = cv2.GaussianBlur(equalized_image, (5, 5), 0)
+
+    # Sharpening the image
+    kernel = np.array([[0, -1, 0], [-1, 5, -1], [0, -1, 0]])
+    sharpened_image = cv2.filter2D(blurred_image, -1, kernel)
+
+    # Adaptive thresholding
+    img = cv2.adaptiveThreshold(sharpened_image, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY,
+                                              11, 2)
+
+    img_height, img_width = img.shape
 
     if img_width > MAX_IMAGE_WIDTH:
         scale_ratio = MAX_IMAGE_WIDTH / img_width
@@ -41,6 +62,9 @@ def process_image(image: bytes) -> tuple[bytes, int, int]:
         30,
     ]  # compression level (100: no compression)
     _, encimg = cv2.imencode(".jpeg", img, encode_param)
+    with open("compressed.jpg", "wb") as f:
+        f.write(encimg)
+    
     image = encimg.tobytes()
     return image, img_height, img_width
 
@@ -88,6 +112,55 @@ def run_ocr(image: bytes) -> Any:
     ocr_results = result["readResult"]["blocks"][0]["lines"]
 
     return ocr_results
+
+@duration
+async def post_dip_request(image: bytes) -> str:
+    """
+    Post uploaded image file content to Azure document intelligence processing and return img dimension and OCR results in json format
+    return: (img_height, img_width), ocr_results
+    """
+    headers = {
+        "Content-Type": "application/json",
+        "Ocp-Apim-Subscription-Key": settings.AZURE_DIP_API_KEY,
+        "content-type": "application/json"
+    }
+    url = f"{settings.AZURE_DIP_BASE_URL}/documentintelligence/documentModels/prebuilt-read:analyze?api-version=2024-02-29-preview"
+    
+    image = base64.b64encode(image).decode("utf-8")
+    payload = {
+        "base64Source": image}
+    response = requests.post(url, json=payload, headers=headers)
+    response.raise_for_status()
+ 
+    return response.headers.get("Operation-Location", None)
+
+
+
+async def retrieve_dip_results(retrieve_url: str,timeout: int = 3) -> str:
+    """
+    Retrieve the results from the Azure DIP API
+    """
+    headers = {
+        "Ocp-Apim-Subscription-Key": settings.AZURE_DIP_API_KEY,
+        "content-type": "application/json"
+    }
+
+    start_time = time.time()
+
+    while True:
+        response = requests.get(retrieve_url, headers=headers)
+        response.raise_for_status()
+        result = response.json()
+
+        status = result.get('status', None)
+        if status in ['succeeded']:
+            return result
+        if status not in ['succeeded', 'running']:
+            return ""
+        if time.time() - start_time > timeout:
+            return ""
+
+        time.sleep(0.5)
 
 
 async def get_dish_info_via_openai(
@@ -234,14 +307,17 @@ def normalize_text_bbox(img_width, img_height, ocr_results: list):
 
 
 def normalize_bounding_box(
-    img_width, img_height, bounding_polygon: List[dict]
+    img_width, img_height,  azure_ocr_bounding_polygon: Union[List[dict], None] = None, azure_dip_polygon: Union[List[int], None] = None
 ) -> BoundingBox:
     """
     Calculate the bounding box of the detected text in image
     """
-    x_coords = [point["x"] for point in bounding_polygon]
-    y_coords = [point["y"] for point in bounding_polygon]
-
+    if azure_ocr_bounding_polygon: # ocr
+        x_coords = [point["x"] for point in azure_ocr_bounding_polygon]
+        y_coords = [point["y"] for point in azure_ocr_bounding_polygon]
+    else:
+        # dip
+        x_coords, y_coords = azure_dip_polygon[::2], azure_dip_polygon[1::2] 
     x_min = min(x_coords)
     x_max = max(x_coords)
     y_min = min(y_coords)
@@ -281,4 +357,38 @@ async def upload_pipeline_with_ocr(image, img_height, img_width, accept_language
     bounding_box = normalize_text_bbox(img_width, img_height, ocr_results)
     data = serialize_dish_data(dish_info, bounding_box)
 
+    return {"results": data}
+
+async def run_dip(image: bytes) -> Any:
+    retrieve_url = await post_dip_request(image)
+    results = await retrieve_dip_results(retrieve_url)
+    # pre-processing results in lines
+    dip_results = results["analyzeResult"]["pages"][0]["lines"] 
+    return dip_results
+
+async def process_dip_results(dip_results: list, accept_language) ->  list[dict]:
+
+    
+    tasks = []
+
+    for line in dip_results:
+        dish_name = line["content"].strip()
+        tasks.append(get_dish_data(dish_name, accept_language))
+    return await asyncio.gather(*tasks)
+
+
+def normalize_text_bbox_dip(img_width, img_height, ocr_results: list):
+    texts_bboxes = []
+    for line in ocr_results:
+        bounding_boxes = line["polygon"]
+        texts_bboxes.append(
+            asdict(normalize_bounding_box(img_width, img_height, azure_dip_polygon=bounding_boxes))
+        )
+    return texts_bboxes
+
+async def upload_pipeline_with_dip(image, img_height, img_width, accept_language):
+    dip_results_in_lines = await run_dip(image)
+    dish_info = await process_dip_results(dip_results_in_lines,accept_language)
+    bounding_box = normalize_text_bbox_dip(img_width, img_height, dip_results_in_lines)
+    data = serialize_dish_data(dish_info, bounding_box)
     return {"results": data}
