@@ -74,7 +74,7 @@ function DishContent({
 }) {
 	return (
 		<div className="card-body flex-1 overflow-y-auto">
-			<div className="card-title text-2xl font-bold text-wrap">
+			<div className="card-title  text-base-content text-2xl font-bold text-wrap">
 				{dish.info.textTranslation}
 			</div>
 			<div className="text-gray-500 mb-2 italic text-xl text-wrap">
