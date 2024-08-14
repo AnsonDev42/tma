@@ -11,8 +11,10 @@ import pytest
 from src.test.fixtures.get_user import override_get_free_user
 
 pytest_plugins = ('pytest_asyncio',)
+env_path = os.path.join(os.path.dirname(__file__), "../../.env")
+load_dotenv(env_path)  # This will load the .env file automatically if present
 client = TestClient(app)
-load_dotenv("../../.env")  # This will load the .env file automatically if present
+
 
 
 
@@ -26,7 +28,7 @@ async def test_upload_ocr():
 
     headers = {
         'Authorization': "Bearer test-token",
-        # 'content-type': "multipart/form-data",
+        'dip' : "false",
     }
     # make the following path relative to the test file (fixture/test1.jpg)
     
