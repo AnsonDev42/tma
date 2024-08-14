@@ -8,17 +8,18 @@ from src.api.deps import get_user
 from src.models import User
 from src.services.menu import (
     process_image,
-    recommend_dishes, upload_pipeline_with_ocr,
+    recommend_dishes, upload_pipeline_with_ocr, upload_pipeline_with_dip,
 )
 from src.services.user import record_access, get_access_limits
 
 router = APIRouter()
 
 
-@router.post("/upload")
+@router.post("/upload",status_code=200)
 async def upload(
     file: UploadFile,
     user: User = Depends(get_user),
+    dip: Optional[str] = Header(None),
     accept_language: Optional[str] = Header(None),
 ):
     if not file or not file.filename:
@@ -27,7 +28,10 @@ async def upload(
         )
 
     image, img_height, img_width = process_image(file.file.read())
-    return await upload_pipeline_with_ocr(image, img_height, img_width, accept_language)
+    
+    if dip == "false":
+        return await upload_pipeline_with_ocr(image, img_height, img_width, accept_language)
+    return await upload_pipeline_with_dip(image, img_height, img_width, accept_language)
 
 
 
