@@ -28,7 +28,7 @@ const HistoryList: React.FC<HistoryProps> = ({ onSelectUpload }) => {
 	};
 	const renderUploads = (uploads: UploadProps[]) => {
 		return uploads.map((upload) => (
-			<li className="flex flex-col border p-2 mb-2">
+			<li key={upload.timestamp} className="flex flex-col border p-2 mb-2">
 				<details open>
 					<summary>
 						<button
@@ -79,7 +79,7 @@ const HistoryList: React.FC<HistoryProps> = ({ onSelectUpload }) => {
 						if (
 							window.confirm(
 								"You will lose all local storage data in this site! \n\n" +
-									"Are you sure to remove all the data?",
+								"Are you sure to remove all the data?",
 							)
 						) {
 							localStorage.clear();
