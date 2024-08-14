@@ -7,12 +7,8 @@ from pydantic import BaseModel
 from src.api.deps import get_user
 from src.models import User
 from src.services.menu import (
-    run_ocr,
-    process_ocr_results,
     process_image,
-    normalize_text_bbox,
-    serialize_dish_data,
-    recommend_dishes,
+    recommend_dishes, upload_pipeline_with_ocr,
 )
 from src.services.user import record_access, get_access_limits
 
@@ -31,11 +27,8 @@ async def upload(
         )
 
     image, img_height, img_width = process_image(file.file.read())
-    ocr_results = run_ocr(image)
-    dish_info = await process_ocr_results(ocr_results, accept_language)
-    bounding_box = normalize_text_bbox(img_width, img_height, ocr_results)
-    data = serialize_dish_data(dish_info, bounding_box)
-    return {"results": data}
+    return await upload_pipeline_with_ocr(image, img_height, img_width, accept_language)
+
 
 
 class AISuggestionsRequest(BaseModel):
