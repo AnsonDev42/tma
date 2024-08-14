@@ -13,7 +13,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
 
-const MAX_FILE_SIZE = 25 * 1024 * 1024; // 25MB
+const MAX_FILE_SIZE = 65 * 1024 * 1024; // 25MB
 const ACCEPTED_IMAGE_TYPES = [
 	"image/jpeg",
 	"image/jpg",
@@ -32,7 +32,7 @@ const formSchema = z.object({
 		.refine((file) => file[0].size <= MAX_FILE_SIZE, "Max image size is 25MB.")
 		.refine(
 			(file) => ACCEPTED_IMAGE_TYPES.includes(file[0].type),
-			"Only .jpg, .jpeg, .png and .webp formats are supported.",
+			"Only .jpg, .jpeg, .png, .dng and .webp formats are supported.",
 		),
 });
 
@@ -55,7 +55,14 @@ const UploadForm: React.FC<HistoryProps> = ({ onSelectUpload }) => {
 			alert("No file selected.");
 			return;
 		}
-		const file = await resizeFile(raw_file);
+		let file;
+		try {
+			file = await resizeFile(raw_file);
+			console.log("size of the compressed file: ", file.size);
+		} catch (_error) {
+			toast.error("Failed to compress image: (image format not supported)");
+			return;
+		}
 		console.log("size of the compressed file: ", file.size);
 
 		const formData = new FormData();
@@ -177,7 +184,8 @@ async function uploadMenuData(
 		if (formattedData.length > 0) {
 			return formattedData;
 		} else {
-			throw new Error("No valid data received.");
+			toast.error("No valid data received.");
+			return [];
 		}
 	} catch (error) {
 		throw new Error(
