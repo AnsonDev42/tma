@@ -273,3 +273,12 @@ async def recommend_dishes(request) -> dict:
 
     output = await recommendation_chain.ainvoke(input_data)
     return output.content
+
+
+async def upload_pipeline_with_ocr(image, img_height, img_width, accept_language):
+    ocr_results = run_ocr(image)
+    dish_info = await process_ocr_results(ocr_results, accept_language)
+    bounding_box = normalize_text_bbox(img_width, img_height, ocr_results)
+    data = serialize_dish_data(dish_info, bounding_box)
+
+    return {"results": data}
