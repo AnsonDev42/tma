@@ -20,7 +20,8 @@ from src.models import Dish
 from src.services.exceptions import OCRError
 from src.services.utils import duration, BoundingBox, clean_dish_name
 
-MAX_IMAGE_WIDTH = 1500
+MAX_IMAGE_WIDTH = 2000
+MAX_IMAGE_SIZE = 4 * 1024 * 1024 -100  # 4MB
 TIMEOUT = 60
 
 
@@ -28,25 +29,7 @@ TIMEOUT = 60
 def process_image(image: bytes) -> tuple[bytes, int, int]:
     data = np.frombuffer(image, np.uint8)
     img = cv2.imdecode(data, cv2.IMREAD_COLOR)
-    with open("original.jpg", "wb") as f:
-        f.write(image)
-    # # Convert to grayscale
-    # gray_image = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    # 
-    # # Apply histogram equalization
-    # equalized_image = cv2.equalizeHist(gray_image)
-    # 
-    # # Apply Gaussian blur to reduce noise
-    # blurred_image = cv2.GaussianBlur(equalized_image, (5, 5), 0)
-    # 
-    # # Sharpening the image
-    # kernel = np.array([[0, -1, 0], [-1, 5, -1], [0, -1, 0]])
-    # sharpened_image = cv2.filter2D(blurred_image, -1, kernel)
-    # 
-    # # Adaptive thresholding
-    # img = cv2.adaptiveThreshold(sharpened_image, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY,
-    #                                           11, 2)
-    # 
+
     img_height, img_width,_ = img.shape
 
     if img_width > MAX_IMAGE_WIDTH:
@@ -56,16 +39,18 @@ def process_image(image: bytes) -> tuple[bytes, int, int]:
         img_height = int(img_height * scale_ratio)
 
         img = cv2.resize(img, (img_width, img_height), interpolation=cv2.INTER_AREA)
-
+    quality = 80
     # encode and compress image
     encode_param = [
         int(cv2.IMWRITE_JPEG_QUALITY),
-        30,
+        quality,
     ]  # compression level (100: no compression)
     _, encimg = cv2.imencode(".jpeg", img, encode_param)
-    with open("compressed.jpg", "wb") as f:
-        f.write(encimg)
-    
+    while encimg.nbytes > MAX_IMAGE_SIZE:
+        quality -= 15
+        encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), quality]
+        _, encimg = cv2.imencode(".jpeg", img, encode_param)
+
     image = encimg.tobytes()
     return image, img_height, img_width
 
