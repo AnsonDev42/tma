@@ -1,6 +1,7 @@
 import ast
 import asyncio
 import base64
+import datetime
 import time
 from dataclasses import asdict
 from typing import Any, List, Union
@@ -29,24 +30,24 @@ def process_image(image: bytes) -> tuple[bytes, int, int]:
     img = cv2.imdecode(data, cv2.IMREAD_COLOR)
     with open("original.jpg", "wb") as f:
         f.write(image)
-    # Convert to grayscale
-    gray_image = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-
-    # Apply histogram equalization
-    equalized_image = cv2.equalizeHist(gray_image)
-
-    # Apply Gaussian blur to reduce noise
-    blurred_image = cv2.GaussianBlur(equalized_image, (5, 5), 0)
-
-    # Sharpening the image
-    kernel = np.array([[0, -1, 0], [-1, 5, -1], [0, -1, 0]])
-    sharpened_image = cv2.filter2D(blurred_image, -1, kernel)
-
-    # Adaptive thresholding
-    img = cv2.adaptiveThreshold(sharpened_image, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY,
-                                              11, 2)
-
-    img_height, img_width = img.shape
+    # # Convert to grayscale
+    # gray_image = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    # 
+    # # Apply histogram equalization
+    # equalized_image = cv2.equalizeHist(gray_image)
+    # 
+    # # Apply Gaussian blur to reduce noise
+    # blurred_image = cv2.GaussianBlur(equalized_image, (5, 5), 0)
+    # 
+    # # Sharpening the image
+    # kernel = np.array([[0, -1, 0], [-1, 5, -1], [0, -1, 0]])
+    # sharpened_image = cv2.filter2D(blurred_image, -1, kernel)
+    # 
+    # # Adaptive thresholding
+    # img = cv2.adaptiveThreshold(sharpened_image, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY,
+    #                                           11, 2)
+    # 
+    img_height, img_width,_ = img.shape
 
     if img_width > MAX_IMAGE_WIDTH:
         scale_ratio = MAX_IMAGE_WIDTH / img_width
@@ -214,7 +215,19 @@ async def retrieve_dish_image(dish_name: str, num_img=10) -> list[str]:
 async def cache_dish_image(dish_name: str, image_links: list[str]):
     data = {"dish_name": dish_name, "img_urls": image_links}
     supabase = await SupabaseClient.get_client()
-    await supabase.table("dish").insert(data).execute()
+    # Check if the dish already exists
+    existing_record = await supabase.table("dish").select("*").eq("dish_name", dish_name).execute()
+    if not existing_record.data:
+        # Insert new record if it doesn't exist
+        await supabase.table("dish").insert(data).execute()
+        return "build cache"
+    if existing_record.data:
+        now = datetime.datetime.now(datetime.UTC)
+        created_at = datetime.datetime.fromisoformat(existing_record.data[0]["created_at"])
+        if (now - created_at) > datetime.timedelta(days=3):
+            await supabase.table("dish").update({"img_urls": image_links}).eq("dish_name", dish_name).execute()
+            return "update cache"
+    return "no cache"
 
 
 async def query_dish_image_via_google(dish_name: str | None) -> List[str] | None:
@@ -362,6 +375,8 @@ async def upload_pipeline_with_ocr(image, img_height, img_width, accept_language
 async def run_dip(image: bytes) -> Any:
     retrieve_url = await post_dip_request(image)
     results = await retrieve_dip_results(retrieve_url)
+    if not results:
+        raise APIError("DIP failed")
     # pre-processing results in lines
     dip_results = results["analyzeResult"]["pages"][0]["lines"] 
     return dip_results
