@@ -8,8 +8,8 @@ const resizeFile = (file: File, timeout = 3500): Promise<File> =>
 
 		Resizer.imageFileResizer(
 			file,
-			1200,
-			1200,
+			2000,
+			2000,
 			"JPEG",
 			75,
 			0,
