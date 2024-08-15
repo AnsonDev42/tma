@@ -1,4 +1,3 @@
-import os
 import secrets
 from typing import Annotated, Any
 
@@ -13,11 +12,13 @@ def parse_cors(v: Any) -> list[str] | str:
         return v
     raise ValueError(v)
 
-env_file_path = os.path.join(os.path.dirname(__file__), "../../.env")
+
+# env_file_path = os.path.join(os.path.dirname(__file__), "../../.env")
+
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
-        env_file=env_file_path, env_ignore_empty=True, extra="ignore"
+        env_file=".env", env_ignore_empty=True, extra="ignore"
     )
 
     SECRET_KEY: str = secrets.token_urlsafe(32)
