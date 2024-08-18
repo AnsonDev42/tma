@@ -8,14 +8,16 @@ from src.api.deps import get_user
 from src.models import User
 from src.services.menu import (
     process_image,
-    recommend_dishes, upload_pipeline_with_ocr, upload_pipeline_with_dip,
+    recommend_dishes,
+    upload_pipeline_with_ocr,
+    upload_pipeline_with_dip_auto_group_lines,
 )
 from src.services.user import record_access, get_access_limits
 
 router = APIRouter()
 
 
-@router.post("/upload",status_code=200)
+@router.post("/upload", status_code=200)
 async def upload(
     file: UploadFile,
     user: User = Depends(get_user),
@@ -28,11 +30,14 @@ async def upload(
         )
 
     image, img_height, img_width = process_image(file.file.read())
-    
-    if dip == "false":
-        return await upload_pipeline_with_ocr(image, img_height, img_width, accept_language)
-    return await upload_pipeline_with_dip(image, img_height, img_width, accept_language)
 
+    if dip == "false":
+        return await upload_pipeline_with_ocr(
+            image, img_height, img_width, accept_language
+        )
+    return await upload_pipeline_with_dip_auto_group_lines(
+        image, img_height, img_width, accept_language
+    )
 
 
 class AISuggestionsRequest(BaseModel):

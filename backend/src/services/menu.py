@@ -14,14 +14,21 @@ from httpx import AsyncClient, HTTPStatusError
 from postgrest import APIError
 
 from src.core.config import settings
-from src.core.vendors.utilities.client import logger, chain, recommendation_chain, WIKI_API_URL, PD_OCR_API_URL
+from src.core.vendors.utilities.client import (
+    logger,
+    chain,
+    recommendation_chain,
+    WIKI_API_URL,
+    PD_OCR_API_URL,
+)
 from src.core.vendors.supabase.client import SupabaseClient
 from src.models import Dish
 from src.services.exceptions import OCRError
+from src.services.ocr.build_paragraph import build_paragraph, translate
 from src.services.utils import duration, BoundingBox, clean_dish_name
 
 MAX_IMAGE_WIDTH = 2000
-MAX_IMAGE_SIZE = 4 * 1024 * 1024 -100  # 4MB
+MAX_IMAGE_SIZE = 4 * 1024 * 1024 - 100  # 4MB
 TIMEOUT = 60
 
 
@@ -30,7 +37,7 @@ def process_image(image: bytes) -> tuple[bytes, int, int]:
     data = np.frombuffer(image, np.uint8)
     img = cv2.imdecode(data, cv2.IMREAD_COLOR)
 
-    img_height, img_width,_ = img.shape
+    img_height, img_width, _ = img.shape
 
     if img_width > MAX_IMAGE_WIDTH:
         scale_ratio = MAX_IMAGE_WIDTH / img_width
@@ -99,6 +106,7 @@ def run_ocr(image: bytes) -> Any:
 
     return ocr_results
 
+
 @duration
 async def post_dip_request(image: bytes) -> str:
     """
@@ -108,27 +116,25 @@ async def post_dip_request(image: bytes) -> str:
     headers = {
         "Content-Type": "application/json",
         "Ocp-Apim-Subscription-Key": settings.AZURE_DIP_API_KEY,
-        "content-type": "application/json"
+        "content-type": "application/json",
     }
     url = f"{settings.AZURE_DIP_BASE_URL}/documentintelligence/documentModels/prebuilt-read:analyze?api-version=2024-02-29-preview"
-    
+
     image = base64.b64encode(image).decode("utf-8")
-    payload = {
-        "base64Source": image}
+    payload = {"base64Source": image}
     response = requests.post(url, json=payload, headers=headers)
     response.raise_for_status()
- 
+
     return response.headers.get("Operation-Location", None)
 
 
-
-async def retrieve_dip_results(retrieve_url: str,timeout: int = 3) -> str:
+async def retrieve_dip_results(retrieve_url: str, timeout: int = 3) -> str:
     """
     Retrieve the results from the Azure DIP API
     """
     headers = {
         "Ocp-Apim-Subscription-Key": settings.AZURE_DIP_API_KEY,
-        "content-type": "application/json"
+        "content-type": "application/json",
     }
 
     start_time = time.time()
@@ -138,10 +144,10 @@ async def retrieve_dip_results(retrieve_url: str,timeout: int = 3) -> str:
         response.raise_for_status()
         result = response.json()
 
-        status = result.get('status', None)
-        if status in ['succeeded']:
+        status = result.get("status", None)
+        if status in ["succeeded"]:
             return result
-        if status not in ['succeeded', 'running']:
+        if status not in ["succeeded", "running"]:
             return ""
         if time.time() - start_time > timeout:
             return ""
@@ -150,7 +156,7 @@ async def retrieve_dip_results(retrieve_url: str,timeout: int = 3) -> str:
 
 
 async def get_dish_info_via_openai(
-    dish_name: str, accept_language: str, model: str = "gpt-3.5-turbo"
+        dish_name: str, accept_language: str, model: str = "gpt-3.5-turbo"
 ) -> dict:
     """Search dish info via OPENAI and using WIKI to get the image"""
 
@@ -201,16 +207,25 @@ async def cache_dish_image(dish_name: str, image_links: list[str]):
     data = {"dish_name": dish_name, "img_urls": image_links}
     supabase = await SupabaseClient.get_client()
     # Check if the dish already exists
-    existing_record = await supabase.table("dish").select("*").eq("dish_name", dish_name).execute()
+    existing_record = (
+        await supabase.table("dish").select("*").eq("dish_name", dish_name).execute()
+    )
     if not existing_record.data:
         # Insert new record if it doesn't exist
         await supabase.table("dish").insert(data).execute()
         return "build cache"
     if existing_record.data:
         now = datetime.datetime.now(datetime.UTC)
-        created_at = datetime.datetime.fromisoformat(existing_record.data[0]["created_at"])
+        created_at = datetime.datetime.fromisoformat(
+            existing_record.data[0]["created_at"]
+        )
         if (now - created_at) > datetime.timedelta(days=3):
-            await supabase.table("dish").update({"img_urls": image_links}).eq("dish_name", dish_name).execute()
+            await (
+                supabase.table("dish")
+                .update({"img_urls": image_links})
+                .eq("dish_name", dish_name)
+                .execute()
+            )
             return "update cache"
     return "no cache"
 
@@ -285,6 +300,17 @@ async def get_dish_data(dish_name: str, accept_language: str) -> dict:
     return dish | {"img_src": img_src}
 
 
+async def get_paragraph_data(dish_name: str, accept_language: str) -> dict:
+    paragraph_translation = translate(dish_name, accept_language)
+    return {
+        "description": paragraph_translation,
+        "text": paragraph_translation,
+        "text_translation": paragraph_translation,
+        "text-translation": paragraph_translation,
+        # "img_src": None
+    }
+
+
 async def process_ocr_results(ocr_results: list, accept_language: str) -> list[dict]:
     tasks = []
 
@@ -305,17 +331,23 @@ def normalize_text_bbox(img_width, img_height, ocr_results: list):
 
 
 def normalize_bounding_box(
-    img_width, img_height,  azure_ocr_bounding_polygon: Union[List[dict], None] = None, azure_dip_polygon: Union[List[int], None] = None
+        img_width,
+        img_height,
+        azure_ocr_bounding_polygon: Union[List[dict], None] = None,
+        azure_dip_polygon: Union[dict, None] = None,
 ) -> BoundingBox:
     """
     Calculate the bounding box of the detected text in image
     """
-    if azure_ocr_bounding_polygon: # ocr
+    if azure_ocr_bounding_polygon:  # ocr
         x_coords = [point["x"] for point in azure_ocr_bounding_polygon]
         y_coords = [point["y"] for point in azure_ocr_bounding_polygon]
     else:
         # dip
-        x_coords, y_coords = azure_dip_polygon[::2], azure_dip_polygon[1::2] 
+        x_coords, y_coords = (
+            azure_dip_polygon["x_coords"],
+            azure_dip_polygon["y_coords"],
+        )
     x_min = min(x_coords)
     x_max = max(x_coords)
     y_min = min(y_coords)
@@ -341,7 +373,7 @@ async def recommend_dishes(request) -> dict:
     input_data = {
         "dish_names": ", ".join(request.dishes),
         "additional_info": request.additional_info
-        or "No additional information provided.",
+                           or "No additional information provided.",
         "language": request.language,
     }
 
@@ -357,23 +389,65 @@ async def upload_pipeline_with_ocr(image, img_height, img_width, accept_language
 
     return {"results": data}
 
+
 async def run_dip(image: bytes) -> Any:
     retrieve_url = await post_dip_request(image)
     results = await retrieve_dip_results(retrieve_url)
     if not results:
         raise APIError("DIP failed")
     # pre-processing results in lines
-    dip_results = results["analyzeResult"]["pages"][0]["lines"] 
+    dip_line_results = results["analyzeResult"]["pages"][0]["lines"]
+    dip_line_results = filter_dip_lines(dip_line_results)
+    dip_line_results = format_dip_lines_polygon(dip_line_results)
+
+    return dip_line_results
+
+
+def format_dip_lines_polygon(dip_results):
+    for line in dip_results:
+        line["polygon"] = format_polygon(line["polygon"])
     return dip_results
 
-async def process_dip_results(dip_results: list, accept_language) ->  list[dict]:
 
-    
+def format_polygon(polygon: list) -> dict:
+    x_coords = polygon[::2]
+    y_coords = polygon[1::2]
+    return {"x_coords": x_coords, "y_coords": y_coords}
+
+
+def filter_dip_lines(dip_results: list) -> list:
+    """
+    Filter out the lines that are price or misrecognized text
+    """
+    for line in dip_results:
+        content = line["content"].strip()
+        if (
+                content.isdigit()
+                or content.replace(".", "").isdigit()
+                or content.replace(",", "").isdigit()
+                or content.replace(" ", "").isdigit()
+        ):
+            dip_results.remove(line)
+    return dip_results
+
+
+async def process_dip_results(dip_results: list, accept_language) -> list[dict]:
     tasks = []
 
     for line in dip_results:
-        dish_name = line["content"].strip()
+        dish_name = line["content"]
         tasks.append(get_dish_data(dish_name, accept_language))
+    return await asyncio.gather(*tasks)
+
+
+async def process_dip_paragraph_results(
+        dip_results: list, accept_language
+) -> list[dict]:
+    tasks = []
+
+    for line in dip_results:
+        dish_name = line["content"]
+        tasks.append(get_paragraph_data(dish_name, accept_language))
     return await asyncio.gather(*tasks)
 
 
@@ -382,13 +456,41 @@ def normalize_text_bbox_dip(img_width, img_height, ocr_results: list):
     for line in ocr_results:
         bounding_boxes = line["polygon"]
         texts_bboxes.append(
-            asdict(normalize_bounding_box(img_width, img_height, azure_dip_polygon=bounding_boxes))
+            asdict(
+                normalize_bounding_box(
+                    img_width, img_height, azure_dip_polygon=bounding_boxes
+                )
+            )
         )
     return texts_bboxes
 
+
 async def upload_pipeline_with_dip(image, img_height, img_width, accept_language):
     dip_results_in_lines = await run_dip(image)
-    dish_info = await process_dip_results(dip_results_in_lines,accept_language)
+    dish_info = await process_dip_results(dip_results_in_lines, accept_language)
     bounding_box = normalize_text_bbox_dip(img_width, img_height, dip_results_in_lines)
     data = serialize_dish_data(dish_info, bounding_box)
+    return {"results": data}
+
+
+async def upload_pipeline_with_dip_auto_group_lines(
+        image, img_height, img_width, accept_language
+):
+    dip_results_in_lines = await run_dip(image)
+    paragraphs, rest_dip_results_in_lines = build_paragraph(dip_results_in_lines)
+    
+    dish_info = await process_dip_results(rest_dip_results_in_lines, accept_language)
+    bounding_box = normalize_text_bbox_dip(
+        img_width, img_height, rest_dip_results_in_lines
+    )
+
+    dish_description = await process_dip_paragraph_results(paragraphs, accept_language)
+    dish_description_bounding_box = normalize_text_bbox_dip(
+        img_width, img_height, paragraphs
+    )
+    dish_info.extend(dish_description)
+    bounding_box.extend(dish_description_bounding_box)
+
+    data = serialize_dish_data(dish_info, bounding_box)
+
     return {"results": data}
