@@ -44,16 +44,24 @@ export function HomePage() {
 						/>
 					</div>
 					<div className="divider divider-neutral" ref={imageResultsRef}></div>
-					<div className="mt-4">
+					<div className="flex flex-col ml-2 gap-4 justify-center content-center">
+						<div className="collapse bg-base-200  max-w-lg">
+							<input type="checkbox" />
+							<div className="collapse-title text-l font-medium">
+								Text/Background Settings
+							</div>
+							<div className="collapse-content">
+								<BBoxSettings
+									opacity={opacity}
+									setOpacity={setOpacity}
+									textColor={textColor}
+									setTextColor={setTextColor}
+								/>
+							</div>
+						</div>
 						<BBoxTextToggle
 							showTextState={showTextState}
 							onToggle={handleToggleTextState}
-						/>
-						<BBoxSettings
-							opacity={opacity}
-							setOpacity={setOpacity}
-							textColor={textColor}
-							setTextColor={setTextColor}
 						/>
 					</div>
 					<ImageCarousel
