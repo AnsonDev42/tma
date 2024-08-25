@@ -29,7 +29,7 @@ export const BBoxTextToggle: React.FC<MenuToggleProps> = ({
 		}
 	}, [showTextState]);
 	return (
-		<div className="flex items-center space-x-2">
+		<div className="flex items-center gap-2">
 			<input
 				type="checkbox"
 				id="Show-Bounding-Box-Text"

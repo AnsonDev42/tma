@@ -127,7 +127,7 @@ function DishOverlay({
 					style={overlayStyle}
 				>
 					<AutoTextSize
-						minFontSizePx={1}
+						minFontSizePx={5}
 						maxFontSizePx={overlayStyle.heightNum}
 					>
 						<GlobalDishCard
