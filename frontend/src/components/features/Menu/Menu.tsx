@@ -1,5 +1,6 @@
 import { BoundingBoxProps, DishProps } from "@/types/DishProps";
 import { UploadProps } from "@/types/UploadProps";
+import { AutoTextSize } from "auto-text-size";
 import React, { useState, useRef, useEffect } from "react";
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
 import { GlobalDishCard } from "../Dish/GlobalDishCard";
@@ -100,13 +101,12 @@ function DishOverlay({
 	setOpenModal,
 }: DishOverlayProps) {
 	const overlayStyle = getOverlayStyle(dish.boundingBox, imgDimensions);
-	const textStyle = getTextStyle(dish.boundingBox, imgDimensions);
 
 	return (
 		<>
 			{showTextState !== ShowTextState.HIDE_ALL && (
 				<div className="absolute" style={overlayStyle}>
-					<div style={textStyle}>
+					<AutoTextSize>
 						<GlobalDishCard
 							dish={dish}
 							timeStamp={uploadTimestamp}
@@ -114,7 +114,7 @@ function DishOverlay({
 							isCartView={0}
 							setOpenModal={setOpenModal}
 						/>
-					</div>
+					</AutoTextSize>
 				</div>
 			)}
 		</>
@@ -132,26 +132,5 @@ function getOverlayStyle(
 		top: `${boundingBox.y * imgDimensions.height}px`,
 		background: "rgba(255, 0, 0, 0.5)",
 		border: "1px solid red",
-	};
-}
-
-function getTextStyle(
-	boundingBox: BoundingBoxProps,
-	imgDimensions: { width: number; height: number },
-) {
-	const fontSize = Math.max(
-		Math.min(
-			boundingBox.w * imgDimensions.width,
-			boundingBox.h * imgDimensions.height,
-		) * 0.4,
-		7,
-	);
-
-	return {
-		fontSize: `${fontSize}px`,
-		overflow: "hidden",
-		textOverflow: "ellipsis",
-		whiteSpace: "nowrap",
-		color: "white",
 	};
 }
