@@ -1,5 +1,6 @@
+import { GlobalDishCard } from "@/components/features/Dish/GlobalDishCard.tsx";
+import { ShowTextState } from "@/components/features/Menu/Menu.tsx";
 import { HistoryProps } from "@/components/types/HistoryProps.ts";
-import { DishProps } from "@/types/DishProps.tsx";
 import { UploadProps } from "@/types/UploadProps.ts";
 import { useGroupedUploads } from "@/utils/hooks/useGroupedUploads.ts";
 import { useUploadsState } from "@/utils/hooks/useUploadsState.ts";
@@ -7,6 +8,8 @@ import React from "react";
 
 const HistoryList: React.FC<HistoryProps> = ({ onSelectUpload }) => {
 	const { uploads, deleteUpload } = useUploadsState();
+	const [_openModal, setOpenModal] = React.useState<boolean>(false);
+
 	const { today, yesterday, previous3Days, earlier } =
 		useGroupedUploads(uploads);
 	const handleDelete = (timestamp: string) => {
@@ -16,19 +19,31 @@ const HistoryList: React.FC<HistoryProps> = ({ onSelectUpload }) => {
 			deleteUpload(timestamp);
 		}
 	};
-	const renderDishes = (dishes: DishProps[]) => {
-		return dishes.map((dish, index) => (
+	const renderDishes = (upload: UploadProps) => {
+		return upload.data.map((dish, index) => (
 			<li
 				key={index}
 				className="items-start justify-start m-0.5 grid grid-flow-col text-wrap break-words"
 			>
-				<input type="checkbox" className="checkbox" /> {index} -{dish.info.text}
+				<input type="checkbox" className="checkbox" /> {index} -
+				<div>
+					<GlobalDishCard
+						dish={dish}
+						timeStamp={upload.timestamp}
+						showTextState={ShowTextState.SHOW_BOTH}
+						isCartView={1}
+						setOpenModal={setOpenModal}
+					/>
+				</div>
 			</li>
 		));
 	};
 	const renderUploads = (uploads: UploadProps[]) => {
 		return uploads.map((upload) => (
-			<li key={upload.timestamp} className="flex flex-col border p-2 mb-2">
+			<li
+				key={upload.timestamp}
+				className="flex flex-col border p-2 mb-2 flex-wrap"
+			>
 				<details open>
 					<summary>
 						<button
@@ -44,7 +59,7 @@ const HistoryList: React.FC<HistoryProps> = ({ onSelectUpload }) => {
 							Delete
 						</button>
 					</summary>
-					<ul>{renderDishes(upload.data)}</ul>
+					<ul>{renderDishes(upload)}</ul>
 				</details>
 			</li>
 		));
