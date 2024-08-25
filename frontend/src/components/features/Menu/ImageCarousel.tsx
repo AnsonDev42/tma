@@ -7,12 +7,16 @@ interface ImageCarouselProps {
 	showTextState: number;
 	handleSelectUpload: (upload: UploadProps) => void;
 	imgTimestamp: string | null;
+	opacity: number;
+	textColor: string;
 }
 
 function ImageCarousel({
 	showTextState,
 	handleSelectUpload,
 	imgTimestamp,
+	opacity: opacity,
+	textColor: textColor,
 }: ImageCarouselProps) {
 	const { uploads } = useUploadsState();
 	const carouselRef = useRef<HTMLDivElement | null>(null);
@@ -38,7 +42,12 @@ function ImageCarousel({
 					className="carousel-item relative w-full"
 					key={upload.timestamp}
 				>
-					<Menu upload={upload} showTextState={showTextState} />
+					<Menu
+						upload={upload}
+						showTextState={showTextState}
+						opacity={opacity}
+						textColor={textColor}
+					/>
 					<CarouselNavigation
 						index={index}
 						totalUploads={uploads.length}
