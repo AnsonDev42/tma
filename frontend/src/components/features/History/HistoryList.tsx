@@ -79,7 +79,7 @@ const HistoryList: React.FC<HistoryProps> = ({ onSelectUpload }) => {
 						if (
 							window.confirm(
 								"You will lose all local storage data in this site! \n\n" +
-								"Are you sure to remove all the data?",
+									"Are you sure to remove all the data?",
 							)
 						) {
 							localStorage.clear();
