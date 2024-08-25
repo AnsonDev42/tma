@@ -44,6 +44,9 @@ importers:
       '@supabase/supabase-js':
         specifier: ^2.44.2
         version: 2.44.2
+      auto-text-size:
+        specifier: ^0.2.3
+        version: 0.2.3(react@18.3.1)
       axios:
         specifier: ^1.7.2
         version: 1.7.2
@@ -1211,6 +1214,11 @@ packages:
 
   asynckit@0.4.0:
     resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
+
+  auto-text-size@0.2.3:
+    resolution: {integrity: sha512-OycpKD8n5jxnNaOiAJoNr3BkBsxRzHHhFQk15rgsOYq+O9lsMSPLbVN7ZibxjTwT7bl6Y5jawOtZJxRWaoxdcQ==}
+    peerDependencies:
+      react: '*'
 
   autoprefixer@10.4.19:
     resolution: {integrity: sha512-BaENR2+zBZ8xXhM4pUaKUxlVdxZ0EZhjvbopwnXmxRUfqDmwSpC2lAi/QXvx7NRdPCo1WKEcEF6mV64si1z4Ew==}
@@ -3241,6 +3249,10 @@ snapshots:
   array-union@2.1.0: {}
 
   asynckit@0.4.0: {}
+
+  auto-text-size@0.2.3(react@18.3.1):
+    dependencies:
+      react: 18.3.1
 
   autoprefixer@10.4.19(postcss@8.4.39):
     dependencies:
