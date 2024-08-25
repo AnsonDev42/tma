@@ -16,8 +16,7 @@ function Sidebar({ onSelectUpload }: SidebarProps): React.ReactElement {
 					className="tab "
 					aria-label="History"
 					checked
-					onChange={() => { }}
-
+					onChange={() => {}}
 				/>
 				<div
 					role="tabpanel"

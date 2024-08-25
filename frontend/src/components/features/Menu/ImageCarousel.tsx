@@ -19,8 +19,14 @@ function ImageCarousel({
 
 	useEffect(() => {
 		if (uploads.length && carouselRef.current) {
-			const latestSlide = carouselRef.current.querySelector(`#slide${uploads.length}`);
-			latestSlide?.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
+			const latestSlide = carouselRef.current.querySelector(
+				`#slide${uploads.length}`,
+			);
+			latestSlide?.scrollIntoView({
+				behavior: "smooth",
+				block: "center",
+				inline: "center",
+			});
 		}
 	}, [imgTimestamp, uploads.length]);
 
@@ -49,7 +55,7 @@ function CarouselNavigation({
 	index,
 	totalUploads,
 	handleSelectUpload,
-	uploads
+	uploads,
 }: {
 	index: number;
 	totalUploads: number;
@@ -61,7 +67,11 @@ function CarouselNavigation({
 			<CarouselButton
 				direction="prev"
 				href={`#slide${index === 0 ? totalUploads : index}`}
-				onClick={() => handleSelectUpload(uploads[index === 0 ? totalUploads - 1 : index - 1])}
+				onClick={() =>
+					handleSelectUpload(
+						uploads[index === 0 ? totalUploads - 1 : index - 1],
+					)
+				}
 			/>
 			<CarouselButton
 				direction="next"
@@ -72,7 +82,11 @@ function CarouselNavigation({
 	);
 }
 
-function CarouselButton({ direction, href, onClick }: { direction: 'prev' | 'next', href: string, onClick: () => void }) {
+function CarouselButton({
+	direction,
+	href,
+	onClick,
+}: { direction: "prev" | "next"; href: string; onClick: () => void }) {
 	return (
 		<a href={href} className="btn btn-circle" onClick={onClick}>
 			{direction === "prev" ? "❮" : "❯"}
