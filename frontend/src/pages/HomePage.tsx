@@ -1,5 +1,6 @@
 import { AIRecommendationButton } from "@/components/features/AIRecommendations/AIRecommendationButton.tsx";
 import { Authentication } from "@/components/features/Authentication/Authentication.tsx";
+import { BBoxSettings } from "@/components/features/Menu/BBoxSettings";
 import { BBoxTextToggle } from "@/components/features/Menu/BBoxTextToggle.tsx";
 import ImageCarousel from "@/components/features/Menu/ImageCarousel.tsx";
 import UploadForm from "@/components/features/Menu/UploadForm.tsx";
@@ -7,7 +8,6 @@ import { Navbar } from "@/components/ui/Navbar.tsx";
 import Sidebar from "@/components/ui/Sidebar.tsx";
 import { useMenuState } from "@/utils/hooks/useMenuState.ts";
 import { useRef } from "react";
-
 export function HomePage() {
 	const {
 		showTextState,
@@ -15,6 +15,10 @@ export function HomePage() {
 		imgTimestamp,
 		handleToggleTextState,
 		handleSelectUpload,
+		opacity,
+		setOpacity,
+		textColor,
+		setTextColor,
 	} = useMenuState();
 
 	const imageResultsRef = useRef<HTMLDivElement | null>(null);
@@ -45,11 +49,19 @@ export function HomePage() {
 							showTextState={showTextState}
 							onToggle={handleToggleTextState}
 						/>
+						<BBoxSettings
+							opacity={opacity}
+							setOpacity={setOpacity}
+							textColor={textColor}
+							setTextColor={setTextColor}
+						/>
 					</div>
 					<ImageCarousel
 						showTextState={showTextState}
 						handleSelectUpload={handleSelectUpload}
 						imgTimestamp={imgTimestamp}
+						opacity={opacity}
+						textColor={textColor}
 					/>
 				</div>
 			</div>
