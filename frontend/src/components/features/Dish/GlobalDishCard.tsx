@@ -44,10 +44,12 @@ export const GlobalDishCard: React.FC<GlobalDishCardProps> = ({
 				{isCartView ? (
 					<>
 						<h1 className="text-xl font-semibold accent-content">
-							{getTranslation()}
+							{truncateText(getTranslation(), 50)}
 						</h1>
 						{getOriginalText() && (
-							<p className="text-base-content italic">{getOriginalText()}</p>
+							<p className="text-base-content italic">
+								{truncateText(getOriginalText(), 50)}
+							</p>
 						)}
 					</>
 				) : (

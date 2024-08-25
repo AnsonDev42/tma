@@ -20,7 +20,7 @@ function Sidebar({ onSelectUpload }: SidebarProps): React.ReactElement {
 				/>
 				<div
 					role="tabpanel"
-					className="tab-content bg-base-100 border-base-300 rounded-box p-6 "
+					className="tab-content bg-base-100 border-base-300 rounded-box p-6 lg:max-w-screen-md"
 				>
 					<History onSelectUpload={onSelectUpload} />
 				</div>
