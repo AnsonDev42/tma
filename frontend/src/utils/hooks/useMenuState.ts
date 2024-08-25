@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
 import { ShowTextState } from "@/components/features/Menu/Menu.tsx";
 import { DishProps } from "@/types/DishProps.tsx";
 import { UploadProps } from "@/types/UploadProps.ts";
 import { useUploadsState } from "@/utils/hooks/useUploadsState.ts";
+import { useEffect, useState } from "react";
 
 export const useMenuState = () => {
 	const [showTextState, setShowTextState] = useState(
@@ -11,6 +11,8 @@ export const useMenuState = () => {
 	const [menuSrc, setMenuSrc] = useState<string | ArrayBuffer | null>(null);
 	const [data, setData] = useState<DishProps[]>([]);
 	const [imgTimestamp, setImgTimestamp] = useState<string | null>(null);
+	const [opacity, setOpacity] = useState(0.5);
+	const [textColor, setTextColor] = useState("black");
 	const { uploads } = useUploadsState();
 
 	useEffect(() => {
@@ -38,6 +40,10 @@ export const useMenuState = () => {
 		data,
 		imgTimestamp,
 		uploads,
+		opacity,
+		setOpacity,
+		textColor,
+		setTextColor,
 		handleToggleTextState,
 		handleSelectUpload,
 	};

@@ -14,9 +14,16 @@ export const ShowTextState = {
 interface MenuProps {
 	upload: UploadProps;
 	showTextState: number;
+	opacity: number;
+	textColor: string;
 }
 
-export function Menu({ upload, showTextState }: MenuProps): React.ReactElement {
+export function Menu({
+	upload,
+	showTextState,
+	opacity,
+	textColor,
+}: MenuProps): React.ReactElement {
 	const [imgDimensions, setImgDimensions] = useState({ width: 0, height: 0 });
 	const [openModal, setOpenModal] = useState(false);
 	const imageRef = useRef<HTMLImageElement>(null);
@@ -74,6 +81,8 @@ export function Menu({ upload, showTextState }: MenuProps): React.ReactElement {
 										imgDimensions={imgDimensions}
 										uploadTimestamp={upload.timestamp}
 										setOpenModal={setOpenModal}
+										opacity={opacity}
+										textColor={textColor}
 									/>
 								))}
 							</>
@@ -91,6 +100,8 @@ interface DishOverlayProps {
 	imgDimensions: { width: number; height: number };
 	uploadTimestamp: string;
 	setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
+	opacity: number;
+	textColor: string;
 }
 
 function DishOverlay({
@@ -99,9 +110,15 @@ function DishOverlay({
 	imgDimensions,
 	uploadTimestamp,
 	setOpenModal,
+	opacity,
+	textColor,
 }: DishOverlayProps) {
-	const overlayStyle = getOverlayStyle(dish.boundingBox, imgDimensions);
-
+	const overlayStyle = getOverlayStyle(
+		dish.boundingBox,
+		imgDimensions,
+		opacity,
+		textColor,
+	);
 	return (
 		<>
 			{showTextState !== ShowTextState.HIDE_ALL && (
@@ -130,13 +147,16 @@ function DishOverlay({
 function getOverlayStyle(
 	boundingBox: BoundingBoxProps,
 	imgDimensions: { width: number; height: number },
+	opacity: number,
+	textColor: string,
 ) {
 	return {
 		width: `${boundingBox.w * imgDimensions.width}px`,
 		height: `${boundingBox.h * imgDimensions.height}px`,
 		left: `${boundingBox.x * imgDimensions.width}px`,
 		top: `${boundingBox.y * imgDimensions.height}px`,
-		background: "rgba(255, 0, 0, 0.5)",
+		background: `rgba(255, 0, 0, ${opacity})`,
+		color: textColor,
 		border: "1px solid red",
 		heightNum: boundingBox.h * imgDimensions.height,
 	};
