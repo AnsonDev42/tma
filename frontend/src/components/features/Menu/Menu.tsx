@@ -105,8 +105,14 @@ function DishOverlay({
 	return (
 		<>
 			{showTextState !== ShowTextState.HIDE_ALL && (
-				<div className="absolute" style={overlayStyle}>
-					<AutoTextSize>
+				<div
+					className="absolute box-border leading-none whitespace-normal break-words  flex items-center justify-center"
+					style={overlayStyle}
+				>
+					<AutoTextSize
+						minFontSizePx={1}
+						maxFontSizePx={overlayStyle.heightNum}
+					>
 						<GlobalDishCard
 							dish={dish}
 							timeStamp={uploadTimestamp}
@@ -132,5 +138,6 @@ function getOverlayStyle(
 		top: `${boundingBox.y * imgDimensions.height}px`,
 		background: "rgba(255, 0, 0, 0.5)",
 		border: "1px solid red",
+		heightNum: boundingBox.h * imgDimensions.height,
 	};
 }
