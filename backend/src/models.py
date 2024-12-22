@@ -27,15 +27,7 @@ class User(BaseModel):
 class Dish(BaseModel):
     """Information about a Dish."""
 
-    # ^ Doc-string for the entity Person.
-    # This doc-string is sent to the LLM as the description of the schema dish,
-    # and it can help to improve extraction results.
-
-    # Note that:
-    # 1. Each field is an `optional` -- this allows the model to decline to extract it!
-    # 2. Each field has a `description` -- this description is used by the LLM.
-    # Having a good description can help improve extraction results.
-    dish_name: Optional[str] = Field(
+    dish_name: str = Field(
         default="Unknown",
         description="The most possible full dish name from the OCR result in original "
         "language. ",
@@ -47,3 +39,6 @@ class Dish(BaseModel):
         default=None,
         description="A brief introduction to the dish based on its name such as common ingredients, history and etc.",
     )
+
+if __name__ == "__main__":
+    print(Dish(dish_name="just me").dish_name)

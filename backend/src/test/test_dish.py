@@ -1,5 +1,8 @@
 from dotenv import load_dotenv
 from fastapi.testclient import TestClient
+
+from src.models import Dish
+from services.utils import build_search_chain
 from src.main import app
 import pytest
 
@@ -28,7 +31,8 @@ async def test_FatSerectClient():
 
 @pytest.mark.asyncio
 async def test_chain_result():
-    from src.core.vendors.fatsecret.client import FatSecretClient
+    chain = build_search_chain(model="gpt-4o-mini")
+    res = chain.invoke(  {"dish_name": "korean fried chicken" , "accept_language": "cn"})
+    assert res is not None
+    assert isinstance(res, Dish)
 
-    fatsecret = FatSecretClient()
-    ...
