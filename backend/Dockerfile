@@ -1,38 +1,27 @@
-#
-FROM python:3.12-slim as requirements-stage
+FROM python:3.12-slim
 
-#
-WORKDIR /tmp
+# Put Poetry into PATH
+ENV PATH=/root/.local/bin:$PATH
 
-#
-RUN pip install poetry
-
-#
-COPY ./pyproject.toml ./poetry.lock* /tmp/
-
-#
-RUN poetry export -f requirements.txt --output requirements.txt --without-hashes --without dev
-
-#
-FROM python:3.12
-
-#
-RUN apt-get update && apt-get install -y \
-    libgl1-mesa-glx \
-    && rm -rf /var/lib/apt/lists/*
-
-
-#
 WORKDIR /code
 
-#
-COPY --from=requirements-stage /tmp/requirements.txt /code/requirements.txt
+# Install Poetry
+RUN pip install --no-cache-dir poetry
+RUN poetry config virtualenvs.create false
 
-#
-RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
+# Copy in your pyproject.toml and poetry.lock files
+COPY pyproject.toml poetry.lock* /code/
 
-#
+# Install dependencies
+RUN poetry install --no-root
+
+# Any system dependencies needed
+RUN apt-get update && apt-get install -y libgtk2.0-dev libgl1-mesa-glx gunicorn \
+    && rm -rf /var/lib/apt/lists/*
+# Finally, copy in the source
 COPY ./src /code/src
 
-#
-CMD ["gunicorn", "-w", "4", "-k", "uvicorn.workers.UvicornWorker", "src.main:app", "--bind", "0.0.0.0:8000"]
+# And run with Poetry
+CMD ["gunicorn", "-w", "4", \
+     "-k", "uvicorn.workers.UvicornWorker", "src.main:app", \
+     "--bind", "0.0.0.0:8000"]
