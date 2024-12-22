@@ -2,6 +2,7 @@ import httpx
 from src.core.config import settings
 from src.core.vendors.fatsecret.token_storage import TokenStorage
 
+
 class FatSecretOAuth:
     def __init__(self):
         self.token_url = settings.FATSECRET_TOKEN_URL
@@ -33,5 +34,6 @@ class FatSecretOAuth:
             )
             response.raise_for_status()
             return response.json()["access_token"]
+
 
 fat_secret_oauth_client = FatSecretOAuth()

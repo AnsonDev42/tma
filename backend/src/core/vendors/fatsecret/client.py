@@ -27,7 +27,7 @@ class FatSecretClient:
         if cls._instance is None:
             cls._instance = FatSecretClient()
         return cls._instance
-    
+
     async def search_food(self, query: str):
         access_token = await self.oauth_client.get_access_token()
         async with httpx.AsyncClient() as client:
