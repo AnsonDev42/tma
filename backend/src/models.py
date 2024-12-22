@@ -1,9 +1,7 @@
 from typing import Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel,Field
 
-# langchain currently only supports pydantic v1
-from langchain_core.pydantic_v1 import BaseModel as BaseModelV1, Field as FieldV1
 
 from enum import Enum
 
@@ -26,7 +24,7 @@ class User(BaseModel):
         return Role(self.user_metadata.get("user_role", Role.FREE))
 
 
-class Dish(BaseModelV1):
+class Dish(BaseModel):
     """Information about a Dish."""
 
     # ^ Doc-string for the entity Person.
@@ -37,15 +35,15 @@ class Dish(BaseModelV1):
     # 1. Each field is an `optional` -- this allows the model to decline to extract it!
     # 2. Each field has a `description` -- this description is used by the LLM.
     # Having a good description can help improve extraction results.
-    dish_name: Optional[str] = FieldV1(
+    dish_name: Optional[str] = Field(
         default="Unknown",
         description="The most possible full dish name from the OCR result in original "
         "language. ",
     )
-    dish_translation: Optional[str] = FieldV1(
+    dish_translation: Optional[str] = Field(
         default=None, description="Translated dish name in  $Target-Language"
     )
-    dish_description: Optional[str] = FieldV1(
+    dish_description: Optional[str] = Field(
         default=None,
         description="A brief introduction to the dish based on its name such as common ingredients, history and etc.",
     )
