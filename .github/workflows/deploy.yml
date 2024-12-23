@@ -29,7 +29,5 @@ jobs:
 
     - name: Trigger webhook
       run: |
-        curl -X POST https://hook.itsya0wen.com/hooks/update-tma-backend \
-          -H "Content-Type: application/json" \
-          -H "x-header-v: ${{ secrets.HEADER_KEY }}" \
-          -d '{"action":"push"}'
+        curl -X POST REMOVED/v1/update \
+          -H "Authorization:Bearer ${{ secrets.HEADER_KEY }}" \
