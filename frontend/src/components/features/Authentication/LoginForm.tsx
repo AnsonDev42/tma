@@ -2,8 +2,6 @@ import { Button } from "@/components/ui/button";
 import { useSession } from "@/contexts/SessionContext.tsx";
 import supabase from "@/lib/supabaseClient.ts";
 import { Turnstile } from "@marsidev/react-turnstile";
-import { Auth } from "@supabase/auth-ui-react";
-import { ThemeSupa } from "@supabase/auth-ui-shared";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
@@ -14,6 +12,11 @@ export function LoginForm() {
 	const setSession = useSession()?.setSession;
 
 	async function handleAnonymousSignIn() {
+		if (captchaToken === "") {
+			toast.error("Captcha token not found.");
+			return false;
+		}
+
 		try {
 			const {
 				data: { session },
@@ -46,23 +49,8 @@ export function LoginForm() {
 				</div>
 				<div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
 					<div className="card-body">
-						<Auth
-							supabaseClient={supabase}
-							appearance={{
-								theme: ThemeSupa,
-								variables: {
-									default: {
-										colors: {
-											brand: "green",
-											brandAccent: "darkgreen",
-										},
-									},
-								},
-							}}
-							providers={["google", "github"]}
-						/>
 						<h1>
-							<b>***Demo Sign in*** : </b>
+							<b>Demo Sign in: </b>
 						</h1>
 						<Button onClick={handleAnonymousSignIn} className="m-3">
 							Sign in anonymously
