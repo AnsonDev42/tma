@@ -5,3 +5,10 @@
 /.idea/ruff.xml
 /.idea/tma.iml
 /.idea/vcs.xml
+
+
+terraform.tfvars
+*.env
+.terraform/
+*.tfstate
+*.tfstate.*
