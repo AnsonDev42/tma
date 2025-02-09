@@ -1,7 +1,8 @@
 FROM python:3.13-slim AS builder
 # Install UV
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
-
+# import the uv command
+ENV PATH="/root/.local/bin/:$PATH"
 
 FROM python:3.13-slim
 
