@@ -1,0 +1,36 @@
+services:
+  fastapi-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    #    image: tmmanson/tma-backend:latest
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+
+    container_name: tma_backend_container
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    volumes:
+      - ./src:/code/src
+      - .env:/code/.env
+    restart: always
+
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    command: --debug --http-api-update
+    # If you *also* want periodic checks in addition to the API trigger:
+    # command: --debug --http-api-update --http-api-periodic-polls
+    environment:
+      - WATCHTOWER_HTTP_API_TOKEN=${WATCHTOWER_HTTP_API_TOKEN}
+      - REPO_USER=${DOCKER_USERNAME}
+      - REPO_PASS=${DOCKER_PASSWORD}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ~/.docker/config.json:/config.json:ro
+    labels:
+      - "com.centurylinklabs.watchtower.enable=false"
+    ports:
+      - "8002:8080"
