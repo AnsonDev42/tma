@@ -1,16 +1,13 @@
-FROM python:3.13-slim AS builder
+FROM python:3.13-slim
 # Install UV
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
-# import the uv command
-ENV PATH="/root/.local/bin/:$PATH"
-
-FROM python:3.13-slim
 
 WORKDIR /code
 
 COPY pyproject.toml uv.lock* /code/
 
-RUN uv sync --frozen
+RUN uv sync --frozen --no-install-project --no-dev
+
 
 COPY ./src /code/src
 
