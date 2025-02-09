@@ -12,3 +12,5 @@ terraform.tfvars
 .terraform/
 *.tfstate
 *.tfstate.*
+/.idea/git_toolbox_blame.xml
+/.idea/terraform.xml
