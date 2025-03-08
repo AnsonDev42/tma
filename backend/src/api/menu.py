@@ -17,7 +17,7 @@ from src.services.user import record_access, get_access_limits
 router = APIRouter()
 
 
-@router.post("/upload", status_code=200)
+@router.post("/upload", status_code=http.HTTPStatus.OK)
 async def upload(
     file: UploadFile,
     user: User = Depends(get_user),
