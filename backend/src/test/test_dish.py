@@ -2,7 +2,7 @@ from dotenv import load_dotenv
 from fastapi.testclient import TestClient
 
 from src.models import Dish
-from services.utils import build_search_chain
+from src.services.utils import build_search_chain
 from src.main import app
 import pytest
 
