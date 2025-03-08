@@ -33,7 +33,7 @@ class Dish(BaseModel):
         "language. ",
     )
     dish_translation: Optional[str] = Field(
-        default=None, description="Translated dish name in  $Target-Language"
+        default=None, description="Translated dish name in $Target-Language"
     )
     dish_description: Optional[str] = Field(
         default=None,
