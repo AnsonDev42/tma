@@ -24,27 +24,99 @@ const DishCardGrid: React.FC<DishCardGridProps> = ({
 	// Create a ref for the scrollable container
 	const gridContainerRef = useRef<HTMLDivElement>(null);
 
+	// Store the ref value in the shared variable for use in DishCard
+	useEffect(() => {
+		if (gridContainerRef.current) {
+			gridContainerRefValue = gridContainerRef.current;
+		}
+		return () => {
+			gridContainerRefValue = null;
+		};
+	}, []);
+
+	// Function to scroll to a specific dish
+	const scrollToDishById = (dishId: number) => {
+		if (!gridContainerRef.current) return;
+
+		// Try to find the dish card element
+		const selectedCardElement = dishCardRefs.get(dishId);
+
+		if (selectedCardElement) {
+			// Add an offset to account for the header ("Dishes" and item count)
+			// Using a larger offset to ensure the card is fully visible below the header
+			const headerOffset = 60; // Increased from 40 to 60 for better visibility
+
+			// Calculate the scroll position to show the card with proper offset
+			// We want the card to be fully visible below the header
+			const scrollTop = selectedCardElement.offsetTop - headerOffset;
+
+			console.log(`Scrolling to dish ${dishId} at position ${scrollTop}px`);
+
+			// Scroll to the position with smooth behavior
+			gridContainerRef.current.scrollTo({
+				top: scrollTop,
+				behavior: "smooth",
+			});
+		} else {
+			console.log(`Could not find element for dish ${dishId}`);
+		}
+	};
+
 	// Scroll to the selected dish when selectedDish changes
 	useEffect(() => {
-		if (selectedDish && gridContainerRef.current) {
-			const selectedCardElement = dishCardRefs.get(selectedDish);
+		if (selectedDish) {
+			// Add a small delay to ensure the refs are properly set up
+			const scrollTimer = setTimeout(() => {
+				scrollToDishById(selectedDish);
+			}, 300);
 
-			if (selectedCardElement) {
-				// Add an offset to account for the header ("Dishes" and item count)
-				// Using a larger offset to ensure the card is fully visible below the header
-				const headerOffset = 60; // Increased from 40 to 60 for better visibility
-
-				// Calculate the scroll position to show the card with proper offset
-				// We want the card to be fully visible below the header
-				const scrollTop = selectedCardElement.offsetTop - headerOffset;
-
-				// Scroll to the position with smooth behavior
-				gridContainerRef.current.scrollTo({
-					top: scrollTop,
-					behavior: "smooth",
-				});
-			}
+			// Clean up the timer
+			return () => clearTimeout(scrollTimer);
 		}
+	}, [selectedDish]);
+
+	// Listen for custom scrollToDish events
+	useEffect(() => {
+		const handleScrollToDishEvent = (
+			event: CustomEvent<{ dishId: number }>,
+		) => {
+			const { dishId } = event.detail;
+			console.log(`Received scroll event for dish ${dishId}`);
+			scrollToDishById(dishId);
+		};
+
+		// Listen for when the bottom sheet is fully opened
+		const handleBottomSheetOpened = () => {
+			console.log("Bottom sheet fully opened, checking for selected dish");
+			if (selectedDish) {
+				// Wait a bit to make sure all elements are properly rendered
+				setTimeout(() => {
+					scrollToDishById(selectedDish);
+				}, 100);
+			}
+		};
+
+		// Add event listeners
+		window.addEventListener(
+			"scrollToDish",
+			handleScrollToDishEvent as EventListener,
+		);
+		window.addEventListener(
+			"bottomSheetOpened",
+			handleBottomSheetOpened as EventListener,
+		);
+
+		// Clean up
+		return () => {
+			window.removeEventListener(
+				"scrollToDish",
+				handleScrollToDishEvent as EventListener,
+			);
+			window.removeEventListener(
+				"bottomSheetOpened",
+				handleBottomSheetOpened as EventListener,
+			);
+		};
 	}, [selectedDish]);
 
 	if (!dishes.length) {
@@ -120,8 +192,9 @@ interface DishCardProps {
 	theme: string;
 }
 
-// Create a map to store refs for each dish card
+// Create a map to store refs for each dish card and a reference to the container
 const dishCardRefs = new Map<number, HTMLDivElement>();
+let gridContainerRefValue: HTMLDivElement | null = null;
 
 const DishCard: React.FC<DishCardProps> = ({
 	dish,
@@ -138,6 +211,28 @@ const DishCard: React.FC<DishCardProps> = ({
 	const setDishCardRef = (element: HTMLDivElement | null) => {
 		if (element) {
 			dishCardRefs.set(dish.id, element);
+
+			// If this is the selected dish and it was just rendered,
+			// trigger a scroll to it (helps with initial render)
+			if (isSelected && gridContainerRefValue) {
+				const headerOffset = 60;
+				const scrollTop = element.offsetTop - headerOffset;
+
+				// Log that we found the selected element
+				console.log(
+					`Found selected dish element for dish ${dish.id} at position ${scrollTop}px`,
+				);
+
+				setTimeout(() => {
+					if (gridContainerRefValue) {
+						gridContainerRefValue.scrollTo({
+							top: scrollTop,
+							behavior: "smooth",
+						});
+						console.log(`Scrolled to dish ${dish.id} from ref callback`);
+					}
+				}, 100);
+			}
 		} else {
 			dishCardRefs.delete(dish.id);
 		}

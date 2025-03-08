@@ -1,14 +1,15 @@
 import { useMenuV2 } from "@/contexts/MenuV2Context";
+import { useTheme } from "@/contexts/ThemeContext";
 import { truncateText } from "@/utils/truncateText";
 import React from "react";
 
 interface OrderPanelProps {
 	isOpen: boolean;
 	onClose: () => void;
-	theme: string;
 }
 
-const OrderPanel: React.FC<OrderPanelProps> = ({ isOpen, onClose, theme }) => {
+const OrderPanel: React.FC<OrderPanelProps> = ({ isOpen, onClose }) => {
+	const { theme, isDark } = useTheme();
 	const { orderItems, updateOrderQuantity, removeFromOrder, clearOrder } =
 		useMenuV2();
 
@@ -20,7 +21,7 @@ const OrderPanel: React.FC<OrderPanelProps> = ({ isOpen, onClose, theme }) => {
 			className={`
         fixed top-0 right-0 h-full w-80 md:w-96 z-50 transform transition-transform duration-300 ease-in-out
         ${isOpen ? "translate-x-0" : "translate-x-full"}
-        ${theme === "dark" ? "bg-slate-800 text-white" : "bg-white text-slate-800"}
+        ${isDark ? "bg-slate-800 text-white" : "bg-white text-slate-800"}
         shadow-2xl
       `}
 		>
@@ -28,7 +29,7 @@ const OrderPanel: React.FC<OrderPanelProps> = ({ isOpen, onClose, theme }) => {
 			<div
 				className={`
         p-4 border-b flex justify-between items-center
-        ${theme === "dark" ? "border-slate-700" : "border-gray-200"}
+        ${isDark ? "border-slate-700" : "border-gray-200"}
       `}
 			>
 				<h2 className="text-xl font-semibold flex items-center">
@@ -51,7 +52,7 @@ const OrderPanel: React.FC<OrderPanelProps> = ({ isOpen, onClose, theme }) => {
 						<span
 							className={`
               ml-2 px-2 py-0.5 text-sm rounded-full
-              ${theme === "dark" ? "bg-blue-600 text-white" : "bg-blue-500 text-white"}
+              ${isDark ? "bg-blue-600 text-white" : "bg-blue-500 text-white"}
             `}
 						>
 							{totalItems}
@@ -62,7 +63,7 @@ const OrderPanel: React.FC<OrderPanelProps> = ({ isOpen, onClose, theme }) => {
 					onClick={onClose}
 					className={`
             p-2 rounded-full hover:bg-opacity-10
-            ${theme === "dark" ? "hover:bg-white" : "hover:bg-slate-200"}
+            ${isDark ? "hover:bg-white" : "hover:bg-slate-200"}
           `}
 				>
 					<svg
@@ -102,7 +103,7 @@ const OrderPanel: React.FC<OrderPanelProps> = ({ isOpen, onClose, theme }) => {
 						</svg>
 						<p className="text-lg font-medium">Your order is empty</p>
 						<p
-							className={`mt-2 text-sm ${theme === "dark" ? "text-gray-400" : "text-gray-500"}`}
+							className={`mt-2 text-sm ${isDark ? "text-gray-400" : "text-gray-500"}`}
 						>
 							Add items by clicking on dishes in the menu
 						</p>
@@ -114,7 +115,7 @@ const OrderPanel: React.FC<OrderPanelProps> = ({ isOpen, onClose, theme }) => {
 								key={item.dish.id}
 								className={`
                   p-3 rounded-lg flex items-center justify-between
-                  ${theme === "dark" ? "bg-slate-700" : "bg-slate-100"}
+                  ${isDark ? "bg-slate-700" : "bg-slate-100"}
                 `}
 							>
 								<div className="flex-1 min-w-0">
@@ -139,8 +140,8 @@ const OrderPanel: React.FC<OrderPanelProps> = ({ isOpen, onClose, theme }) => {
 										}
 										className={`
                       w-8 h-8 flex items-center justify-center rounded-full
-                      ${theme === "dark" ? "bg-slate-600 hover:bg-slate-500" : "bg-white hover:bg-gray-200"} 
-                      ${theme === "dark" ? "text-white" : "text-slate-700"}
+                      ${isDark ? "bg-slate-600 hover:bg-slate-500" : "bg-white hover:bg-gray-200"} 
+                      ${isDark ? "text-white" : "text-slate-700"}
                       shadow
                     `}
 									>
@@ -172,8 +173,8 @@ const OrderPanel: React.FC<OrderPanelProps> = ({ isOpen, onClose, theme }) => {
 										}
 										className={`
                       w-8 h-8 flex items-center justify-center rounded-full
-                      ${theme === "dark" ? "bg-slate-600 hover:bg-slate-500" : "bg-white hover:bg-gray-200"} 
-                      ${theme === "dark" ? "text-white" : "text-slate-700"}
+                      ${isDark ? "bg-slate-600 hover:bg-slate-500" : "bg-white hover:bg-gray-200"} 
+                      ${isDark ? "text-white" : "text-slate-700"}
                       shadow
                     `}
 									>
@@ -197,7 +198,7 @@ const OrderPanel: React.FC<OrderPanelProps> = ({ isOpen, onClose, theme }) => {
 										onClick={() => removeFromOrder(item.dish.id)}
 										className={`
                       ml-2 w-8 h-8 flex items-center justify-center rounded-full
-                      ${theme === "dark" ? "bg-red-600 hover:bg-red-700" : "bg-red-500 hover:bg-red-600"} 
+                      ${isDark ? "bg-red-600 hover:bg-red-700" : "bg-red-500 hover:bg-red-600"}
                       text-white shadow
                     `}
 									>
@@ -227,7 +228,7 @@ const OrderPanel: React.FC<OrderPanelProps> = ({ isOpen, onClose, theme }) => {
 			<div
 				className={`
         absolute bottom-0 left-0 right-0 p-4 border-t
-        ${theme === "dark" ? "border-slate-700" : "border-gray-200"}
+        ${isDark ? "border-slate-700" : "border-gray-200"}
       `}
 			>
 				<div className="flex justify-between mb-4">
@@ -242,7 +243,7 @@ const OrderPanel: React.FC<OrderPanelProps> = ({ isOpen, onClose, theme }) => {
               flex-1 py-2 rounded-lg font-medium transition-colors
               ${orderItems.length === 0 ? "opacity-50 cursor-not-allowed" : ""}
               ${
-								theme === "dark"
+								isDark
 									? "bg-slate-700 hover:bg-slate-600 text-white"
 									: "bg-slate-200 hover:bg-slate-300 text-slate-800"
 							}
@@ -257,7 +258,7 @@ const OrderPanel: React.FC<OrderPanelProps> = ({ isOpen, onClose, theme }) => {
               flex-1 py-2 rounded-lg font-medium transition-colors
               ${orderItems.length === 0 ? "opacity-50 cursor-not-allowed" : ""}
               ${
-								theme === "dark"
+								isDark
 									? "bg-blue-600 hover:bg-blue-700 text-white"
 									: "bg-blue-500 hover:bg-blue-600 text-white"
 							}
