@@ -21,102 +21,17 @@ const DishCardGrid: React.FC<DishCardGridProps> = ({
 		addToOrder,
 	} = useMenuV2();
 
-	// Create a ref for the scrollable container
-	const gridContainerRef = useRef<HTMLDivElement>(null);
+	// Create a ref to hold the currently selected dish card
+	const selectedDishRef = useRef<HTMLDivElement>(null);
 
-	// Store the ref value in the shared variable for use in DishCard
+	// When the selected dish changes, scroll it into view
 	useEffect(() => {
-		if (gridContainerRef.current) {
-			gridContainerRefValue = gridContainerRef.current;
-		}
-		return () => {
-			gridContainerRefValue = null;
-		};
-	}, []);
-
-	// Function to scroll to a specific dish
-	const scrollToDishById = (dishId: number) => {
-		if (!gridContainerRef.current) return;
-
-		// Try to find the dish card element
-		const selectedCardElement = dishCardRefs.get(dishId);
-
-		if (selectedCardElement) {
-			// Add an offset to account for the header ("Dishes" and item count)
-			// Using a larger offset to ensure the card is fully visible below the header
-			const headerOffset = 60; // Increased from 40 to 60 for better visibility
-
-			// Calculate the scroll position to show the card with proper offset
-			// We want the card to be fully visible below the header
-			const scrollTop = selectedCardElement.offsetTop - headerOffset;
-
-			console.log(`Scrolling to dish ${dishId} at position ${scrollTop}px`);
-
-			// Scroll to the position with smooth behavior
-			gridContainerRef.current.scrollTo({
-				top: scrollTop,
+		if (selectedDishRef.current) {
+			selectedDishRef.current.scrollIntoView({
 				behavior: "smooth",
+				block: "start",
 			});
-		} else {
-			console.log(`Could not find element for dish ${dishId}`);
 		}
-	};
-
-	// Scroll to the selected dish when selectedDish changes
-	useEffect(() => {
-		if (selectedDish) {
-			// Add a small delay to ensure the refs are properly set up
-			const scrollTimer = setTimeout(() => {
-				scrollToDishById(selectedDish);
-			}, 300);
-
-			// Clean up the timer
-			return () => clearTimeout(scrollTimer);
-		}
-	}, [selectedDish]);
-
-	// Listen for custom scrollToDish events
-	useEffect(() => {
-		const handleScrollToDishEvent = (
-			event: CustomEvent<{ dishId: number }>,
-		) => {
-			const { dishId } = event.detail;
-			console.log(`Received scroll event for dish ${dishId}`);
-			scrollToDishById(dishId);
-		};
-
-		// Listen for when the bottom sheet is fully opened
-		const handleBottomSheetOpened = () => {
-			console.log("Bottom sheet fully opened, checking for selected dish");
-			if (selectedDish) {
-				// Wait a bit to make sure all elements are properly rendered
-				setTimeout(() => {
-					scrollToDishById(selectedDish);
-				}, 100);
-			}
-		};
-
-		// Add event listeners
-		window.addEventListener(
-			"scrollToDish",
-			handleScrollToDishEvent as EventListener,
-		);
-		window.addEventListener(
-			"bottomSheetOpened",
-			handleBottomSheetOpened as EventListener,
-		);
-
-		// Clean up
-		return () => {
-			window.removeEventListener(
-				"scrollToDish",
-				handleScrollToDishEvent as EventListener,
-			);
-			window.removeEventListener(
-				"bottomSheetOpened",
-				handleBottomSheetOpened as EventListener,
-			);
-		};
 	}, [selectedDish]);
 
 	if (!dishes.length) {
@@ -124,20 +39,6 @@ const DishCardGrid: React.FC<DishCardGridProps> = ({
 			<div
 				className={`flex flex-col items-center justify-center h-96 ${theme === "dark" ? "text-gray-400" : "text-gray-500"}`}
 			>
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					className="h-24 w-24 mb-4"
-					fill="none"
-					viewBox="0 0 24 24"
-					stroke="currentColor"
-				>
-					<path
-						strokeLinecap="round"
-						strokeLinejoin="round"
-						strokeWidth={1}
-						d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
-					/>
-				</svg>
 				<p className="text-xl font-medium">No dishes available</p>
 				<p className="mt-2">Upload a menu to see dishes</p>
 			</div>
@@ -156,7 +57,6 @@ const DishCardGrid: React.FC<DishCardGridProps> = ({
 			</div>
 
 			<div
-				ref={gridContainerRef}
 				className="overflow-y-auto pr-2 custom-scrollbar"
 				style={{
 					maxHeight: isMobile ? "calc(100% - 40px)" : "calc(100vh - 300px)",
@@ -165,6 +65,8 @@ const DishCardGrid: React.FC<DishCardGridProps> = ({
 				<div className="grid grid-cols-1 gap-4">
 					{dishes.map((dish) => (
 						<DishCard
+							// Only attach the ref if this dish is selected
+							ref={selectedDish === dish.id ? selectedDishRef : null}
 							key={dish.id}
 							dish={dish}
 							isHovered={hoveredDish === dish.id}
@@ -192,162 +94,99 @@ interface DishCardProps {
 	theme: string;
 }
 
-// Create a map to store refs for each dish card and a reference to the container
-const dishCardRefs = new Map<number, HTMLDivElement>();
-let gridContainerRefValue: HTMLDivElement | null = null;
+const DishCard = React.forwardRef<HTMLDivElement, DishCardProps>(
+	({ dish, isHovered, isSelected, onHover, onSelect, theme }, ref) => {
+		// Determine if we have an image to display
+		const hasImage = dish.info.imgSrc && dish.info.imgSrc.length > 0;
 
-const DishCard: React.FC<DishCardProps> = ({
-	dish,
-	isHovered,
-	isSelected,
-	onHover,
-	onSelect,
-	theme,
-}) => {
-	// Determine if we have an image to display
-	const hasImage = dish.info.imgSrc && dish.info.imgSrc.length > 0;
-
-	// Create a ref callback to store the element reference in our map
-	const setDishCardRef = (element: HTMLDivElement | null) => {
-		if (element) {
-			dishCardRefs.set(dish.id, element);
-
-			// If this is the selected dish and it was just rendered,
-			// trigger a scroll to it (helps with initial render)
-			if (isSelected && gridContainerRefValue) {
-				const headerOffset = 60;
-				const scrollTop = element.offsetTop - headerOffset;
-
-				// Log that we found the selected element
-				console.log(
-					`Found selected dish element for dish ${dish.id} at position ${scrollTop}px`,
-				);
-
-				setTimeout(() => {
-					if (gridContainerRefValue) {
-						gridContainerRefValue.scrollTo({
-							top: scrollTop,
-							behavior: "smooth",
-						});
-						console.log(`Scrolled to dish ${dish.id} from ref callback`);
-					}
-				}, 100);
-			}
-		} else {
-			dishCardRefs.delete(dish.id);
-		}
-	};
-
-	return (
-		<div
-			ref={setDishCardRef}
-			className={`
-        relative rounded-xl overflow-hidden transition-all duration-200
-        ${
-					theme === "dark"
-						? isHovered || isSelected
-							? "bg-slate-700 shadow-lg"
-							: "bg-slate-700 shadow"
-						: isHovered || isSelected
-							? "bg-white shadow-lg"
-							: "bg-white shadow"
-				}
-        ${isHovered || isSelected ? "transform scale-102" : ""}
-        ${isSelected ? "ring-2 ring-blue-500" : ""}
-      `}
-			onMouseEnter={() => onHover(dish.id)}
-			onMouseLeave={() => onHover(null)}
-			onClick={onSelect}
-		>
-			<div className="flex p-3">
-				{/* Thumbnail */}
-				<div className="w-24 h-24 flex-shrink-0 rounded-lg overflow-hidden mr-3 bg-gray-200">
-					{hasImage ? (
-						<img
-							src={dish.info.imgSrc[0]}
-							alt={dish.info.text}
-							className="w-full h-full object-cover"
-							onError={(e) => {
-								// If image fails to load, replace with placeholder
-								(e.target as HTMLImageElement).src =
-									"https://placeholder.co/100?text=No+Image";
-							}}
-						/>
-					) : (
-						<div className="w-full h-full flex items-center justify-center bg-gray-200 text-gray-400">
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								className="h-12 w-12"
-								fill="none"
-								viewBox="0 0 24 24"
-								stroke="currentColor"
-							>
-								<path
-									strokeLinecap="round"
-									strokeLinejoin="round"
-									strokeWidth={1}
-									d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-								/>
-							</svg>
-						</div>
-					)}
-				</div>
-
-				{/* Content */}
-				<div className="flex-1">
-					<h3
-						className={`font-medium ${theme === "dark" ? "text-white" : "text-slate-800"}`}
-					>
-						{dish.info.textTranslation || dish.info.text}
-					</h3>
-
-					{dish.info.textTranslation &&
-						dish.info.text &&
-						dish.info.textTranslation !== dish.info.text && (
-							<p
-								className={`text-sm italic mt-1 ${theme === "dark" ? "text-gray-400" : "text-gray-500"}`}
-							>
-								{truncateText(dish.info.text, 50)}
-							</p>
-						)}
-
-					<p
-						className={`text-sm mt-2 ${theme === "dark" ? "text-gray-300" : "text-gray-600"}`}
-					>
-						{truncateText(
-							dish.info.description || "No description available",
-							80,
-						)}
-					</p>
-				</div>
-			</div>
-
-			{/* Add to Order Button */}
+		return (
 			<div
+				ref={ref}
 				className={`
-        flex justify-end p-2 border-t
-        ${theme === "dark" ? "border-slate-600" : "border-gray-100"}
-      `}
+					relative rounded-xl overflow-hidden transition-all duration-200
+					${
+						theme === "dark"
+							? isHovered || isSelected
+								? "bg-slate-700 shadow-lg"
+								: "bg-slate-700 shadow"
+							: isHovered || isSelected
+								? "bg-white shadow-lg"
+								: "bg-white shadow"
+					}
+					${isHovered || isSelected ? "transform scale-102" : ""}
+					${isSelected ? "ring-2 ring-blue-500" : ""}
+				`}
+				onMouseEnter={() => onHover(dish.id)}
+				onMouseLeave={() => onHover(null)}
+				onClick={onSelect}
 			>
-				<button
-					className={`
-            px-3 py-1 rounded-md text-sm font-medium transition-colors
-            ${
-							theme === "dark"
-								? "bg-blue-600 hover:bg-blue-700 text-white"
-								: "bg-blue-500 hover:bg-blue-600 text-white"
-						}
-          `}
-					onClick={(e) => {
-						e.stopPropagation();
-						onSelect();
-					}}
+				<div className="flex p-3">
+					{/* Thumbnail */}
+					<div className="w-24 h-24 flex-shrink-0 rounded-lg overflow-hidden mr-3 bg-gray-200">
+						{hasImage ? (
+							<img
+								src={dish.info.imgSrc[0]}
+								alt={dish.info.text}
+								className="w-full h-full object-cover"
+								onError={(e) => {
+									(e.target as HTMLImageElement).src =
+										"https://placeholder.co/100?text=No+Image";
+								}}
+							/>
+						) : (
+							<div className="w-full h-full flex items-center justify-center bg-gray-200 text-gray-400"></div>
+						)}
+					</div>
+
+					{/* Content */}
+					<div className="flex-1">
+						<h3
+							className={`font-medium ${theme === "dark" ? "text-white" : "text-slate-800"}`}
+						>
+							{dish.info.textTranslation || dish.info.text}
+						</h3>
+
+						{dish.info.textTranslation &&
+							dish.info.text &&
+							dish.info.textTranslation !== dish.info.text && (
+								<p
+									className={`text-sm italic mt-1 ${theme === "dark" ? "text-gray-400" : "text-gray-500"}`}
+								>
+									{truncateText(dish.info.text, 50)}
+								</p>
+							)}
+
+						<p
+							className={`text-sm mt-2 ${theme === "dark" ? "text-gray-300" : "text-gray-600"}`}
+						>
+							{truncateText(
+								dish.info.description || "No description available",
+								80,
+							)}
+						</p>
+					</div>
+				</div>
+
+				{/* Add to Order Button */}
+				<div
+					className={`flex justify-end p-2 border-t ${theme === "dark" ? "border-slate-600" : "border-gray-100"}`}
 				>
-					Add to Order
-				</button>
+					<button
+						className={`
+							px-3 py-1 rounded-md text-sm font-medium transition-colors
+							${theme === "dark" ? "bg-blue-600 hover:bg-blue-700 text-white" : "bg-blue-500 hover:bg-blue-600 text-white"}
+						`}
+						onClick={(e) => {
+							e.stopPropagation();
+							onSelect();
+						}}
+					>
+						Add to Order
+					</button>
+				</div>
 			</div>
-		</div>
-	);
-};
+		);
+	},
+);
 
 export default DishCardGrid;

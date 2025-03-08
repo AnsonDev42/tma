@@ -1,7 +1,6 @@
-import ScrollToTopButton from "@/components/ui/ScrollToTopButton";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useResponsive } from "@/hooks/useResponsive";
-import React, { ReactNode, useState, useEffect } from "react";
+import React, { ReactNode } from "react";
 import Header from "./Header";
 
 interface MainLayoutProps {
@@ -17,27 +16,6 @@ const MainLayout: React.FC<MainLayoutProps> = ({
 }) => {
 	const { isDark } = useTheme();
 	const { isMobile } = useResponsive();
-	const [showScrollToTop, setShowScrollToTop] = useState(false);
-
-	// Function to scroll to top
-	const scrollToTop = () => {
-		window.scrollTo({
-			top: 0,
-			behavior: "smooth",
-		});
-	};
-
-	// Listen for scroll events to show/hide the button
-	useEffect(() => {
-		if (!isMobile) return;
-
-		const handleScroll = () => {
-			setShowScrollToTop(window.scrollY > 200);
-		};
-
-		window.addEventListener("scroll", handleScroll);
-		return () => window.removeEventListener("scroll", handleScroll);
-	}, [isMobile]);
 
 	return (
 		<div
@@ -48,8 +26,6 @@ const MainLayout: React.FC<MainLayoutProps> = ({
 			{customHeader ? customHeader : <Header title={title} />}
 
 			<main className="pt-16 pb-20">{children}</main>
-
-			<ScrollToTopButton visible={showScrollToTop} onClick={scrollToTop} />
 		</div>
 	);
 };
