@@ -1,5 +1,5 @@
 import { useTheme } from "@/contexts/ThemeContext";
-import React, { useRef, useEffect } from "react";
+import React, { useEffect } from "react";
 
 interface BottomSheetProps {
 	isOpen: boolean;
@@ -15,7 +15,6 @@ const BottomSheet: React.FC<BottomSheetProps> = ({
 	children,
 }) => {
 	const { isDark } = useTheme();
-	const bottomSheetRef = useRef<HTMLDivElement>(null);
 
 	// Add effect to prevent body scrolling when bottom sheet is open
 	useEffect(() => {
@@ -29,58 +28,8 @@ const BottomSheet: React.FC<BottomSheetProps> = ({
 		};
 	}, [isOpen]);
 
-	// Add effect to animate the bottom sheet when it opens
-	useEffect(() => {
-		if (isOpen && bottomSheetRef.current) {
-			// Force a reflow to ensure the animation works properly
-			bottomSheetRef.current.style.transform = "translateY(100%)";
-			setTimeout(() => {
-				if (bottomSheetRef.current) {
-					bottomSheetRef.current.style.transform = "translateY(0)";
-
-					// Dispatch an event when the bottom sheet is fully open
-					// This helps with timing for scrolling to dishes
-					setTimeout(() => {
-						console.log("BottomSheet is now fully open");
-						const openEvent = new CustomEvent("bottomSheetOpened");
-						window.dispatchEvent(openEvent);
-
-						// Check if there's a pending scroll request in session storage
-						const pendingDishId = sessionStorage.getItem("pendingScrollDishId");
-						if (pendingDishId) {
-							console.log(
-								`Found pending scroll request for dish ${pendingDishId}`,
-							);
-							// Dispatch a scroll event for this dish
-							const scrollEvent = new CustomEvent("scrollToDish", {
-								detail: { dishId: parseInt(pendingDishId) },
-							});
-							window.dispatchEvent(scrollEvent);
-							// Clear the pending request
-							sessionStorage.removeItem("pendingScrollDishId");
-						}
-					}, 300); // Match the transition duration
-				}
-			}, 10);
-		}
-	}, [isOpen]);
-
-	// Function to handle sliding down animation
-	const slideDown = () => {
-		if (bottomSheetRef.current) {
-			// Apply slide down animation
-			bottomSheetRef.current.style.transform = "translateY(100%)";
-
-			// After animation completes, toggle the state
-			setTimeout(() => {
-				onToggle();
-			}, 300); // Match the transition duration
-		}
-	};
-
 	return (
 		<div
-			ref={bottomSheetRef}
 			className={`fixed bottom-0 left-0 right-0 z-40 ${isDark ? "bg-slate-800" : "bg-white"} rounded-t-xl shadow-lg`}
 			style={{
 				height,
@@ -101,7 +50,7 @@ const BottomSheet: React.FC<BottomSheetProps> = ({
 				</div>
 				<div className="flex-1 flex justify-end">
 					<button
-						onClick={slideDown}
+						onClick={onToggle}
 						className={`p-1 rounded-full ${isDark ? "text-gray-300 hover:bg-slate-700" : "text-gray-600 hover:bg-gray-100"}`}
 						aria-label="Hide bottom sheet"
 					>
