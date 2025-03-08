@@ -160,9 +160,13 @@ async def get_dish_info_via_openai(
 ) -> dict:
     """Search dish info via OPENAI and using WIKI to get the image"""
 
-    dish: Dish = await chain.ainvoke(
-        {"dish_name": dish_name, "accept_language": accept_language}
-    )
+    try:
+        dish: Dish = await chain.ainvoke(
+            {"dish_name": dish_name, "accept_language": accept_language}
+        )
+    except Exception as e:
+        logger.error(e)
+        dish = Dish(dish_name="Unknown")
 
     return {
         "description": dish.dish_description,
