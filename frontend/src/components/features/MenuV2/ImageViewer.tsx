@@ -1,3 +1,4 @@
+import { useBottomSheetContext } from "@/contexts/BottomSheetContext";
 import { useMenuV2 } from "@/contexts/MenuV2Context";
 import { BoundingBoxProps, DishProps } from "@/types/DishProps.tsx";
 import React, { useRef, useEffect, useState, useCallback } from "react";
@@ -21,6 +22,9 @@ const ImageViewer: React.FC<ImageViewerProps> = ({
 		setSelectedDish,
 		addToOrder,
 	} = useMenuV2();
+
+	// Get bottom sheet context to control it when dishes are clicked
+	const { openBottomSheet, scrollToDish } = useBottomSheetContext();
 
 	const [imgDimensions, setImgDimensions] = useState({ width: 0, height: 0 });
 	const imageRef = useRef<HTMLImageElement>(null);
@@ -60,8 +64,26 @@ const ImageViewer: React.FC<ImageViewerProps> = ({
 
 	// Handle dish click
 	const handleDishClick = (dish: DishProps) => {
+		// Store the dish ID in session storage for reliable scrolling
+		// This will be picked up by the BottomSheet when it's fully open
+		sessionStorage.setItem("pendingScrollDishId", dish.id.toString());
+
+		console.log(`Stored dish ${dish.id} in session storage for scrolling`);
+
+		// Set the selected dish immediately
 		setSelectedDish(dish.id);
+
+		// Add to order if needed
 		addToOrder(dish);
+
+		// First open the bottom sheet to ensure it's visible
+		// The BottomSheet component will handle scrolling when it's fully open
+		openBottomSheet();
+
+		// Also try the direct approach as a fallback
+		setTimeout(() => {
+			scrollToDish(dish.id);
+		}, 800); // Longer delay as a fallback
 	};
 
 	if (!selectedImage) {
