@@ -1,12 +1,12 @@
+import Header from "@/components/layout/Header";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useResponsive } from "@/hooks/useResponsive";
 import React, { ReactNode } from "react";
-import Header from "./Header";
 
 interface MainLayoutProps {
 	children: ReactNode;
 	title?: string;
-	customHeader?: ReactNode; // Added customHeader prop to allow custom header components
+	customHeader?: ReactNode;
 }
 
 const MainLayout: React.FC<MainLayoutProps> = ({
