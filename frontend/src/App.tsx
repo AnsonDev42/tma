@@ -4,6 +4,7 @@ import Footer from "@/components/ui/Footer.tsx";
 import { SessionProvider } from "@/contexts/SessionContext";
 import { UserInfoProvider } from "@/contexts/UserInfoContext.tsx";
 import { HomePage } from "@/pages/HomePage.tsx";
+import HomePageV2 from "@/pages/HomePageV2.tsx";
 import { ProtectedRoute } from "@/routers/router.tsx";
 import {
 	Navigate,
@@ -23,6 +24,7 @@ function App() {
 						<Router>
 							<Routes>
 								<Route element={<ProtectedRoute />}>
+									<Route path="/home/v2" element={<HomePageV2 />} />
 									<Route path="/home" element={<HomePage />} />
 									<Route path="*" element={<Navigate to="/home" />} />
 								</Route>
