@@ -366,8 +366,8 @@ def normalize_bounding_box(
 
 def serialize_dish_data(dish_data: list, bounding_boxes: list):
     results = []
-    for dish_info, dish_bbox in zip(dish_data, bounding_boxes, strict=True):
-        dish = {"info": dish_info, "boundingBox": dish_bbox}
+    for i, (dish_info, dish_bbox) in enumerate(zip(dish_data, bounding_boxes, strict=True)):
+        dish = {"id": i, "info": dish_info, "boundingBox": dish_bbox}
         results.append(dish)
     return results
 
