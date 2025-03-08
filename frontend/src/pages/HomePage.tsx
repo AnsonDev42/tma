@@ -8,6 +8,7 @@ import { Navbar } from "@/components/ui/Navbar.tsx";
 import Sidebar from "@/components/ui/Sidebar.tsx";
 import { useMenuState } from "@/utils/hooks/useMenuState.ts";
 import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 export function HomePage() {
 	const {
 		showTextState,
@@ -23,6 +24,12 @@ export function HomePage() {
 
 	const imageResultsRef = useRef<HTMLDivElement | null>(null);
 
+	const navigate = useNavigate();
+
+	const goToV2 = () => {
+		navigate("/home/v2");
+	};
+
 	return (
 		<div className="drawer lg:drawer-open">
 			<input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
@@ -30,6 +37,23 @@ export function HomePage() {
 				<div className="fixed top-0 left-0 right-0 z-50">
 					<Navbar />
 				</div>
+				<button
+					onClick={goToV2}
+					className="version-toggle"
+					style={{
+						position: "fixed",
+						top: "10px",
+						right: "10px",
+						zIndex: 1000,
+						padding: "5px 10px",
+						background: "#4a4a4a",
+						color: "white",
+						borderRadius: "4px",
+						cursor: "pointer",
+					}}
+				>
+					Try V2 UI
+				</button>
 				<div className="flex flex-col mx-2">
 					<div className="divider divider-neutral"></div>
 					<Authentication />
