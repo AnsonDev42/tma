@@ -72,7 +72,7 @@ def build_search_chain(model: str = "gpt-3.5-turbo") -> RunnableSerializable:
             ),
         ]
     )
-    runnable = prompt | llm.with_structured_output(Dish)
+    runnable = prompt | llm.with_structured_output(Dish,method="function_calling")
     return runnable
 
 
