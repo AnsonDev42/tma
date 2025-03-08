@@ -1,7 +1,7 @@
 import { useMenuV2 } from "@/contexts/MenuV2Context";
 import { DishProps } from "@/types/DishProps.tsx";
 import { truncateText } from "@/utils/truncateText";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 interface DishCardGridProps {
 	theme: string;
@@ -20,6 +20,32 @@ const DishCardGrid: React.FC<DishCardGridProps> = ({
 		setSelectedDish,
 		addToOrder,
 	} = useMenuV2();
+
+	// Create a ref for the scrollable container
+	const gridContainerRef = useRef<HTMLDivElement>(null);
+
+	// Scroll to the selected dish when selectedDish changes
+	useEffect(() => {
+		if (selectedDish && gridContainerRef.current) {
+			const selectedCardElement = dishCardRefs.get(selectedDish);
+
+			if (selectedCardElement) {
+				// Add an offset to account for the header ("Dishes" and item count)
+				// Using a larger offset to ensure the card is fully visible below the header
+				const headerOffset = 60; // Increased from 40 to 60 for better visibility
+
+				// Calculate the scroll position to show the card with proper offset
+				// We want the card to be fully visible below the header
+				const scrollTop = selectedCardElement.offsetTop - headerOffset;
+
+				// Scroll to the position with smooth behavior
+				gridContainerRef.current.scrollTo({
+					top: scrollTop,
+					behavior: "smooth",
+				});
+			}
+		}
+	}, [selectedDish]);
 
 	if (!dishes.length) {
 		return (
@@ -58,6 +84,7 @@ const DishCardGrid: React.FC<DishCardGridProps> = ({
 			</div>
 
 			<div
+				ref={gridContainerRef}
 				className="overflow-y-auto pr-2 custom-scrollbar"
 				style={{
 					maxHeight: isMobile ? "calc(100% - 40px)" : "calc(100vh - 300px)",
@@ -93,6 +120,9 @@ interface DishCardProps {
 	theme: string;
 }
 
+// Create a map to store refs for each dish card
+const dishCardRefs = new Map<number, HTMLDivElement>();
+
 const DishCard: React.FC<DishCardProps> = ({
 	dish,
 	isHovered,
@@ -104,8 +134,18 @@ const DishCard: React.FC<DishCardProps> = ({
 	// Determine if we have an image to display
 	const hasImage = dish.info.imgSrc && dish.info.imgSrc.length > 0;
 
+	// Create a ref callback to store the element reference in our map
+	const setDishCardRef = (element: HTMLDivElement | null) => {
+		if (element) {
+			dishCardRefs.set(dish.id, element);
+		} else {
+			dishCardRefs.delete(dish.id);
+		}
+	};
+
 	return (
 		<div
+			ref={setDishCardRef}
 			className={`
         relative rounded-xl overflow-hidden transition-all duration-200
         ${
