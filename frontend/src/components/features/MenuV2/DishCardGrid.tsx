@@ -74,6 +74,8 @@ const DishCardGrid: React.FC<DishCardGridProps> = ({
 							onHover={setHoveredDish}
 							onSelect={() => {
 								setSelectedDish(dish.id);
+							}}
+							onAddToOrder={() => {
 								addToOrder(dish);
 							}}
 							theme={theme}
@@ -91,11 +93,15 @@ interface DishCardProps {
 	isSelected: boolean;
 	onHover: (id: number | null) => void;
 	onSelect: () => void;
+	onAddToOrder: () => void;
 	theme: string;
 }
 
 const DishCard = React.forwardRef<HTMLDivElement, DishCardProps>(
-	({ dish, isHovered, isSelected, onHover, onSelect, theme }, ref) => {
+	(
+		{ dish, isHovered, isSelected, onHover, onSelect, onAddToOrder, theme },
+		ref,
+	) => {
 		// Determine if we have an image to display
 		const hasImage = dish.info.imgSrc && dish.info.imgSrc.length > 0;
 
@@ -178,7 +184,7 @@ const DishCard = React.forwardRef<HTMLDivElement, DishCardProps>(
 						`}
 						onClick={(e) => {
 							e.stopPropagation();
-							onSelect();
+							onAddToOrder();
 						}}
 					>
 						Add to Order
