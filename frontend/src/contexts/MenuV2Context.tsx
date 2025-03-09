@@ -8,6 +8,7 @@ import React, {
 	useEffect,
 	ReactNode,
 } from "react";
+import { toast } from "sonner";
 
 interface MenuV2ContextType {
 	// Image viewer state
@@ -74,18 +75,41 @@ export const MenuV2Provider: React.FC<MenuV2ProviderProps> = ({ children }) => {
 		setOrderItems((prevItems) => {
 			const existingItem = prevItems.find((item) => item.dish.id === dish.id);
 			if (existingItem) {
+				toast.success(
+					`Added another ${dish.info.textTranslation || dish.info.text} to order`,
+					{
+						description: `Quantity: ${existingItem.quantity + 1}`,
+						duration: 2000,
+					},
+				);
 				return prevItems.map((item) =>
 					item.dish.id === dish.id
 						? { ...item, quantity: item.quantity + 1 }
 						: item,
 				);
 			} else {
+				toast.success(
+					`Added ${dish.info.textTranslation || dish.info.text} to order`,
+					{
+						description: "Quantity: 1",
+						duration: 2000,
+					},
+				);
 				return [...prevItems, { dish, quantity: 1 }];
 			}
 		});
 	};
 
 	const removeFromOrder = (dishId: number) => {
+		const itemToRemove = orderItems.find((item) => item.dish.id === dishId);
+		if (itemToRemove) {
+			toast.info(
+				`Removed ${itemToRemove.dish.info.textTranslation || itemToRemove.dish.info.text} from order`,
+				{
+					duration: 2000,
+				},
+			);
+		}
 		setOrderItems((prevItems) =>
 			prevItems.filter((item) => item.dish.id !== dishId),
 		);
@@ -105,6 +129,11 @@ export const MenuV2Provider: React.FC<MenuV2ProviderProps> = ({ children }) => {
 	};
 
 	const clearOrder = () => {
+		if (orderItems.length > 0) {
+			toast.info("Order cleared", {
+				duration: 2000,
+			});
+		}
 		setOrderItems([]);
 	};
 
