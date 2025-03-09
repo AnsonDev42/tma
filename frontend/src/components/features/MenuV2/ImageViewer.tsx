@@ -20,7 +20,6 @@ const ImageViewer: React.FC<ImageViewerProps> = ({
 		selectedDish,
 		setHoveredDish,
 		setSelectedDish,
-		addToOrder,
 	} = useMenuV2();
 
 	// Get bottom sheet context to control it when dishes are clicked
@@ -72,9 +71,6 @@ const ImageViewer: React.FC<ImageViewerProps> = ({
 
 		// Set the selected dish immediately
 		setSelectedDish(dish.id);
-
-		// Add to order if needed
-		addToOrder(dish);
 
 		// First open the bottom sheet to ensure it's visible
 		// The BottomSheet component will handle scrolling when it's fully open
