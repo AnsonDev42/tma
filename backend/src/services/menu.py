@@ -398,6 +398,7 @@ async def run_dip(image: bytes) -> Any:
     retrieve_url = await post_dip_request(image)
     results = await retrieve_dip_results(retrieve_url)
     if not results:
+        logger.error("No dip results retrieved from azure dip")
         raise APIError("DIP failed")
     # pre-processing results in lines
     dip_line_results = results["analyzeResult"]["pages"][0]["lines"]

@@ -24,6 +24,7 @@ dependencies = [
     "opencv-python-headless>=4.11.0.86",
     "pyjwt[crypto]>=2.10.1",
     "python-multipart>=0.0.20",
+    "loguru>=0.7.3",
 ]
 
 
@@ -34,9 +35,18 @@ dev = [
     "pytest-asyncio>=0.25.0",
     "asynctest>=0.13.0",
 ]
-lint =[
+lint = [
     "ruff>=0.8.4",
 ]
 
 [tool.uv]
 default-groups = ["dev", "lint"]
+
+#add the pytest ini_config
+[tool.pytest.ini_options]
+asyncio_default_fixture_loop_scope = "function"
+env = [
+    #    "OPENAI_API_KEY=fake_key",
+    #    "AZURE_OCR_API_KEY"=
+
+]

@@ -1,8 +1,7 @@
-import logging
 import socket
 from src.services.utils import build_search_chain, build_recommendation_chain
-
-logger = logging.getLogger(__name__)
+from loguru import logger
+logger = logger
 chain = build_search_chain(model="gpt-4o-mini")
 recommendation_chain = build_recommendation_chain(model="gpt-4o-mini")
 IP="anson-eq.local"

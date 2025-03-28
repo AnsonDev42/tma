@@ -1,5 +1,5 @@
 import functools
-import logging
+from loguru import logger
 import re
 import time
 from dataclasses import dataclass
@@ -22,7 +22,7 @@ def duration(func: Callable[P, T]) -> Callable[P, T]:
         start = time.monotonic()
         result = func(*args, **kwargs)
         end = time.monotonic()
-        logging.info("Elapsed time for %s: %s", func.__name__, end - start)
+        logger.opt(depth=1).info("Elapsed time for {}: {}", func.__name__, end - start)
         return result
 
     return wrapper
