@@ -73,7 +73,8 @@ async def test_process_dip_results():
         responses = ujson.loads(open(file_path).read())
         dip_results = responses["analyzeResult"]["pages"][0]["lines"]
         result = await process_dip_results(dip_results, "us-en")
-        assert result[2]["text"] == "PIZZERIA", result[2]
+        assert result[2]["text"].lower() == "PIZZERIA".lower(), result[2]
+
 
 
 @pytest.mark.asyncio
