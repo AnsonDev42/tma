@@ -1,3 +1,4 @@
+import asyncio
 import functools
 from loguru import logger
 import re
@@ -17,15 +18,24 @@ T = TypeVar("T")
 
 
 def duration(func: Callable[P, T]) -> Callable[P, T]:
-    @functools.wraps(func)
-    def wrapper(*args: P.args, **kwargs: P.kwargs) -> T:
-        start = time.monotonic()
-        result = func(*args, **kwargs)
-        end = time.monotonic()
-        logger.opt(depth=1).info("Elapsed time for {}: {}", func.__name__, end - start)
-        return result
-
-    return wrapper
+    if asyncio.iscoroutinefunction(func):
+        @functools.wraps(func)
+        async def async_wrapper(*args: P.args, **kwargs: P.kwargs) -> T:
+            start = time.monotonic()
+            result = await func(*args, **kwargs)
+            end = time.monotonic()
+            logger.opt(depth=1).info("Elapsed time for {}: {:.3f}s", func.__name__, end - start)
+            return result
+        return async_wrapper
+    else:
+        @functools.wraps(func)
+        def sync_wrapper(*args: P.args, **kwargs: P.kwargs) -> T:
+            start = time.monotonic()
+            result = func(*args, **kwargs)
+            end = time.monotonic()
+            logger.opt(depth=1).info("Elapsed time for {}: {:.3f}s", func.__name__, end - start)
+            return result
+        return sync_wrapper
 
 
 @dataclass
