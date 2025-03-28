@@ -3,6 +3,7 @@ import asyncio
 import base64
 import datetime
 import time
+from asyncio import gather
 from dataclasses import asdict
 from typing import Any, List, Union
 
@@ -258,8 +259,8 @@ async def query_dish_image_via_google(dish_name: str | None) -> List[str] | None
     return [item["link"] for item in result.get("items", [])]
 
 
-@duration
-async def get_dish_image(dish_name: str | None, num_img=10) -> List[str] | None:
+# @duration
+async def get_dish_image(dish_name: str | None, num_img=10,*, enable_cache=False) -> List[str] | None:
     """get dish image links from Google search api and cache the results in database"""
 
     if dish_name is None:
@@ -268,19 +269,21 @@ async def get_dish_image(dish_name: str | None, num_img=10) -> List[str] | None:
     normalize_dish_name = dish_name.lower().replace(" ", "_")
 
     # try to get cached results from database first
-    try:
-        if cached_results := await retrieve_dish_image(normalize_dish_name, num_img):
-            return cached_results
-    except APIError:
-        logger.error("Error fetching data from Supabase")
+    if enable_cache:
+        try:
+            if cached_results := await retrieve_dish_image(normalize_dish_name, num_img):
+                return cached_results
+        except APIError:
+            logger.error("Error fetching data from Supabase")
 
     image_links = await query_dish_image_via_google(normalize_dish_name)
 
     # save the image links to database, may raise exception
-    try:
-        asyncio.create_task(cache_dish_image(normalize_dish_name, image_links))
-    except APIError:
-        logger.error("Error inserting data into Supabase")
+    if enable_cache:
+        try:
+            asyncio.create_task(cache_dish_image(normalize_dish_name, image_links))
+        except APIError:
+            logger.error("Error inserting data into Supabase")
 
     return image_links[:num_img] if image_links else None
 
@@ -393,7 +396,7 @@ async def upload_pipeline_with_ocr(image, img_height, img_width, accept_language
 
     return {"results": data}
 
-
+@duration
 async def run_dip(image: bytes) -> Any:
     retrieve_url = await post_dip_request(image)
     results = await retrieve_dip_results(retrieve_url)
@@ -435,7 +438,7 @@ def filter_dip_lines(dip_results: list) -> list:
             dip_results.remove(line)
     return dip_results
 
-
+@duration
 async def process_dip_results(dip_results: list, accept_language) -> list[dict]:
     tasks = []
 
@@ -444,7 +447,7 @@ async def process_dip_results(dip_results: list, accept_language) -> list[dict]:
         tasks.append(get_dish_data(dish_name, accept_language))
     return await asyncio.gather(*tasks)
 
-
+@duration
 async def process_dip_paragraph_results(
         dip_results: list, accept_language
 ) -> list[dict]:
@@ -477,22 +480,25 @@ async def upload_pipeline_with_dip(image, img_height, img_width, accept_language
     data = serialize_dish_data(dish_info, bounding_box)
     return {"results": data}
 
-
+@duration
 async def upload_pipeline_with_dip_auto_group_lines(
         image, img_height, img_width, accept_language
 ):
     dip_results_in_lines = await run_dip(image)
-    paragraphs, rest_dip_results_in_lines = build_paragraph(dip_results_in_lines)
-    
-    dish_info = await process_dip_results(rest_dip_results_in_lines, accept_language)
-    bounding_box = normalize_text_bbox_dip(
-        img_width, img_height, rest_dip_results_in_lines
-    )
 
-    dish_description = await process_dip_paragraph_results(paragraphs, accept_language)
-    dish_description_bounding_box = normalize_text_bbox_dip(
-        img_width, img_height, paragraphs
-    )
+    paragraphs, rest_dip_results_in_lines = build_paragraph(dip_results_in_lines)
+
+    # Run async tasks in parallel
+    dish_info_task = process_dip_results(rest_dip_results_in_lines, accept_language)
+    dish_description_task = process_dip_paragraph_results(paragraphs, accept_language)
+
+    dish_info, dish_description = await gather(dish_info_task, dish_description_task)
+
+    # Bounding box normalization is likely CPU-bound and fast
+    bounding_box = normalize_text_bbox_dip(img_width, img_height, rest_dip_results_in_lines)
+    dish_description_bounding_box = normalize_text_bbox_dip(img_width, img_height, paragraphs)
+
+    # Merge results
     dish_info.extend(dish_description)
     bounding_box.extend(dish_description_bounding_box)
 
