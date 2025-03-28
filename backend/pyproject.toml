@@ -40,17 +40,9 @@ lint = [
     "ruff>=0.8.4",
 ]
 
-performance = [
-    "line-profiler>=4.2.0",
-]
 [tool.uv]
 default-groups = ["dev", "lint"]
 
-#add the pytest ini_config
 [tool.pytest.ini_options]
 asyncio_default_fixture_loop_scope = "function"
-env = [
-    #    "OPENAI_API_KEY=fake_key",
-    #    "AZURE_OCR_API_KEY"=
 
-]
