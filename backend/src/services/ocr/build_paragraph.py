@@ -5,6 +5,7 @@ import time
 from openai import OpenAI
 
 from src.core.config import settings
+from src.core.vendors.utilities.client import logger
 from src.services.ocr.llm_utlities import LINES_to_PARGRAPH_PROMPT
 from src.services.ocr.models import GroupedParagraphs
 from src.services.utils import duration
@@ -20,16 +21,17 @@ def build_paragraph(dip_results_in_lines):
         all_lines.append((line_idx, dip_results_in_lines[line_idx]["content"]))
 
     client = OpenAI(api_key=settings.OPENAI_API_KEY, base_url=settings.OPENAI_BASE_URL)
-    completion = client.beta.chat.completions.parse(
+    start_time = time.time()
+    completion = client.responses.parse(
         model="gpt-4o-mini",
-        messages=[
+        input=[
             {"role": "system", "content": LINES_to_PARGRAPH_PROMPT},
             {"role": "user", "content": str(all_lines)},
         ],
-        response_format=GroupedParagraphs,
+        text_format=GroupedParagraphs,  
     )
-    paragraphs = completion.choices[0].message.parsed
-
+    logger.info("Call spent time:{}", time.time() - start_time)
+    paragraphs = completion.output[0].content[0].parsed
     # get paragraph content and polygons
     paragraph_lines = []
     for p in paragraphs.Paragraphs:
