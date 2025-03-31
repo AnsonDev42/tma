@@ -24,8 +24,8 @@ function App() {
 						<Router>
 							<Routes>
 								<Route element={<ProtectedRoute />}>
-									<Route path="/home/v2" element={<HomePageV2 />} />
-									<Route path="/home" element={<HomePage />} />
+									<Route path="/home" element={<HomePageV2 />} />
+									<Route path="/home/v1" element={<HomePage />} />
 									<Route path="*" element={<Navigate to="/home" />} />
 								</Route>
 								<Route path="/login" element={<Authentication />} />
