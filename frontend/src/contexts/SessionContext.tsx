@@ -1,12 +1,7 @@
+import supabase from "@/lib/supabaseClient.ts";
 import { AuthChangeEvent } from "@supabase/gotrue-js";
 import { Session } from "@supabase/gotrue-js/src/lib/types.ts";
-import { createClient } from "@supabase/supabase-js";
 import React, { ReactNode, createContext, useEffect, useState } from "react";
-
-const supabase = createClient(
-	"https://scwodhehztemzcpsofzy.supabase.co",
-	"REMOVED",
-);
 
 interface SessionContextProps {
 	session: Session | null;
