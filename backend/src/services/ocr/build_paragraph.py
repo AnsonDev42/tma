@@ -11,11 +11,10 @@ from src.services.ocr.models import GroupedParagraphs
 from src.services.utils import duration
 
 
+
 @duration
 def build_paragraph(dip_results_in_lines):
     all_lines = []
-    for line in dip_results_in_lines:
-        all_lines.append(line["content"])
     for line_idx in range(len(dip_results_in_lines)):
         dip_results_in_lines[line_idx]["index"] = line_idx
         all_lines.append((line_idx, dip_results_in_lines[line_idx]["content"]))
@@ -48,18 +47,17 @@ def build_paragraph(dip_results_in_lines):
         paragraph_lines.append({"content": complete_p, "polygon": tmp_polygon})
 
     # reduce json_data by removing the lines that are part of the paragraph content
-    removing_indices = []
+    paragraph_indices = set()
     for p in paragraphs.Paragraphs:
         for line_idx in p.segment_lines_indices:
-            removing_indices.append(line_idx)
+            paragraph_indices.add(line_idx)
 
-    new_dip_results_in_lines = []
+    individual_dip_results_in_lines = []
     for i, line in enumerate(dip_results_in_lines):
-        if i not in removing_indices:
-            new_dip_results_in_lines.append(line)
+        if i not in paragraph_indices:
+            individual_dip_results_in_lines.append(line)
 
-    dip_results_in_lines = new_dip_results_in_lines
-    return paragraph_lines, dip_results_in_lines
+    return paragraph_lines, individual_dip_results_in_lines
 
 
 def translate(text: str, accept_language: str) -> str:

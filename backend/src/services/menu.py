@@ -287,7 +287,7 @@ async def get_dish_image(dish_name: str | None, num_img=10,*, enable_cache=False
 
     return image_links[:num_img] if image_links else None
 
-
+@duration
 async def get_dish_data(dish_name: str, accept_language: str) -> dict:
     # regex to clean up dish name
     dish_name = clean_dish_name(dish_name)
@@ -297,13 +297,14 @@ async def get_dish_data(dish_name: str, accept_language: str) -> dict:
         dish["text_translation"] = dish["text-translation"]
 
     try:
+        if dish["text"] == "Unknown":
+            raise OCRError("Unknown dish name")
         img_src = await get_dish_image(dish.get("text", None))
-    except HTTPStatusError:
+    except (HTTPStatusError, OCRError):
         img_src = None
     except APIError:
         logger.error("Error in Supabase")
         img_src = None
-
     return dish | {"img_src": img_src}
 
 
@@ -318,6 +319,7 @@ async def get_paragraph_data(dish_name: str, accept_language: str) -> dict:
     }
 
 
+@duration
 async def process_ocr_results(ocr_results: list, accept_language: str) -> list[dict]:
     tasks = []
 
@@ -367,13 +369,16 @@ def normalize_bounding_box(
     return BoundingBox(x=x_percentage, y=y_percentage, w=w_percentage, h=h_percentage)
 
 
-def serialize_dish_data(dish_data: list, bounding_boxes: list):
+def serialize_dish_data_filtered(dish_data: list, bounding_boxes: list):
     results = []
-    for i, (dish_info, dish_bbox) in enumerate(zip(dish_data, bounding_boxes, strict=True)):
+    i = 0
+    for dish_info, dish_bbox in zip(dish_data, bounding_boxes, strict=True):
+        if dish_info.get("text", "").strip().lower() == "unknown":
+            continue
         dish = {"id": i, "info": dish_info, "boundingBox": dish_bbox}
         results.append(dish)
+        i += 1
     return results
-
 
 async def recommend_dishes(request) -> dict:
     """Recommend dishes based on the dish names and the language of the dish names"""
@@ -392,7 +397,7 @@ async def upload_pipeline_with_ocr(image, img_height, img_width, accept_language
     ocr_results = run_ocr(image)
     dish_info = await process_ocr_results(ocr_results, accept_language)
     bounding_box = normalize_text_bbox(img_width, img_height, ocr_results)
-    data = serialize_dish_data(dish_info, bounding_box)
+    data = serialize_dish_data_filtered(dish_info, bounding_box)
 
     return {"results": data}
 
@@ -427,16 +432,21 @@ def filter_dip_lines(dip_results: list) -> list:
     """
     Filter out the lines that are price or misrecognized text
     """
+    cleaned = []
     for line in dip_results:
         content = line["content"].strip()
+        if content.lower() == "unknown":
+            continue
         if (
                 content.isdigit()
                 or content.replace(".", "").isdigit()
                 or content.replace(",", "").isdigit()
                 or content.replace(" ", "").isdigit()
         ):
-            dip_results.remove(line)
-    return dip_results
+            continue
+        cleaned.append(line)
+    return cleaned
+
 
 @duration
 async def process_dip_results(dip_results: list, accept_language) -> list[dict]:
@@ -444,6 +454,7 @@ async def process_dip_results(dip_results: list, accept_language) -> list[dict]:
 
     for line in dip_results:
         dish_name = line["content"]
+        # fix this task with parmeters instead of hardcode
         tasks.append(get_dish_data(dish_name, accept_language))
     return await asyncio.gather(*tasks)
 
@@ -477,7 +488,7 @@ async def upload_pipeline_with_dip(image, img_height, img_width, accept_language
     dip_results_in_lines = await run_dip(image)
     dish_info = await process_dip_results(dip_results_in_lines, accept_language)
     bounding_box = normalize_text_bbox_dip(img_width, img_height, dip_results_in_lines)
-    data = serialize_dish_data(dish_info, bounding_box)
+    data = serialize_dish_data_filtered(dish_info, bounding_box)
     return {"results": data}
 
 @duration
@@ -486,22 +497,22 @@ async def upload_pipeline_with_dip_auto_group_lines(
 ):
     dip_results_in_lines = await run_dip(image)
 
-    paragraphs, rest_dip_results_in_lines = build_paragraph(dip_results_in_lines)
+    paragraphs, individual_dip_results_in_lines = build_paragraph(dip_results_in_lines)
 
     # Run async tasks in parallel
-    dish_info_task = process_dip_results(rest_dip_results_in_lines, accept_language)
     dish_description_task = process_dip_paragraph_results(paragraphs, accept_language)
+    dish_info_task = process_dip_results(individual_dip_results_in_lines, accept_language)
 
     dish_info, dish_description = await gather(dish_info_task, dish_description_task)
 
     # Bounding box normalization is likely CPU-bound and fast
-    bounding_box = normalize_text_bbox_dip(img_width, img_height, rest_dip_results_in_lines)
     dish_description_bounding_box = normalize_text_bbox_dip(img_width, img_height, paragraphs)
+    dish_info_bounding_box = normalize_text_bbox_dip(img_width, img_height, individual_dip_results_in_lines)
 
     # Merge results
     dish_info.extend(dish_description)
-    bounding_box.extend(dish_description_bounding_box)
+    dish_info_bounding_box.extend(dish_description_bounding_box)
 
-    data = serialize_dish_data(dish_info, bounding_box)
+    data = serialize_dish_data_filtered(dish_info, dish_info_bounding_box)
 
     return {"results": data}
