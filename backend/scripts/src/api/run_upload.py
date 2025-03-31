@@ -1,7 +1,12 @@
+import asyncio
+import json
+
 from src.api.deps import get_user
 from fastapi.testclient import TestClient
 import os
 import time
+
+from src.core.vendors.supabase.client import SupabaseClient
 from src.main import app
 from src.models import User
 
@@ -15,10 +20,12 @@ def override_get_free_user():
 if __name__ == "__main__":
 
     client = TestClient(app)
+    asyncio.run(SupabaseClient.initialize())
     app.dependency_overrides[get_user] = override_get_free_user
     headers = {
         "Authorization": "Bearer test-token",
         "dip": "true",
+        "accept_language": "en-US",
     }
     file_path = os.path.join(os.path.dirname(__file__), "test1.jpg")
     with open(file_path, "rb") as f:
@@ -40,3 +47,4 @@ if __name__ == "__main__":
     end_time = time.time()
     print(f"Response time: {end_time - start_time} seconds")
     assert response.status_code == 200
+    json.dump(response.json(), open("response.json", "w"), indent=4)
