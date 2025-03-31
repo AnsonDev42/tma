@@ -299,7 +299,7 @@ async def get_dish_data(dish_name: str, accept_language: str) -> dict:
     try:
         if dish["text"] == "Unknown":
             raise OCRError("Unknown dish name")
-        img_src = await get_dish_image(dish.get("text", None))
+        img_src = await get_dish_image(dish.get("text", None), 10, enable_cache=True)
     except (HTTPStatusError, OCRError):
         img_src = None
     except APIError:
