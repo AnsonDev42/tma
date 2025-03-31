@@ -3,10 +3,10 @@
 		{
 			"id": 0,
 			"info": {
-				"description": "Fatto a mano translates to 'homemade' in English, often referring to dishes that are made from scratch, highlighting the care and traditional technique involved in their preparation.",
+				"description": "Fatto a mano translates to 'handmade' in Italian, often referring to traditional methods of making pasta or other dishes that emphasize craftsmanship and quality ingredients.",
 				"text": "Fatto a mano",
-				"text-translation": "Homemade",
-				"text_translation": "Homemade",
+				"text-translation": "Handmade",
+				"text_translation": "Handmade",
 				"img_src": [
 					"https://media-cdn.tripadvisor.com/media/photo-s/2a/f8/aa/86/fatto-a-mano-on-st-martin.jpg",
 					"https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=387068143622466",
@@ -30,7 +30,7 @@
 		{
 			"id": 1,
 			"info": {
-				"description": "A pizzeria is a restaurant that specializes in preparing and selling pizza, along with various Italian dishes. It's a popular dining location for pizza lovers.",
+				"description": "A pizzeria is a restaurant that specializes in making and serving pizza, a popular Italian dish consisting of a round, flat base of leavened wheat-based dough topped with tomatoes, cheese, and various other ingredients.",
 				"text": "Pizzeria",
 				"text-translation": "Pizzeria",
 				"text_translation": "Pizzeria",
@@ -57,21 +57,21 @@
 		{
 			"id": 2,
 			"info": {
-				"description": "Tiramisu is a classic Italian dessert made of layers of coffee-soaked ladyfingers and a rich creamy filling made with mascarpone cheese, eggs, and sugar. It's often dusted with cocoa powder for a delicious finish.",
-				"text": "Tiramisu",
-				"text-translation": "Tiramisu",
-				"text_translation": "Tiramisu",
+				"description": "Tiramisu is a classic Italian dessert made with layers of coffee-soaked ladyfingers and a rich mascarpone cheese mixture, often dusted with cocoa powder.",
+				"text": "FATTO TIRAMISU",
+				"text-translation": "Made Tiramisu",
+				"text_translation": "Made Tiramisu",
 				"img_src": [
-					"https://handletheheat.com/wp-content/uploads/2023/12/best-tiramisu-recipe-SQUARE.jpg",
-					"https://static01.nyt.com/images/2017/04/05/dining/05COOKING-TIRAMISU1/05COOKING-TIRAMISU1-googleFourByThree-v2.jpg",
-					"https://abajillianrecipes.com/wp-content/uploads/2024/02/White-Chocolate-Raspberry-Tiramisu-A-baJillian-Recipes-10.jpg",
-					"https://static01.nyt.com/images/2017/04/05/dining/05COOKING-TIRAMISU1/05COOKING-TIRAMISU1-square640.jpg",
-					"https://abajillianrecipes.com/wp-content/uploads/2021/12/Baileys-Tiramisu-A-baJillian-Recipes-24.jpg",
-					"https://recipetineats.com/wp-content/uploads/2016/03/Tiramisu_5.jpg",
-					"https://nourishingniki.com/wp-content/uploads/2022/05/Healthy-Tiramisu-3.jpg",
-					"https://www.gimmesomeoven.com/wp-content/uploads/2020/07/Tiramisu-Recipe-Cover.jpg",
-					"https://bakewithzoha.com/wp-content/uploads/2023/08/chocolate-tiramisu-featured-2.jpg",
-					"https://tastesbetterfromscratch.com/wp-content/uploads/2017/04/Tiramisu-15.jpg"
+					"https://www.fattoamanopizza.com/wp-content/uploads/2024/11/Specials_FattoaManoPizza-14-copy-scaled.jpg",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=2930846501618388264",
+					"https://www.fattoamanopizza.com/wp-content/uploads/2024/09/Starters-Autumn24Menu_FattoaManoPizza-19-copy-scaled.jpg",
+					"https://shop.fattoamanopizza.com/cdn/shop/files/Negroni-Autumn24Menu_FattoaManoPizza-01_bd153333-4976-4241-9b1c-fee041abf98d_3000x.jpg?v=1725883486",
+					"https://www.fattoamanopizza.com/wp-content/uploads/2024/10/MeatballsSpecial_FattoaMano_pizza-03-scaled.jpg",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3521349897616724828",
+					"https://www.fattoamanopizza.com/wp-content/uploads/2024/08/RockFishSpecial_FattoAManoPizza-XavierBuendiaPhotography-10-scaled.jpg",
+					"http://shop.fattoamanopizza.com/cdn/shop/files/Negroni-Autumn24Menu_FattoaManoPizza-01_bd153333-4976-4241-9b1c-fee041abf98d_1200x1200.jpg?v=1725883486",
+					"https://www.fattoamanopizza.com/wp-content/uploads/2024/11/Xmas24_FattoaManoPizza-05-scaled.jpg",
+					"https://shop.fattoamanopizza.com/cdn/shop/files/Negroni-Autumn24Menu_FattoaManoPizza-01_530x@2x.jpg?v=1725883208"
 				]
 			},
 			"boundingBox": {
@@ -84,21 +84,21 @@
 		{
 			"id": 3,
 			"info": {
-				"description": "Scugnizzielli is a delicious Italian dessert, typically a variation of pastries filled with sweet ingredients such as Nutella. Served with gelato, this dish offers a delightful mix of textures and flavors.",
-				"text": "Scugnizzielli Nutella & Gelato",
-				"text-translation": "Scugnizzielli with Nutella and Gelato",
-				"text_translation": "Scugnizzielli with Nutella and Gelato",
+				"description": "Scugnizielli are a type of Neapolitan pastry, often filled with sweet treats. This version combines Nutella, a popular chocolate hazelnut spread, with gelato, a creamy Italian ice cream, creating a delicious dessert that blends rich flavors and textures.",
+				"text": "Scugnizielli Nutella & Gelato",
+				"text-translation": "Nutella and Gelato",
+				"text_translation": "Nutella and Gelato",
 				"img_src": [
-					"https://upload.wikimedia.org/wikipedia/commons/e/e3/Fatto_a_Mano_Pizzeria_dessert_menu_%28Oct_2022%29.jpg",
-					"https://voicesearch.travel/wp-content/uploads/2022/04/IMG_0892-225x300.jpg",
-					"https://pbs.twimg.com/media/CqZ6F_bWgAAxoXm.jpg:large",
-					"https://media-cdn.tripadvisor.com/media/photo-m/1280/1b/ec/45/1c/scugnizielli-alla-nutella.jpg",
-					"https://i0.wp.com/www.fizzypeaches.com/wp-content/uploads/2016/10/fatto7.jpg?resize=1000%2C750&ssl=1",
-					"https://www.menux.ai/samples/light.png",
-					"https://media-cdn.tripadvisor.com/media/photo-p/0c/fa/e1/59/photo2jpg.jpg",
-					"http://blog.giallozafferano.it/vickyart/wp-content/uploads/2017/07/scugnizzielli-nutella-panna-dolci-napoletani-1.jpg",
-					"https://assets.isu.pub/document-structure/240620201205-6d25ca144fb048218e9947a45e9ce051/v1/3ef19ff246cad60f4425070efb86c1b3.jpeg",
-					"https://media-cdn.tripadvisor.com/media/photo-s/1b/f8/44/63/20200909-132412-largejpg.jpg"
+					"https://media-cdn.tripadvisor.com/media/photo-s/1a/b5/4d/54/frittelle-alla-nutella.jpg",
+					"https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=962539659207274",
+					"https://www.tiktok.com/api/img/?itemId=7287975427212184865&location=0&aid=1988",
+					"https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=962539655873941",
+					"https://www.tiktok.com/api/img/?itemId=7351713029546888481&location=0&aid=1988",
+					"https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=962539665873940",
+					"https://www.tiktok.com/api/img/?itemId=7364135523583135009&location=0&aid=1988",
+					"https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=981345210660052",
+					"https://www.tiktok.com/api/img/?itemId=7309214835483397408&location=0&aid=1988",
+					"https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=100063537460003"
 				]
 			},
 			"boundingBox": {
@@ -111,8 +111,8 @@
 		{
 			"id": 4,
 			"info": {
-				"description": "Affogato is a delightful Italian dessert that consists of a scoop of gelato or ice cream topped with a shot of hot espresso. It's a perfect combination of hot and cold, sweet and bitter.",
-				"text": "Affogato",
+				"description": "Affogato is an Italian coffee-based dessert that consists of a scoop of vanilla gelato or ice cream topped with a shot of hot espresso. The combination of hot and cold creates a delightful contrast in flavors and textures.",
+				"text": "AFFOGATO",
 				"text-translation": "Affogato",
 				"text_translation": "Affogato",
 				"img_src": [
@@ -138,7 +138,7 @@
 		{
 			"id": 5,
 			"info": {
-				"description": "Affogato Limoncello is a delightful Italian dessert that combines the richness of espresso with the zesty flavors of limoncello, an Italian lemon liqueur. The dish typically features a scoop of vanilla gelato or ice cream drenched in hot espresso and topped with limoncello, creating a unique flavor experience.",
+				"description": "Affogato Limoncello is a refreshing Italian dessert that combines the richness of traditional affogato, made with espresso and ice cream, with a zesty twist of limoncello, a lemon liqueur. It's a delightful blend of hot and cold, sweet and citrusy flavors, perfect for a summery treat.",
 				"text": "Affogato Limoncello",
 				"text-translation": "Limoncello Affogato",
 				"text_translation": "Limoncello Affogato",
@@ -165,10 +165,10 @@
 		{
 			"id": 6,
 			"info": {
-				"description": "Un s\u00e1ndwich de helado es un postre que consiste en helado colocado entre dos galletas, brownies, o cualquier tipo de masa. Popular en muchas culturas, es una forma deliciosa y divertida de disfrutar de helado.",
+				"description": "A gelato sandwich consists of a scoop of gelato placed between two layers of sweet, soft cookies or wafer, creating a delightful treat that balances the creamy texture of gelato with the crunch of the cookies.",
 				"text": "Gelato Sandwich",
-				"text-translation": "S\u00e1ndwich de helado",
-				"text_translation": "S\u00e1ndwich de helado",
+				"text-translation": "Gelato Sandwich",
+				"text_translation": "Gelato Sandwich",
 				"img_src": [
 					"https://turndough.com/wp-content/uploads/2023/08/Gelato_Sandwich.png",
 					"https://food.fnr.sndimg.com/content/dam/images/food/fullset/2011/2/4/3/RX-FNM_030111-WE-Dinners-010_s4x3.jpg.rend.hgtvcom.616.462.suffix/1371597350163.jpeg",
@@ -192,10 +192,10 @@
 		{
 			"id": 7,
 			"info": {
-				"description": "A lemon meringue is a pie or dessert made with a tart lemon filling topped with fluffy meringue. It is known for its refreshing taste and is a popular choice among citrus dessert lovers.",
+				"description": "Lemon Meringue is a dessert pie made with a sweet and tart lemon filling, topped with a fluffy meringue made from whipped egg whites and sugar. It is known for its bright flavor and delicate texture, making it a popular treat in many cultures.",
 				"text": "LEMON MERINGUE",
-				"text-translation": "Mousse de Lim\u00e3o",
-				"text_translation": "Mousse de Lim\u00e3o",
+				"text-translation": "Lemon Meringue",
+				"text_translation": "Lemon Meringue",
 				"img_src": [
 					"https://www.seriouseats.com/thmb/9VFqo0xQxcOIgSyvcStxGYDIzsw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/20231113-SEA-LemonMeringuePie-FredHardy-03-1519d9ad68484041bdfaba3c09b67411.jpg",
 					"https://www.sainsburysmagazine.co.uk/uploads/media/2400x1800/04/9094-Lemon_Meringue.jpg?v=1-0",
@@ -219,10 +219,10 @@
 		{
 			"id": 8,
 			"info": {
-				"description": "El caramelo salado de chocolate es una deliciosa combinaci\u00f3n de chocolate rico y dulce con un toque de sal marina, que realza los sabores y ofrece una experiencia gustativa \u00fanica.",
+				"description": "Chocolate Salted Caramel is a decadent dessert that combines rich chocolate with a sweet and savory salted caramel. It often features layers of chocolate cake, creamy chocolate ganache, and a drizzle of salted caramel sauce, making it a favorite among chocolate lovers.",
 				"text": "Chocolate Salted Caramel",
-				"text-translation": "Caramelo Salado de Chocolate",
-				"text_translation": "Caramelo Salado de Chocolate",
+				"text-translation": "Chocolate Salted Caramel",
+				"text_translation": "Chocolate Salted Caramel",
 				"img_src": [
 					"http://www.pureprotein.com/cdn/shop/files/ppr-548340-1-chocolate-salted-caramel-50g_1_20c37ce1-983c-4542-85a0-419b7d272c14.png?v=1685123432",
 					"https://sodeliciousdairyfree.com/wp-content/uploads/2020/02/chocolate-salted-caramel-oatmilk-frozen-dessert.png",
@@ -246,7 +246,7 @@
 		{
 			"id": 9,
 			"info": {
-				"description": "Chocolate Orange is a delightful dessert that combines the rich taste of chocolate with the zesty flavor of orange. It is often enjoyed as a sweet treat or used in various confections and pastries.",
+				"description": "Chocolate Orange is a delightful dessert that combines the rich flavor of chocolate with the citrusy freshness of orange. It's often enjoyed as a candy, cake, or truffle, and is particularly popular during festive seasons.",
 				"text": "Chocolate Orange",
 				"text-translation": "Chocolate Orange",
 				"text_translation": "Chocolate Orange",
@@ -273,7 +273,7 @@
 		{
 			"id": 10,
 			"info": {
-				"description": "A digestif is an alcoholic beverage served after a meal to aid digestion. Popular digestifs include brandy, whisky, and herbal liqueurs.",
+				"description": "Digestifs are alcoholic beverages served after a meal to aid digestion. They can include various spirits, liqueurs, or fortified wines, often enjoyed in small quantities.",
 				"text": "Digestivo",
 				"text-translation": "Digestif",
 				"text_translation": "Digestif",
@@ -300,10 +300,10 @@
 		{
 			"id": 11,
 			"info": {
-				"description": "El caf\u00e9 es una bebida popular hecha a partir de granos de caf\u00e9 tostados. Se consume caliente o fr\u00edo, a menudo con leche y az\u00facar, y es conocido por su capacidad para aportar energ\u00eda debido a su contenido de cafe\u00edna.",
+				"description": "Coffee is a brewed beverage made from roasted coffee beans, known for its rich flavor and stimulating effects due to caffeine.",
 				"text": "Coffee",
-				"text-translation": "Caf\u00e9",
-				"text_translation": "Caf\u00e9",
+				"text-translation": "Coffee",
+				"text_translation": "Coffee",
 				"img_src": [
 					"https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg",
 					"https://athome.starbucks.com/sites/default/files/styles/story_banner_xlarge/public/2023-08/1_CAH_Article_HeartSbxCraftedCoffee_2880x1660.jpg.webp?itok=b3HYvj9u",
@@ -327,7 +327,7 @@
 		{
 			"id": 12,
 			"info": {
-				"description": "Limoncello is a traditional Italian lemon liqueur produced mainly in Southern Italy. It is made from the zest of lemons, alcohol, water, and sugar, and it is typically served chilled as a digestif.",
+				"description": "Limoncello is a traditional Italian lemon liqueur, primarily produced in Southern Italy. It is made from lemon zest, alcohol, water, and sugar, and is known for its vibrant yellow color and sweet-tart flavor. Usually served chilled, it's a popular after-dinner drink.",
 				"text": "Limoncello",
 				"text-translation": "Limoncello",
 				"text_translation": "Limoncello",
@@ -354,7 +354,7 @@
 		{
 			"id": 13,
 			"info": {
-				"description": "A sweet and creamy paste made primarily from ground pistachios, often used as a spread or filling for desserts.",
+				"description": "Pistachio cream is a sweet spread made from ground pistachios and sugar, often used as a topping for desserts, pastries, and bread.",
 				"text": "Crema di Pistachio",
 				"text-translation": "Pistachio Cream",
 				"text_translation": "Pistachio Cream",
@@ -381,7 +381,7 @@
 		{
 			"id": 14,
 			"info": {
-				"description": "Espresso is a concentrated coffee beverage brewed by forcing a small amount of nearly boiling water through finely-ground coffee beans. It is known for its rich flavor and thick consistency.",
+				"description": "Espresso is a concentrated coffee brewed by forcing a small amount of nearly boiling water through finely-ground coffee beans. It serves as the foundation for many coffee drinks.",
 				"text": "Espresso",
 				"text-translation": "Espresso",
 				"text_translation": "Espresso",
@@ -408,7 +408,7 @@
 		{
 			"id": 15,
 			"info": {
-				"description": "Amaro del Capo is an Italian herbal liqueur from Calabria, characterized by its rich and complex flavors derived from a blend of over 30 different herbs and spices.",
+				"description": "Amaro del Capo is an Italian herbal liqueur produced in Calabria. It is known for its complex flavor profile derived from a blend of aromatic herbs, spices, and citrus, and is typically enjoyed as a digestif.",
 				"text": "Amaro del Capo",
 				"text-translation": "Amaro del Capo",
 				"text_translation": "Amaro del Capo",
@@ -435,7 +435,7 @@
 		{
 			"id": 16,
 			"info": {
-				"description": "Meloncello is a sweet Italian liqueur made from melon, typically enjoyed as a refreshing summer digestif. It is made by infusing the flavors of ripe melons into alcohol, resulting in a fruity and vibrant taste.",
+				"description": "Meloncello is a sweet Italian liqueur made from melon, typically served chilled as a dessert drink or aperitif. It has a refreshing fruity flavor and is often enjoyed during the summer months.",
 				"text": "Meloncello",
 				"text-translation": "Meloncello",
 				"text_translation": "Meloncello",
@@ -462,7 +462,7 @@
 		{
 			"id": 17,
 			"info": {
-				"description": "A macchiato is an espresso coffee drink with a small amount of steamed milk, usually added in a way that allows the espresso to remain the dominant flavor. It is popular in cafes and is often enjoyed for its rich, bold taste.",
+				"description": "A macchiato is a coffee drink consisting of a shot of espresso topped with a small amount of steamed milk or milk foam. It originates from Italy and is known for its strong flavor.",
 				"text": "Macchiato",
 				"text-translation": "Macchiato",
 				"text_translation": "Macchiato",
@@ -489,10 +489,10 @@
 		{
 			"id": 18,
 			"info": {
-				"description": "None",
-				"text": "None",
-				"text_translation": "None",
-				"text-translation": "None"
+				"description": "Coffee liqueur-soaked sponge, mascarpone, chocolate",
+				"text": "Coffee liqueur-soaked sponge, mascarpone, chocolate",
+				"text_translation": "Coffee liqueur-soaked sponge, mascarpone, chocolate",
+				"text-translation": "Coffee liqueur-soaked sponge, mascarpone, chocolate"
 			},
 			"boundingBox": {
 				"x": 0.2275,
@@ -549,10 +549,10 @@
 		{
 			"id": 22,
 			"info": {
-				"description": "Vanilla biscuit filled with vanilla gelato, lemon curd & meringue",
-				"text": "Vanilla biscuit filled with vanilla gelato, lemon curd & meringue",
-				"text_translation": "Vanilla biscuit filled with vanilla gelato, lemon curd & meringue",
-				"text-translation": "Vanilla biscuit filled with vanilla gelato, lemon curd & meringue"
+				"description": "Vanilla biscuit filled with vanilla gelato, lemon curd, and meringue.",
+				"text": "Vanilla biscuit filled with vanilla gelato, lemon curd, and meringue.",
+				"text_translation": "Vanilla biscuit filled with vanilla gelato, lemon curd, and meringue.",
+				"text-translation": "Vanilla biscuit filled with vanilla gelato, lemon curd, and meringue."
 			},
 			"boundingBox": {
 				"x": 0.29,
@@ -564,10 +564,10 @@
 		{
 			"id": 23,
 			"info": {
-				"description": "Chocolate dipped biscuit filled with salted caramel gelato",
-				"text": "Chocolate dipped biscuit filled with salted caramel gelato",
-				"text_translation": "Chocolate dipped biscuit filled with salted caramel gelato",
-				"text-translation": "Chocolate dipped biscuit filled with salted caramel gelato"
+				"description": "Chocolate-dipped biscuit filled with salted caramel gelato.",
+				"text": "Chocolate-dipped biscuit filled with salted caramel gelato.",
+				"text_translation": "Chocolate-dipped biscuit filled with salted caramel gelato.",
+				"text-translation": "Chocolate-dipped biscuit filled with salted caramel gelato."
 			},
 			"boundingBox": {
 				"x": 0.3115,
