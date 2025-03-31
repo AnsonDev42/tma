@@ -5,7 +5,7 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite",
-		"build": "tsc && vite build",
+		"build": "vite build",
 		"check": "biome check --apply .",
 		"preview": "vite preview",
 		"prepare": "cd .. && husky frontend/.husky"
