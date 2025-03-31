@@ -84,7 +84,7 @@ const HeaderV2: React.FC<HeaderV2Props> = ({
 
 					{/* Back to V1 Button */}
 					<button
-						onClick={() => navigate("/home")}
+						onClick={() => navigate("/home/v1")}
 						className={`px-3 py-1 rounded-md ${
 							isDark
 								? "bg-slate-700 text-white shadow-inner"
