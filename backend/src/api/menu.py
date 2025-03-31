@@ -22,7 +22,7 @@ async def upload(
     file: UploadFile,
     user: User = Depends(get_user),
     dip: Optional[str] = Header(None),
-    accept_language: Optional[str] = Header(None),
+    accept_language: Optional[str] = Header(None, alias="Accept-Language"),
 ):
     if not file or not file.filename:
         raise HTTPException(

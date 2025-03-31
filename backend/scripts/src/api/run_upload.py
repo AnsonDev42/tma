@@ -25,7 +25,7 @@ if __name__ == "__main__":
     headers = {
         "Authorization": "Bearer test-token",
         "dip": "true",
-        "accept_language": "en-US",
+        "Accept-Language": "en-US",
     }
     file_path = os.path.join(os.path.dirname(__file__), "test1.jpg")
     with open(file_path, "rb") as f:
