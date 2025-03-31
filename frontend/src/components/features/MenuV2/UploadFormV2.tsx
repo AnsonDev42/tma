@@ -353,11 +353,12 @@ function formatResponseData(results: ResponseDataItem[]): DishProps[] {
 			} as DishProps;
 		})
 		.filter((item) => {
-			// Filter out items with missing required fields
+			const name = item.info?.text?.trim().toLowerCase();
 			return (
 				item &&
 				item.info &&
 				item.info.text &&
+				name !== "unknow" &&
 				item.boundingBox &&
 				typeof item.boundingBox.x === "number" &&
 				typeof item.boundingBox.y === "number" &&
