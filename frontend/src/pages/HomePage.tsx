@@ -27,7 +27,7 @@ export function HomePage() {
 	const navigate = useNavigate();
 
 	const goToV2 = () => {
-		navigate("/home/v2");
+		navigate("/home");
 	};
 
 	return (
