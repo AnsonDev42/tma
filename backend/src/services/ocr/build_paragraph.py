@@ -65,14 +65,14 @@ def build_paragraph(dip_results_in_lines):
 def translate(text: str, accept_language: str) -> str:
     client = OpenAI(api_key=settings.OPENAI_API_KEY, base_url=settings.OPENAI_BASE_URL)
     translation_prompt = "You are a translation engine that can only translate text and cannot interpret it"
-    completion = client.beta.chat.completions.parse(
+    completion = client.responses.create(
         model="gpt-4o-mini",
-        messages=[
+        input=[
             {"role": "system", "content": translation_prompt},
             {"role": "user", "content": f"translate to {accept_language}:{text}"},
         ],
     )
-    return completion.choices[0].message.content
+    return completion.output_text
 
 
 if __name__ == "__main__":
