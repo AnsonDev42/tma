@@ -1,7 +1,7 @@
 import { useMenuV2 } from "@/contexts/MenuV2Context";
 import { DishProps } from "@/types/DishProps.tsx";
 import { truncateText } from "@/utils/truncateText";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 interface DishCardGridProps {
 	theme: string;
@@ -104,6 +104,86 @@ const DishCard = React.forwardRef<HTMLDivElement, DishCardProps>(
 	) => {
 		// Determine if we have an image to display
 		const hasImage = dish.info.imgSrc && dish.info.imgSrc.length > 0;
+		const hasMultipleImages = hasImage && dish.info.imgSrc.length > 1;
+
+		// State to track current image index
+		const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+		// Track image loading errors
+		const [imageLoadError, setImageLoadError] = useState<boolean>(false);
+
+		// Touch handling for swipe
+		const [touchStart, setTouchStart] = useState<number | null>(null);
+		const [touchEnd, setTouchEnd] = useState<number | null>(null);
+
+		// Minimum swipe distance (in px)
+		const minSwipeDistance = 50;
+
+		// Reset image load error when image index changes
+		useEffect(() => {
+			setImageLoadError(false);
+		}, [currentImageIndex]);
+
+		const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+			setTouchStart(e.targetTouches[0].clientX);
+			setTouchEnd(null);
+		};
+
+		const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+			setTouchEnd(e.targetTouches[0].clientX);
+		};
+
+		const handleTouchEnd = () => {
+			if (!touchStart || !touchEnd) return;
+
+			const distance = touchStart - touchEnd;
+			const isLeftSwipe = distance > minSwipeDistance;
+			const isRightSwipe = distance < -minSwipeDistance;
+
+			if (isLeftSwipe && hasMultipleImages) {
+				// Next image
+				setCurrentImageIndex((prevIndex) =>
+					prevIndex === dish.info.imgSrc.length - 1 ? 0 : prevIndex + 1,
+				);
+			}
+
+			if (isRightSwipe && hasMultipleImages) {
+				// Previous image
+				setCurrentImageIndex((prevIndex) =>
+					prevIndex === 0 ? dish.info.imgSrc.length - 1 : prevIndex - 1,
+				);
+			}
+
+			// Reset
+			setTouchStart(null);
+			setTouchEnd(null);
+		};
+
+		// Function to navigate to next/previous image
+		const navigateImage = (direction: "next" | "prev") => {
+			if (direction === "next") {
+				setCurrentImageIndex((prevIndex) =>
+					prevIndex === dish.info.imgSrc.length - 1 ? 0 : prevIndex + 1,
+				);
+			} else {
+				setCurrentImageIndex((prevIndex) =>
+					prevIndex === 0 ? dish.info.imgSrc.length - 1 : prevIndex - 1,
+				);
+			}
+		};
+
+		// Handle image load error
+		const handleImageError = () => {
+			setImageLoadError(true);
+		};
+
+		// Get current image source or placeholder if error
+		const getCurrentImageSrc = () => {
+			if (imageLoadError || !hasImage) {
+				return "https://placehold.co/100x100?text=Swip-to-see-image";
+			}
+			return dish.info.imgSrc[currentImageIndex];
+		};
 
 		return (
 			<div
@@ -127,20 +207,94 @@ const DishCard = React.forwardRef<HTMLDivElement, DishCardProps>(
 				onClick={onSelect}
 			>
 				<div className="flex p-3">
-					{/* Thumbnail */}
-					<div className="w-24 h-24 flex-shrink-0 rounded-lg overflow-hidden mr-3 bg-gray-200">
-						{hasImage ? (
-							<img
-								src={dish.info.imgSrc[0]}
-								alt={dish.info.text}
-								className="w-full h-full object-cover"
-								onError={(e) => {
-									(e.target as HTMLImageElement).src =
-										"https://placeholder.co/100?text=No+Image";
-								}}
-							/>
+					{/* Thumbnail with Carousel */}
+					<div
+						className="w-24 h-24 flex-shrink-0 rounded-lg overflow-hidden mr-3 bg-gray-200 relative"
+						onTouchStart={handleTouchStart}
+						onTouchMove={handleTouchMove}
+						onTouchEnd={handleTouchEnd}
+					>
+						{hasImage || imageLoadError ? (
+							<>
+								<img
+									src={getCurrentImageSrc()}
+									alt={dish.info.text || "Dish image"}
+									className="w-full h-full object-cover transition-opacity duration-300"
+									onError={handleImageError}
+								/>
+
+								{/* Navigation arrows - only show when hovered or selected and has multiple images */}
+								{hasMultipleImages &&
+									!imageLoadError &&
+									(isHovered || isSelected) && (
+										<>
+											<button
+												className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-30 text-white p-1 rounded-r-md"
+												onClick={(e) => {
+													e.stopPropagation();
+													navigateImage("prev");
+												}}
+											>
+												<svg
+													xmlns="http://www.w3.org/2000/svg"
+													className="h-4 w-4"
+													fill="none"
+													viewBox="0 0 24 24"
+													stroke="currentColor"
+												>
+													<path
+														strokeLinecap="round"
+														strokeLinejoin="round"
+														strokeWidth={2}
+														d="M15 19l-7-7 7-7"
+													/>
+												</svg>
+											</button>
+											<button
+												className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-30 text-white p-1 rounded-l-md"
+												onClick={(e) => {
+													e.stopPropagation();
+													navigateImage("next");
+												}}
+											>
+												<svg
+													xmlns="http://www.w3.org/2000/svg"
+													className="h-4 w-4"
+													fill="none"
+													viewBox="0 0 24 24"
+													stroke="currentColor"
+												>
+													<path
+														strokeLinecap="round"
+														strokeLinejoin="round"
+														strokeWidth={2}
+														d="M9 5l7 7-7 7"
+													/>
+												</svg>
+											</button>
+										</>
+									)}
+
+								{/* Dots indicator for multiple images */}
+								{hasMultipleImages && !imageLoadError && (
+									<div className="absolute bottom-1 left-0 right-0 flex justify-center space-x-1">
+										{dish.info.imgSrc.map((_, index) => (
+											<div
+												key={index}
+												className={`h-1.5 w-1.5 rounded-full ${
+													index === currentImageIndex
+														? "bg-white"
+														: "bg-white bg-opacity-50"
+												}`}
+											/>
+										))}
+									</div>
+								)}
+							</>
 						) : (
-							<div className="w-full h-full flex items-center justify-center bg-gray-200 text-gray-400"></div>
+							<div className="w-full h-full flex items-center justify-center bg-gray-200 text-gray-400">
+								<span className="text-xs text-center px-1">No Image</span>
+							</div>
 						)}
 					</div>
 
