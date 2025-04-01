@@ -10,7 +10,7 @@ terraform {
 
 
 provider "docker" {
-  host = "unix:///Users/REMOVED/.orbstack/run/docker.sock"
+  host = "your_docker_host_socket"
 
   registry_auth {
       address = "registry-1.docker.io"
