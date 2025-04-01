@@ -40,5 +40,5 @@ jobs:
 
     - name: Trigger webhook
       run: |
-        curl -X POST REMOVED/v1/update \
+        curl -X POST ${{ secrets.DEPLOYMENT_URL }}/v1/update \
           -H "Authorization:Bearer ${{ secrets.HEADER_KEY }}" \
