@@ -8,7 +8,7 @@ Run ```uv sync``` to install dependencies
 
 ## Run the app
 
-```uvicorn src.main:app --reload```
+```uv run uvicorn src.main:app --reload```
 
 # Run in docker compose
 
