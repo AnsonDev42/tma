@@ -304,7 +304,7 @@ export async function uploadMenuData(
 	selectedLanguage: Language | null,
 ): Promise<DishProps[]> {
 	try {
-		const response = await axios.post(`${__API_URL__}/upload`, formData, {
+		const response = await axios.post(`${__API_URL__}/menu/analyze`, formData, {
 			headers: {
 				"Content-Type": "multipart/form-data",
 				Authorization: jwt,

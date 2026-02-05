@@ -12,7 +12,7 @@ export const getAIRecommendations = async (
 ): Promise<string> => {
 	try {
 		const response = await axios.post(
-			`${__API_URL__}/ai-suggestions`,
+			`${__API_URL__}/menu/recommendations`,
 
 			payload,
 			{
