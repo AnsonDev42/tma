@@ -24,7 +24,6 @@ if __name__ == "__main__":
     app.dependency_overrides[get_user] = override_get_free_user
     headers = {
         "Authorization": "Bearer test-token",
-        "dip": "true",
         "Accept-Language": "en-US",
     }
     file_path = os.path.join(os.path.dirname(__file__), "test1.jpg")
@@ -40,7 +39,7 @@ if __name__ == "__main__":
     start_time = time.time()
 
     response = client.post(
-        "/upload",
+        "/menu/analyze",
         headers=headers,
         files=form_data,
     )
