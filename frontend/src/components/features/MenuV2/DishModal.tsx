@@ -78,7 +78,10 @@ const DishModal: React.FC<DishModalProps> = ({
 
 	// Create the modal content
 	const modalContent = (
-		<div className="fixed inset-0 flex items-center justify-center z-[1000]">
+		<div
+			className="fixed inset-0 flex items-center justify-center z-[1000]"
+			data-testid="dish-modal"
+		>
 			<div
 				className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm"
 				onClick={onClose}
@@ -90,6 +93,7 @@ const DishModal: React.FC<DishModalProps> = ({
 				<button
 					className="btn btn-sm btn-circle absolute right-2 top-2"
 					onClick={onClose}
+					data-testid="dish-modal-close"
 				>
 					✕
 				</button>

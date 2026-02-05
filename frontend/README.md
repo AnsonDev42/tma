@@ -28,3 +28,34 @@ export default {
 - Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
 - Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
 - Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+
+## Playwright E2E
+
+### Install browser runtime
+
+```bash
+pnpm exec playwright install chromium
+```
+
+### Run tests
+
+```bash
+pnpm test:e2e
+```
+
+### Useful variants
+
+```bash
+pnpm test:e2e:headed
+pnpm test:e2e:ui
+pnpm test:e2e:report
+```
+
+Current e2e coverage includes an upload flow test in `tests/e2e/upload-menu.spec.ts` that:
+
+- opens `/home`
+- uploads a real image file from `public/demoMenu1.jpg`
+- mocks `POST /menu/analyze`
+- verifies analyzed dish results are rendered
+
+Auth is bypassed only in Playwright via `VITE_E2E_AUTH_BYPASS=true` from `playwright.config.ts`.

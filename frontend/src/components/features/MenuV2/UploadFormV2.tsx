@@ -43,6 +43,8 @@ interface UploadFormV2Props {
 
 const UploadFormV2: React.FC<UploadFormV2Props> = ({ theme }) => {
 	const session = useContext(SessionContext)?.session;
+	const isE2EAuthBypassEnabled =
+		import.meta.env.VITE_E2E_AUTH_BYPASS === "true";
 	const { selectedLanguage } = useLanguageContext();
 	const { setSelectedImage, setDishes } = useMenuV2();
 	const [isDragging, setIsDragging] = useState(false);
@@ -84,13 +86,18 @@ const UploadFormV2: React.FC<UploadFormV2Props> = ({ theme }) => {
 			raw_file.name.split(".")[0] + "_compressed.jpg",
 		);
 
-		if (!session || !session.access_token) {
+		const jwt =
+			session?.access_token !== undefined
+				? `Bearer ${session.access_token}`
+				: isE2EAuthBypassEnabled
+					? "Bearer e2e-auth-bypass"
+					: null;
+
+		if (!jwt) {
 			toast.error("Please refresh to login again. No session found.");
 			setIsLoading(false);
 			return;
 		}
-
-		const jwt = `Bearer ${session.access_token}`;
 		const reader = new FileReader();
 		reader.readAsDataURL(file);
 		reader.onload = () =>
