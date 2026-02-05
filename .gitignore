@@ -14,3 +14,6 @@ terraform.tfvars
 *.tfstate.*
 /.idea/git_toolbox_blame.xml
 /.idea/terraform.xml
+frontend/playwright-report/
+frontend/test-results/
+frontend/blob-report/

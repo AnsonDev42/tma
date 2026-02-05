@@ -113,6 +113,8 @@ const DishCard = React.forwardRef<HTMLDivElement, DishCardProps>(
 		return (
 			<div
 				ref={ref}
+				data-testid={`dish-card-${dish.id}`}
+				data-selected={isSelected ? "true" : "false"}
 				className={`
           relative rounded-xl overflow-hidden transition-all duration-200 cursor-pointer
           ${

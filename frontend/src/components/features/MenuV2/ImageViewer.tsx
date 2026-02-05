@@ -202,6 +202,13 @@ const ImageViewer: React.FC<ImageViewerProps> = ({
 										dishes.map((dish) => (
 											<div
 												key={dish.id}
+												data-testid={`menu-overlay-${dish.id}`}
+												data-selected={
+													selectedDish === dish.id ? "true" : "false"
+												}
+												data-hovered={
+													hoveredDish === dish.id ? "true" : "false"
+												}
 												className={`absolute cursor-pointer transition-all duration-200 ${
 													hoveredDish === dish.id || selectedDish === dish.id
 														? "z-10 ring-2 ring-blue-500"
