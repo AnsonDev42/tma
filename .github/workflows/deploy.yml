@@ -28,6 +28,19 @@ jobs:
     name: Backend tests
     needs: scan
     runs-on: ubuntu-latest
+    env:
+      # Dummy values required for Settings() during test imports.
+      OPENAI_API_KEY: test-openai-key
+      AZURE_DIP_API_KEY: test-azure-key
+      AZURE_DIP_BASE_URL: https://example.com/azure-dip
+      GOOGLE_IMG_SEARCH_CX: test-cx
+      GOOGLE_IMG_SEARCH_KEY: test-google-key
+      SUPABASE_URL: https://example.supabase.co
+      SUPABASE_KEY: test-supabase-key
+      FATSECRET_TOKEN_URL: https://example.com/fatsecret/token
+      FATSECRET_CLIENT_ID: test-fatsecret-client-id
+      FATSECRET_CLIENT_SECRET: test-fatsecret-client-secret
+      FATSECRET_BASE_URL: https://example.com/fatsecret
     defaults:
       run:
         working-directory: backend
