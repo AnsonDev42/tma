@@ -3,24 +3,9 @@
 		{
 			"id": 0,
 			"info": {
-				"description": "PET commonly refers to a type of plastic used in packaging; however, it is not recognized as a food dish. Please check for more relevant food-related information.",
-				"text": "PET",
-				"text_translation": "PET",
-				"img_src": null
-			},
-			"boundingBox": {
-				"x": 0.31794871794871793,
-				"y": 0.21575342465753425,
-				"w": 0.03247863247863248,
-				"h": 0.014840182648401826
-			}
-		},
-		{
-			"id": 1,
-			"info": {
-				"description": "Sweet shrimp, known as 'ama ebi' in Japanese, is a delicacy often served raw in sushi or sashimi. It is prized for its sweet flavor and tender texture.",
+				"description": "甜虾是一种口感鲜甜的海鲜，常见于日本料理中，通常以刺身或寿司的形式呈现，具有细腻的肉质和丰富的海味。",
 				"text": "甜蝦",
-				"text_translation": "Sweet Shrimp",
+				"text_translation": "甜虾",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -31,11 +16,11 @@
 			}
 		},
 		{
-			"id": 2,
+			"id": 1,
 			"info": {
-				"description": "Scallops are a type of shellfish known for their tender, sweet meat. They can be prepared in various ways, including searing, grilling, or baking, and are often served as an appetizer or main dish in seafood cuisine.",
+				"description": "干贝是一种常见的海鲜食材，通常指的是一种干燥的扇贝肉，味道鲜美，通常用于煮汤、蒸菜或炖煮等多种烹饪方式。",
 				"text": "干貝",
-				"text_translation": "Scallops",
+				"text_translation": "干贝",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -46,11 +31,26 @@
 			}
 		},
 		{
+			"id": 2,
+			"info": {
+				"description": "这道菜可能是一个名字或品牌，而不是具体的食品。",
+				"text": "Hi LE",
+				"text_translation": "嗨LE",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.32051282051282054,
+				"y": 0.3356164383561644,
+				"w": 0.03418803418803419,
+				"h": 0.01598173515981735
+			}
+		},
+		{
 			"id": 3,
 			"info": {
-				"description": "海間 (Sea Interval) is a dish that may refer to seafood or dishes available near the sea, known for its fresh ingredients and vibrant flavors derived from marine cuisine.",
+				"description": "海间是一种传统的海鲜菜肴，通常使用新鲜的海鲜和当地特产进行烹饪，其味道鲜美，营养丰富。",
 				"text": "海間",
-				"text_translation": "Sea Interval",
+				"text_translation": "海间",
 				"img_src": [
 					"https://i.ytimg.com/vi/GdSS_kS3SFY/maxresdefault.jpg",
 					"https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=1394212592378238",
@@ -74,9 +74,9 @@
 		{
 			"id": 4,
 			"info": {
-				"description": "Pig Well is a traditional dish that might refer to a preparation involving pork. The term suggests a method or style of cooking that emphasizes highlighting the flavor of the pig, often found in various Asian culinary cultures.",
+				"description": "猪井 是一种传统的中国菜，主要用猪肉制作，通常以炖或炸的方式烹饪。",
 				"text": "豬井",
-				"text_translation": "Pig Well",
+				"text_translation": "猪井",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -89,9 +89,9 @@
 		{
 			"id": 5,
 			"info": {
-				"description": "Xiaopin refers to a type of small dish or appetizer in Chinese cuisine, often served as part of a larger meal. These dishes are typically flavorful and are meant to be shared among diners.",
+				"description": "小品是一种传统的中国艺术表演形式，通常包括小品剧、相声等，与美食直接相关的内容较少。",
 				"text": "小品",
-				"text_translation": "Xiaopin",
+				"text_translation": "Xiao Pin",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -104,9 +104,9 @@
 		{
 			"id": 6,
 			"info": {
-				"description": "White rice is a staple food in many cultures, made from polished rice grains. It is commonly served as a side dish or base for various meals.",
+				"description": "白饭是指用水煮熟的白米，通常作为主食与各种菜肴搭配，是中国餐饮中常见的一种食物。",
 				"text": "白飯",
-				"text_translation": "White Rice",
+				"text_translation": "白米饭",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -119,9 +119,9 @@
 		{
 			"id": 7,
 			"info": {
-				"description": "Gyudon is a popular Japanese dish consisting of a bowl of rice topped with simmered beef and onions in a mildly sweet sauce flavored with soy sauce and mirin.",
+				"description": "牛丼是一种日本料理，通常由牛肉和洋葱炖煮在酱油基底的汤汁中，然后浇在米饭上。",
 				"text": "牛丼",
-				"text_translation": "Gyudon",
+				"text_translation": "牛肉盖饭",
 				"img_src": [
 					"https://www.sukiya-jp.com.tw/gyudon/img/point1_img_gyudon@2x.png",
 					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3560954881337025860",
@@ -145,9 +145,9 @@
 		{
 			"id": 8,
 			"info": {
-				"description": "A beverage is any liquid specifically prepared for human consumption. Popular types of beverages include water, juice, tea, coffee, soft drinks, and alcoholic drinks.",
+				"description": "饮料是液体食品，通常人们在餐饮时饮用。饮料的种类繁多，包括水、果汁、碳酸饮料、茶、咖啡等。",
 				"text": "飲料",
-				"text_translation": "Beverage",
+				"text_translation": "饮料",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -160,9 +160,9 @@
 		{
 			"id": 9,
 			"info": {
-				"description": "Coke is a carbonated soft drink that is popular worldwide. It is known for its distinct sweetness and refreshing taste, often served chilled or over ice.",
+				"description": "可乐是一种碳酸饮料，通常由水、糖、焦糖色、咖啡因和其他风味成分制成，具有甜味和气泡感。",
 				"text": "可樂",
-				"text_translation": "Coke",
+				"text_translation": "可乐",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -175,7 +175,7 @@
 		{
 			"id": 10,
 			"info": {
-				"description": "Sarsaparilla is a soft drink that is flavored with the extract of the sarsaparilla vine and sometimes other roots like sassafras. It is known for its distinct, slightly sweet, and herbal flavor.",
+				"description": "沙士是一种以沙士树根为基础的饮料，常见于甜味饮料中，具有独特的甜味和香气。",
 				"text": "沙士",
 				"text_translation": "Sarsaparilla",
 				"img_src": null
@@ -190,9 +190,9 @@
 		{
 			"id": 11,
 			"info": {
-				"description": "Apple juice is a popular beverage made from pressing fresh apples. It is known for its sweet taste and refreshing qualities, often enjoyed chilled.",
+				"description": "苹果汁是一种受欢迎的饮品，通常由新鲜苹果榨取而成，口感清新，甜美。",
 				"text": "蘋果汁",
-				"text_translation": "Apple Juice",
+				"text_translation": "苹果汁",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -205,9 +205,9 @@
 		{
 			"id": 12,
 			"info": {
-				"description": "Sashimi",
-				"text": "Sashimi",
-				"text_translation": "Sashimi",
+				"description": "生鱼片",
+				"text": "生鱼片",
+				"text_translation": "生鱼片",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -220,9 +220,9 @@
 		{
 			"id": 13,
 			"info": {
-				"description": "Assorted Sashimi (8 pieces)",
-				"text": "Assorted Sashimi (8 pieces)",
-				"text_translation": "Assorted Sashimi (8 pieces)",
+				"description": "综合生鱼片（八片）",
+				"text": "综合生鱼片（八片）",
+				"text_translation": "综合生鱼片（八片）",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -235,9 +235,9 @@
 		{
 			"id": 14,
 			"info": {
-				"description": "Purple fish three slices.",
-				"text": "Purple fish three slices.",
-				"text_translation": "Purple fish three slices.",
+				"description": "紫鱼三片",
+				"text": "紫鱼三片",
+				"text_translation": "紫鱼三片",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -250,9 +250,9 @@
 		{
 			"id": 15,
 			"info": {
-				"description": "Salmon (three pieces)",
-				"text": "Salmon (three pieces)",
-				"text_translation": "Salmon (three pieces)",
+				"description": "鮭鱼（三片）",
+				"text": "鮭鱼（三片）",
+				"text_translation": "鮭鱼（三片）",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -265,9 +265,9 @@
 		{
 			"id": 16,
 			"info": {
-				"description": "\"Salmon belly\"",
-				"text": "\"Salmon belly\"",
-				"text_translation": "\"Salmon belly\"",
+				"description": "鮭鱼肚",
+				"text": "鮭鱼肚",
+				"text_translation": "鮭鱼肚",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -280,9 +280,9 @@
 		{
 			"id": 17,
 			"info": {
-				"description": "Tuna (three slices)",
-				"text": "Tuna (three slices)",
-				"text_translation": "Tuna (three slices)",
+				"description": "鮪鱼（三片）",
+				"text": "鮪鱼（三片）",
+				"text_translation": "鮪鱼（三片）",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -295,9 +295,9 @@
 		{
 			"id": 18,
 			"info": {
-				"description": "Sweet shrimp",
-				"text": "Sweet shrimp",
-				"text_translation": "Sweet shrimp",
+				"description": "甜虾",
+				"text": "甜虾",
+				"text_translation": "甜虾",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -310,9 +310,9 @@
 		{
 			"id": 19,
 			"info": {
-				"description": "The translation of 干貝 to English (US) is \"dried scallop.\"",
-				"text": "The translation of 干貝 to English (US) is \"dried scallop.\"",
-				"text_translation": "The translation of 干貝 to English (US) is \"dried scallop.\"",
+				"description": "干贝",
+				"text": "干贝",
+				"text_translation": "干贝",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -325,9 +325,9 @@
 		{
 			"id": 20,
 			"info": {
-				"description": "The translation of \"牡丹蝦\" to English (US) is \"peony shrimp.\"",
-				"text": "The translation of \"牡丹蝦\" to English (US) is \"peony shrimp.\"",
-				"text_translation": "The translation of \"牡丹蝦\" to English (US) is \"peony shrimp.\"",
+				"description": "牡丹虾",
+				"text": "牡丹虾",
+				"text_translation": "牡丹虾",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -340,9 +340,9 @@
 		{
 			"id": 21,
 			"info": {
-				"description": "Sushi",
-				"text": "Sushi",
-				"text_translation": "Sushi",
+				"description": "寿司",
+				"text": "寿司",
+				"text_translation": "寿司",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -355,9 +355,9 @@
 		{
 			"id": 22,
 			"info": {
-				"description": "Bean curd skin sushi (two pieces)",
-				"text": "Bean curd skin sushi (two pieces)",
-				"text_translation": "Bean curd skin sushi (two pieces)",
+				"description": "豆皮寿司（两个）",
+				"text": "豆皮寿司（两个）",
+				"text_translation": "豆皮寿司（两个）",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -370,9 +370,9 @@
 		{
 			"id": 23,
 			"info": {
-				"description": "Nori sushi (five pieces)",
-				"text": "Nori sushi (five pieces)",
-				"text_translation": "Nori sushi (five pieces)",
+				"description": "海苔寿司（五个）",
+				"text": "海苔寿司（五个）",
+				"text_translation": "海苔寿司（五个）",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -385,9 +385,9 @@
 		{
 			"id": 24,
 			"info": {
-				"description": "The translation of \"鐵火細卷\" to English (US) is \"Iron Fire Thin Rolls.\"",
-				"text": "The translation of \"鐵火細卷\" to English (US) is \"Iron Fire Thin Rolls.\"",
-				"text_translation": "The translation of \"鐵火細卷\" to English (US) is \"Iron Fire Thin Rolls.\"",
+				"description": "铁火细卷",
+				"text": "铁火细卷",
+				"text_translation": "铁火细卷",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -400,9 +400,9 @@
 		{
 			"id": 25,
 			"info": {
-				"description": "Flower Sushi (Five pieces)",
-				"text": "Flower Sushi (Five pieces)",
-				"text_translation": "Flower Sushi (Five pieces)",
+				"description": "花壽司 (五个)",
+				"text": "花壽司 (五个)",
+				"text_translation": "花壽司 (五个)",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -415,9 +415,9 @@
 		{
 			"id": 26,
 			"info": {
-				"description": "Fried shrimp sushi (six pieces)",
-				"text": "Fried shrimp sushi (six pieces)",
-				"text_translation": "Fried shrimp sushi (six pieces)",
+				"description": "炸虾寿司（六个）",
+				"text": "炸虾寿司（六个）",
+				"text_translation": "炸虾寿司（六个）",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -430,9 +430,9 @@
 		{
 			"id": 27,
 			"info": {
-				"description": "Soft-shell crab sushi (five pieces)",
-				"text": "Soft-shell crab sushi (five pieces)",
-				"text_translation": "Soft-shell crab sushi (five pieces)",
+				"description": "软壳蟹寿司（五个）",
+				"text": "软壳蟹寿司（五个）",
+				"text_translation": "软壳蟹寿司（五个）",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -445,9 +445,9 @@
 		{
 			"id": 28,
 			"info": {
-				"description": "The translation of \"手卷\" to English (US) is \"hand roll.\"",
-				"text": "The translation of \"手卷\" to English (US) is \"hand roll.\"",
-				"text_translation": "The translation of \"手卷\" to English (US) is \"hand roll.\"",
+				"description": "手卷翻译为中文是“手卷”。",
+				"text": "手卷翻译为中文是“手卷”。",
+				"text_translation": "手卷翻译为中文是“手卷”。",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -460,9 +460,9 @@
 		{
 			"id": 29,
 			"info": {
-				"description": "Shrimp roe hand roll",
-				"text": "Shrimp roe hand roll",
-				"text_translation": "Shrimp roe hand roll",
+				"description": "蝦卵手卷",
+				"text": "蝦卵手卷",
+				"text_translation": "蝦卵手卷",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -475,9 +475,9 @@
 		{
 			"id": 30,
 			"info": {
-				"description": "Asparagus Hand Roll",
-				"text": "Asparagus Hand Roll",
-				"text_translation": "Asparagus Hand Roll",
+				"description": "蘆筍手卷",
+				"text": "蘆筍手卷",
+				"text_translation": "蘆筍手卷",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -490,9 +490,9 @@
 		{
 			"id": 31,
 			"info": {
-				"description": "Shrimp hand roll",
-				"text": "Shrimp hand roll",
-				"text_translation": "Shrimp hand roll",
+				"description": "蝦手卷",
+				"text": "蝦手卷",
+				"text_translation": "蝦手卷",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -505,9 +505,9 @@
 		{
 			"id": 32,
 			"info": {
-				"description": "Shrimp and Asparagus Technique",
-				"text": "Shrimp and Asparagus Technique",
-				"text_translation": "Shrimp and Asparagus Technique",
+				"description": "蝦蘆筍手法的翻譯是「虾芦笋手法」。",
+				"text": "蝦蘆筍手法的翻譯是「虾芦笋手法」。",
+				"text_translation": "蝦蘆筍手法的翻譯是「虾芦笋手法」。",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -520,9 +520,9 @@
 		{
 			"id": 33,
 			"info": {
-				"description": "The translation of \"鐵火手を\" to English (US) is \"Iron fire hand.\"",
-				"text": "The translation of \"鐵火手を\" to English (US) is \"Iron fire hand.\"",
-				"text_translation": "The translation of \"鐵火手を\" to English (US) is \"Iron fire hand.\"",
+				"description": "铁火手を",
+				"text": "铁火手を",
+				"text_translation": "铁火手を",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -535,9 +535,9 @@
 		{
 			"id": 34,
 			"info": {
-				"description": "Sea Urchin Hand Roll",
-				"text": "Sea Urchin Hand Roll",
-				"text_translation": "Sea Urchin Hand Roll",
+				"description": "海胆手卷",
+				"text": "海胆手卷",
+				"text_translation": "海胆手卷",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -550,9 +550,9 @@
 		{
 			"id": 35,
 			"info": {
-				"description": "Fried food",
-				"text": "Fried food",
-				"text_translation": "Fried food",
+				"description": "炸物的中文翻译是“fried food”。",
+				"text": "炸物的中文翻译是“fried food”。",
+				"text_translation": "炸物的中文翻译是“fried food”。",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -565,9 +565,9 @@
 		{
 			"id": 36,
 			"info": {
-				"description": "The phrase \"揚出豆腐\" translates to \"Fried Tofu\" in English (US).",
-				"text": "The phrase \"揚出豆腐\" translates to \"Fried Tofu\" in English (US).",
-				"text_translation": "The phrase \"揚出豆腐\" translates to \"Fried Tofu\" in English (US).",
+				"description": "扬出豆腐",
+				"text": "扬出豆腐",
+				"text_translation": "扬出豆腐",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -580,9 +580,9 @@
 		{
 			"id": 37,
 			"info": {
-				"description": "Vegetable tempura",
-				"text": "Vegetable tempura",
-				"text_translation": "Vegetable tempura",
+				"description": "野菜天妇罗",
+				"text": "野菜天妇罗",
+				"text_translation": "野菜天妇罗",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -595,9 +595,9 @@
 		{
 			"id": 38,
 			"info": {
-				"description": "\"Fried Chicken\"",
-				"text": "\"Fried Chicken\"",
-				"text_translation": "\"Fried Chicken\"",
+				"description": "若鸡唐扬",
+				"text": "若鸡唐扬",
+				"text_translation": "若鸡唐扬",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -610,9 +610,9 @@
 		{
 			"id": 39,
 			"info": {
-				"description": "Mixed tempura",
-				"text": "Mixed tempura",
-				"text_translation": "Mixed tempura",
+				"description": "什锦天妇罗",
+				"text": "什锦天妇罗",
+				"text_translation": "什锦天妇罗",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -625,9 +625,9 @@
 		{
 			"id": 40,
 			"info": {
-				"description": "Crispy Fried Oysters",
-				"text": "Crispy Fried Oysters",
-				"text_translation": "Crispy Fried Oysters",
+				"description": "酥炸生蚝",
+				"text": "酥炸生蚝",
+				"text_translation": "酥炸生蚝",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -640,9 +640,9 @@
 		{
 			"id": 41,
 			"info": {
-				"description": "The translation of \"干貝唐揚\" to English (US) is \"fried scallops.\"",
-				"text": "The translation of \"干貝唐揚\" to English (US) is \"fried scallops.\"",
-				"text_translation": "The translation of \"干貝唐揚\" to English (US) is \"fried scallops.\"",
+				"description": "干贝唐揚  (the translation remains the same as it is a specific dish name)",
+				"text": "干贝唐揚  (the translation remains the same as it is a specific dish name)",
+				"text_translation": "干贝唐揚  (the translation remains the same as it is a specific dish name)",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -655,9 +655,9 @@
 		{
 			"id": 42,
 			"info": {
-				"description": "The translation of \"烤物\" to English (US) is \"grilled items\" or \"barbecued items.\"",
-				"text": "The translation of \"烤物\" to English (US) is \"grilled items\" or \"barbecued items.\"",
-				"text_translation": "The translation of \"烤物\" to English (US) is \"grilled items\" or \"barbecued items.\"",
+				"description": "烤物",
+				"text": "烤物",
+				"text_translation": "烤物",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -670,9 +670,9 @@
 		{
 			"id": 43,
 			"info": {
-				"description": "Grilled eel with salt",
-				"text": "Grilled eel with salt",
-				"text_translation": "Grilled eel with salt",
+				"description": "盐烤香鱼",
+				"text": "盐烤香鱼",
+				"text_translation": "盐烤香鱼",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -685,9 +685,9 @@
 		{
 			"id": 44,
 			"info": {
-				"description": "Salt-grilled noodle fish",
-				"text": "Salt-grilled noodle fish",
-				"text_translation": "Salt-grilled noodle fish",
+				"description": "盐烤面鱼",
+				"text": "盐烤面鱼",
+				"text_translation": "盐烤面鱼",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -700,9 +700,9 @@
 		{
 			"id": 45,
 			"info": {
-				"description": "Miso Matsusaka Pork",
-				"text": "Miso Matsusaka Pork",
-				"text_translation": "Miso Matsusaka Pork",
+				"description": "味噌松阪猪",
+				"text": "味噌松阪猪",
+				"text_translation": "味噌松阪猪",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -715,9 +715,9 @@
 		{
 			"id": 46,
 			"info": {
-				"description": "\"Chicken wings with mentaiko\"",
-				"text": "\"Chicken wings with mentaiko\"",
-				"text_translation": "\"Chicken wings with mentaiko\"",
+				"description": "手羽明太子 translates to \"手羽明太子\" in Chinese (zh-cn).",
+				"text": "手羽明太子 translates to \"手羽明太子\" in Chinese (zh-cn).",
+				"text_translation": "手羽明太子 translates to \"手羽明太子\" in Chinese (zh-cn).",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -730,9 +730,9 @@
 		{
 			"id": 47,
 			"info": {
-				"description": "Dried fish overnight",
-				"text": "Dried fish overnight",
-				"text_translation": "Dried fish overnight",
+				"description": "花鱼一夜干",
+				"text": "花鱼一夜干",
+				"text_translation": "花鱼一夜干",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -745,9 +745,9 @@
 		{
 			"id": 48,
 			"info": {
-				"description": "\"Qinggan chin\"",
-				"text": "\"Qinggan chin\"",
-				"text_translation": "\"Qinggan chin\"",
+				"description": "青甘下巴翻译成中文（简体）是“青甘下巴”。",
+				"text": "青甘下巴翻译成中文（简体）是“青甘下巴”。",
+				"text_translation": "青甘下巴翻译成中文（简体）是“青甘下巴”。",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -760,9 +760,9 @@
 		{
 			"id": 49,
 			"info": {
-				"description": "The translation of \"食事\" to English (US) is \"meal.\"",
-				"text": "The translation of \"食事\" to English (US) is \"meal.\"",
-				"text_translation": "The translation of \"食事\" to English (US) is \"meal.\"",
+				"description": "食事 translates to \"饮食\" in Chinese (simplified).",
+				"text": "食事 translates to \"饮食\" in Chinese (simplified).",
+				"text_translation": "食事 translates to \"饮食\" in Chinese (simplified).",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -775,9 +775,9 @@
 		{
 			"id": 50,
 			"info": {
-				"description": "(Add 60 to enjoy set meals)",
-				"text": "(Add 60 to enjoy set meals)",
-				"text_translation": "(Add 60 to enjoy set meals)",
+				"description": "加60均可享用定食。",
+				"text": "加60均可享用定食。",
+				"text_translation": "加60均可享用定食。",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -790,9 +790,9 @@
 		{
 			"id": 51,
 			"info": {
-				"description": "The translation of \"握壽司\" to English (US) is \"Nigiri sushi.\"",
-				"text": "The translation of \"握壽司\" to English (US) is \"Nigiri sushi.\"",
-				"text_translation": "The translation of \"握壽司\" to English (US) is \"Nigiri sushi.\"",
+				"description": "握寿司",
+				"text": "握寿司",
+				"text_translation": "握寿司",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -805,9 +805,9 @@
 		{
 			"id": 52,
 			"info": {
-				"description": "\"Combination Sushi (Seven Pages)\"",
-				"text": "\"Combination Sushi (Seven Pages)\"",
-				"text_translation": "\"Combination Sushi (Seven Pages)\"",
+				"description": "综合握寿司（七页）",
+				"text": "综合握寿司（七页）",
+				"text_translation": "综合握寿司（七页）",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -820,9 +820,9 @@
 		{
 			"id": 53,
 			"info": {
-				"description": "The text \"M魚\" can be translated to \"M fish.\"",
-				"text": "The text \"M魚\" can be translated to \"M fish.\"",
-				"text_translation": "The text \"M魚\" can be translated to \"M fish.\"",
+				"description": "M鱼 translates to \"M鱼\" in Chinese (Simplified). It appears to be a specific term or name, possibly referring to a type of fish. If you have more context or a different meaning in mind, please provide more information!",
+				"text": "M鱼 translates to \"M鱼\" in Chinese (Simplified). It appears to be a specific term or name, possibly referring to a type of fish. If you have more context or a different meaning in mind, please provide more information!",
+				"text_translation": "M鱼 translates to \"M鱼\" in Chinese (Simplified). It appears to be a specific term or name, possibly referring to a type of fish. If you have more context or a different meaning in mind, please provide more information!",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -835,9 +835,9 @@
 		{
 			"id": 54,
 			"info": {
-				"description": "Salmon",
-				"text": "Salmon",
-				"text_translation": "Salmon",
+				"description": "鮭魚 in Chinese (Simplified) is: 鲑鱼.",
+				"text": "鮭魚 in Chinese (Simplified) is: 鲑鱼.",
+				"text_translation": "鮭魚 in Chinese (Simplified) is: 鲑鱼.",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -850,9 +850,9 @@
 		{
 			"id": 55,
 			"info": {
-				"description": "\"Salmon belly\"",
-				"text": "\"Salmon belly\"",
-				"text_translation": "\"Salmon belly\"",
+				"description": "鮭鱼肚",
+				"text": "鮭鱼肚",
+				"text_translation": "鮭鱼肚",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -865,9 +865,9 @@
 		{
 			"id": 56,
 			"info": {
-				"description": "Tuna",
-				"text": "Tuna",
-				"text_translation": "Tuna",
+				"description": "鮪魚 translates to \"金枪鱼\" in Chinese (Simplified).",
+				"text": "鮪魚 translates to \"金枪鱼\" in Chinese (Simplified).",
+				"text_translation": "鮪魚 translates to \"金枪鱼\" in Chinese (Simplified).",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -880,9 +880,9 @@
 		{
 			"id": 57,
 			"info": {
-				"description": "The translation of \"穴子\" to English (US) is \"conger eel.\"",
-				"text": "The translation of \"穴子\" to English (US) is \"conger eel.\"",
-				"text_translation": "The translation of \"穴子\" to English (US) is \"conger eel.\"",
+				"description": "穴子 in Chinese (Simplified) is translated as \"穴子\".",
+				"text": "穴子 in Chinese (Simplified) is translated as \"穴子\".",
+				"text_translation": "穴子 in Chinese (Simplified) is translated as \"穴子\".",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -895,9 +895,9 @@
 		{
 			"id": 58,
 			"info": {
-				"description": "\"Two coins\"",
-				"text": "\"Two coins\"",
-				"text_translation": "\"Two coins\"",
+				"description": "(两贯)",
+				"text": "(两贯)",
+				"text_translation": "(两贯)",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -910,9 +910,9 @@
 		{
 			"id": 59,
 			"info": {
-				"description": "The translation of \"牡丹蝦\" to English (US) is \"peony shrimp.\"",
-				"text": "The translation of \"牡丹蝦\" to English (US) is \"peony shrimp.\"",
-				"text_translation": "The translation of \"牡丹蝦\" to English (US) is \"peony shrimp.\"",
+				"description": "牡丹虾",
+				"text": "牡丹虾",
+				"text_translation": "牡丹虾",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -925,9 +925,9 @@
 		{
 			"id": 60,
 			"info": {
-				"description": "Sole with green side (two pieces)",
-				"text": "Sole with green side (two pieces)",
-				"text_translation": "Sole with green side (two pieces)",
+				"description": "比目鱼绿侧（两贯）",
+				"text": "比目鱼绿侧（两贯）",
+				"text_translation": "比目鱼绿侧（两贯）",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -940,9 +940,9 @@
 		{
 			"id": 61,
 			"info": {
-				"description": "salmon roe",
-				"text": "salmon roe",
-				"text_translation": "salmon roe",
+				"description": "鮭魚卵 translates to \"鲑鱼卵\" in simplified Chinese (zh-cn).",
+				"text": "鮭魚卵 translates to \"鲑鱼卵\" in simplified Chinese (zh-cn).",
+				"text_translation": "鮭魚卵 translates to \"鲑鱼卵\" in simplified Chinese (zh-cn).",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -955,9 +955,9 @@
 		{
 			"id": 62,
 			"info": {
-				"description": "It seems you provided \"HE EE\" which doesn't give enough context for translation. Please provide the text you would like translated into English (US).",
-				"text": "It seems you provided \"HE EE\" which doesn't give enough context for translation. Please provide the text you would like translated into English (US).",
-				"text_translation": "It seems you provided \"HE EE\" which doesn't give enough context for translation. Please provide the text you would like translated into English (US).",
+				"description": "(HE EE)",
+				"text": "(HE EE)",
+				"text_translation": "(HE EE)",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -970,9 +970,9 @@
 		{
 			"id": 63,
 			"info": {
-				"description": "Chawanmushi",
-				"text": "Chawanmushi",
-				"text_translation": "Chawanmushi",
+				"description": "茶碗蒸翻译成中文是“茶碗蒸”。",
+				"text": "茶碗蒸翻译成中文是“茶碗蒸”。",
+				"text_translation": "茶碗蒸翻译成中文是“茶碗蒸”。",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -985,9 +985,9 @@
 		{
 			"id": 64,
 			"info": {
-				"description": "The translation of \"飯稱\" to English (US) is \"rice name.\"",
-				"text": "The translation of \"飯稱\" to English (US) is \"rice name.\"",
-				"text_translation": "The translation of \"飯稱\" to English (US) is \"rice name.\"",
+				"description": "饭称",
+				"text": "饭称",
+				"text_translation": "饭称",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -1000,9 +1000,9 @@
 		{
 			"id": 65,
 			"info": {
-				"description": "The translation of \"親子丼\" to English (US) is \"chicken and egg rice bowl.\"",
-				"text": "The translation of \"親子丼\" to English (US) is \"chicken and egg rice bowl.\"",
-				"text_translation": "The translation of \"親子丼\" to English (US) is \"chicken and egg rice bowl.\"",
+				"description": "亲子丼",
+				"text": "亲子丼",
+				"text_translation": "亲子丼",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -1015,9 +1015,9 @@
 		{
 			"id": 66,
 			"info": {
-				"description": "Pork cutlet rice bowl",
-				"text": "Pork cutlet rice bowl",
-				"text_translation": "Pork cutlet rice bowl",
+				"description": "猪排丼",
+				"text": "猪排丼",
+				"text_translation": "猪排丼",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -1030,9 +1030,9 @@
 		{
 			"id": 67,
 			"info": {
-				"description": "The translation of \"天丼\" to English (US) is \"tempura rice bowl.\"",
-				"text": "The translation of \"天丼\" to English (US) is \"tempura rice bowl.\"",
-				"text_translation": "The translation of \"天丼\" to English (US) is \"tempura rice bowl.\"",
+				"description": "天丼翻译为中文是“天妇罗盖饭”。",
+				"text": "天丼翻译为中文是“天妇罗盖饭”。",
+				"text_translation": "天丼翻译为中文是“天妇罗盖饭”。",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -1045,9 +1045,9 @@
 		{
 			"id": 68,
 			"info": {
-				"description": "Sesame Udon Noodles (Cold Noodles)",
-				"text": "Sesame Udon Noodles (Cold Noodles)",
-				"text_translation": "Sesame Udon Noodles (Cold Noodles)",
+				"description": "胡麻乌龙面（冷面）",
+				"text": "胡麻乌龙面（冷面）",
+				"text_translation": "胡麻乌龙面（冷面）",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -1060,9 +1060,9 @@
 		{
 			"id": 69,
 			"info": {
-				"description": "Japanese Soba Noodles (Cold Noodles)",
-				"text": "Japanese Soba Noodles (Cold Noodles)",
-				"text_translation": "Japanese Soba Noodles (Cold Noodles)",
+				"description": "日式蕎麦面（冷面）",
+				"text": "日式蕎麦面（冷面）",
+				"text_translation": "日式蕎麦面（冷面）",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -1075,9 +1075,9 @@
 		{
 			"id": 70,
 			"info": {
-				"description": "Beef (Pork) Udon Noodles",
-				"text": "Beef (Pork) Udon Noodles",
-				"text_translation": "Beef (Pork) Udon Noodles",
+				"description": "牛(猪)乌龙面",
+				"text": "牛(猪)乌龙面",
+				"text_translation": "牛(猪)乌龙面",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -1090,9 +1090,9 @@
 		{
 			"id": 71,
 			"info": {
-				"description": "Seafood Udon Noodles",
-				"text": "Seafood Udon Noodles",
-				"text_translation": "Seafood Udon Noodles",
+				"description": "海鲜乌冬面",
+				"text": "海鲜乌冬面",
+				"text_translation": "海鲜乌冬面",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -1105,9 +1105,9 @@
 		{
 			"id": 72,
 			"info": {
-				"description": "Sashimi rice bowl",
-				"text": "Sashimi rice bowl",
-				"text_translation": "Sashimi rice bowl",
+				"description": "生鱼片丼饭",
+				"text": "生鱼片丼饭",
+				"text_translation": "生鱼片丼饭",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -1120,9 +1120,9 @@
 		{
 			"id": 73,
 			"info": {
-				"description": "The translation of \"吸物\" to English (US) is \"suction cup.\"",
-				"text": "The translation of \"吸物\" to English (US) is \"suction cup.\"",
-				"text_translation": "The translation of \"吸物\" to English (US) is \"suction cup.\"",
+				"description": "吸物 in Chinese (Simplified) translates to \"suction\" or \"吸引物\" which means \"suction object\" depending on the context. Please provide more context if needed for a more accurate translation.",
+				"text": "吸物 in Chinese (Simplified) translates to \"suction\" or \"吸引物\" which means \"suction object\" depending on the context. Please provide more context if needed for a more accurate translation.",
+				"text_translation": "吸物 in Chinese (Simplified) translates to \"suction\" or \"吸引物\" which means \"suction object\" depending on the context. Please provide more context if needed for a more accurate translation.",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -1135,9 +1135,9 @@
 		{
 			"id": 74,
 			"info": {
-				"description": "Seaweed soup",
-				"text": "Seaweed soup",
-				"text_translation": "Seaweed soup",
+				"description": "海苔汤",
+				"text": "海苔汤",
+				"text_translation": "海苔汤",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -1150,9 +1150,9 @@
 		{
 			"id": 75,
 			"info": {
-				"description": "Kelp sprout soup",
-				"text": "Kelp sprout soup",
-				"text_translation": "Kelp sprout soup",
+				"description": "海带芽汤",
+				"text": "海带芽汤",
+				"text_translation": "海带芽汤",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -1165,9 +1165,9 @@
 		{
 			"id": 76,
 			"info": {
-				"description": "Miso soup",
-				"text": "Miso soup",
-				"text_translation": "Miso soup",
+				"description": "味噌汤",
+				"text": "味噌汤",
+				"text_translation": "味噌汤",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -1180,9 +1180,9 @@
 		{
 			"id": 77,
 			"info": {
-				"description": "The translation of \"小菜\" to English (US) is \"side dish.\"",
-				"text": "The translation of \"小菜\" to English (US) is \"side dish.\"",
-				"text_translation": "The translation of \"小菜\" to English (US) is \"side dish.\"",
+				"description": "小菜 translates to \"side dish\" in English.",
+				"text": "小菜 translates to \"side dish\" in English.",
+				"text_translation": "小菜 translates to \"side dish\" in English.",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -1195,9 +1195,9 @@
 		{
 			"id": 78,
 			"info": {
-				"description": "Yuzu-scented radish",
-				"text": "Yuzu-scented radish",
-				"text_translation": "Yuzu-scented radish",
+				"description": "柚香大根的中文翻译是：柚香大根。",
+				"text": "柚香大根的中文翻译是：柚香大根。",
+				"text_translation": "柚香大根的中文翻译是：柚香大根。",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -1210,9 +1210,9 @@
 		{
 			"id": 79,
 			"info": {
-				"description": "Japanese black beans",
-				"text": "Japanese black beans",
-				"text_translation": "Japanese black beans",
+				"description": "日本黑豆翻译为中文是“日本黑豆”。",
+				"text": "日本黑豆翻译为中文是“日本黑豆”。",
+				"text_translation": "日本黑豆翻译为中文是“日本黑豆”。",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -1225,9 +1225,9 @@
 		{
 			"id": 80,
 			"info": {
-				"description": "Spicy snail meat",
-				"text": "Spicy snail meat",
-				"text_translation": "Spicy snail meat",
+				"description": "辣味螺肉 переводится на китайский как 辣味螺肉.",
+				"text": "辣味螺肉 переводится на китайский как 辣味螺肉.",
+				"text_translation": "辣味螺肉 переводится на китайский как 辣味螺肉.",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -1240,9 +1240,9 @@
 		{
 			"id": 81,
 			"info": {
-				"description": "Cold Tossed Onions",
-				"text": "Cold Tossed Onions",
-				"text_translation": "Cold Tossed Onions",
+				"description": "凉拌洋葱",
+				"text": "凉拌洋葱",
+				"text_translation": "凉拌洋葱",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -1255,9 +1255,9 @@
 		{
 			"id": 82,
 			"info": {
-				"description": "Japanese-style salad",
-				"text": "Japanese-style salad",
-				"text_translation": "Japanese-style salad",
+				"description": "和风沙拉",
+				"text": "和风沙拉",
+				"text_translation": "和风沙拉",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -1270,9 +1270,9 @@
 		{
 			"id": 83,
 			"info": {
-				"description": "Cod liver",
-				"text": "Cod liver",
-				"text_translation": "Cod liver",
+				"description": "鱈鱼肝",
+				"text": "鱈鱼肝",
+				"text_translation": "鱈鱼肝",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -1285,9 +1285,9 @@
 		{
 			"id": 84,
 			"info": {
-				"description": "18 Days Beer",
-				"text": "18 Days Beer",
-				"text_translation": "18 Days Beer",
+				"description": "18天生啤酒",
+				"text": "18天生啤酒",
+				"text_translation": "18天生啤酒",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -1300,9 +1300,9 @@
 		{
 			"id": 85,
 			"info": {
-				"description": "Sake (hot/cold)",
-				"text": "Sake (hot/cold)",
-				"text_translation": "Sake (hot/cold)",
+				"description": "清酒（温/冰）",
+				"text": "清酒（温/冰）",
+				"text_translation": "清酒（温/冰）",
 				"img_src": null
 			},
 			"boundingBox": {
@@ -1316,7 +1316,7 @@
 	"meta": {
 		"flowId": "dip.auto_group.v1",
 		"flowLabel": "DIP Auto Group",
-		"language": "en-us",
+		"language": "zh-cn",
 		"totalItems": 86,
 		"contractVersion": "2026-02-06"
 	}
