@@ -20,12 +20,11 @@ const MainLayout: React.FC<MainLayoutProps> = ({
 	return (
 		<div
 			className={`min-h-screen transition-colors duration-300 ${
-				isDark ? "bg-slate-900 text-white" : "bg-slate-100 text-slate-800"
-			} ${isMobile ? "overflow-hidden" : ""}`}
+				isDark ? "bg-slate-950 text-white" : "bg-slate-100 text-slate-700"
+			}`}
 		>
 			{customHeader ? customHeader : <Header title={title} />}
-
-			<main className="pt-16 pb-20">{children}</main>
+			<div className={isMobile ? "pb-28" : "pb-12"}>{children}</div>
 		</div>
 	);
 };

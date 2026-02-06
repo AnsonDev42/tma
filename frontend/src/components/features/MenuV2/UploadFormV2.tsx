@@ -1,378 +1,343 @@
-import { zodResolver } from "@hookform/resolvers/zod";
-import axios from "axios";
-import * as changeKeys from "change-case/keys";
-import React, { useContext, useState } from "react";
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
-import { z } from "zod";
-
-import { Language, useLanguageContext } from "@/contexts/LanguageContext.tsx";
 import { useMenuV2 } from "@/contexts/MenuV2Context";
 import { SessionContext } from "@/contexts/SessionContext.tsx";
-import { BoundingBoxProps, DishProps } from "@/types/DishProps.tsx";
+import { demoPresets } from "@/features/menu/config/demoPresets";
+import {
+	loadDemoMenuData,
+	uploadMenuData,
+} from "@/features/menu/services/menuUploadService";
+import { DemoPreset } from "@/features/menu/types";
 import { UploadProps } from "@/types/UploadProps.ts";
 import resizeFile from "@/utils/localImageCompmressor.ts";
 import { addUploadToLocalStorage } from "@/utils/localStorageUploadUtils.ts";
+import React, { useContext, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
-const MAX_FILE_SIZE = 65 * 1024 * 1024; // 65MB
+import { useLanguageContext } from "@/contexts/LanguageContext.tsx";
+import UploadLoginPromptSheet from "./UploadLoginPromptSheet";
+
+const MAX_FILE_SIZE = 65 * 1024 * 1024;
 const ACCEPTED_IMAGE_TYPES = [
 	"image/jpeg",
 	"image/jpg",
 	"image/png",
 	"image/webp",
 ];
-
-const formSchema = z.object({
-	file: z
-		.instanceof(FileList)
-		.refine((fileList) => fileList.length > 0, "Image is required.")
-		.refine(
-			(fileList) => fileList.length <= 1,
-			"Cannot upload more than 1 image",
-		)
-		.refine((file) => file[0].size <= MAX_FILE_SIZE, "Max image size is 65MB.")
-		.refine(
-			(file) => ACCEPTED_IMAGE_TYPES.includes(file[0].type),
-			"Only .jpg, .jpeg, .png and .webp formats are supported.",
-		),
-});
+const LOGIN_PROMPT_SEEN_KEY = "tma-upload-login-prompt-seen";
 
 interface UploadFormV2Props {
 	theme: string;
+	className?: string;
 }
 
-const UploadFormV2: React.FC<UploadFormV2Props> = ({ theme }) => {
+function validateFile(file: File | null): string | null {
+	if (!file) {
+		return "Image is required.";
+	}
+	if (file.size > MAX_FILE_SIZE) {
+		return "Max image size is 65MB.";
+	}
+	if (!ACCEPTED_IMAGE_TYPES.includes(file.type)) {
+		return "Only .jpg, .jpeg, .png and .webp formats are supported.";
+	}
+
+	return null;
+}
+
+async function fileToDataUrl(file: Blob): Promise<string> {
+	return new Promise((resolve, reject) => {
+		const reader = new FileReader();
+		reader.onload = () => resolve(reader.result as string);
+		reader.onerror = () => reject(new Error("Failed to read image file."));
+		reader.readAsDataURL(file);
+	});
+}
+
+const UploadFormV2: React.FC<UploadFormV2Props> = ({
+	theme,
+	className = "",
+}) => {
 	const session = useContext(SessionContext)?.session;
+	const { selectedLanguage } = useLanguageContext();
+	const { setSelectedImage } = useMenuV2();
+	const navigate = useNavigate();
 	const isE2EAuthBypassEnabled =
 		import.meta.env.VITE_E2E_AUTH_BYPASS === "true";
-	const { selectedLanguage } = useLanguageContext();
-	const { setSelectedImage, setDishes } = useMenuV2();
+
+	const inputRef = useRef<HTMLInputElement>(null);
 	const [isDragging, setIsDragging] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
+	const [errorMessage, setErrorMessage] = useState<string | null>(null);
+	const [isLoginPromptOpen, setIsLoginPromptOpen] = useState(false);
+	const [isFirstPrompt, setIsFirstPrompt] = useState(false);
 
-	const formMethods = useForm<z.infer<typeof formSchema>>({
-		resolver: zodResolver(formSchema),
-		defaultValues: {
-			file: undefined,
-		},
-		mode: "onChange",
-	});
+	const ensureCanUpload = () => {
+		if (isE2EAuthBypassEnabled || session?.access_token) {
+			return true;
+		}
 
-	const handleSubmit = async (payload: z.infer<typeof formSchema>) => {
-		setIsLoading(true);
-		const raw_file: File = payload.file[0];
-		console.log("Size of the original file: ", raw_file.size);
+		const hasSeenPrompt = window.localStorage.getItem(LOGIN_PROMPT_SEEN_KEY);
+		setIsFirstPrompt(!hasSeenPrompt);
+		window.localStorage.setItem(LOGIN_PROMPT_SEEN_KEY, "true");
+		setIsLoginPromptOpen(true);
+		return false;
+	};
 
-		if (!raw_file) {
-			toast.error("No file selected.");
-			setIsLoading(false);
+	const saveUpload = (imageSrc: string, data: UploadProps["data"]) => {
+		const newUpload: UploadProps = {
+			imageSrc,
+			data,
+			timestamp: new Date().toISOString(),
+		};
+
+		addUploadToLocalStorage(newUpload);
+		setSelectedImage(newUpload);
+	};
+
+	const processFile = async (rawFile: File) => {
+		if (!ensureCanUpload()) {
 			return;
 		}
 
-		let file;
+		const validationError = validateFile(rawFile);
+		if (validationError) {
+			setErrorMessage(validationError);
+			toast.error(validationError);
+			return;
+		}
+
+		setErrorMessage(null);
+		setIsLoading(true);
+
 		try {
-			file = await resizeFile(raw_file);
-			console.log("Size of the compressed file: ", file.size);
-		} catch (_error) {
-			toast.error("Failed to compress image: (image format not supported)");
-			setIsLoading(false);
-			return;
-		}
+			const compressedFile = await resizeFile(rawFile);
+			const formData = new FormData();
+			formData.append("file", compressedFile);
+			formData.append(
+				"file_name",
+				`${rawFile.name.split(".")[0]}_compressed.jpg`,
+			);
 
-		const formData = new FormData();
-		formData.append("file", file);
-		formData.append(
-			"file_name",
-			raw_file.name.split(".")[0] + "_compressed.jpg",
-		);
+			const jwt =
+				session?.access_token !== undefined
+					? `Bearer ${session.access_token}`
+					: isE2EAuthBypassEnabled
+						? "Bearer e2e-auth-bypass"
+						: null;
 
-		const jwt =
-			session?.access_token !== undefined
-				? `Bearer ${session.access_token}`
-				: isE2EAuthBypassEnabled
-					? "Bearer e2e-auth-bypass"
-					: null;
+			if (!jwt) {
+				throw new Error("Please refresh to login again. No session found.");
+			}
 
-		if (!jwt) {
-			toast.error("Please refresh to login again. No session found.");
-			setIsLoading(false);
-			return;
-		}
-		const reader = new FileReader();
-		reader.readAsDataURL(file);
-		reader.onload = () =>
-			processFileRead(reader.result as string, formData, jwt);
-	};
+			const imageSrc = await fileToDataUrl(compressedFile);
 
-	const processFileRead = async (
-		imageSrc: string,
-		formData: FormData,
-		jwt: string,
-	) => {
-		toast.promise(uploadMenuData(formData, jwt, selectedLanguage), {
-			loading: "Uploading and analyzing your menu...(This may take a while)",
-			success: (data) => {
-				const newUpload: UploadProps = {
-					imageSrc,
-					data,
-					timestamp: new Date().toISOString(),
-				} as UploadProps;
-
-				addUploadToLocalStorage(newUpload);
-				setSelectedImage(newUpload);
-				setDishes(data);
-				setIsLoading(false);
-				return `Menu has been successfully analyzed!`;
-			},
-			error: (err) => {
-				setIsLoading(false);
-				return err.toString();
-			},
-		});
-	};
-
-	const handleDemoSubmit = async (imageSrc: string, demoDataUrl: string) => {
-		setIsLoading(true);
-		toast.promise(
-			(async () => {
-				await new Promise((resolve) => setTimeout(resolve, 500));
-				const response = await fetch(demoDataUrl);
-				const data = await response.json();
-				const formattedData = formatResponseData(data.results);
-
-				const newUpload: UploadProps = {
-					imageSrc,
-					data: formattedData,
-					timestamp: new Date().toISOString(),
-				} as UploadProps;
-
-				addUploadToLocalStorage(newUpload);
-				setSelectedImage(newUpload);
-				setDishes(formattedData);
-				setIsLoading(false);
-				return formattedData;
-			})(),
-			{
-				loading: "Uploading and analyzing your demo menu...",
-				success:
-					"Demo menu has been successfully analyzed! Try clicking the dishes.",
-				error: (_err) => {
-					setIsLoading(false);
-					return "Failed to load demo data.";
+			await toast.promise(uploadMenuData(formData, jwt, selectedLanguage), {
+				loading: "Uploading and analyzing your menu...(This may take a while)",
+				success: (data) => {
+					saveUpload(imageSrc, data);
+					return "Menu has been successfully analyzed!";
 				},
-			},
-		);
+				error: (error) =>
+					(error as Error).message || "Failed to process menu image.",
+			});
+		} catch (error) {
+			toast.error((error as Error).message || "Failed to process menu image.");
+		} finally {
+			setIsLoading(false);
+		}
 	};
 
-	const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
-		e.preventDefault();
-		setIsDragging(true);
+	const handleDemoSubmit = async (preset: DemoPreset) => {
+		if (!ensureCanUpload()) {
+			return;
+		}
+
+		setIsLoading(true);
+		setErrorMessage(null);
+
+		try {
+			await toast.promise(loadDemoMenuData(preset.dataUrl), {
+				loading: `Loading ${preset.label}...`,
+				success: (data) => {
+					saveUpload(preset.imageSrc, data);
+					return "Demo menu has been analyzed. Tap dish cards to review menu locations.";
+				},
+				error: (error) =>
+					(error as Error).message || "Failed to load demo data.",
+			});
+		} finally {
+			setIsLoading(false);
+		}
 	};
 
-	const handleDragLeave = (e: React.DragEvent<HTMLDivElement>) => {
-		e.preventDefault();
+	const triggerFilePicker = () => {
+		if (isLoading) {
+			return;
+		}
+
+		if (!ensureCanUpload()) {
+			return;
+		}
+
+		inputRef.current?.click();
+	};
+
+	const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
+		event.preventDefault();
 		setIsDragging(false);
-	};
-
-	const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
-		e.preventDefault();
-		setIsDragging(false);
-
-		if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
-			formMethods.setValue("file", e.dataTransfer.files);
-			formMethods.handleSubmit(handleSubmit)();
+		const droppedFile = event.dataTransfer.files?.[0] ?? null;
+		if (droppedFile) {
+			void processFile(droppedFile);
 		}
 	};
 
 	return (
-		<div className="w-full">
-			<form onSubmit={formMethods.handleSubmit(handleSubmit)}>
-				<div
-					className={`
-            w-full p-6 rounded-xl transition-all duration-200
-            ${isDragging ? "border-blue-500 border-2" : "border border-dashed"}
-            ${
-							theme === "dark"
-								? "bg-slate-700 border-slate-500 text-white"
-								: "bg-white border-slate-300 text-slate-700"
-						}
-            ${isLoading ? "opacity-50 pointer-events-none" : ""}
-          `}
-					onDragOver={handleDragOver}
-					onDragLeave={handleDragLeave}
-					onDrop={handleDrop}
-				>
-					<div className="flex flex-col items-center justify-center">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							className={`h-16 w-16 mb-4 ${theme === "dark" ? "text-slate-400" : "text-slate-500"}`}
-							fill="none"
-							viewBox="0 0 24 24"
-							stroke="currentColor"
-						>
-							<path
-								strokeLinecap="round"
-								strokeLinejoin="round"
-								strokeWidth={1}
-								d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-							/>
-						</svg>
-
-						<p className="text-lg font-medium mb-2">
-							{isDragging
-								? "Drop your menu image here"
-								: "Drag & drop your menu image here"}
-						</p>
-
+		<div
+			className={`w-full rounded-2xl border transition-all duration-200 ${
+				theme === "dark"
+					? "border-slate-700 bg-slate-900/80"
+					: "border-slate-300 bg-slate-50/95"
+			} ${isDragging ? "ring-2 ring-teal-400" : ""} ${
+				isLoading ? "opacity-80 pointer-events-none" : ""
+			} ${className}`}
+			onDragOver={(event) => {
+				event.preventDefault();
+				setIsDragging(true);
+			}}
+			onDragLeave={(event) => {
+				event.preventDefault();
+				setIsDragging(false);
+			}}
+			onDrop={handleDrop}
+		>
+			<div className="flex flex-col gap-4 p-4 sm:p-5">
+				<div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+					<div>
 						<p
-							className={`text-sm mb-4 ${theme === "dark" ? "text-slate-400" : "text-slate-500"}`}
+							className={`text-xs font-semibold uppercase tracking-[0.18em] ${
+								theme === "dark" ? "text-teal-300" : "text-teal-700"
+							}`}
 						>
-							or click to browse files
+							Menu Input
 						</p>
-
-						<input
-							type="file"
-							className="hidden"
-							id="file-upload"
-							{...formMethods.register("file")}
-							onChange={(e) => {
-								formMethods.register("file").onChange(e);
-								if (e.target.files && e.target.files.length > 0) {
-									formMethods.handleSubmit(handleSubmit)();
-								}
-							}}
-						/>
-
-						<label
-							htmlFor="file-upload"
-							className={`
-                px-4 py-2 rounded-md cursor-pointer transition-colors
-                ${
-									theme === "dark"
-										? "bg-blue-600 hover:bg-blue-700 text-white"
-										: "bg-blue-500 hover:bg-blue-600 text-white"
-								}
-              `}
+						<h2
+							className={`text-lg font-semibold ${
+								theme === "dark" ? "text-white" : "text-slate-800"
+							}`}
 						>
-							Browse Files
-						</label>
+							Upload once, review dish list fast
+						</h2>
+						<p
+							className={`text-sm ${
+								theme === "dark" ? "text-slate-400" : "text-slate-600"
+							}`}
+						>
+							Drag an image anywhere on this panel or use the upload button.
+						</p>
+					</div>
 
-						{formMethods.formState.errors.file && (
-							<p className="mt-2 text-red-500 text-sm">
-								{formMethods.formState.errors.file.message}
-							</p>
-						)}
+					<div className="flex flex-wrap items-center gap-2">
+						<button
+							type="button"
+							onClick={triggerFilePicker}
+							className={`rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
+								theme === "dark"
+									? "bg-teal-400 text-slate-900 hover:bg-teal-300"
+									: "bg-teal-600 text-white hover:bg-teal-500"
+							}`}
+						>
+							Upload menu image
+						</button>
+						<span
+							className={`rounded-full border px-3 py-1 text-xs ${
+								theme === "dark"
+									? "border-slate-700 text-slate-400"
+									: "border-slate-300 text-slate-600"
+							}`}
+						>
+							Max 65MB
+						</span>
 					</div>
 				</div>
-			</form>
 
-			<div className="flex justify-center mt-4 space-x-4">
-				<button
-					type="button"
-					onClick={() => handleDemoSubmit("/demoMenu1.jpg", "/demoDataEN.json")}
-					className={`
-            px-4 py-2 rounded-md transition-colors
-            ${isLoading ? "opacity-50 pointer-events-none" : ""}
-            ${
-							theme === "dark"
-								? "bg-slate-700 hover:bg-slate-600 text-white"
-								: "bg-slate-200 hover:bg-slate-300 text-slate-700"
+				<input
+					ref={inputRef}
+					type="file"
+					id="file-upload"
+					className="hidden"
+					accept={ACCEPTED_IMAGE_TYPES.join(",")}
+					onChange={(event) => {
+						const selectedFile = event.target.files?.[0] ?? null;
+						if (selectedFile) {
+							void processFile(selectedFile);
 						}
-          `}
-					disabled={isLoading}
-				>
-					Try English Demo
-				</button>
+						event.target.value = "";
+					}}
+				/>
 
-				<button
-					type="button"
-					onClick={() => handleDemoSubmit("/demoMenu1.jpg", "/demoDataCN.json")}
-					className={`
-            px-4 py-2 rounded-md transition-colors
-            ${isLoading ? "opacity-50 pointer-events-none" : ""}
-            ${
-							theme === "dark"
-								? "bg-slate-700 hover:bg-slate-600 text-white"
-								: "bg-slate-200 hover:bg-slate-300 text-slate-700"
-						}
-          `}
-					disabled={isLoading}
-				>
-					Try Chinese Demo
-				</button>
+				{errorMessage && <p className="text-sm text-red-500">{errorMessage}</p>}
+
+				<div className="grid gap-2 sm:grid-cols-2">
+					{demoPresets.map((preset) => (
+						<button
+							type="button"
+							key={preset.id}
+							onClick={() => {
+								void handleDemoSubmit(preset);
+							}}
+							disabled={isLoading}
+							className={`group flex items-center gap-3 rounded-xl border p-2 text-left transition-colors ${
+								theme === "dark"
+									? "border-slate-700 hover:border-slate-500"
+									: "border-slate-200 hover:border-slate-400"
+							}`}
+						>
+							<img
+								src={preset.imageSrc}
+								alt={`${preset.label} preview`}
+								className="h-14 w-14 rounded-lg object-cover"
+							/>
+							<div className="min-w-0">
+								<p
+									className={`text-sm font-semibold ${
+										theme === "dark" ? "text-white" : "text-slate-800"
+									}`}
+								>
+									{preset.label}
+								</p>
+								<p
+									className={`line-clamp-2 text-xs ${
+										theme === "dark" ? "text-slate-400" : "text-slate-600"
+									}`}
+								>
+									{preset.description}
+								</p>
+								<span
+									className={`mt-1 inline-flex rounded-full px-2 py-0.5 text-[11px] ${
+										theme === "dark"
+											? "bg-slate-800 text-slate-300"
+											: "bg-slate-100 text-slate-700"
+									}`}
+								>
+									{preset.languageLabel}
+								</span>
+							</div>
+						</button>
+					))}
+				</div>
 			</div>
+			<UploadLoginPromptSheet
+				isOpen={isLoginPromptOpen}
+				isFirstPrompt={isFirstPrompt}
+				onClose={() => setIsLoginPromptOpen(false)}
+				onGoToLogin={() => {
+					setIsLoginPromptOpen(false);
+					navigate("/login", { replace: true });
+				}}
+				theme={theme}
+			/>
 		</div>
 	);
 };
-
-export async function uploadMenuData(
-	formData: FormData,
-	jwt: string,
-	selectedLanguage: Language | null,
-): Promise<DishProps[]> {
-	try {
-		const response = await axios.post(`${__API_URL__}/menu/analyze`, formData, {
-			headers: {
-				"Content-Type": "multipart/form-data",
-				Authorization: jwt,
-				"Accept-Language": selectedLanguage?.value || "en",
-			},
-		});
-
-		const formattedData = formatResponseData(response.data.results);
-		if (formattedData.length > 0) {
-			return formattedData;
-		} else {
-			toast.error("No valid data received.");
-			return [];
-		}
-	} catch (error) {
-		throw new Error(
-			`Failed to send: ${(error as Error).message || "Unknown error"}`,
-		);
-	}
-}
-
-type ResponseDataItem = {
-	info?: {
-		text?: string;
-		img_src?: string[];
-		description?: string;
-		text_translation?: string;
-		[key: string]: unknown;
-	};
-	boundingBox?: BoundingBoxProps;
-	[key: string]: unknown;
-};
-
-function formatResponseData(results: ResponseDataItem[]): DishProps[] {
-	return results
-		.map((item, index) => {
-			// fix the keys to camelCase e.g. img_src -> imgSrc
-			if (item.info) {
-				item.info = changeKeys.camelCase(item.info) as DishProps["info"];
-			}
-			return {
-				...item,
-				id: index,
-				info: item.info || {},
-				boundingBox: item.boundingBox || { x: 0, y: 0, w: 0, h: 0 },
-			} as DishProps;
-		})
-		.filter((item) => {
-			const name = item.info?.text?.trim().toLowerCase();
-			return (
-				item &&
-				item.info &&
-				item.info.text &&
-				name !== "unknow" &&
-				item.boundingBox &&
-				typeof item.boundingBox.x === "number" &&
-				typeof item.boundingBox.y === "number" &&
-				typeof item.boundingBox.w === "number" &&
-				typeof item.boundingBox.h === "number"
-			);
-		});
-}
 
 export default UploadFormV2;

@@ -1,9 +1,10 @@
 import React, {
+	ReactNode,
 	createContext,
 	useContext,
-	useState,
 	useEffect,
-	ReactNode,
+	useMemo,
+	useState,
 } from "react";
 
 type ThemeType = "light" | "dark";
@@ -15,6 +16,22 @@ interface ThemeContextType {
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+const STORAGE_KEY = "tma-theme";
+
+function readInitialTheme(): ThemeType {
+	if (typeof window === "undefined") {
+		return "light";
+	}
+
+	const storedTheme = window.localStorage.getItem(STORAGE_KEY);
+	if (storedTheme === "light" || storedTheme === "dark") {
+		return storedTheme;
+	}
+
+	return window.matchMedia("(prefers-color-scheme: dark)").matches
+		? "dark"
+		: "light";
+}
 
 export const useTheme = () => {
 	const context = useContext(ThemeContext);
@@ -29,23 +46,23 @@ interface ThemeProviderProps {
 }
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
-	const [theme, setTheme] = useState<ThemeType>("light");
+	const [theme, setTheme] = useState<ThemeType>(() => readInitialTheme());
 
-	// Apply theme to body
 	useEffect(() => {
-		document.body.className =
-			theme === "dark" ? "bg-slate-900" : "bg-slate-100";
+		document.documentElement.classList.toggle("dark", theme === "dark");
+		document.documentElement.dataset.theme = theme;
+		window.localStorage.setItem(STORAGE_KEY, theme);
 	}, [theme]);
 
-	const toggleTheme = () => {
-		setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
-	};
-
-	const value = {
-		theme,
-		toggleTheme,
-		isDark: theme === "dark",
-	};
+	const value = useMemo(
+		() => ({
+			theme,
+			toggleTheme: () =>
+				setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light")),
+			isDark: theme === "dark",
+		}),
+		[theme],
+	);
 
 	return (
 		<ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
