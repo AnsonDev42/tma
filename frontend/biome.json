@@ -72,7 +72,7 @@
 				"useValidTypeof": "error"
 			}
 		},
-		"ignore": ["dist", ".eslintrc.cjs"]
+		"ignore": ["dist", ".eslintrc.cjs", "playwright-report", "test-results"]
 	},
 	"overrides": [
 		{

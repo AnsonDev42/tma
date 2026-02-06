@@ -173,3 +173,21 @@ test("supports list-focus mode and dish location popover", async ({ page }) => {
 	await locationTrigger.click();
 	await expect(page.getByTestId("dish-location-map-0")).toHaveCount(0);
 });
+
+test("auto-collapses menu input after upload and allows expanding it", async ({
+	page,
+}) => {
+	await uploadDishImageAndMockAnalyze(page, singleDishAnalyzeResponse);
+
+	const expandButton = page.getByRole("button", { name: "Expand" });
+	await expect(expandButton).toBeVisible();
+	await expect(page.getByRole("button", { name: /English Demo/i })).toHaveCount(
+		0,
+	);
+
+	await expandButton.click();
+	await expect(
+		page.getByRole("button", { name: /English Demo/i }),
+	).toBeVisible();
+	await expect(page.getByRole("button", { name: "Collapse" })).toBeVisible();
+});

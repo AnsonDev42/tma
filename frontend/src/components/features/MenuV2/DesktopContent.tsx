@@ -13,9 +13,18 @@ const DesktopContent: React.FC = () => {
 	const isListFocus = viewMode === "list-focus";
 
 	return (
-		<main className="container mx-auto px-4 pb-8 pt-20">
-			<div className="space-y-4">
-				<UploadFormV2 theme={theme} />
+		<main className="container mx-auto px-4 pb-6 pt-20">
+			<div
+				className={`${
+					isListFocus
+						? "flex h-[calc(100vh-7.25rem)] min-h-0 flex-col gap-3 overflow-hidden"
+						: "space-y-4"
+				}`}
+			>
+				<UploadFormV2
+					theme={theme}
+					compact={isListFocus && Boolean(selectedImage)}
+				/>
 
 				<div className="flex items-center justify-between">
 					<div>
@@ -30,24 +39,34 @@ const DesktopContent: React.FC = () => {
 					<ViewModeToggle theme={theme} />
 				</div>
 
-				<div className="grid gap-4 lg:grid-cols-12">
+				<div
+					className={`grid gap-4 lg:grid-cols-12 ${
+						isListFocus ? "min-h-0 flex-1" : ""
+					}`}
+				>
 					<div
 						className={`${
 							isListFocus ? "lg:col-span-4" : "lg:col-span-7"
-						} ${isListFocus ? "order-2 lg:order-1" : "order-1"}`}
+						} ${isListFocus ? "order-2 min-h-0 lg:order-1" : "order-1"}`}
 					>
 						<ImageViewer
 							theme={theme}
 							compact={isListFocus}
-							className={selectedImage ? "" : "min-h-[24rem]"}
+							className={`${selectedImage ? "" : "min-h-[24rem]"} ${
+								isListFocus ? "h-full min-h-0" : ""
+							}`}
 						/>
 					</div>
 					<div
 						className={`${
 							isListFocus ? "lg:col-span-8" : "lg:col-span-5"
-						} order-1 lg:order-2`}
+						} order-1 ${isListFocus ? "min-h-0 lg:order-2" : "lg:order-2"}`}
 					>
-						<DishCardGrid theme={theme} />
+						<DishCardGrid
+							theme={theme}
+							fillHeight={isListFocus}
+							className={isListFocus ? "h-full min-h-0" : ""}
+						/>
 					</div>
 				</div>
 			</div>

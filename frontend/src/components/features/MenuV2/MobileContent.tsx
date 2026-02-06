@@ -11,17 +11,31 @@ const MobileContent: React.FC = () => {
 	const { theme } = useTheme();
 	const { selectedImage, viewMode, setViewMode } = useMenuV2();
 	const [isMapOpen, setIsMapOpen] = useState(false);
+	const isListFocus = viewMode === "list-focus";
+	const shouldLockViewport = Boolean(selectedImage && isListFocus);
 
 	useEffect(() => {
 		setViewMode("list-focus");
 	}, [setViewMode]);
 
 	return (
-		<main className="px-3 pb-6 pt-20">
-			<UploadFormV2 theme={theme} />
+		<main
+			className={
+				shouldLockViewport
+					? "flex h-[100dvh] min-h-0 flex-col overflow-hidden overscroll-none px-3 pb-3 pt-20"
+					: "px-3 pb-6 pt-20"
+			}
+		>
+			<UploadFormV2 theme={theme} compact={Boolean(selectedImage)} />
 
 			{selectedImage ? (
-				<div className="mt-4 space-y-3">
+				<div
+					className={`mt-4 ${
+						isListFocus
+							? "flex min-h-0 flex-1 flex-col gap-3 overflow-hidden"
+							: "space-y-3"
+					}`}
+				>
 					<div className="flex flex-wrap items-center justify-between gap-2">
 						<ViewModeToggle theme={theme} className="flex-1" />
 						<button
@@ -50,7 +64,8 @@ const MobileContent: React.FC = () => {
 						<DishCardGrid
 							theme={theme}
 							isMobile={true}
-							className="min-h-[68vh]"
+							fillHeight={true}
+							className="h-full min-h-0"
 						/>
 					)}
 				</div>
