@@ -9,6 +9,7 @@ services:
       SECRET_KEY: ${SECRET_KEY:-}
       OPENAI_API_KEY: ${OPENAI_API_KEY:?required}
       OPENAI_BASE_URL: ${OPENAI_BASE_URL:-https://api.openai.com/v1}
+      OPENAI_MODEL: ${OPENAI_MODEL:-gpt-5-nano}
       AZURE_DIP_API_KEY: ${AZURE_DIP_API_KEY:?required}
       AZURE_DIP_BASE_URL: ${AZURE_DIP_BASE_URL:?required}
       BACKEND_CORS_ORIGINS: ${BACKEND_CORS_ORIGINS:-[]}
