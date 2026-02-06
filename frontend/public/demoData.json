@@ -1,635 +1,1323 @@
 {
 	"results": [
 		{
+			"id": 0,
 			"info": {
-				"description": null,
-				"text": null,
-				"text-translation": null,
-				"img_src": [
-					"https://m.media-amazon.com/images/I/71NO9b+bEsL._AC_UF1000,1000_QL80_.jpg",
-					"https://pbs.twimg.com/media/GG7dVkSXQAAoswc.jpg",
-					"https://m.media-amazon.com/images/I/9141ZOZXjEL._AC_UF1000,1000_QL80_.jpg",
-					"https://c8.alamy.com/comp/2WH9JGF/arabic-calligraphy-of-4th-kalma-touheed-translation-there-is-none-worthy-of-worship-except-allah-he-is-alone-and-has-no-partner-2WH9JGF.jpg",
-					"https://m.media-amazon.com/images/I/3178Y4hdOgL._AC_UF1000,1000_QL80_.jpg",
-					"https://external-preview.redd.it/is-a-community-fork-of-v0-4P8K1KgIFaLvB5m51vGwwbrqkscv6d2CZ2Az2Zb_Qr8.jpg?width=640&crop=smart&auto=webp&s=21beef90c27b2051cecf7c29318fe990b6a8068d",
-					"https://cdt.org/wp-content/uploads/2023/05/non-en-content-analysis-social-05162023-1024x536.png",
-					"https://pbs.twimg.com/media/F_DaXe5WYAAsfQK.jpg",
-					"https://i0.wp.com/timi.org/wp-content/uploads/2022/10/effect-of-vupanorsen-on-none28093high-density-lipoprotein-cholesterol-levels-in-statin-treated-patients-with-elevated-cholesterol_-translate-timi-70.jpg?resize=648%2C868&ssl=1",
-					"https://dhjhkxawhe8q4.cloudfront.net/toronto-press-wp/wp-content/uploads/2024/02/Educating-the-Body-1.jpg"
-				]
-			},
-			"boundingBox": {
-				"x": 0.27454545454545454,
-				"y": 0.0723055934515689,
-				"w": 0.4618181818181818,
-				"h": 0.047748976807639835
-			}
-		},
-		{
-			"info": {
-				"description": null,
-				"text": null,
-				"text-translation": null,
-				"img_src": [
-					"https://m.media-amazon.com/images/I/71NO9b+bEsL._AC_UF1000,1000_QL80_.jpg",
-					"https://pbs.twimg.com/media/GG7dVkSXQAAoswc.jpg",
-					"https://m.media-amazon.com/images/I/9141ZOZXjEL._AC_UF1000,1000_QL80_.jpg",
-					"https://c8.alamy.com/comp/2WH9JGF/arabic-calligraphy-of-4th-kalma-touheed-translation-there-is-none-worthy-of-worship-except-allah-he-is-alone-and-has-no-partner-2WH9JGF.jpg",
-					"https://m.media-amazon.com/images/I/3178Y4hdOgL._AC_UF1000,1000_QL80_.jpg",
-					"https://external-preview.redd.it/is-a-community-fork-of-v0-4P8K1KgIFaLvB5m51vGwwbrqkscv6d2CZ2Az2Zb_Qr8.jpg?width=640&crop=smart&auto=webp&s=21beef90c27b2051cecf7c29318fe990b6a8068d",
-					"https://cdt.org/wp-content/uploads/2023/05/non-en-content-analysis-social-05162023-1024x536.png",
-					"https://pbs.twimg.com/media/F_DaXe5WYAAsfQK.jpg",
-					"https://i0.wp.com/timi.org/wp-content/uploads/2022/10/effect-of-vupanorsen-on-none28093high-density-lipoprotein-cholesterol-levels-in-statin-treated-patients-with-elevated-cholesterol_-translate-timi-70.jpg?resize=648%2C868&ssl=1",
-					"https://dhjhkxawhe8q4.cloudfront.net/toronto-press-wp/wp-content/uploads/2024/02/Educating-the-Body-1.jpg"
-				]
-			},
-			"boundingBox": {
-				"x": 0.37272727272727274,
-				"y": 0.12278308321964529,
-				"w": 0.26181818181818184,
-				"h": 0.030013642564802184
-			}
-		},
-		{
-			"info": {
-				"description": "Tiramisu is a classic Italian dessert made of layers of coffee-soaked ladyfingers and a rich cream made of mascarpone cheese, eggs, and sugar, often flavored with cocoa.",
-				"text": "Tiramisu",
-				"text-translation": "Tiramisu",
-				"img_src": [
-					"https://i.shgcdn.com/269063bf-d72d-41dd-b848-9b30657696e6/-/format/auto/-/preview/3000x3000/-/quality/lighter/",
-					"https://cdn11.bigcommerce.com/s-cjh14ahqln/product_images/uploaded_images/tiramisu-web.jpg",
-					"https://i.shgcdn.com/6e57017d-8a76-484d-9f7a-17b514189b26/-/format/auto/-/preview/3000x3000/-/quality/lighter/",
-					"https://cdn11.bigcommerce.com/s-cjh14ahqln/images/stencil/original/uploaded_images/tiramisu-web.jpg?t=1627413953",
-					"https://littlesunnykitchen.com/wp-content/uploads/2021/01/Easy-Tiramisu-Recipe-2.jpg",
-					"https://www.thepancakeprincess.com/wp-content/uploads/2021/08/IMG_6907.jpg",
-					"https://upload.wikimedia.org/wikipedia/commons/5/58/Tiramisu_-_Raffaele_Diomede.jpg",
-					"https://w4s8p5t8.rocketcdn.me/wp-content/uploads/2023/01/limoncello-tiramisu.jpg.webp",
-					"https://natashaskitchen.com/wp-content/uploads/2024/04/Tiramisu-Cake-3.jpg",
-					"https://i.shgcdn.com/532e018a-d728-49d1-86a1-3de6df74911f/-/format/auto/-/preview/3000x3000/-/quality/lighter/"
-				]
-			},
-			"boundingBox": {
-				"x": 0.38545454545454544,
-				"y": 0.17871759890859482,
-				"w": 0.23636363636363636,
-				"h": 0.02455661664392906
-			}
-		},
-		{
-			"info": {
-				"description": "This dish likely refers to Tiramisu, a classic Italian dessert made with layers of coffee-soaked sponge cake, mascarpone cheese, and cocoa or chocolate. It is a popular and beloved dessert known for its rich flavors and creamy texture.",
-				"text": "Coffee liqueur soaked sponge, mascarpone, chocolate",
-				"text-translation": "Coffee liqueur soaked sponge, mascarpone, chocolate",
-				"img_src": [
-					"https://insidebrucrewlife.com/wp-content/uploads/2021/06/Easy-Tiramisu-22-1.jpg",
-					"https://www.biggerbolderbaking.com/wp-content/uploads/2023/12/Tiramisu-Cake-thumbnail-scaled.jpg",
-					"https://www.kingarthurbaking.com/sites/default/files/styles/featured_image/public/2021-06/Tiramisu-908.jpg?itok=5MW3zNDK",
-					"https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=799130995579798",
-					"https://images.squarespace-cdn.com/content/v1/62e7a92f066fa3730dcd4604/803df5b5-7af9-4252-99f5-c85d0d618e1a/1.jpg",
-					"https://www.seriouseats.com/thmb/HncE0br_VU8SOOEVn0MHoNDt4lk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2017__06__20170526-tiramisu-vicky-wasik-41-00531445710a4dfa83ffc7d3a65abb12.jpg",
-					"https://bakingamoment.com/wp-content/uploads/2018/04/IMG_7035-classic-tiramisu-recipe-square.jpg",
-					"https://www.biggerbolderbaking.com/wp-content/uploads/2023/12/Tiramisu-Cake5-scaled.jpg",
-					"https://www.thefullhelping.com/wp-content/uploads/2022/12/how-to-make-vegan-tiramisu-1.jpg",
-					"https://insidebrucrewlife.com/wp-content/uploads/2021/06/Easy-Tiramisu-21-1.jpg"
-				]
-			},
-			"boundingBox": {
-				"x": 0.22181818181818183,
-				"y": 0.20054570259208732,
-				"w": 0.5581818181818182,
-				"h": 0.034106412005457026
-			}
-		},
-		{
-			"info": {
-				"description": "Scugnizielli are a type of fried dough, often enjoyed as a dessert in Italy. This dish is served with Nutella and ice cream, making it a sweet and indulgent treat.",
-				"text": "Scugnizielli with Nutella and Ice Cream",
-				"text-translation": "Scugnizielli with Nutella and Ice Cream",
+				"description": "PET commonly refers to a type of plastic used in packaging; however, it is not recognized as a food dish. Please check for more relevant food-related information.",
+				"text": "PET",
+				"text_translation": "PET",
 				"img_src": null
 			},
 			"boundingBox": {
-				"x": 0.27454545454545454,
-				"y": 0.2373806275579809,
-				"w": 0.45454545454545453,
-				"h": 0.0286493860845839
+				"x": 0.31794871794871793,
+				"y": 0.21575342465753425,
+				"w": 0.03247863247863248,
+				"h": 0.014840182648401826
 			}
 		},
 		{
+			"id": 1,
 			"info": {
-				"description": "These are small doughnuts made from pizza dough, typically fried to have a crispy exterior and soft interior. They can be savory or sweet, often topped with various ingredients.",
-				"text": "Fried Mini Pizza Doughnuts",
-				"text-translation": "Fried Mini Pizza Doughnuts",
-				"img_src": [
-					"https://thecoconutmama.com/wp-content/uploads/2023/12/2000-x-1200-en-blanco-1-2-jpg.webp",
-					"https://norecipes.com/wp-content/uploads/2024/02/sata-andagi-donuts-004.jpg",
-					"https://qph.cf2.quoracdn.net/main-qimg-7ebf51a4183aae4b6264485d528a7b14",
-					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3373018328401229595",
-					"https://cdnimg.webstaurantstore.com/uploads/blog/2021/1/blog-donut-yeast.jpg",
-					"https://www.webstaurantstore.com/images/articles/593/article-donuts-header.jpg",
-					"https://twoplaidaprons.com/wp-content/uploads/2020/07/Korean-cream-cheese-garlic-bread-up-close-view-of-the-garlic-bread-in-hand.jpg",
-					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3363352516967168875",
-					"https://assets.isu.pub/document-structure/240425181134-9fbe76534bfdef0aa25825ea04333f2e/v1/cd6f8b54171757e76199d70a92941e80.jpeg",
-					"https://s.yimg.com/ny/api/res/1.2/i2X5dPBkJFqvUSi62EXang--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD02NzQ-/https://media.zenfs.com/en/tasting_table_543/fbd9fb75f7f4647b33eaa5c9b06c6d5a"
-				]
-			},
-			"boundingBox": {
-				"x": 0.2309090909090909,
-				"y": 0.2605729877216917,
-				"w": 0.5363636363636364,
-				"h": 0.03274215552523874
-			}
-		},
-		{
-			"info": {
-				"description": "An Italian coffee-based dessert typically consisting of a scoop of vanilla gelato or ice cream topped with a shot of hot espresso.",
-				"text": "Affogato",
-				"text-translation": "Affogato",
-				"img_src": [
-					"https://ae01.alicdn.com/kf/S706e337f87c241f9887f31042e503e54W/Coffee-Metal-Signage-Retro-Plate-Print-Tin-Painting-Vintage-Poster-Cafe-Restaurant-Kitchen-Wall-Art-Decor.jpg",
-					"https://www.craftginclub.co.uk/_next/image?url=https%3A%2F%2Fimages.prismic.io%2Fcgc-web%2FZDE2ZWEwMmQtZDdhZS00MmIyLThjNGYtZTkzNDVjYmQ4ZWUy_affogato1200.jpg%3Fauto%3Dcompress%2Cformat%26rect%3D0%2C0%2C1200%2C600%26w%3D1200%26h%3D600&w=2058&q=75",
-					"https://ae01.alicdn.com/kf/S998ae4f5fce845f1aa526f0f495f0f1bf/ARTISIAN-Coffee-Menu-Metal-Signs-Rusty-Metal-Plaque-Classic-Metal-Tin-Sign-Man-Cave-Kitchen-Cafe.jpg",
-					"https://preview.redd.it/zi8y6anyvo881.jpg?auto=webp&s=7629bb0bec86a77b6ac0b97de9b0e847d540b9a0",
-					"https://ae01.alicdn.com/kf/S8628c81a5a6d45b69a7816a829d5a56dE.jpg_640x640q90.jpg",
-					"https://cdn.shopify.com/s/files/1/0838/4525/files/Affogato_a661790e-b5a0-49ce-a87b-9cabb2c2974e_1024x1024.jpg?v=1691483664",
-					"https://ae01.alicdn.com/kf/H466344639d194ec690ecb44418ac04013/Retro-Painting-Blackboard-Art-Home-Wall-Decor-Picture-Vintage-Coffee-Recipe-Room-Cafe-Kitchen-Restaurant-Quality.jpg",
-					"https://www.craftginclub.co.uk/_next/image?url=https%3A%2F%2Fimages.prismic.io%2Fcgc-web%2FOWE0ZTI0MmEtODBkMi00ZGExLTgxOTItYjg3NDE3OGZiNDg5_affogatorecipewithgin.jpg%3Fauto%3Dcompress%2Cformat%26rect%3D0%2C0%2C640%2C400%26w%3D640%26h%3D400&w=2058&q=75",
-					"https://ae01.alicdn.com/kf/S8628c81a5a6d45b69a7816a829d5a56dE/Coffee-Metal-Signage-Retro-Plate-Print-Tin-Painting-Vintage-Poster-Cafe-Restaurant-Kitchen-Wall-Art-Decor.jpg",
-					"https://i.redd.it/zi8y6anyvo881.jpg"
-				]
-			},
-			"boundingBox": {
-				"x": 0.4218181818181818,
-				"y": 0.30286493860845837,
-				"w": 0.16,
-				"h": 0.020463847203274217
-			}
-		},
-		{
-			"info": {
-				"description": "Vanilla gelato is a popular Italian frozen dessert made from milk, cream, sugar, and vanilla. It is known for its smooth texture and rich flavor.",
-				"text": "Vanilla gelato",
-				"text-translation": "Vanilla gelato",
-				"img_src": [
-					"https://www.recipetineats.com/wp-content/uploads/2023/01/Rum-and-raisin-ice-cream-in-cone.jpg",
-					"https://www.singingdogvanilla.com/wp-content/uploads/2023/04/DSC_2573-edited.jpg",
-					"https://www.loveandoliveoil.com/wp-content/uploads/2022/05/olive-oil-ice-cream-2-600x900.jpg",
-					"https://m.media-amazon.com/images/I/81I-CWbIHEL._AC_UF894,1000_QL80_.jpg",
-					"https://www.loveandoliveoil.com/wp-content/uploads/2022/05/olive-oil-ice-cream-2.jpg",
-					"https://m.media-amazon.com/images/I/71KzC8m0TsL._AC_UF1000,1000_QL80_.jpg",
-					"https://www.loveandoliveoil.com/wp-content/uploads/2022/05/olive-oil-ice-cream-1-600x900.jpg",
-					"https://i5.walmartimages.com/seo/Great-Value-Vanilla-Bean-Flavored-Ice-Cream-48-fl-oz_4ed934d9-d42b-4244-80e2-0b69ab20bfe8.95523c24ecd364d8da5fed21bcccabee.jpeg",
-					"https://www.loveandoliveoil.com/wp-content/uploads/2022/05/olive-oil-ice-cream-FEAT-1200x800.jpg",
-					"https://www.recipesfromitaly.com/wp-content/uploads/2021/06/authentic-italian-gelato-recipe-1x1-1200x1200-A.jpg"
-				]
-			},
-			"boundingBox": {
-				"x": 0.37636363636363634,
-				"y": 0.32605729877216916,
-				"w": 0.2509090909090909,
-				"h": 0.02592087312414734
-			}
-		},
-		{
-			"info": {
-				"description": "Limoncello Affogato is a variation of the traditional Italian affogato dessert, where a scoop of gelato or ice cream is 'drowned' in a shot of limoncello, an Italian lemon liqueur.",
-				"text": "Limoncello Affogato",
-				"text-translation": "Limoncello Affogato",
+				"description": "Sweet shrimp, known as 'ama ebi' in Japanese, is a delicacy often served raw in sushi or sashimi. It is prized for its sweet flavor and tender texture.",
+				"text": "甜蝦",
+				"text_translation": "Sweet Shrimp",
 				"img_src": null
 			},
 			"boundingBox": {
-				"x": 0.30363636363636365,
-				"y": 0.3615279672578445,
-				"w": 0.39090909090909093,
-				"h": 0.027285129604365622
+				"x": 0.25811965811965815,
+				"y": 0.23515981735159816,
+				"w": 0.024786324786324785,
+				"h": 0.014840182648401826
 			}
 		},
 		{
+			"id": 2,
 			"info": {
-				"description": "Lemon sorbet is a refreshing frozen dessert made from lemon juice, sugar, and water. Limoncello is a traditional Italian lemon liqueur.",
-				"text": "Lemon sorbet, limoncello",
-				"text-translation": "Lemon sorbet, limoncello",
-				"img_src": [
-					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3371719675514647829",
-					"https://www.foodnetwork.com/content/dam/images/food/fullset/2007/1/2/0/valentines_cocktail.jpg",
-					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3353616170702096499",
-					"https://www.nonnabox.com/wp-content/uploads/2024/01/lemon-semifreddo-vertical-3-nonna-box.jpg",
-					"https://media.lacucinaitaliana.com/photos/602a53487b8ec6368e546747/1:1/pass/Sal%20De%20Riso%20.jpg",
-					"https://www.nonnabox.com/wp-content/uploads/2024/01/lemon-semifreddo-vertical-1-nonna-box.jpg",
-					"https://www.davidlebovitz.com/wp-content/uploads/2011/03/5500181296_fe8cf76d4a.jpg",
-					"https://i0.wp.com/www.retrofoodformoderntimes.com/wp-content/uploads/2024/01/zz-Peach-Sorbet.jpg?ssl=1",
-					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3366602130401498989",
-					"https://www.nonnabox.com/wp-content/uploads/2024/01/lemon-semifreddo-ingredients-nonna-box.jpg"
-				]
-			},
-			"boundingBox": {
-				"x": 0.3654545454545455,
-				"y": 0.3874488403819918,
-				"w": 0.2690909090909091,
-				"h": 0.023192360163710776
-			}
-		},
-		{
-			"info": {
-				"description": "A Gelato Sandwich is a dessert that consists of gelato (Italian ice cream) placed between two pieces of pastry, cookies, or biscuits. It offers a delightful combination of creamy gelato and a crunchy or soft outer layer.",
-				"text": "Gelato Sandwich",
-				"text-translation": "Gelato Sandwich",
-				"img_src": [
-					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3344042041285021092",
-					"https://s3-media0.fl.yelpcdn.com/bphoto/B55Ykldexn2gjxRXWFU2xQ/1000s.jpg",
-					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3358181129089058857",
-					"https://storage.googleapis.com/images-che-prd-2b77e46.che.prd.v8.commerce.mi9cloud.com/product-images/detail/7036c835-a384-4d5d-9778-4b0b585255f6.jpeg",
-					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3373741304373331871",
-					"https://s3-media0.fl.yelpcdn.com/bphoto/7sIDBCK2sPiri76pQ5ErBw/1000s.jpg",
-					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3362860429359354456",
-					"https://storage.googleapis.com/images-che-prd-2b77e46.che.prd.v8.commerce.mi9cloud.com/product-images/zoom/26982dc6-b5fa-438c-9c88-a2396addc70e.jpeg",
-					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3372982078826120664",
-					"https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=825537906264534"
-				]
-			},
-			"boundingBox": {
-				"x": 0.3490909090909091,
-				"y": 0.46521145975443384,
-				"w": 0.29454545454545455,
-				"h": 0.02592087312414734
-			}
-		},
-		{
-			"info": {
-				"description": "Lemon Meringue is a dessert made with a lemon custard filling topped with a fluffy meringue. It is often served as a pie.",
-				"text": "Lemon Meringue",
-				"text-translation": "Lemon Meringue",
-				"img_src": [
-					"https://m.media-amazon.com/images/I/71tN7v9gsYL._AC_UF1000,1000_QL80_.jpg",
-					"https://www.onceuponachef.com/images/2019/06/Key-Lime-Pie.jpg",
-					"https://cauldronsandcupcakes.com/wp-content/uploads/2021/11/2021-06-13-13.53.10-1.jpg",
-					"https://www.onceuponachef.com/images/2019/06/Key-Lime-Pie-760x948.jpg",
-					"https://cauldronsandcupcakes.com/wp-content/uploads/2021/11/2021-06-13-13.53.10-1-768x432.jpg?crop=1",
-					"https://images.squarespace-cdn.com/content/v1/511448efe4b0e2ced97a983f/1480708356161-D9J9DB3R4IH8NGS8FFNY/Tartine_Bakery_Lemon_Cream_Tart_Burnt_Meringue_Topping_Recipe_Dessert_FIend.JPG",
-					"https://m.media-amazon.com/images/I/51IIrkV-AML.jpg",
-					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3345093557088900832",
-					"https://m.media-amazon.com/images/I/51uEbV2zDiL._SR600%2C315_PIWhiteStrip%2CBottomLeft%2C0%2C35_PIStarRatingFOURANDHALF%2CBottomLeft%2C360%2C-6_SR600%2C315_ZA114%2C445%2C290%2C400%2C400%2CAmazonEmberBold%2C12%2C4%2C0%2C0%2C5_SCLZZZZZZZ_FMpng_BG255%2C255%2C255.jpg",
-					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3283756233643383682"
-				]
-			},
-			"boundingBox": {
-				"x": 0.3709090909090909,
-				"y": 0.5075034106412005,
-				"w": 0.24909090909090909,
-				"h": 0.020463847203274217
-			}
-		},
-		{
-			"info": {
-				"description": "A dessert dish consisting of a vanilla-flavored biscuit that is filled with creamy vanilla gelato, offering a delightful combination of textures and flavors.",
-				"text": "Vanilla biscuit filled with vanilla gelato",
-				"text-translation": "Vanilla biscuit filled with vanilla gelato",
-				"img_src": [
-					"https://m.media-amazon.com/images/I/81dBkBJ6b2L._AC_UF894,1000_QL80_.jpg",
-					"https://images-na.ssl-images-amazon.com/images/I/81dBkBJ6b2L._MCnd_AC_SR462,462_.jpg",
-					"https://m.media-amazon.com/images/I/91ZfnnunXsL._AC_UF894,1000_QL80_.jpg",
-					"https://www.onceuponachef.com/images/2013/06/banana-pudding-parfaits-1-1.jpg",
-					"https://m.media-amazon.com/images/I/81dBkBJ6b2L.jpg",
-					"https://assets.epicurious.com/photos/62d6c513077a952f4a8c338c/1:1/w_2560%2Cc_limit/PannaCotta_RECIPE_04142022_9822_final.jpg",
-					"https://m.media-amazon.com/images/I/71BOh8iukhL.jpg",
-					"https://www.singingdogvanilla.com/wp-content/uploads/2023/04/DSC_2573-edited.jpg",
-					"https://m.media-amazon.com/images/I/713J709AW5L.jpg",
-					"https://assets.epicurious.com/photos/632882c82bc230701c615c7e/1:1/w_2560%2Cc_limit/SweetenedWhippedCream_RECIPE_091522_39597.jpg"
-				]
-			},
-			"boundingBox": {
-				"x": 0.2872727272727273,
-				"y": 0.5306957708049114,
-				"w": 0.4127272727272727,
-				"h": 0.02592087312414734
-			}
-		},
-		{
-			"info": {
-				"description": "Lemon Curd and Meringue is a dessert featuring a tangy lemon curd topped or combined with sweet, fluffy meringue. It's often used in pies, tarts, or standalone desserts.",
-				"text": "Lemon Curd and Meringue",
-				"text-translation": "Lemon Curd and Meringue",
+				"description": "Scallops are a type of shellfish known for their tender, sweet meat. They can be prepared in various ways, including searing, grilling, or baking, and are often served as an appetizer or main dish in seafood cuisine.",
+				"text": "干貝",
+				"text_translation": "Scallops",
 				"img_src": null
 			},
 			"boundingBox": {
-				"x": 0.3709090909090909,
-				"y": 0.5552523874488404,
-				"w": 0.24727272727272728,
-				"h": 0.020463847203274217
+				"x": 0.25811965811965815,
+				"y": 0.2751141552511416,
+				"w": 0.023076923076923078,
+				"h": 0.014840182648401826
 			}
 		},
 		{
+			"id": 3,
 			"info": {
-				"description": "A dessert or treat that combines rich chocolate with salted caramel, offering a balance of sweet and salty flavors.",
-				"text": "Chocolate Salted Caramel",
-				"text-translation": "Chocolate Salted Caramel",
+				"description": "海間 (Sea Interval) is a dish that may refer to seafood or dishes available near the sea, known for its fresh ingredients and vibrant flavors derived from marine cuisine.",
+				"text": "海間",
+				"text_translation": "Sea Interval",
 				"img_src": [
-					"https://m.media-amazon.com/images/I/71CSfpCBaiL._AC_UF1000,1000_QL80_.jpg",
-					"https://www.browneyedbaker.com/wp-content/uploads/2023/08/salted-caramel-sauce-15-1200.jpg",
-					"https://m.media-amazon.com/images/I/71CSfpCBaiL.jpg",
-					"https://images-cdn.ubuy.co.in/64d13e2d2fa2993d9a3ea4e9-dove-promises-sea-salt-and-caramel-dark.jpg",
-					"https://m.media-amazon.com/images/I/811HVvfCVIL._AC_UF1000,1000_QL80_.jpg",
-					"https://www.browneyedbaker.com/wp-content/uploads/2017/08/salted-caramel-sauce-recipe-15-754.jpg",
-					"https://m.media-amazon.com/images/I/81MFiuCDeUL._AC_UF894,1000_QL80_.jpg",
-					"https://i0.wp.com/www.formerchef.com/wp-content/uploads/2011/12/vanillabeancheesecake1.jpg",
-					"https://m.media-amazon.com/images/I/811HVvfCVIL.jpg",
-					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3339027883265080017"
+					"https://i.ytimg.com/vi/GdSS_kS3SFY/maxresdefault.jpg",
+					"https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=1394212592378238",
+					"https://i.ytimg.com/vi/GdSS_kS3SFY/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBW6mGsaMmz5BC3zXTBHOwGTDg1Mg",
+					"https://upload.wikimedia.org/wikipedia/commons/c/c9/Mapka_miedzymorza.png",
+					"https://www.tiktok.com/api/img/?itemId=7491983491631009031&location=0&aid=1988",
+					"https://img.alicdn.com/imgextra/i4/655508497/O1CN0119sIKg2CdgTT1DbVm_!!4611686018427380753-0-item_pic.jpg_q50.jpg_.webp",
+					"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Jozef_Pilsudski1.jpg/250px-Jozef_Pilsudski1.jpg",
+					"https://i.ytimg.com/vi/RoZuZEftHj0/hq720.jpg?sqp=-oaymwE7CK4FEIIDSFryq4qpAy0IARUAAAAAGAAlAADIQj0AgKJD8AEB-AG2CIACuAiKAgwIABABGHIgXCg1MA8=&rs=AOn4CLAU-eTc8JLm6GGS-1B4I33rRBF5BQ",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3780940251808991356",
+					"https://pic5.iqiyipic.com/image/20250607/cf/dc/a_100629803_m_601_579_772.jpg"
 				]
 			},
 			"boundingBox": {
-				"x": 0.30363636363636365,
-				"y": 0.5893587994542974,
-				"w": 0.38,
-				"h": 0.023192360163710776
+				"x": 0.252991452991453,
+				"y": 0.3573059360730594,
+				"w": 0.024786324786324785,
+				"h": 0.014840182648401826
 			}
 		},
 		{
+			"id": 4,
 			"info": {
-				"description": "A chocolate dipped biscuit is a type of cookie that is partially or fully coated in chocolate. It is often filled with various ingredients such as cream, jam, or other sweet fillings.",
-				"text": "Chocolate dipped biscuit",
-				"text-translation": "Chocolate dipped biscuit",
-				"img_src": [
-					"https://m.media-amazon.com/images/I/71veFbHUTnL.jpg",
-					"https://i0.wp.com/smittenkitchen.com/wp-content/uploads//2018/02/chocolate-peanut-butter-cup-cookies.jpg?fit=1200%2C800&ssl=1",
-					"https://m.media-amazon.com/images/I/81ciPrGqhjL.jpg",
-					"https://i0.wp.com/smittenkitchen.com/wp-content/uploads//2018/02/chocolate-peanut-butter-cup-cookies.jpg?fit=750%2C500&ssl=1",
-					"https://m.media-amazon.com/images/I/81dDrICb29L.jpg",
-					"https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Schaumkuss-1.jpg/1200px-Schaumkuss-1.jpg",
-					"https://m.media-amazon.com/images/I/81fG5Rd6oDL.jpg",
-					"https://i0.wp.com/smittenkitchen.com/wp-content/uploads//2017/10/bakery-style-butter-cookies.jpg?fit=1200%2C800&ssl=1",
-					"https://m.media-amazon.com/images/I/81ciPrGqhjL._AC_UF894,1000_QL80_.jpg",
-					"https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Schaumkuss-1.jpg/800px-Schaumkuss-1.jpg"
-				]
-			},
-			"boundingBox": {
-				"x": 0.30727272727272725,
-				"y": 0.6139154160982264,
-				"w": 0.37272727272727274,
-				"h": 0.023192360163710776
-			}
-		},
-		{
-			"info": {
-				"description": "Salted Caramel Gelato is a creamy Italian-style ice cream flavored with a blend of sweet caramel and a hint of salt. It offers a perfect balance of sweet and salty flavors, making it a popular dessert choice.",
-				"text": "Salted Caramel Gelato",
-				"text-translation": "Salted Caramel Gelato",
-				"img_src": [
-					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3339027883265080017",
-					"https://ip.prod.freshop.retail.ncrcloud.com/resize?url=https://images.freshop.ncrcloud.com/00077567254450/7259d8ebc25a1c4fdf5d177a738ecaf5_large.png&width=512&type=webp&quality=90",
-					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3359133918207612184",
-					"https://bjs.scene7.com/is/image/bjs/320528?$bjs-Zoom$",
-					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3362131192374998384",
-					"https://i.insider.com/663a36ce10dfcda409676d63?width=800&format=jpeg&auto=webp",
-					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3369495072516498482",
-					"https://bjs.scene7.com/is/image/bjs/310291?$bjs-Zoom$",
-					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3367455705576097494",
-					"https://i.insider.com/663a36ce10dfcda409676d63?width=600&format=jpeg&auto=webp"
-				]
-			},
-			"boundingBox": {
-				"x": 0.37636363636363634,
-				"y": 0.6371077762619373,
-				"w": 0.2290909090909091,
-				"h": 0.021828103683492497
-			}
-		},
-		{
-			"info": {
-				"description": "Chocolate Orange is a confectionery that typically combines the rich taste of chocolate with a hint of orange flavor. It can come in various forms such as chocolate bars, truffles, or slices shaped like orange segments.",
-				"text": "Chocolate Orange",
-				"text-translation": "Chocolate Orange",
-				"img_src": [
-					"https://m.media-amazon.com/images/I/71PckOG26NL.jpg",
-					"https://www.foodandwine.com/thmb/ZbRyt-pVN2CuR1xpREEtuRuXke0=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/faw-detail-k-m-85-percent-hacienda-victoria-ecuador-rkilgore-1316-1-97780e8a8211466db27a7915125a89c6.jpeg",
-					"https://m.media-amazon.com/images/I/71PckOG26NL._AC_UF894,1000_QL80_.jpg",
-					"https://www.meijer.com/content/dam/meijer/product/0037/46/6023/42/0037466023427_0_A1C1_0600.jpg",
-					"https://www.foodandwine.com/thmb/eXgFh5s-yd4E6jiD-xag4QivCbo=/fit-in/1500x2668/filters:no_upscale():max_bytes(150000):strip_icc()/faw-detail-k-m-85-percent-hacienda-victoria-ecuador-rkilgore-1316-fa3fa288a070491b9dc9625946c2fc01.jpeg",
-					"https://m.media-amazon.com/images/I/51Cyq79CJrL.jpg",
-					"https://www.foodandwine.com/thmb/l8QfTCkZ0RoUUJdH0Gwhr8p2QGA=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Best-Food-Gifts3-FW-tout-02f98a5559f541d8ac3c2dc689c8bfde.jpg",
-					"https://m.media-amazon.com/images/I/81vRx+uJfVL._AC_UF894,1000_QL80_.jpg",
-					"https://cdn.thewirecutter.com/wp-content/media/2023/07/boxedchocolates-2048px-1188.jpg?auto=webp&quality=75&width=1024",
-					"https://m.media-amazon.com/images/I/51-fvgNZQgL._AC_.jpg"
-				]
-			},
-			"boundingBox": {
-				"x": 0.32545454545454544,
-				"y": 0.6725784447476125,
-				"w": 0.3290909090909091,
-				"h": 0.02455661664392906
-			}
-		},
-		{
-			"info": {
-				"description": "A delicious dessert consisting of a chocolate biscuit filled with creamy chocolate orange gelato. The combination of rich chocolate and fresh orange flavors creates a delightful treat.",
-				"text": "Chocolate biscuit filled with chocolate orange gelato",
-				"text-translation": "Chocolate biscuit filled with chocolate orange gelato",
-				"img_src": [
-					"https://m.media-amazon.com/images/I/91lbeKYRs3L.jpg",
-					"https://www.richsusa.com/wp-content/uploads/2022/04/20406_Product-Beauty_Silhouette-4.jpg",
-					"https://m.media-amazon.com/images/I/91aI82h6QTL._AC_UF894,1000_QL80_.jpg",
-					"https://milkbarstore.com/cdn/shop/files/S_moresTrufflePDP_2.jpg?v=1715358823&width=1000",
-					"https://m.media-amazon.com/images/I/91AsS6QoUDL.jpg",
-					"https://milkbarstore.com/cdn/shop/files/S_moresTrufflePDP_2.jpg?v=1715358823&width=416",
-					"https://m.media-amazon.com/images/I/91aI82h6QTL.jpg",
-					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3337408544976724561",
-					"https://m.media-amazon.com/images/I/91lbeKYRs3L._AC_UF894,1000_QL80_.jpg",
-					"https://i0.wp.com/kelseysfoodreviews.com/wp-content/uploads/2022/12/B9199BC7-53EC-4757-8947-08F48C0FEE01.jpg?resize=768%2C1024&ssl=1"
-				]
-			},
-			"boundingBox": {
-				"x": 0.21818181818181817,
-				"y": 0.694406548431105,
-				"w": 0.5472727272727272,
-				"h": 0.0286493860845839
-			}
-		},
-		{
-			"info": {
-				"description": "A digestif is an alcoholic beverage served after a meal to aid digestion. Common examples include brandy, fortified wines, and herbal liqueurs.",
-				"text": "Digestif",
-				"text-translation": "Digestif",
-				"img_src": [
-					"https://i0.wp.com/memoriediangelina.com/wp-content/uploads/2017/03/Digestivi-1.jpg?fit=800%2C534&ssl=1",
-					"https://i.redd.it/re95uxhpi7n81.jpg",
-					"https://i0.wp.com/memoriediangelina.com/wp-content/uploads/2017/03/Digestivi-2.jpg?ssl=1",
-					"https://preview.redd.it/re95uxhpi7n81.jpg?width=1080&crop=smart&auto=webp&s=7325f677f93d2182ecd701b2af178bf19a0f74cb",
-					"https://i0.wp.com/memoriediangelina.com/wp-content/uploads/2017/03/Digestivi-1.jpg?fit=800%2C534&ssl=1&resize=200%2C200",
-					"https://preview.redd.it/re95uxhpi7n81.jpg?width=640&crop=smart&auto=webp&s=b837d02b978149e1be1b6de8004b8c9cf03114a8",
-					"https://i0.wp.com/memoriediangelina.com/wp-content/uploads/2017/03/Digestivi-3.jpg?ssl=1",
-					"https://www.tastefrance.com/sites/tastefrance.com/files/styles/article_main_image/public/2021-02/GettyImages-56519340.jpg.webp?itok=ShO_L7n-",
-					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3364932114996628484",
-					"https://documents-public.yumpu.news/qbev7k35xxig603pwcaiysvhsnr4xrmu/c8a7dbce7ef1f6db15dbb37df7c79119/456d5639703630323038494e4b32684b6958543747413d3d/57457549684976507654536647306b754854725870413d3d.jpg"
-				]
-			},
-			"boundingBox": {
-				"x": 0.28545454545454546,
-				"y": 0.7789904502046384,
-				"w": 0.1709090909090909,
-				"h": 0.023192360163710776
-			}
-		},
-		{
-			"info": {
-				"description": "Limoncello is an Italian lemon liqueur mainly produced in Southern Italy, especially in the region around the Gulf of Naples. It is made from lemon zest, water, alcohol, and sugar.",
-				"text": "Limoncello",
-				"text-translation": "Limoncello",
-				"img_src": [
-					"https://4.bp.blogspot.com/-WqOuoWbEpsA/Wejtz1_a06I/AAAAAAAAMFA/Z9GVJ_0A534rI14luRrA8ZMUnzPqsg6ygCLcBGAs/s1600/limoncello.jpg",
-					"https://i0.wp.com/www.planestrainsandchampagne.com/wp-content/uploads/2021/12/DSC_0601-2.jpg?resize=1140%2C1706&ssl=1",
-					"https://4.bp.blogspot.com/-WqOuoWbEpsA/Wejtz1_a06I/AAAAAAAAMFA/Z9GVJ_0A534rI14luRrA8ZMUnzPqsg6ygCLcBGAs/w1200-h630-p-k-no-nu/limoncello.jpg",
-					"https://2.bp.blogspot.com/-3jG9bWckKdY/WegoKJNW5RI/AAAAAAAAMEg/TaA75MyJyt0xXK9AqcYr1Dguk8T5XmB6ACLcBGAs/s1600/gulf_of_naples_map.jpg",
-					"https://4.bp.blogspot.com/-Eoii7u33qCI/Wegim2oWT3I/AAAAAAAAMEQ/q6wYGz638k8SDEHC2XBHGeceLaA5gHeFgCLcBGAs/s1600/limoncello_shot_glass.jpg",
-					"https://image.isu.pub/190301103003-685d16b8ac6b932e89565f8be0752b76/jpg/page_1_thumb_large.jpg",
-					"https://online.fliphtml5.com/rjut/kwhn/files/large/4b2489f5b3796dbe0d76ba79b87daa0c.jpg",
-					"https://image.isu.pub/200929194907-b7df9b364d068c92a8faa4bf9022cb51/jpg/page_1_thumb_large.jpg",
-					"https://images.squarespace-cdn.com/content/v1/54e3cb9be4b07bd81fa20c4a/44465d92-0221-4ba6-b785-387b2dc7394d/lemontrees-3.JPG",
-					"https://static.wikia.nocookie.net/ultimatepopculture/images/0/06/Italian_Delicacies.jpg/revision/latest/scale-to-width-down/800?cb=20191116075804"
-				]
-			},
-			"boundingBox": {
-				"x": 0.2509090909090909,
-				"y": 0.8171896316507503,
-				"w": 0.24,
-				"h": 0.023192360163710776
-			}
-		},
-		{
-			"info": {
-				"description": "Coffee is a popular brewed drink made from roasted coffee beans, which are the seeds of berries from the Coffea plant. It is enjoyed worldwide for its stimulating effects due to its caffeine content.",
-				"text": "Coffee",
-				"text-translation": "Coffee",
-				"img_src": [
-					"https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg",
-					"https://nutritionsource.hsph.harvard.edu/wp-content/uploads/2019/02/caffeine-close-up-coffee-539432-1024x683.jpg",
-					"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Latte_and_dark_coffee.jpg/1200px-Latte_and_dark_coffee.jpg",
-					"https://nutritionsource.hsph.harvard.edu/wp-content/uploads/2019/02/caffeine-close-up-coffee-539432.jpg",
-					"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Latte_and_dark_coffee.jpg/800px-Latte_and_dark_coffee.jpg",
-					"https://www.ncausa.org/portals/56/Images/AboutCoffee/NCA_Web_Large_coffee-beans-history.png?ver=2018-02-28-115401-897",
-					"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Latte_and_dark_coffee.jpg/640px-Latte_and_dark_coffee.jpg",
-					"https://m.media-amazon.com/images/I/71SW8uyNwlL.jpg",
-					"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Latte_and_dark_coffee.jpg/250px-Latte_and_dark_coffee.jpg",
-					"https://cdn.shopify.com/s/files/1/1475/5488/files/image6.jpg?v=1704263236"
-				]
-			},
-			"boundingBox": {
-				"x": 0.6145454545454545,
-				"y": 0.8090040927694406,
-				"w": 0.12181818181818181,
-				"h": 0.021828103683492497
-			}
-		},
-		{
-			"info": {
-				"description": "Pistachio cream is a sweet and smooth spread made from ground pistachios, often used in desserts, pastries, or as a topping for bread and crackers.",
-				"text": "Pistachio Cream",
-				"text-translation": "Pistachio Cream",
-				"img_src": [
-					"https://m.media-amazon.com/images/I/817taiFP8QL._AC_UF894,1000_QL80_.jpg",
-					"https://www.vincenzosplate.com/wp-content/uploads/2024/03/22-1024x1024.jpg",
-					"https://m.media-amazon.com/images/I/71YCntMXZkL._AC_UF350,350_QL80_.jpg",
-					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3355233367781022288",
-					"https://m.media-amazon.com/images/I/61emGfxi5JL._AC_UF894,1000_QL80_.jpg",
-					"https://www.vincenzosplate.com/wp-content/uploads/2024/04/1800x1800-Photo-2_3639-This-Slow-Cooked-Beef-Ragu-Pasta-Recipe-is-Better-then-Nonna-Bolognese-Sauce-V1-1024x1024.jpg",
-					"https://m.media-amazon.com/images/I/817taiFP8QL.jpg",
-					"https://www.yumpu.com/en/image/facebook/5989733.jpg",
-					"https://m.media-amazon.com/images/I/61tDacfiOmL._AC_UF894,1000_QL80_.jpg",
-					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3368438018687433414"
-				]
-			},
-			"boundingBox": {
-				"x": 0.20363636363636364,
-				"y": 0.8431105047748977,
-				"w": 0.3327272727272727,
-				"h": 0.021828103683492497
-			}
-		},
-		{
-			"info": {
-				"description": "Espresso is a concentrated form of coffee served in small, strong shots. It is made by forcing hot water through finely-ground coffee beans and is the base for many other coffee drinks.",
-				"text": "Espresso",
-				"text-translation": "Espresso",
-				"img_src": [
-					"https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg",
-					"https://m.media-amazon.com/images/I/61A34L3DPjL._AC_UF894,1000_QL80_.jpg",
-					"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Latte_and_dark_coffee.jpg/1200px-Latte_and_dark_coffee.jpg",
-					"https://m.media-amazon.com/images/I/71J+suDigYL.jpg",
-					"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Latte_and_dark_coffee.jpg/800px-Latte_and_dark_coffee.jpg",
-					"https://qph.cf2.quoracdn.net/main-qimg-26a5c2563c693d69db684458db442181",
-					"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Latte_and_dark_coffee.jpg/640px-Latte_and_dark_coffee.jpg",
-					"https://m.media-amazon.com/images/I/71UmpuR7R2L.jpg",
-					"https://images-na.ssl-images-amazon.com/images/I/61A34L3DPjL._MCnd_AC_SR462,462_.jpg",
-					"https://m.media-amazon.com/images/I/71J+suDigYL._AC_UF894,1000_QL80_.jpg"
-				]
-			},
-			"boundingBox": {
-				"x": 0.5872727272727273,
-				"y": 0.8472032742155525,
-				"w": 0.17272727272727273,
-				"h": 0.019099590723055934
-			}
-		},
-		{
-			"info": {
-				"description": null,
-				"text": null,
-				"text-translation": null,
-				"img_src": [
-					"https://m.media-amazon.com/images/I/71NO9b+bEsL._AC_UF1000,1000_QL80_.jpg",
-					"https://pbs.twimg.com/media/GG7dVkSXQAAoswc.jpg",
-					"https://m.media-amazon.com/images/I/9141ZOZXjEL._AC_UF1000,1000_QL80_.jpg",
-					"https://c8.alamy.com/comp/2WH9JGF/arabic-calligraphy-of-4th-kalma-touheed-translation-there-is-none-worthy-of-worship-except-allah-he-is-alone-and-has-no-partner-2WH9JGF.jpg",
-					"https://m.media-amazon.com/images/I/3178Y4hdOgL._AC_UF1000,1000_QL80_.jpg",
-					"https://external-preview.redd.it/is-a-community-fork-of-v0-4P8K1KgIFaLvB5m51vGwwbrqkscv6d2CZ2Az2Zb_Qr8.jpg?width=640&crop=smart&auto=webp&s=21beef90c27b2051cecf7c29318fe990b6a8068d",
-					"https://cdt.org/wp-content/uploads/2023/05/non-en-content-analysis-social-05162023-1024x536.png",
-					"https://pbs.twimg.com/media/F_DaXe5WYAAsfQK.jpg",
-					"https://i0.wp.com/timi.org/wp-content/uploads/2022/10/effect-of-vupanorsen-on-none28093high-density-lipoprotein-cholesterol-levels-in-statin-treated-patients-with-elevated-cholesterol_-translate-timi-70.jpg?resize=648%2C868&ssl=1",
-					"https://dhjhkxawhe8q4.cloudfront.net/toronto-press-wp/wp-content/uploads/2024/02/Educating-the-Body-1.jpg"
-				]
-			},
-			"boundingBox": {
-				"x": 0.22545454545454546,
-				"y": 0.869031377899045,
-				"w": 0.29454545454545455,
-				"h": 0.021828103683492497
-			}
-		},
-		{
-			"info": {
-				"description": "A macchiato is an espresso coffee drink with a small amount of milk, usually foamed. The name macchiato means 'stained' or 'spotted' in Italian, referring to the way the milk is added to the espresso.",
-				"text": "Macchiato",
-				"text-translation": "Macchiato",
+				"description": "Pig Well is a traditional dish that might refer to a preparation involving pork. The term suggests a method or style of cooking that emphasizes highlighting the flavor of the pig, often found in various Asian culinary cultures.",
+				"text": "豬井",
+				"text_translation": "Pig Well",
 				"img_src": null
 			},
 			"boundingBox": {
-				"x": 0.5781818181818181,
-				"y": 0.8731241473396999,
-				"w": 0.1890909090909091,
-				"h": 0.019099590723055934
+				"x": 0.5128205128205128,
+				"y": 0.4315068493150685,
+				"w": 0.024786324786324785,
+				"h": 0.01598173515981735
 			}
 		},
 		{
+			"id": 5,
 			"info": {
-				"description": "Meloncello is a type of Italian liqueur made from cantaloupe or other melons. It is similar to Limoncello but with a melon flavor. Typically served chilled, it is a sweet and refreshing beverage.",
-				"text": "Meloncello",
-				"text-translation": "Meloncello",
+				"description": "Xiaopin refers to a type of small dish or appetizer in Chinese cuisine, often served as part of a larger meal. These dishes are typically flavorful and are meant to be shared among diners.",
+				"text": "小品",
+				"text_translation": "Xiaopin",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.7504273504273504,
+				"y": 0.3915525114155251,
+				"w": 0.03675213675213675,
+				"h": 0.023972602739726026
+			}
+		},
+		{
+			"id": 6,
+			"info": {
+				"description": "White rice is a staple food in many cultures, made from polished rice grains. It is commonly served as a side dish or base for various meals.",
+				"text": "白飯",
+				"text_translation": "White Rice",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.7512820512820513,
+				"y": 0.4246575342465753,
+				"w": 0.024786324786324785,
+				"h": 0.017123287671232876
+			}
+		},
+		{
+			"id": 7,
+			"info": {
+				"description": "Gyudon is a popular Japanese dish consisting of a bowl of rice topped with simmered beef and onions in a mildly sweet sauce flavored with soy sauce and mirin.",
+				"text": "牛丼",
+				"text_translation": "Gyudon",
 				"img_src": [
-					"https://image.isu.pub/211014140509-9758eb6530d4b10213ef4ba2f6d09257/jpg/page_1_thumb_large.jpg",
-					"https://online.anyflip.com/dxjdq/hcho/files/mobile/1.jpg?1608208024",
-					"https://image.isu.pub/211014140509-9758eb6530d4b10213ef4ba2f6d09257/jpg/page_1.jpg",
-					"https://online.anyflip.com/dxjdq/hcho/files/thumb/1.jpg?1608208024",
-					"https://image.isu.pub/210828081729-a7791edf2a7a582020aded8dd8a5b3df/jpg/page_1_thumb_large.jpg",
-					"https://online.anyflip.com/dxjdq/hcho/files/mobile/3.jpg?1608208024",
-					"https://assets.isu.pub/document-structure/211014140509-9758eb6530d4b10213ef4ba2f6d09257/v1/1e42a6dc37b70d1826ad266921b09b09.jpeg",
-					"x-raw-image:///76809cff659adb8d66074089b42bdc98b097cc780c5d0b785a379753ff7168b1",
-					"https://assets.isu.pub/document-structure/211014140509-9758eb6530d4b10213ef4ba2f6d09257/v1/b635835ca5e9ac17a1d514ca8929bfc7.jpeg",
-					"https://online.anyflip.com/dxjdq/hcho/files/mobile/2.jpg?1608208024"
+					"https://www.sukiya-jp.com.tw/gyudon/img/point1_img_gyudon@2x.png",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3560954881337025860",
+					"https://m.media-amazon.com/images/I/51LZMxYr6fL._AC_UF894,1000_QL80_.jpg",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3332189368235775212",
+					"https://i.ytimg.com/vi/h70GxdiMK-0/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCKFfVHDCThxNrGL9SuWdiTYTctCw",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3560954881328623033",
+					"https://i.ytimg.com/vi/UsBBNG9iSnw/maxresdefault.jpg",
+					"https://image.delishkitchen.tv/recipe/176147753863217510/1.jpg?version=1734659894&w=920",
+					"https://i.ytimg.com/vi/h70GxdiMK-0/maxresdefault.jpg",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3446533141996035676"
 				]
 			},
 			"boundingBox": {
-				"x": 0.24909090909090909,
-				"y": 0.8963165075034106,
-				"w": 0.24181818181818182,
-				"h": 0.020463847203274217
+				"x": 0.5136752136752136,
+				"y": 0.4520547945205479,
+				"w": 0.023931623931623933,
+				"h": 0.017123287671232876
+			}
+		},
+		{
+			"id": 8,
+			"info": {
+				"description": "A beverage is any liquid specifically prepared for human consumption. Popular types of beverages include water, juice, tea, coffee, soft drinks, and alcoholic drinks.",
+				"text": "飲料",
+				"text_translation": "Beverage",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.782051282051282,
+				"y": 0.7420091324200914,
+				"w": 0.04188034188034188,
+				"h": 0.030821917808219176
+			}
+		},
+		{
+			"id": 9,
+			"info": {
+				"description": "Coke is a carbonated soft drink that is popular worldwide. It is known for its distinct sweetness and refreshing taste, often served chilled or over ice.",
+				"text": "可樂",
+				"text_translation": "Coke",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.7837606837606838,
+				"y": 0.7865296803652968,
+				"w": 0.02735042735042735,
+				"h": 0.019406392694063926
+			}
+		},
+		{
+			"id": 10,
+			"info": {
+				"description": "Sarsaparilla is a soft drink that is flavored with the extract of the sarsaparilla vine and sometimes other roots like sassafras. It is known for its distinct, slightly sweet, and herbal flavor.",
+				"text": "沙士",
+				"text_translation": "Sarsaparilla",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.7846153846153846,
+				"y": 0.8093607305936074,
+				"w": 0.029914529914529916,
+				"h": 0.023972602739726026
+			}
+		},
+		{
+			"id": 11,
+			"info": {
+				"description": "Apple juice is a popular beverage made from pressing fresh apples. It is known for its sweet taste and refreshing qualities, often enjoyed chilled.",
+				"text": "蘋果汁",
+				"text_translation": "Apple Juice",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.7923076923076923,
+				"y": 0.83675799086758,
+				"w": 0.04358974358974359,
+				"h": 0.023972602739726026
+			}
+		},
+		{
+			"id": 12,
+			"info": {
+				"description": "Sashimi",
+				"text": "Sashimi",
+				"text_translation": "Sashimi",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.04786324786324787,
+				"y": 0.1141552511415525,
+				"w": 0.05299145299145299,
+				"h": 0.0228310502283105
+			}
+		},
+		{
+			"id": 13,
+			"info": {
+				"description": "Assorted Sashimi (8 pieces)",
+				"text": "Assorted Sashimi (8 pieces)",
+				"text_translation": "Assorted Sashimi (8 pieces)",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.042735042735042736,
+				"y": 0.14269406392694065,
+				"w": 0.08888888888888889,
+				"h": 0.0182648401826484
+			}
+		},
+		{
+			"id": 14,
+			"info": {
+				"description": "Purple fish three slices.",
+				"text": "Purple fish three slices.",
+				"text_translation": "Purple fish three slices.",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.040170940170940174,
+				"y": 0.16210045662100456,
+				"w": 0.0547008547008547,
+				"h": 0.017123287671232876
+			}
+		},
+		{
+			"id": 15,
+			"info": {
+				"description": "Salmon (three pieces)",
+				"text": "Salmon (three pieces)",
+				"text_translation": "Salmon (three pieces)",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.037606837606837605,
+				"y": 0.1815068493150685,
+				"w": 0.05726495726495726,
+				"h": 0.017123287671232876
+			}
+		},
+		{
+			"id": 16,
+			"info": {
+				"description": "\"Salmon belly\"",
+				"text": "\"Salmon belly\"",
+				"text_translation": "\"Salmon belly\"",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.038461538461538464,
+				"y": 0.2009132420091324,
+				"w": 0.038461538461538464,
+				"h": 0.017123287671232876
+			}
+		},
+		{
+			"id": 17,
+			"info": {
+				"description": "Tuna (three slices)",
+				"text": "Tuna (three slices)",
+				"text_translation": "Tuna (three slices)",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.03333333333333333,
+				"y": 0.22031963470319635,
+				"w": 0.05726495726495726,
+				"h": 0.017123287671232876
+			}
+		},
+		{
+			"id": 18,
+			"info": {
+				"description": "Sweet shrimp",
+				"text": "Sweet shrimp",
+				"text_translation": "Sweet shrimp",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.03247863247863248,
+				"y": 0.2408675799086758,
+				"w": 0.023931623931623933,
+				"h": 0.014840182648401826
+			}
+		},
+		{
+			"id": 19,
+			"info": {
+				"description": "The translation of 干貝 to English (US) is \"dried scallop.\"",
+				"text": "The translation of 干貝 to English (US) is \"dried scallop.\"",
+				"text_translation": "The translation of 干貝 to English (US) is \"dried scallop.\"",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.03076923076923077,
+				"y": 0.2614155251141553,
+				"w": 0.022222222222222223,
+				"h": 0.0136986301369863
+			}
+		},
+		{
+			"id": 20,
+			"info": {
+				"description": "The translation of \"牡丹蝦\" to English (US) is \"peony shrimp.\"",
+				"text": "The translation of \"牡丹蝦\" to English (US) is \"peony shrimp.\"",
+				"text_translation": "The translation of \"牡丹蝦\" to English (US) is \"peony shrimp.\"",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.026495726495726495,
+				"y": 0.2808219178082192,
+				"w": 0.037606837606837605,
+				"h": 0.01598173515981735
+			}
+		},
+		{
+			"id": 21,
+			"info": {
+				"description": "Sushi",
+				"text": "Sushi",
+				"text_translation": "Sushi",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.020512820512820513,
+				"y": 0.3550228310502283,
+				"w": 0.038461538461538464,
+				"h": 0.026255707762557076
+			}
+		},
+		{
+			"id": 22,
+			"info": {
+				"description": "Bean curd skin sushi (two pieces)",
+				"text": "Bean curd skin sushi (two pieces)",
+				"text_translation": "Bean curd skin sushi (two pieces)",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.015384615384615385,
+				"y": 0.3881278538812785,
+				"w": 0.08205128205128205,
+				"h": 0.02054794520547945
+			}
+		},
+		{
+			"id": 23,
+			"info": {
+				"description": "Nori sushi (five pieces)",
+				"text": "Nori sushi (five pieces)",
+				"text_translation": "Nori sushi (five pieces)",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.011111111111111112,
+				"y": 0.4098173515981735,
+				"w": 0.08376068376068375,
+				"h": 0.02054794520547945
+			}
+		},
+		{
+			"id": 24,
+			"info": {
+				"description": "The translation of \"鐵火細卷\" to English (US) is \"Iron Fire Thin Rolls.\"",
+				"text": "The translation of \"鐵火細卷\" to English (US) is \"Iron Fire Thin Rolls.\"",
+				"text_translation": "The translation of \"鐵火細卷\" to English (US) is \"Iron Fire Thin Rolls.\"",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.009401709401709401,
+				"y": 0.432648401826484,
+				"w": 0.05213675213675214,
+				"h": 0.019406392694063926
+			}
+		},
+		{
+			"id": 25,
+			"info": {
+				"description": "Flower Sushi (Five pieces)",
+				"text": "Flower Sushi (Five pieces)",
+				"text_translation": "Flower Sushi (Five pieces)",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.008547008547008548,
+				"y": 0.454337899543379,
+				"w": 0.0829059829059829,
+				"h": 0.02054794520547945
+			}
+		},
+		{
+			"id": 26,
+			"info": {
+				"description": "Fried shrimp sushi (six pieces)",
+				"text": "Fried shrimp sushi (six pieces)",
+				"text_translation": "Fried shrimp sushi (six pieces)",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.004273504273504274,
+				"y": 0.476027397260274,
+				"w": 0.08461538461538462,
+				"h": 0.02054794520547945
+			}
+		},
+		{
+			"id": 27,
+			"info": {
+				"description": "Soft-shell crab sushi (five pieces)",
+				"text": "Soft-shell crab sushi (five pieces)",
+				"text_translation": "Soft-shell crab sushi (five pieces)",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.005982905982905983,
+				"y": 0.4954337899543379,
+				"w": 0.09572649572649573,
+				"h": 0.0273972602739726
+			}
+		},
+		{
+			"id": 28,
+			"info": {
+				"description": "The translation of \"手卷\" to English (US) is \"hand roll.\"",
+				"text": "The translation of \"手卷\" to English (US) is \"hand roll.\"",
+				"text_translation": "The translation of \"手卷\" to English (US) is \"hand roll.\"",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.2504273504273504,
+				"y": 0.4452054794520548,
+				"w": 0.040170940170940174,
+				"h": 0.0273972602739726
+			}
+		},
+		{
+			"id": 29,
+			"info": {
+				"description": "Shrimp roe hand roll",
+				"text": "Shrimp roe hand roll",
+				"text_translation": "Shrimp roe hand roll",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.24700854700854702,
+				"y": 0.4817351598173516,
+				"w": 0.05128205128205128,
+				"h": 0.017123287671232876
+			}
+		},
+		{
+			"id": 30,
+			"info": {
+				"description": "Asparagus Hand Roll",
+				"text": "Asparagus Hand Roll",
+				"text_translation": "Asparagus Hand Roll",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.24615384615384617,
+				"y": 0.5045662100456622,
+				"w": 0.05213675213675214,
+				"h": 0.0182648401826484
+			}
+		},
+		{
+			"id": 31,
+			"info": {
+				"description": "Shrimp hand roll",
+				"text": "Shrimp hand roll",
+				"text_translation": "Shrimp hand roll",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.24700854700854702,
+				"y": 0.523972602739726,
+				"w": 0.03504273504273504,
+				"h": 0.023972602739726026
+			}
+		},
+		{
+			"id": 32,
+			"info": {
+				"description": "Shrimp and Asparagus Technique",
+				"text": "Shrimp and Asparagus Technique",
+				"text_translation": "Shrimp and Asparagus Technique",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.24273504273504273,
+				"y": 0.5502283105022832,
+				"w": 0.06581196581196581,
+				"h": 0.0182648401826484
+			}
+		},
+		{
+			"id": 33,
+			"info": {
+				"description": "The translation of \"鐵火手を\" to English (US) is \"Iron fire hand.\"",
+				"text": "The translation of \"鐵火手を\" to English (US) is \"Iron fire hand.\"",
+				"text_translation": "The translation of \"鐵火手を\" to English (US) is \"Iron fire hand.\"",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.24273504273504273,
+				"y": 0.5730593607305936,
+				"w": 0.05213675213675214,
+				"h": 0.02054794520547945
+			}
+		},
+		{
+			"id": 34,
+			"info": {
+				"description": "Sea Urchin Hand Roll",
+				"text": "Sea Urchin Hand Roll",
+				"text_translation": "Sea Urchin Hand Roll",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.24017094017094018,
+				"y": 0.6221461187214612,
+				"w": 0.05384615384615385,
+				"h": 0.019406392694063926
+			}
+		},
+		{
+			"id": 35,
+			"info": {
+				"description": "Fried food",
+				"text": "Fried food",
+				"text_translation": "Fried food",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.2358974358974359,
+				"y": 0.7328767123287672,
+				"w": 0.04358974358974359,
+				"h": 0.0273972602739726
+			}
+		},
+		{
+			"id": 36,
+			"info": {
+				"description": "The phrase \"揚出豆腐\" translates to \"Fried Tofu\" in English (US).",
+				"text": "The phrase \"揚出豆腐\" translates to \"Fried Tofu\" in English (US).",
+				"text_translation": "The phrase \"揚出豆腐\" translates to \"Fried Tofu\" in English (US).",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.23247863247863249,
+				"y": 0.773972602739726,
+				"w": 0.05641025641025641,
+				"h": 0.02054794520547945
+			}
+		},
+		{
+			"id": 37,
+			"info": {
+				"description": "Vegetable tempura",
+				"text": "Vegetable tempura",
+				"text_translation": "Vegetable tempura",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.23247863247863249,
+				"y": 0.7990867579908676,
+				"w": 0.06923076923076923,
+				"h": 0.021689497716894976
+			}
+		},
+		{
+			"id": 38,
+			"info": {
+				"description": "\"Fried Chicken\"",
+				"text": "\"Fried Chicken\"",
+				"text_translation": "\"Fried Chicken\"",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.23162393162393163,
+				"y": 0.8276255707762558,
+				"w": 0.05555555555555555,
+				"h": 0.019406392694063926
+			}
+		},
+		{
+			"id": 39,
+			"info": {
+				"description": "Mixed tempura",
+				"text": "Mixed tempura",
+				"text_translation": "Mixed tempura",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.22905982905982905,
+				"y": 0.8515981735159818,
+				"w": 0.07008547008547009,
+				"h": 0.02511415525114155
+			}
+		},
+		{
+			"id": 40,
+			"info": {
+				"description": "Crispy Fried Oysters",
+				"text": "Crispy Fried Oysters",
+				"text_translation": "Crispy Fried Oysters",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.22905982905982905,
+				"y": 0.8812785388127854,
+				"w": 0.05726495726495726,
+				"h": 0.021689497716894976
+			}
+		},
+		{
+			"id": 41,
+			"info": {
+				"description": "The translation of \"干貝唐揚\" to English (US) is \"fried scallops.\"",
+				"text": "The translation of \"干貝唐揚\" to English (US) is \"fried scallops.\"",
+				"text_translation": "The translation of \"干貝唐揚\" to English (US) is \"fried scallops.\"",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.22905982905982905,
+				"y": 0.906392694063927,
+				"w": 0.05726495726495726,
+				"h": 0.026255707762557076
+			}
+		},
+		{
+			"id": 42,
+			"info": {
+				"description": "The translation of \"烤物\" to English (US) is \"grilled items\" or \"barbecued items.\"",
+				"text": "The translation of \"烤物\" to English (US) is \"grilled items\" or \"barbecued items.\"",
+				"text_translation": "The translation of \"烤物\" to English (US) is \"grilled items\" or \"barbecued items.\"",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.5068376068376068,
+				"y": 0.1917808219178082,
+				"w": 0.037606837606837605,
+				"h": 0.021689497716894976
+			}
+		},
+		{
+			"id": 43,
+			"info": {
+				"description": "Grilled eel with salt",
+				"text": "Grilled eel with salt",
+				"text_translation": "Grilled eel with salt",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.5076923076923077,
+				"y": 0.2226027397260274,
+				"w": 0.0452991452991453,
+				"h": 0.01598173515981735
+			}
+		},
+		{
+			"id": 44,
+			"info": {
+				"description": "Salt-grilled noodle fish",
+				"text": "Salt-grilled noodle fish",
+				"text_translation": "Salt-grilled noodle fish",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.5085470085470085,
+				"y": 0.2420091324200913,
+				"w": 0.0452991452991453,
+				"h": 0.01598173515981735
+			}
+		},
+		{
+			"id": 45,
+			"info": {
+				"description": "Miso Matsusaka Pork",
+				"text": "Miso Matsusaka Pork",
+				"text_translation": "Miso Matsusaka Pork",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.5076923076923077,
+				"y": 0.2614155251141553,
+				"w": 0.05811965811965812,
+				"h": 0.01598173515981735
+			}
+		},
+		{
+			"id": 46,
+			"info": {
+				"description": "\"Chicken wings with mentaiko\"",
+				"text": "\"Chicken wings with mentaiko\"",
+				"text_translation": "\"Chicken wings with mentaiko\"",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.5111111111111111,
+				"y": 0.2808219178082192,
+				"w": 0.0547008547008547,
+				"h": 0.01598173515981735
+			}
+		},
+		{
+			"id": 47,
+			"info": {
+				"description": "Dried fish overnight",
+				"text": "Dried fish overnight",
+				"text_translation": "Dried fish overnight",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.5102564102564102,
+				"y": 0.3013698630136986,
+				"w": 0.05641025641025641,
+				"h": 0.01598173515981735
+			}
+		},
+		{
+			"id": 48,
+			"info": {
+				"description": "\"Qinggan chin\"",
+				"text": "\"Qinggan chin\"",
+				"text_translation": "\"Qinggan chin\"",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.5111111111111111,
+				"y": 0.3207762557077626,
+				"w": 0.046153846153846156,
+				"h": 0.01598173515981735
+			}
+		},
+		{
+			"id": 49,
+			"info": {
+				"description": "The translation of \"食事\" to English (US) is \"meal.\"",
+				"text": "The translation of \"食事\" to English (US) is \"meal.\"",
+				"text_translation": "The translation of \"食事\" to English (US) is \"meal.\"",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.5145299145299145,
+				"y": 0.3961187214611872,
+				"w": 0.038461538461538464,
+				"h": 0.02511415525114155
+			}
+		},
+		{
+			"id": 50,
+			"info": {
+				"description": "(Add 60 to enjoy set meals)",
+				"text": "(Add 60 to enjoy set meals)",
+				"text_translation": "(Add 60 to enjoy set meals)",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.5641025641025641,
+				"y": 0.3938356164383562,
+				"w": 0.12051282051282051,
+				"h": 0.0273972602739726
+			}
+		},
+		{
+			"id": 51,
+			"info": {
+				"description": "The translation of \"握壽司\" to English (US) is \"Nigiri sushi.\"",
+				"text": "The translation of \"握壽司\" to English (US) is \"Nigiri sushi.\"",
+				"text_translation": "The translation of \"握壽司\" to English (US) is \"Nigiri sushi.\"",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.2658119658119658,
+				"y": 0.11073059360730593,
+				"w": 0.05555555555555555,
+				"h": 0.021689497716894976
+			}
+		},
+		{
+			"id": 52,
+			"info": {
+				"description": "\"Combination Sushi (Seven Pages)\"",
+				"text": "\"Combination Sushi (Seven Pages)\"",
+				"text_translation": "\"Combination Sushi (Seven Pages)\"",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.26324786324786326,
+				"y": 0.13926940639269406,
+				"w": 0.08888888888888889,
+				"h": 0.01598173515981735
+			}
+		},
+		{
+			"id": 53,
+			"info": {
+				"description": "The text \"M魚\" can be translated to \"M fish.\"",
+				"text": "The text \"M魚\" can be translated to \"M fish.\"",
+				"text_translation": "The text \"M魚\" can be translated to \"M fish.\"",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.2623931623931624,
+				"y": 0.158675799086758,
+				"w": 0.023076923076923078,
+				"h": 0.014840182648401826
+			}
+		},
+		{
+			"id": 54,
+			"info": {
+				"description": "Salmon",
+				"text": "Salmon",
+				"text_translation": "Salmon",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.2606837606837607,
+				"y": 0.1769406392694064,
+				"w": 0.024786324786324785,
+				"h": 0.014840182648401826
+			}
+		},
+		{
+			"id": 55,
+			"info": {
+				"description": "\"Salmon belly\"",
+				"text": "\"Salmon belly\"",
+				"text_translation": "\"Salmon belly\"",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.25982905982905985,
+				"y": 0.1952054794520548,
+				"w": 0.040170940170940174,
+				"h": 0.01598173515981735
+			}
+		},
+		{
+			"id": 56,
+			"info": {
+				"description": "Tuna",
+				"text": "Tuna",
+				"text_translation": "Tuna",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.25982905982905985,
+				"y": 0.21575342465753425,
+				"w": 0.023931623931623933,
+				"h": 0.014840182648401826
+			}
+		},
+		{
+			"id": 57,
+			"info": {
+				"description": "The translation of \"穴子\" to English (US) is \"conger eel.\"",
+				"text": "The translation of \"穴子\" to English (US) is \"conger eel.\"",
+				"text_translation": "The translation of \"穴子\" to English (US) is \"conger eel.\"",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.25726495726495724,
+				"y": 0.2557077625570776,
+				"w": 0.024786324786324785,
+				"h": 0.0136986301369863
+			}
+		},
+		{
+			"id": 58,
+			"info": {
+				"description": "\"Two coins\"",
+				"text": "\"Two coins\"",
+				"text_translation": "\"Two coins\"",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.3153846153846154,
+				"y": 0.2751141552511416,
+				"w": 0.03333333333333333,
+				"h": 0.014840182648401826
+			}
+		},
+		{
+			"id": 59,
+			"info": {
+				"description": "The translation of \"牡丹蝦\" to English (US) is \"peony shrimp.\"",
+				"text": "The translation of \"牡丹蝦\" to English (US) is \"peony shrimp.\"",
+				"text_translation": "The translation of \"牡丹蝦\" to English (US) is \"peony shrimp.\"",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.25555555555555554,
+				"y": 0.2945205479452055,
+				"w": 0.037606837606837605,
+				"h": 0.01598173515981735
+			}
+		},
+		{
+			"id": 60,
+			"info": {
+				"description": "Sole with green side (two pieces)",
+				"text": "Sole with green side (two pieces)",
+				"text_translation": "Sole with green side (two pieces)",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.2547008547008547,
+				"y": 0.3150684931506849,
+				"w": 0.1,
+				"h": 0.01598173515981735
+			}
+		},
+		{
+			"id": 61,
+			"info": {
+				"description": "salmon roe",
+				"text": "salmon roe",
+				"text_translation": "salmon roe",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.25384615384615383,
+				"y": 0.3367579908675799,
+				"w": 0.037606837606837605,
+				"h": 0.014840182648401826
+			}
+		},
+		{
+			"id": 62,
+			"info": {
+				"description": "It seems you provided \"HE EE\" which doesn't give enough context for translation. Please provide the text you would like translated into English (US).",
+				"text": "It seems you provided \"HE EE\" which doesn't give enough context for translation. Please provide the text you would like translated into English (US).",
+				"text_translation": "It seems you provided \"HE EE\" which doesn't give enough context for translation. Please provide the text you would like translated into English (US).",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.31965811965811963,
+				"y": 0.3573059360730594,
+				"w": 0.03418803418803419,
+				"h": 0.014840182648401826
+			}
+		},
+		{
+			"id": 63,
+			"info": {
+				"description": "Chawanmushi",
+				"text": "Chawanmushi",
+				"text_translation": "Chawanmushi",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.752991452991453,
+				"y": 0.4452054794520548,
+				"w": 0.03675213675213675,
+				"h": 0.0182648401826484
+			}
+		},
+		{
+			"id": 64,
+			"info": {
+				"description": "The translation of \"飯稱\" to English (US) is \"rice name.\"",
+				"text": "The translation of \"飯稱\" to English (US) is \"rice name.\"",
+				"text_translation": "The translation of \"飯稱\" to English (US) is \"rice name.\"",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.7547008547008547,
+				"y": 0.4691780821917808,
+				"w": 0.024786324786324785,
+				"h": 0.014840182648401826
+			}
+		},
+		{
+			"id": 65,
+			"info": {
+				"description": "The translation of \"親子丼\" to English (US) is \"chicken and egg rice bowl.\"",
+				"text": "The translation of \"親子丼\" to English (US) is \"chicken and egg rice bowl.\"",
+				"text_translation": "The translation of \"親子丼\" to English (US) is \"chicken and egg rice bowl.\"",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.5128205128205128,
+				"y": 0.4737442922374429,
+				"w": 0.03675213675213675,
+				"h": 0.017123287671232876
+			}
+		},
+		{
+			"id": 66,
+			"info": {
+				"description": "Pork cutlet rice bowl",
+				"text": "Pork cutlet rice bowl",
+				"text_translation": "Pork cutlet rice bowl",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.5145299145299145,
+				"y": 0.4954337899543379,
+				"w": 0.035897435897435895,
+				"h": 0.01598173515981735
+			}
+		},
+		{
+			"id": 67,
+			"info": {
+				"description": "The translation of \"天丼\" to English (US) is \"tempura rice bowl.\"",
+				"text": "The translation of \"天丼\" to English (US) is \"tempura rice bowl.\"",
+				"text_translation": "The translation of \"天丼\" to English (US) is \"tempura rice bowl.\"",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.5153846153846153,
+				"y": 0.5171232876712328,
+				"w": 0.024786324786324785,
+				"h": 0.017123287671232876
+			}
+		},
+		{
+			"id": 68,
+			"info": {
+				"description": "Sesame Udon Noodles (Cold Noodles)",
+				"text": "Sesame Udon Noodles (Cold Noodles)",
+				"text_translation": "Sesame Udon Noodles (Cold Noodles)",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.5162393162393163,
+				"y": 0.5376712328767124,
+				"w": 0.09316239316239316,
+				"h": 0.019406392694063926
+			}
+		},
+		{
+			"id": 69,
+			"info": {
+				"description": "Japanese Soba Noodles (Cold Noodles)",
+				"text": "Japanese Soba Noodles (Cold Noodles)",
+				"text_translation": "Japanese Soba Noodles (Cold Noodles)",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.5162393162393163,
+				"y": 0.5605022831050228,
+				"w": 0.10170940170940171,
+				"h": 0.019406392694063926
+			}
+		},
+		{
+			"id": 70,
+			"info": {
+				"description": "Beef (Pork) Udon Noodles",
+				"text": "Beef (Pork) Udon Noodles",
+				"text_translation": "Beef (Pork) Udon Noodles",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.5170940170940171,
+				"y": 0.5833333333333334,
+				"w": 0.07179487179487179,
+				"h": 0.0182648401826484
+			}
+		},
+		{
+			"id": 71,
+			"info": {
+				"description": "Seafood Udon Noodles",
+				"text": "Seafood Udon Noodles",
+				"text_translation": "Seafood Udon Noodles",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.5170940170940171,
+				"y": 0.6073059360730594,
+				"w": 0.06324786324786325,
+				"h": 0.0182648401826484
+			}
+		},
+		{
+			"id": 72,
+			"info": {
+				"description": "Sashimi rice bowl",
+				"text": "Sashimi rice bowl",
+				"text_translation": "Sashimi rice bowl",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.5170940170940171,
+				"y": 0.6301369863013698,
+				"w": 0.06495726495726496,
+				"h": 0.02054794520547945
+			}
+		},
+		{
+			"id": 73,
+			"info": {
+				"description": "The translation of \"吸物\" to English (US) is \"suction cup.\"",
+				"text": "The translation of \"吸物\" to English (US) is \"suction cup.\"",
+				"text_translation": "The translation of \"吸物\" to English (US) is \"suction cup.\"",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.7649572649572649,
+				"y": 0.5559360730593608,
+				"w": 0.039316239316239315,
+				"h": 0.026255707762557076
+			}
+		},
+		{
+			"id": 74,
+			"info": {
+				"description": "Seaweed soup",
+				"text": "Seaweed soup",
+				"text_translation": "Seaweed soup",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.7658119658119659,
+				"y": 0.593607305936073,
+				"w": 0.039316239316239315,
+				"h": 0.02054794520547945
+			}
+		},
+		{
+			"id": 75,
+			"info": {
+				"description": "Kelp sprout soup",
+				"text": "Kelp sprout soup",
+				"text_translation": "Kelp sprout soup",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.7683760683760684,
+				"y": 0.6164383561643836,
+				"w": 0.05128205128205128,
+				"h": 0.02054794520547945
+			}
+		},
+		{
+			"id": 76,
+			"info": {
+				"description": "Miso soup",
+				"text": "Miso soup",
+				"text_translation": "Miso soup",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.770940170940171,
+				"y": 0.6415525114155252,
+				"w": 0.039316239316239315,
+				"h": 0.019406392694063926
+			}
+		},
+		{
+			"id": 77,
+			"info": {
+				"description": "The translation of \"小菜\" to English (US) is \"side dish.\"",
+				"text": "The translation of \"小菜\" to English (US) is \"side dish.\"",
+				"text_translation": "The translation of \"小菜\" to English (US) is \"side dish.\"",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.5222222222222223,
+				"y": 0.7226027397260274,
+				"w": 0.04188034188034188,
+				"h": 0.028538812785388126
+			}
+		},
+		{
+			"id": 78,
+			"info": {
+				"description": "Yuzu-scented radish",
+				"text": "Yuzu-scented radish",
+				"text_translation": "Yuzu-scented radish",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.5213675213675214,
+				"y": 0.7659817351598174,
+				"w": 0.05299145299145299,
+				"h": 0.02054794520547945
+			}
+		},
+		{
+			"id": 79,
+			"info": {
+				"description": "Japanese black beans",
+				"text": "Japanese black beans",
+				"text_translation": "Japanese black beans",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.5222222222222223,
+				"y": 0.7922374429223744,
+				"w": 0.05299145299145299,
+				"h": 0.02054794520547945
+			}
+		},
+		{
+			"id": 80,
+			"info": {
+				"description": "Spicy snail meat",
+				"text": "Spicy snail meat",
+				"text_translation": "Spicy snail meat",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.5230769230769231,
+				"y": 0.817351598173516,
+				"w": 0.05299145299145299,
+				"h": 0.02054794520547945
+			}
+		},
+		{
+			"id": 81,
+			"info": {
+				"description": "Cold Tossed Onions",
+				"text": "Cold Tossed Onions",
+				"text_translation": "Cold Tossed Onions",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.5230769230769231,
+				"y": 0.843607305936073,
+				"w": 0.0547008547008547,
+				"h": 0.021689497716894976
+			}
+		},
+		{
+			"id": 82,
+			"info": {
+				"description": "Japanese-style salad",
+				"text": "Japanese-style salad",
+				"text_translation": "Japanese-style salad",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.5247863247863248,
+				"y": 0.8698630136986302,
+				"w": 0.0547008547008547,
+				"h": 0.021689497716894976
+			}
+		},
+		{
+			"id": 83,
+			"info": {
+				"description": "Cod liver",
+				"text": "Cod liver",
+				"text_translation": "Cod liver",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.523931623931624,
+				"y": 0.8984018264840182,
+				"w": 0.04188034188034188,
+				"h": 0.02054794520547945
+			}
+		},
+		{
+			"id": 84,
+			"info": {
+				"description": "18 Days Beer",
+				"text": "18 Days Beer",
+				"text_translation": "18 Days Beer",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.7948717948717948,
+				"y": 0.860730593607306,
+				"w": 0.07264957264957266,
+				"h": 0.02511415525114155
+			}
+		},
+		{
+			"id": 85,
+			"info": {
+				"description": "Sake (hot/cold)",
+				"text": "Sake (hot/cold)",
+				"text_translation": "Sake (hot/cold)",
+				"img_src": null
+			},
+			"boundingBox": {
+				"x": 0.794017094017094,
+				"y": 0.889269406392694,
+				"w": 0.06923076923076923,
+				"h": 0.023972602739726026
 			}
 		}
-	]
+	],
+	"meta": {
+		"flowId": "dip.auto_group.v1",
+		"flowLabel": "DIP Auto Group",
+		"language": "en-us",
+		"totalItems": 86,
+		"contractVersion": "2026-02-06"
+	}
 }
