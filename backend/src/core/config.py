@@ -39,6 +39,11 @@ class Settings(BaseSettings):
     FATSECRET_CLIENT_ID: str
     FATSECRET_CLIENT_SECRET: str
     FATSECRET_BASE_URL: str
+    MENU_DEFAULT_FLOW_ID: str = "dip.auto_group.v1"
+    MENU_ENABLED_FLOW_IDS: str = "dip.auto_group.v1,dip.lines_only.v1"
+    MENU_FLOW_ALIASES: str = (
+        "default=dip.auto_group.v1,legacy=dip.auto_group.v1,fast=dip.lines_only.v1"
+    )
 
 
 settings = Settings()
