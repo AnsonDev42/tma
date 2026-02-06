@@ -76,6 +76,9 @@ def test_menu_analyze_full_flow(client, sample_image_bytes, monkeypatch):
     payload = response.json()
     assert "results" in payload
     assert len(payload["results"]) == 2
+    assert payload["meta"]["flowId"] == "dip.auto_group.v1"
+    assert payload["meta"]["totalItems"] == 2
+    assert payload["meta"]["language"] == "en"
 
     first = payload["results"][0]
     assert first["info"]["text"] == "Margherita Pizza"
@@ -83,3 +86,27 @@ def test_menu_analyze_full_flow(client, sample_image_bytes, monkeypatch):
     assert 0 <= first["boundingBox"]["y"] <= 1
     assert 0 <= first["boundingBox"]["w"] <= 1
     assert 0 <= first["boundingBox"]["h"] <= 1
+
+
+def test_menu_analyze_rejects_unknown_flow(client, sample_image_bytes):
+    files = {"file": ("menu.jpeg", sample_image_bytes, "image/jpeg")}
+    response = client.post(
+        "/menu/analyze?flowId=non-existing-flow",
+        files=files,
+        headers={"Accept-Language": "en"},
+    )
+
+    assert response.status_code == 400
+    detail = response.json()["detail"]
+    assert "availableFlows" in detail
+    assert "dip.auto_group.v1" in detail["availableFlows"]
+
+
+def test_menu_flow_catalog(client):
+    response = client.get("/menu/flows")
+    assert response.status_code == 200
+
+    payload = response.json()
+    assert "defaultFlowId" in payload
+    assert "flows" in payload
+    assert any(flow["id"] == "dip.auto_group.v1" for flow in payload["flows"])
