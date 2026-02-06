@@ -1,6 +1,5 @@
 import supabase from "@/lib/supabaseClient.ts";
-import { AuthChangeEvent } from "@supabase/gotrue-js";
-import { Session } from "@supabase/gotrue-js/src/lib/types.ts";
+import { AuthChangeEvent, Session } from "@supabase/supabase-js";
 import React, { ReactNode, createContext, useEffect, useState } from "react";
 
 interface SessionContextProps {
@@ -17,18 +16,34 @@ export const SessionProvider = ({ children }: { children: ReactNode }) => {
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
+		let isMounted = true;
+
+		void supabase.auth
+			.getSession()
+			.then(({ data }) => {
+				if (isMounted) {
+					setSession(data.session);
+				}
+			})
+			.finally(() => {
+				if (isMounted) {
+					setLoading(false);
+				}
+			});
+
 		const {
 			data: { subscription },
 		} = supabase.auth.onAuthStateChange(
-			(_event: AuthChangeEvent, session: Session | null) => {
-				setSession(session);
+			(_event: AuthChangeEvent, nextSession: Session | null) => {
+				setSession(nextSession);
 				setLoading(false);
 			},
 		);
 
-		setSession(supabase.auth.getSession());
-
-		return () => subscription.unsubscribe();
+		return () => {
+			isMounted = false;
+			subscription.unsubscribe();
+		};
 	}, []);
 
 	if (loading) {

@@ -6,32 +6,33 @@ interface ResponsiveState {
 	isDesktop: boolean;
 }
 
+function getResponsiveState(): ResponsiveState {
+	if (typeof window === "undefined") {
+		return { isMobile: false, isTablet: false, isDesktop: true };
+	}
+
+	const width = window.innerWidth;
+	return {
+		isMobile: width < 768,
+		isTablet: width >= 768 && width < 1024,
+		isDesktop: width >= 1024,
+	};
+}
+
 export const useResponsive = (): ResponsiveState => {
-	const [state, setState] = useState<ResponsiveState>({
-		isMobile: false,
-		isTablet: false,
-		isDesktop: true,
-	});
+	const [state, setState] = useState<ResponsiveState>(() =>
+		getResponsiveState(),
+	);
 
 	useEffect(() => {
-		const checkScreenSize = () => {
-			const width = window.innerWidth;
-			setState({
-				isMobile: width < 768,
-				isTablet: width >= 768 && width < 1024,
-				isDesktop: width >= 1024,
-			});
+		const handleResize = () => {
+			setState(getResponsiveState());
 		};
 
-		// Initial check
-		checkScreenSize();
-
-		// Add event listener
-		window.addEventListener("resize", checkScreenSize);
-
-		// Cleanup
+		handleResize();
+		window.addEventListener("resize", handleResize);
 		return () => {
-			window.removeEventListener("resize", checkScreenSize);
+			window.removeEventListener("resize", handleResize);
 		};
 	}, []);
 

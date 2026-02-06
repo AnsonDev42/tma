@@ -1,4 +1,3 @@
-import { uploadMenuData } from "@/components/features/MenuV2/UploadFormV2";
 import {
 	Language,
 	languages,
@@ -6,15 +5,21 @@ import {
 } from "@/contexts/LanguageContext";
 import { useMenuV2 } from "@/contexts/MenuV2Context";
 import { SessionContext } from "@/contexts/SessionContext.tsx";
+import { useTheme } from "@/contexts/ThemeContext";
+import { uploadMenuData } from "@/features/menu/services/menuUploadService";
 import { DishProps } from "@/types/DishProps.tsx";
-import React, { useState, useRef, useEffect } from "react";
-import { useContext } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import ReactDOM from "react-dom";
 import { toast } from "sonner";
 
 const LanguageToggle: React.FC = () => {
 	const { selectedLanguage, setSelectedLanguage } = useLanguageContext();
 	const { selectedImage, setDishes } = useMenuV2();
+	const { isDark } = useTheme();
 	const session = useContext(SessionContext)?.session;
+	const isE2EAuthBypassEnabled =
+		import.meta.env.VITE_E2E_AUTH_BYPASS === "true";
+
 	const [isOpen, setIsOpen] = useState(false);
 	const [showConfirmation, setShowConfirmation] = useState(false);
 	const [languageToConfirm, setLanguageToConfirm] = useState<Language | null>(
@@ -24,7 +29,6 @@ const LanguageToggle: React.FC = () => {
 	const dropdownRef = useRef<HTMLDivElement>(null);
 	const confirmationRef = useRef<HTMLDivElement>(null);
 
-	// Close dropdown when clicking outside
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
 			if (
@@ -53,21 +57,32 @@ const LanguageToggle: React.FC = () => {
 			return;
 		}
 
-		// If no image is uploaded yet, just change the language without confirmation
 		if (!selectedImage) {
 			setSelectedLanguage(language);
 			setIsOpen(false);
 			return;
 		}
 
-		// Otherwise, show confirmation dialog
 		setLanguageToConfirm(language);
 		setShowConfirmation(true);
 		setIsOpen(false);
 	};
 
 	const confirmLanguageChange = async () => {
-		if (!languageToConfirm || !selectedImage || !session?.access_token) {
+		if (!languageToConfirm || !selectedImage) {
+			setShowConfirmation(false);
+			return;
+		}
+
+		const jwt =
+			session?.access_token !== undefined
+				? `Bearer ${session.access_token}`
+				: isE2EAuthBypassEnabled
+					? "Bearer e2e-auth-bypass"
+					: null;
+
+		if (!jwt) {
+			toast.error("Please refresh and login before changing language.");
 			setShowConfirmation(false);
 			return;
 		}
@@ -75,10 +90,7 @@ const LanguageToggle: React.FC = () => {
 		setIsProcessing(true);
 		setSelectedLanguage(languageToConfirm);
 
-		// Get the original image data
 		const imageSrc = selectedImage.imageSrc;
-
-		// Create FormData with the original image
 		const response = await fetch(imageSrc as string);
 		const blob = await response.blob();
 		const file = new File([blob], "image.jpg", { type: "image/jpeg" });
@@ -87,46 +99,88 @@ const LanguageToggle: React.FC = () => {
 		formData.append("file", file);
 		formData.append("file_name", "reprocessed_image.jpg");
 
-		const jwt = `Bearer ${session.access_token}`;
-
-		// Reprocess the image with the new language
 		toast.promise(uploadMenuData(formData, jwt, languageToConfirm), {
-			loading: `Reprocessing menu with ${languageToConfirm.label}... (This may take a while)`,
+			loading: `Reprocessing menu with ${languageToConfirm.label}...`,
 			success: (data) => {
-				// Update the dishes with the new language data
 				setDishes(data as DishProps[]);
 				setIsProcessing(false);
 				setShowConfirmation(false);
-				return `Menu has been successfully reprocessed in ${languageToConfirm.label}!`;
+				return `Menu updated in ${languageToConfirm.label}.`;
 			},
-			error: (err) => {
+			error: (error) => {
 				setIsProcessing(false);
 				setShowConfirmation(false);
-				return `Error reprocessing menu: ${err.toString()}`;
+				return `Error: ${(error as Error).message}`;
 			},
 		});
 	};
 
-	const cancelLanguageChange = () => {
-		setLanguageToConfirm(null);
-		setShowConfirmation(false);
-	};
+	const confirmationDialog =
+		showConfirmation && typeof document !== "undefined"
+			? ReactDOM.createPortal(
+					<div className="fixed inset-0 z-[100] flex items-center justify-center overflow-y-auto bg-slate-950/60 p-4">
+						<div
+							ref={confirmationRef}
+							className={`w-full max-w-md rounded-2xl border p-5 shadow-2xl ${
+								isDark
+									? "border-slate-700 bg-slate-900 text-slate-100"
+									: "border-slate-200 bg-white text-slate-800"
+							}`}
+						>
+							<h3 className="text-lg font-semibold">Change language?</h3>
+							<p className="mt-2 text-sm text-slate-500">
+								Switching to {languageToConfirm?.label} reprocesses the image.
+							</p>
+							<div className="mt-4 flex justify-end gap-2">
+								<button
+									type="button"
+									onClick={() => setShowConfirmation(false)}
+									className={`rounded-lg px-3 py-1.5 text-sm ${
+										isDark
+											? "bg-slate-800 hover:bg-slate-700"
+											: "bg-slate-100 hover:bg-slate-200"
+									}`}
+									disabled={isProcessing}
+								>
+									Cancel
+								</button>
+								<button
+									type="button"
+									onClick={() => {
+										void confirmLanguageChange();
+									}}
+									className="rounded-lg bg-teal-600 px-3 py-1.5 text-sm font-semibold text-white hover:bg-teal-500"
+									disabled={isProcessing}
+								>
+									{isProcessing ? "Processing..." : "Confirm"}
+								</button>
+							</div>
+						</div>
+					</div>,
+					document.body,
+				)
+			: null;
 
 	return (
 		<>
 			<div className="relative" ref={dropdownRef}>
 				<button
+					type="button"
 					onClick={() => setIsOpen(!isOpen)}
-					className="flex items-center px-3 py-1 rounded-md bg-slate-300 text-slate-700 shadow hover:bg-slate-400 transition-colors"
+					className={`flex items-center rounded-lg px-3 py-1.5 text-sm font-medium ${
+						isDark
+							? "bg-slate-800 text-slate-200 hover:bg-slate-700"
+							: "bg-slate-100 text-slate-700 hover:bg-slate-200"
+					}`}
 					disabled={isProcessing}
 				>
 					<span className="mr-1">{selectedLanguage?.label || "Language"}</span>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
-						className={`h-4 w-4 transition-transform ${isOpen ? "transform rotate-180" : ""}`}
-						fill="none"
 						viewBox="0 0 24 24"
+						fill="none"
 						stroke="currentColor"
+						className={`h-4 w-4 transition-transform ${isOpen ? "rotate-180" : ""}`}
 					>
 						<path
 							strokeLinecap="round"
@@ -138,89 +192,37 @@ const LanguageToggle: React.FC = () => {
 				</button>
 
 				{isOpen && (
-					<div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50">
-						<div className="py-1">
-							{languages.map((language) => (
-								<button
-									key={language.value}
-									onClick={() => handleLanguageSelect(language)}
-									className={`
-                    w-full text-left px-4 py-2 text-sm
-                    ${
-											selectedLanguage?.value === language.value
-												? "bg-blue-100 text-blue-900"
-												: "text-gray-700 hover:bg-gray-100"
-										}
-                  `}
-									disabled={isProcessing}
-								>
-									{language.label}
-								</button>
-							))}
-						</div>
+					<div
+						className={`absolute right-0 mt-2 max-h-64 w-52 overflow-y-auto rounded-xl border p-1 shadow-xl ${
+							isDark
+								? "border-slate-700 bg-slate-900"
+								: "border-slate-200 bg-white"
+						}`}
+					>
+						{languages.map((language) => (
+							<button
+								type="button"
+								key={language.value}
+								onClick={() => handleLanguageSelect(language)}
+								className={`w-full rounded-lg px-3 py-2 text-left text-sm ${
+									selectedLanguage?.value === language.value
+										? isDark
+											? "bg-teal-300 text-slate-900"
+											: "bg-teal-100 text-teal-900"
+										: isDark
+											? "text-slate-200 hover:bg-slate-800"
+											: "text-slate-700 hover:bg-slate-100"
+								}`}
+								disabled={isProcessing}
+							>
+								{language.label}
+							</button>
+						))}
 					</div>
 				)}
 			</div>
 
-			{/* Confirmation Dialog */}
-			{showConfirmation && (
-				<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-					<div
-						ref={confirmationRef}
-						className="bg-white rounded-lg p-6 max-w-md mx-4 shadow-xl"
-					>
-						<h3 className="text-lg font-semibold text-gray-900 mb-2">
-							Change Language?
-						</h3>
-						<p className="text-gray-700 mb-4">
-							Changing the language to {languageToConfirm?.label} will reprocess
-							the menu image. This may take some time. Do you want to continue?
-						</p>
-						<div className="flex justify-end space-x-3">
-							<button
-								onClick={cancelLanguageChange}
-								className="px-4 py-2 rounded-md bg-gray-200 text-gray-800 hover:bg-gray-300 transition-colors"
-								disabled={isProcessing}
-							>
-								Cancel
-							</button>
-							<button
-								onClick={confirmLanguageChange}
-								className="px-4 py-2 rounded-md bg-blue-500 text-white hover:bg-blue-600 transition-colors flex items-center"
-								disabled={isProcessing}
-							>
-								{isProcessing ? (
-									<>
-										<svg
-											className="animate-spin -ml-1 mr-2 h-4 w-4 text-white"
-											xmlns="http://www.w3.org/2000/svg"
-											fill="none"
-											viewBox="0 0 24 24"
-										>
-											<circle
-												className="opacity-25"
-												cx="12"
-												cy="12"
-												r="10"
-												stroke="currentColor"
-												strokeWidth="4"
-											></circle>
-											<path
-												className="opacity-75"
-												fill="currentColor"
-												d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-											></path>
-										</svg>
-										Processing...
-									</>
-								) : (
-									"Confirm"
-								)}
-							</button>
-						</div>
-					</div>
-				</div>
-			)}
+			{confirmationDialog}
 		</>
 	);
 };

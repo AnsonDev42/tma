@@ -8,6 +8,8 @@
 		"build": "vite build",
 		"check": "biome check --apply .",
 		"preview": "vite preview",
+		"capture-demo-output": "node ./scripts/capture-demo-output.mjs",
+		"catpure-demo-output": "pnpm capture-demo-output",
 		"test:e2e": "playwright test",
 		"test:e2e:headed": "playwright test --headed",
 		"test:e2e:ui": "playwright test --ui",

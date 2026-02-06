@@ -1,11 +1,12 @@
 import LandingPageHero from "@/components/ui/LandingPageHero";
 import supabase from "@/lib/supabaseClient.ts";
-import { Session } from "inspector";
+import { AuthChangeEvent, Session } from "@supabase/supabase-js";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { LoginForm } from "./LoginForm";
 import { UserWelcomeBanner } from "./UserWelcomeBanner";
+
 export function Authentication() {
 	const [session, setSession] = useState<Session | null>(null);
 	const navigate = useNavigate();
@@ -15,61 +16,66 @@ export function Authentication() {
 	useEffect(() => {
 		const {
 			data: { subscription },
-			// 	workaround for build error
-			// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-		} = supabase.auth.onAuthStateChange((event: any, session: any) => {
-			setSession(session);
-			setIsLoading(false);
-			if (event === "SIGNED_IN") {
-				navigate("/home", { replace: true });
-			}
-		});
+		} = supabase.auth.onAuthStateChange(
+			async (event: AuthChangeEvent, nextSession: Session | null) => {
+				setSession(nextSession);
+				setIsLoading(false);
 
-		// Initial session check
-		// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-		// @ts-ignore
-		supabase.auth.getSession().then(({ data: { session } }) => {
-			setSession(session);
-			setIsLoading(false);
-		});
+				if (event === "SIGNED_IN") {
+					navigate("/home", { replace: true });
+				}
 
-		return () => subscription.unsubscribe();
-	}, []);
+				if (event === "PASSWORD_RECOVERY") {
+					const newPassword = prompt("Enter your new password");
+					if (!newPassword) {
+						return;
+					}
 
-	useEffect(() => {
-		// workaround for build error
-		// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-		supabase.auth.onAuthStateChange(async (event: any, _auth: any) => {
-			if (event == "PASSWORD_RECOVERY") {
-				const newPassword = prompt("Enter your a new password ");
-				const { data, error } = await supabase.auth.updateUser({
-					password: newPassword as string,
-				});
+					const { error } = await supabase.auth.updateUser({
+						password: newPassword,
+					});
 
-				if (data) {
+					if (error) {
+						alert("There was an error updating your password.");
+						return;
+					}
+
 					toast.info("Password updated successfully!");
 				}
-				if (error) {
-					alert("There was an error updating your password.");
-				}
-			}
-		});
-	}, []);
+			},
+		);
+
+		void supabase.auth
+			.getSession()
+			.then(({ data }) => {
+				setSession(data.session);
+				setIsLoading(false);
+			})
+			.catch(() => {
+				setIsLoading(false);
+			});
+
+		return () => subscription.unsubscribe();
+	}, [navigate]);
 
 	const handleGetStarted = () => {
 		loginFormRef.current?.scrollIntoView({ behavior: "smooth" });
 	};
+
 	if (isLoading) {
-		return <div>Loading...</div>; // Or a loading spinner component
+		return <div>Loading...</div>;
 	}
 
 	if (session) {
 		return <UserWelcomeBanner />;
 	}
+
 	return (
 		<div>
 			<LandingPageHero handleGetStarted={handleGetStarted} />
-			<div ref={loginFormRef}>{<LoginForm />}</div>
+			<div ref={loginFormRef}>
+				<LoginForm />
+			</div>
 		</div>
 	);
 }

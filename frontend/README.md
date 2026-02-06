@@ -1,61 +1,51 @@
-# React + TypeScript + Vite
+# TMA Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React + TypeScript + Vite frontend for menu image analysis.
 
-Currently, two official plugins are available:
+## Commands
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```bash
+pnpm dev
+pnpm build
+pnpm preview
+pnpm check
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## E2E (Playwright)
 
-## Playwright E2E
-
-### Install browser runtime
+Install browser runtime once:
 
 ```bash
 pnpm exec playwright install chromium
 ```
 
-### Run tests
+Run tests:
 
 ```bash
 pnpm test:e2e
-```
-
-### Useful variants
-
-```bash
 pnpm test:e2e:headed
 pnpm test:e2e:ui
 pnpm test:e2e:report
 ```
 
-Current e2e coverage includes an upload flow test in `tests/e2e/upload-menu.spec.ts` that:
+E2E auth bypass is enabled only inside `playwright.config.ts` via `VITE_E2E_AUTH_BYPASS=true`.
 
-- opens `/home`
-- uploads a real image file from `public/demoMenu1.jpg`
-- mocks `POST /menu/analyze`
-- verifies analyzed dish results are rendered
+## Capture Deterministic Demo Output
 
-Auth is bypassed only in Playwright via `VITE_E2E_AUTH_BYPASS=true` from `playwright.config.ts`.
+Use this when you have a raw `/menu/analyze` response and want a stable JSON file for `public/` demos.
+
+```bash
+pnpm capture-demo-output --input ./tmp/analyze-response.json --output ./public/demoDataNew.json
+```
+
+Aliases:
+
+```bash
+pnpm catpure-demo-output --input ./tmp/analyze-response.json --output ./public/demoDataNew.json
+```
+
+Optional flags:
+
+- `--stdout` print output to terminal
+- `--precision <digits>` round bounding boxes (default: `6`)
+- `--input -` read JSON from stdin

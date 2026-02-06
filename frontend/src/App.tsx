@@ -14,25 +14,21 @@ import { Toaster } from "sonner";
 
 function App() {
 	return (
-		<div>
+		<UserInfoProvider>
 			<Toaster position="top-center" richColors />
-			<UserInfoProvider>
-				<div data-theme="">
-					<Router>
-						<Routes>
-							<Route element={<ProtectedRoute />}>
-								<Route path="/home" element={<HomePageV2 />} />
-								<Route path="*" element={<Navigate to="/home" />} />
-							</Route>
-							<Route path="/login" element={<Authentication />} />
-						</Routes>
-					</Router>
-					<div className="mt-4">
-						<Footer />
-					</div>
-				</div>
-			</UserInfoProvider>
-		</div>
+			<div className="min-h-screen">
+				<Router>
+					<Routes>
+						<Route element={<ProtectedRoute />}>
+							<Route path="/home" element={<HomePageV2 />} />
+							<Route path="*" element={<Navigate to="/home" />} />
+						</Route>
+						<Route path="/login" element={<Authentication />} />
+					</Routes>
+				</Router>
+				<Footer />
+			</div>
+		</UserInfoProvider>
 	);
 }
 

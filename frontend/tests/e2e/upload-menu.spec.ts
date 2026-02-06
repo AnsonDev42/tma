@@ -99,7 +99,7 @@ async function uploadDishImageAndMockAnalyze(
 
 	await page.goto("/home");
 	await expect(
-		page.getByText("Drag & drop your menu image here"),
+		page.getByText("Upload once, review dish list fast"),
 	).toBeVisible();
 	await page.locator("#file-upload").setInputFiles(testFilePath);
 
@@ -115,7 +115,7 @@ test("uploads an image and displays analyzed dish results", async ({
 	await expect(page.getByRole("heading", { name: "Dishes" })).toBeVisible();
 	await expect(page.getByText("1 items")).toBeVisible();
 	await expect(page.getByText("California Roll")).toBeVisible();
-	await expect(page.getByAltText("Menu")).toBeVisible();
+	await expect(page.getByTestId("menu-image")).toBeVisible();
 });
 
 test("clicking a dish card opens details modal", async ({ page }) => {
@@ -158,4 +158,18 @@ test("keeps overlay and side dish list selection in sync", async ({ page }) => {
 	await expect(overlay1).toHaveAttribute("data-selected", "false");
 	await expect(page.getByTestId("dish-modal")).toBeVisible();
 	await page.getByTestId("dish-modal-close").click();
+});
+
+test("supports list-focus mode and dish location popover", async ({ page }) => {
+	await uploadDishImageAndMockAnalyze(page, singleDishAnalyzeResponse);
+
+	await page.getByRole("button", { name: /List Focus/i }).click();
+	await expect(page.getByText("Compact")).toBeVisible();
+
+	const locationTrigger = page.getByTestId("dish-location-trigger-0");
+	await locationTrigger.click();
+	await expect(page.getByTestId("dish-location-map-0")).toBeVisible();
+
+	await locationTrigger.click();
+	await expect(page.getByTestId("dish-location-map-0")).toHaveCount(0);
 });

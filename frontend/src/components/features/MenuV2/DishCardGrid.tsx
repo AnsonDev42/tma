@@ -2,16 +2,18 @@ import DishCard from "@/components/features/MenuV2/DishCard";
 import DishModal from "@/components/features/MenuV2/DishModal";
 import { useMenuV2 } from "@/contexts/MenuV2Context";
 import { DishProps } from "@/types/DishProps.tsx";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useState } from "react";
 
 interface DishCardGridProps {
 	theme: string;
 	isMobile?: boolean;
+	className?: string;
 }
 
 const DishCardGrid: React.FC<DishCardGridProps> = ({
 	theme,
 	isMobile = false,
+	className = "",
 }) => {
 	const {
 		dishes,
@@ -22,67 +24,88 @@ const DishCardGrid: React.FC<DishCardGridProps> = ({
 		addToOrder,
 	} = useMenuV2();
 
-	// Create a ref to hold the currently selected dish card
-	const selectedDishRef = useRef<HTMLDivElement>(null);
-
-	// State for the modal
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [selectedDishForModal, setSelectedDishForModal] =
 		useState<DishProps | null>(null);
 
-	// When the selected dish changes, scroll it into view
-	useEffect(() => {
-		if (selectedDishRef.current) {
-			selectedDishRef.current.scrollIntoView({
-				behavior: "smooth",
-				block: "start",
-			});
+	const selectedDishRef = useCallback((node: HTMLDivElement | null) => {
+		if (!node) {
+			return;
 		}
-	}, [selectedDish]);
+		node.scrollIntoView({
+			behavior: "smooth",
+			block: "nearest",
+		});
+	}, []);
 
-	// Function to handle opening the modal with the selected dish
-	const handleOpenModal = (dish: DishProps) => {
+	const openDishModal = (dish: DishProps) => {
 		setSelectedDishForModal(dish);
 		setIsModalOpen(true);
-	};
-
-	// Function to handle closing the modal
-	const handleCloseModal = () => {
-		setIsModalOpen(false);
 	};
 
 	if (!dishes.length) {
 		return (
 			<div
-				className={`flex flex-col items-center justify-center h-96 ${theme === "dark" ? "text-gray-400" : "text-gray-500"}`}
+				className={`flex h-full min-h-64 flex-col items-center justify-center rounded-2xl border p-5 text-center ${
+					theme === "dark"
+						? "border-slate-700 bg-slate-900 text-slate-300"
+						: "border-slate-300 bg-slate-50 text-slate-600"
+				}`}
 			>
-				<p className="text-xl font-medium">No dishes available</p>
-				<p className="mt-2">Upload a menu to see dishes</p>
+				<p className="text-lg font-semibold">No dishes available</p>
+				<p className="mt-1 text-sm">
+					Upload a menu or load a demo to see dishes.
+				</p>
 			</div>
 		);
 	}
 
 	return (
-		<div className="flex flex-col h-full">
-			<div className="flex justify-between items-center mb-4">
-				<h2
-					className={`text-xl font-semibold ${theme === "dark" ? "text-white" : "text-slate-800"}`}
+		<div
+			className={`flex h-full min-h-0 flex-col rounded-2xl border p-4 ${
+				theme === "dark"
+					? "border-slate-700 bg-slate-900"
+					: "border-slate-300 bg-slate-50"
+			} ${className}`}
+		>
+			<div className="mb-3 flex items-center justify-between">
+				<div>
+					<h2
+						className={`text-xl font-semibold ${
+							theme === "dark" ? "text-white" : "text-slate-700"
+						}`}
+					>
+						Dishes
+					</h2>
+					<p
+						className={`text-xs ${
+							theme === "dark" ? "text-slate-400" : "text-slate-500"
+						}`}
+					>
+						Tap a dish to view details and cross-check menu location.
+					</p>
+				</div>
+				<div
+					className={`rounded-full px-2.5 py-1 text-xs font-semibold ${
+						theme === "dark"
+							? "bg-slate-800 text-slate-300"
+							: "bg-slate-100 text-slate-600"
+					}`}
 				>
-					Dishes
-				</h2>
-				<div className="text-sm text-gray-500">{dishes.length} items</div>
+					{dishes.length} items
+				</div>
 			</div>
 
 			<div
-				className="overflow-y-auto pr-2 custom-scrollbar"
-				style={{
-					maxHeight: isMobile ? "calc(100% - 40px)" : "calc(100vh - 300px)",
-				}}
+				className={`flex-1 overflow-y-auto pr-1 ${
+					isMobile
+						? "max-h-[min(72vh,calc(100vh-14rem))]"
+						: "max-h-[calc(100vh-17rem)]"
+				}`}
 			>
-				<div className="grid grid-cols-1 gap-4">
+				<div className="grid grid-cols-1 gap-3">
 					{dishes.map((dish) => (
 						<DishCard
-							// Only attach the ref if this dish is selected
 							ref={selectedDish === dish.id ? selectedDishRef : null}
 							key={dish.id}
 							dish={dish}
@@ -96,7 +119,7 @@ const DishCardGrid: React.FC<DishCardGridProps> = ({
 								addToOrder(dish);
 							}}
 							onClick={() => {
-								handleOpenModal(dish);
+								openDishModal(dish);
 							}}
 							theme={theme}
 						/>
@@ -104,11 +127,10 @@ const DishCardGrid: React.FC<DishCardGridProps> = ({
 				</div>
 			</div>
 
-			{/* Dish Modal */}
 			<DishModal
 				dish={selectedDishForModal}
 				isOpen={isModalOpen}
-				onClose={handleCloseModal}
+				onClose={() => setIsModalOpen(false)}
 				onAddToOrder={addToOrder}
 				theme={theme}
 			/>
