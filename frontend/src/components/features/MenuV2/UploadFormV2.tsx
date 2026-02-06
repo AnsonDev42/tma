@@ -1,3 +1,4 @@
+import { useLanguageContext } from "@/contexts/LanguageContext.tsx";
 import { useMenuV2 } from "@/contexts/MenuV2Context";
 import { SessionContext } from "@/contexts/SessionContext.tsx";
 import { demoPresets } from "@/features/menu/config/demoPresets";
@@ -10,10 +11,7 @@ import { UploadProps } from "@/types/UploadProps.ts";
 import resizeFile from "@/utils/localImageCompmressor.ts";
 import { addUploadToLocalStorage } from "@/utils/localStorageUploadUtils.ts";
 import React, { useContext, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
-
-import { useLanguageContext } from "@/contexts/LanguageContext.tsx";
 import UploadLoginPromptSheet from "./UploadLoginPromptSheet";
 
 const MAX_FILE_SIZE = 65 * 1024 * 1024;
@@ -23,7 +21,11 @@ const ACCEPTED_IMAGE_TYPES = [
 	"image/png",
 	"image/webp",
 ];
-const LOGIN_PROMPT_SEEN_KEY = "tma-upload-login-prompt-seen";
+
+type PendingUploadAction =
+	| { type: "open-picker" }
+	| { type: "upload-file"; file: File }
+	| null;
 
 interface UploadFormV2Props {
 	theme: string;
@@ -60,7 +62,6 @@ const UploadFormV2: React.FC<UploadFormV2Props> = ({
 	const session = useContext(SessionContext)?.session;
 	const { selectedLanguage } = useLanguageContext();
 	const { setSelectedImage } = useMenuV2();
-	const navigate = useNavigate();
 	const isE2EAuthBypassEnabled =
 		import.meta.env.VITE_E2E_AUTH_BYPASS === "true";
 
@@ -69,16 +70,15 @@ const UploadFormV2: React.FC<UploadFormV2Props> = ({
 	const [isLoading, setIsLoading] = useState(false);
 	const [errorMessage, setErrorMessage] = useState<string | null>(null);
 	const [isLoginPromptOpen, setIsLoginPromptOpen] = useState(false);
-	const [isFirstPrompt, setIsFirstPrompt] = useState(false);
+	const [pendingUploadAction, setPendingUploadAction] =
+		useState<PendingUploadAction>(null);
 
-	const ensureCanUpload = () => {
+	const ensureCanUpload = (action: Exclude<PendingUploadAction, null>) => {
 		if (isE2EAuthBypassEnabled || session?.access_token) {
 			return true;
 		}
 
-		const hasSeenPrompt = window.localStorage.getItem(LOGIN_PROMPT_SEEN_KEY);
-		setIsFirstPrompt(!hasSeenPrompt);
-		window.localStorage.setItem(LOGIN_PROMPT_SEEN_KEY, "true");
+		setPendingUploadAction(action);
 		setIsLoginPromptOpen(true);
 		return false;
 	};
@@ -94,8 +94,14 @@ const UploadFormV2: React.FC<UploadFormV2Props> = ({
 		setSelectedImage(newUpload);
 	};
 
-	const processFile = async (rawFile: File) => {
-		if (!ensureCanUpload()) {
+	const processFile = async (
+		rawFile: File,
+		options?: { skipAuthGate?: boolean },
+	) => {
+		if (
+			!options?.skipAuthGate &&
+			!ensureCanUpload({ type: "upload-file", file: rawFile })
+		) {
 			return;
 		}
 
@@ -126,7 +132,7 @@ const UploadFormV2: React.FC<UploadFormV2Props> = ({
 						: null;
 
 			if (!jwt) {
-				throw new Error("Please refresh to login again. No session found.");
+				throw new Error("Please sign in before uploading a menu.");
 			}
 
 			const imageSrc = await fileToDataUrl(compressedFile);
@@ -148,10 +154,6 @@ const UploadFormV2: React.FC<UploadFormV2Props> = ({
 	};
 
 	const handleDemoSubmit = async (preset: DemoPreset) => {
-		if (!ensureCanUpload()) {
-			return;
-		}
-
 		setIsLoading(true);
 		setErrorMessage(null);
 
@@ -175,7 +177,7 @@ const UploadFormV2: React.FC<UploadFormV2Props> = ({
 			return;
 		}
 
-		if (!ensureCanUpload()) {
+		if (!ensureCanUpload({ type: "open-picker" })) {
 			return;
 		}
 
@@ -189,6 +191,25 @@ const UploadFormV2: React.FC<UploadFormV2Props> = ({
 		if (droppedFile) {
 			void processFile(droppedFile);
 		}
+	};
+
+	const handleLoginSuccess = () => {
+		setIsLoginPromptOpen(false);
+		const actionToResume = pendingUploadAction;
+		setPendingUploadAction(null);
+
+		if (!actionToResume) {
+			return;
+		}
+
+		if (actionToResume.type === "open-picker") {
+			window.setTimeout(() => {
+				inputRef.current?.click();
+			}, 220);
+			return;
+		}
+
+		void processFile(actionToResume.file, { skipAuthGate: true });
 	};
 
 	return (
@@ -328,12 +349,11 @@ const UploadFormV2: React.FC<UploadFormV2Props> = ({
 			</div>
 			<UploadLoginPromptSheet
 				isOpen={isLoginPromptOpen}
-				isFirstPrompt={isFirstPrompt}
-				onClose={() => setIsLoginPromptOpen(false)}
-				onGoToLogin={() => {
+				onClose={() => {
 					setIsLoginPromptOpen(false);
-					navigate("/login", { replace: true });
+					setPendingUploadAction(null);
 				}}
+				onSuccess={handleLoginSuccess}
 				theme={theme}
 			/>
 		</div>
