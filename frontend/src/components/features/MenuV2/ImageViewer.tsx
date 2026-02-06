@@ -1,7 +1,7 @@
 import { useBottomSheetContext } from "@/contexts/BottomSheetContext";
 import { useMenuV2 } from "@/contexts/MenuV2Context";
 import { BoundingBoxProps, DishProps } from "@/types/DishProps.tsx";
-import React, { useRef, useEffect, useState, useCallback } from "react";
+import React from "react";
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
 
 interface ImageViewerProps {
@@ -24,33 +24,6 @@ const ImageViewer: React.FC<ImageViewerProps> = ({
 
 	// Get bottom sheet context to control it when dishes are clicked
 	const { openBottomSheet, scrollToDish } = useBottomSheetContext();
-
-	const [imgDimensions, setImgDimensions] = useState({ width: 0, height: 0 });
-	const imageRef = useRef<HTMLImageElement>(null);
-	const containerRef = useRef<HTMLDivElement>(null);
-
-	// Update image dimensions when the image loads or the container resizes
-	const updateImageDimensions = useCallback(() => {
-		if (imageRef.current) {
-			const { width, height } = imageRef.current.getBoundingClientRect();
-			setImgDimensions({ width, height });
-		}
-	}, []);
-
-	useEffect(() => {
-		updateImageDimensions();
-		window.addEventListener("resize", updateImageDimensions);
-		return () => window.removeEventListener("resize", updateImageDimensions);
-	}, [updateImageDimensions]);
-
-	// Use ResizeObserver to detect changes in the container size
-	useEffect(() => {
-		const resizeObserver = new ResizeObserver(updateImageDimensions);
-		if (containerRef.current) {
-			resizeObserver.observe(containerRef.current);
-		}
-		return () => resizeObserver.disconnect();
-	}, [updateImageDimensions]);
 
 	// Handle dish hover
 	const handleMouseEnter = (dishId: number) => {
@@ -119,6 +92,7 @@ const ImageViewer: React.FC<ImageViewerProps> = ({
 				className={`relative ${theme === "dark" ? "bg-slate-700" : "bg-slate-200"} rounded-lg p-2 overflow-hidden ${isMobile ? "h-full" : ""}`}
 			>
 				<TransformWrapper
+					key={selectedImage.timestamp || String(selectedImage.imageSrc)}
 					initialScale={1}
 					minScale={0.5}
 					maxScale={4}
@@ -188,18 +162,15 @@ const ImageViewer: React.FC<ImageViewerProps> = ({
 							</div>
 
 							<TransformComponent>
-								<div ref={containerRef} className="relative">
+								<div className="relative inline-block align-top">
 									<img
 										src={selectedImage.imageSrc as string}
 										alt="Menu"
-										className="max-w-full rounded"
-										ref={imageRef}
-										onLoad={updateImageDimensions}
+										className="block max-w-full h-auto rounded"
 									/>
 
-									{imgDimensions.width > 0 &&
-										imgDimensions.height > 0 &&
-										dishes.map((dish) => (
+									<div className="absolute inset-0">
+										{dishes.map((dish) => (
 											<div
 												key={dish.id}
 												data-testid={`menu-overlay-${dish.id}`}
@@ -216,7 +187,6 @@ const ImageViewer: React.FC<ImageViewerProps> = ({
 												}`}
 												style={getOverlayStyle(
 													dish.boundingBox,
-													imgDimensions,
 													hoveredDish === dish.id,
 													selectedDish === dish.id,
 													theme,
@@ -235,6 +205,7 @@ const ImageViewer: React.FC<ImageViewerProps> = ({
 												)}
 											</div>
 										))}
+									</div>
 								</div>
 							</TransformComponent>
 						</>
@@ -257,11 +228,18 @@ const ImageViewer: React.FC<ImageViewerProps> = ({
 // Helper function to calculate the overlay style for bounding boxes
 function getOverlayStyle(
 	boundingBox: BoundingBoxProps,
-	imgDimensions: { width: number; height: number },
 	isHovered: boolean,
 	isSelected: boolean,
 	theme: string,
 ) {
+	const safeX = clamp01(boundingBox.x);
+	const safeY = clamp01(boundingBox.y);
+	const safeW = clamp01(boundingBox.w);
+	const safeH = clamp01(boundingBox.h);
+
+	// Ensure box stays within image bounds even if backend returns slightly >1 values.
+	const boundedW = Math.min(safeW, 1 - safeX);
+	const boundedH = Math.min(safeH, 1 - safeY);
 	const opacity = isHovered ? 0.6 : isSelected ? 0.5 : 0.3;
 	const bgColor =
 		isHovered || isSelected
@@ -273,10 +251,10 @@ function getOverlayStyle(
 				: "rgba(0, 0, 0, 0.1)";
 
 	return {
-		width: `${boundingBox.w * imgDimensions.width}px`,
-		height: `${boundingBox.h * imgDimensions.height}px`,
-		left: `${boundingBox.x * imgDimensions.width}px`,
-		top: `${boundingBox.y * imgDimensions.height}px`,
+		width: `${boundedW * 100}%`,
+		height: `${boundedH * 100}%`,
+		left: `${safeX * 100}%`,
+		top: `${safeY * 100}%`,
 		background: bgColor,
 		border:
 			isHovered || isSelected
@@ -290,8 +268,11 @@ function getOverlayStyle(
 					? "0 0 10px rgba(59, 130, 246, 0.5)"
 					: "0 0 10px rgba(59, 130, 246, 0.3)"
 				: "none",
-		transition: "all 0.2s ease-in-out",
 	};
+}
+
+function clamp01(value: number) {
+	return Math.max(0, Math.min(1, value));
 }
 
 export default ImageViewer;

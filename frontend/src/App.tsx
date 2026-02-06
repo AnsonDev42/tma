@@ -2,7 +2,6 @@ import "./globals.css";
 import { Authentication } from "@/components/features/Authentication/Authentication.tsx";
 import Footer from "@/components/ui/Footer.tsx";
 import { UserInfoProvider } from "@/contexts/UserInfoContext.tsx";
-import { HomePage } from "@/pages/HomePage.tsx";
 import HomePageV2 from "@/pages/HomePageV2.tsx";
 import { ProtectedRoute } from "@/routers/router.tsx";
 import {
@@ -23,7 +22,6 @@ function App() {
 						<Routes>
 							<Route element={<ProtectedRoute />}>
 								<Route path="/home" element={<HomePageV2 />} />
-								<Route path="/home/v1" element={<HomePage />} />
 								<Route path="*" element={<Navigate to="/home" />} />
 							</Route>
 							<Route path="/login" element={<Authentication />} />
