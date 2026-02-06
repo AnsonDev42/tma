@@ -2,7 +2,6 @@ import LanguageToggle from "@/components/features/MenuV2/LanguageToggle";
 import OrderPanelToggle from "@/components/ui/OrderPanelToggle";
 import { useTheme } from "@/contexts/ThemeContext";
 import React from "react";
-import { useNavigate } from "react-router-dom";
 
 interface HeaderV2Props {
 	title?: string;
@@ -16,7 +15,6 @@ const HeaderV2: React.FC<HeaderV2Props> = ({
 	onOrderPanelToggle,
 }) => {
 	const { toggleTheme, isDark } = useTheme();
-	const navigate = useNavigate();
 
 	return (
 		<header
@@ -81,18 +79,6 @@ const HeaderV2: React.FC<HeaderV2Props> = ({
 						isOpen={isOrderPanelOpen}
 						onClick={onOrderPanelToggle}
 					/>
-
-					{/* Back to V1 Button */}
-					<button
-						onClick={() => navigate("/home/v1")}
-						className={`px-3 py-1 rounded-md ${
-							isDark
-								? "bg-slate-700 text-white shadow-inner"
-								: "bg-slate-300 text-slate-700 shadow"
-						}`}
-					>
-						Back to V1
-					</button>
 				</div>
 			</div>
 		</header>
