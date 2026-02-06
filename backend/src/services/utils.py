@@ -66,9 +66,10 @@ def clean_dish_name(dish_name: str) -> str:
     return cleaned_name
 
 
-def build_search_chain(model: str = "gpt-3.5-turbo") -> RunnableSerializable:
+def build_search_chain(model: str | None = None) -> RunnableSerializable:
+    model_name = model or settings.OPENAI_MODEL
     llm = ChatOpenAI(
-        model_name=model,
+        model_name=model_name,
         openai_api_base=settings.OPENAI_BASE_URL,
         openai_api_key=settings.OPENAI_API_KEY,
     )
@@ -97,9 +98,10 @@ You are a helpful assistant specialized in food industry and translation, design
 """
 
 
-def build_recommendation_chain(model: str = "gpt-4o-mini") -> RunnableSerializable:
+def build_recommendation_chain(model: str | None = None) -> RunnableSerializable:
+    model_name = model or settings.OPENAI_MODEL
     llm = ChatOpenAI(
-        model_name=model,
+        model_name=model_name,
         openai_api_base=settings.OPENAI_BASE_URL,
         openai_api_key=settings.OPENAI_API_KEY,
     )
