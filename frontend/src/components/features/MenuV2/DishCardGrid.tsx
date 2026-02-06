@@ -8,12 +8,14 @@ interface DishCardGridProps {
 	theme: string;
 	isMobile?: boolean;
 	className?: string;
+	fillHeight?: boolean;
 }
 
 const DishCardGrid: React.FC<DishCardGridProps> = ({
 	theme,
 	isMobile = false,
 	className = "",
+	fillHeight = false,
 }) => {
 	const {
 		dishes,
@@ -98,9 +100,11 @@ const DishCardGrid: React.FC<DishCardGridProps> = ({
 
 			<div
 				className={`flex-1 overflow-y-auto pr-1 ${
-					isMobile
-						? "max-h-[min(72vh,calc(100vh-14rem))]"
-						: "max-h-[calc(100vh-17rem)]"
+					fillHeight
+						? "min-h-0"
+						: isMobile
+							? "max-h-[min(72vh,calc(100vh-14rem))]"
+							: "max-h-[calc(100vh-17rem)]"
 				}`}
 			>
 				<div className="grid grid-cols-1 gap-3">

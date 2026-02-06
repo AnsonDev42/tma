@@ -24,7 +24,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({
 			}`}
 		>
 			{customHeader ? customHeader : <Header title={title} />}
-			<div className={isMobile ? "pb-28" : "pb-12"}>{children}</div>
+			<div className={isMobile ? "pb-6" : "pb-12"}>{children}</div>
 		</div>
 	);
 };

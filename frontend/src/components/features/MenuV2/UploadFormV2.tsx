@@ -10,7 +10,7 @@ import { DemoPreset } from "@/features/menu/types";
 import { UploadProps } from "@/types/UploadProps.ts";
 import resizeFile from "@/utils/localImageCompmressor.ts";
 import { addUploadToLocalStorage } from "@/utils/localStorageUploadUtils.ts";
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import UploadLoginPromptSheet from "./UploadLoginPromptSheet";
 
@@ -30,6 +30,7 @@ type PendingUploadAction =
 interface UploadFormV2Props {
 	theme: string;
 	className?: string;
+	compact?: boolean;
 }
 
 function validateFile(file: File | null): string | null {
@@ -58,10 +59,11 @@ async function fileToDataUrl(file: Blob): Promise<string> {
 const UploadFormV2: React.FC<UploadFormV2Props> = ({
 	theme,
 	className = "",
+	compact = false,
 }) => {
 	const session = useContext(SessionContext)?.session;
 	const { selectedLanguage } = useLanguageContext();
-	const { setSelectedImage } = useMenuV2();
+	const { selectedImage, setSelectedImage } = useMenuV2();
 	const isE2EAuthBypassEnabled =
 		import.meta.env.VITE_E2E_AUTH_BYPASS === "true";
 
@@ -72,6 +74,19 @@ const UploadFormV2: React.FC<UploadFormV2Props> = ({
 	const [isLoginPromptOpen, setIsLoginPromptOpen] = useState(false);
 	const [pendingUploadAction, setPendingUploadAction] =
 		useState<PendingUploadAction>(null);
+	const [isCollapsed, setIsCollapsed] = useState(compact);
+
+	useEffect(() => {
+		if (compact) {
+			setIsCollapsed(true);
+		}
+	}, [compact]);
+
+	useEffect(() => {
+		if (selectedImage) {
+			setIsCollapsed(true);
+		}
+	}, [selectedImage]);
 
 	const ensureCanUpload = (action: Exclude<PendingUploadAction, null>) => {
 		if (isE2EAuthBypassEnabled || session?.access_token) {
@@ -232,29 +247,47 @@ const UploadFormV2: React.FC<UploadFormV2Props> = ({
 			onDrop={handleDrop}
 		>
 			<div className="flex flex-col gap-4 p-4 sm:p-5">
-				<div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-					<div>
-						<p
-							className={`text-xs font-semibold uppercase tracking-[0.18em] ${
-								theme === "dark" ? "text-teal-300" : "text-teal-700"
-							}`}
-						>
-							Menu Input
-						</p>
-						<h2
-							className={`text-lg font-semibold ${
-								theme === "dark" ? "text-white" : "text-slate-800"
-							}`}
-						>
-							Upload once, review dish list fast
-						</h2>
-						<p
-							className={`text-sm ${
-								theme === "dark" ? "text-slate-400" : "text-slate-600"
-							}`}
-						>
-							Drag an image anywhere on this panel or use the upload button.
-						</p>
+				<div className="flex flex-col gap-3">
+					<div className="flex items-center justify-between gap-3">
+						<div>
+							<p
+								className={`text-xs font-semibold uppercase tracking-[0.18em] ${
+									theme === "dark" ? "text-teal-300" : "text-teal-700"
+								}`}
+							>
+								Menu Input
+							</p>
+							<h2
+								className={`text-lg font-semibold ${
+									theme === "dark" ? "text-white" : "text-slate-800"
+								}`}
+							>
+								Upload once, review dish list fast
+							</h2>
+							{!isCollapsed && (
+								<p
+									className={`text-sm ${
+										theme === "dark" ? "text-slate-400" : "text-slate-600"
+									}`}
+								>
+									Drag an image anywhere on this panel or use the upload button.
+								</p>
+							)}
+						</div>
+
+						{selectedImage && (
+							<button
+								type="button"
+								onClick={() => setIsCollapsed((previous) => !previous)}
+								className={`rounded-full px-3 py-1.5 text-xs font-semibold transition-colors ${
+									theme === "dark"
+										? "bg-slate-800 text-slate-200 hover:bg-slate-700"
+										: "bg-slate-200 text-slate-700 hover:bg-slate-300"
+								}`}
+							>
+								{isCollapsed ? "Expand" : "Collapse"}
+							</button>
+						)}
 					</div>
 
 					<div className="flex flex-wrap items-center gap-2">
@@ -281,6 +314,63 @@ const UploadFormV2: React.FC<UploadFormV2Props> = ({
 					</div>
 				</div>
 
+				{!isCollapsed && (
+					<div>
+						{errorMessage && (
+							<p className="mb-3 text-sm text-red-500">{errorMessage}</p>
+						)}
+
+						<div className="grid gap-2 sm:grid-cols-2">
+							{demoPresets.map((preset) => (
+								<button
+									type="button"
+									key={preset.id}
+									onClick={() => {
+										void handleDemoSubmit(preset);
+									}}
+									disabled={isLoading}
+									className={`group flex items-center gap-3 rounded-xl border p-2 text-left transition-colors ${
+										theme === "dark"
+											? "border-slate-700 hover:border-slate-500"
+											: "border-slate-200 hover:border-slate-400"
+									}`}
+								>
+									<img
+										src={preset.imageSrc}
+										alt={`${preset.label} preview`}
+										className="h-14 w-14 rounded-lg object-cover"
+									/>
+									<div className="min-w-0">
+										<p
+											className={`text-sm font-semibold ${
+												theme === "dark" ? "text-white" : "text-slate-800"
+											}`}
+										>
+											{preset.label}
+										</p>
+										<p
+											className={`line-clamp-2 text-xs ${
+												theme === "dark" ? "text-slate-400" : "text-slate-600"
+											}`}
+										>
+											{preset.description}
+										</p>
+										<span
+											className={`mt-1 inline-flex rounded-full px-2 py-0.5 text-[11px] ${
+												theme === "dark"
+													? "bg-slate-800 text-slate-300"
+													: "bg-slate-100 text-slate-700"
+											}`}
+										>
+											{preset.languageLabel}
+										</span>
+									</div>
+								</button>
+							))}
+						</div>
+					</div>
+				)}
+
 				<input
 					ref={inputRef}
 					type="file"
@@ -295,57 +385,6 @@ const UploadFormV2: React.FC<UploadFormV2Props> = ({
 						event.target.value = "";
 					}}
 				/>
-
-				{errorMessage && <p className="text-sm text-red-500">{errorMessage}</p>}
-
-				<div className="grid gap-2 sm:grid-cols-2">
-					{demoPresets.map((preset) => (
-						<button
-							type="button"
-							key={preset.id}
-							onClick={() => {
-								void handleDemoSubmit(preset);
-							}}
-							disabled={isLoading}
-							className={`group flex items-center gap-3 rounded-xl border p-2 text-left transition-colors ${
-								theme === "dark"
-									? "border-slate-700 hover:border-slate-500"
-									: "border-slate-200 hover:border-slate-400"
-							}`}
-						>
-							<img
-								src={preset.imageSrc}
-								alt={`${preset.label} preview`}
-								className="h-14 w-14 rounded-lg object-cover"
-							/>
-							<div className="min-w-0">
-								<p
-									className={`text-sm font-semibold ${
-										theme === "dark" ? "text-white" : "text-slate-800"
-									}`}
-								>
-									{preset.label}
-								</p>
-								<p
-									className={`line-clamp-2 text-xs ${
-										theme === "dark" ? "text-slate-400" : "text-slate-600"
-									}`}
-								>
-									{preset.description}
-								</p>
-								<span
-									className={`mt-1 inline-flex rounded-full px-2 py-0.5 text-[11px] ${
-										theme === "dark"
-											? "bg-slate-800 text-slate-300"
-											: "bg-slate-100 text-slate-700"
-									}`}
-								>
-									{preset.languageLabel}
-								</span>
-							</div>
-						</button>
-					))}
-				</div>
 			</div>
 			<UploadLoginPromptSheet
 				isOpen={isLoginPromptOpen}
