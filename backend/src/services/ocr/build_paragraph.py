@@ -1,6 +1,7 @@
 import json
 import os
 import time
+from typing import Any
 
 from openai import OpenAI
 
@@ -10,6 +11,21 @@ from src.services.ocr.llm_utlities import LINES_to_PARGRAPH_PROMPT
 from src.services.ocr.models import GroupedParagraphs
 from src.services.utils import duration
 
+
+def _extract_parsed_paragraphs(completion: Any) -> GroupedParagraphs | None:
+    paragraphs = getattr(completion, "output_parsed", None)
+    if paragraphs is not None:
+        return paragraphs
+
+    output_items = getattr(completion, "output", [])
+    output_types = [getattr(item, "type", "unknown") for item in output_items]
+    logger.error(
+        "Paragraph parse returned no structured output; status={}, output_types={}, output_text={}",
+        getattr(completion, "status", "unknown"),
+        output_types,
+        getattr(completion, "output_text", ""),
+    )
+    return None
 
 
 @duration
@@ -27,16 +43,28 @@ def build_paragraph(dip_results_in_lines):
             {"role": "system", "content": LINES_to_PARGRAPH_PROMPT},
             {"role": "user", "content": str(all_lines)},
         ],
-        text_format=GroupedParagraphs,  
+        text_format=GroupedParagraphs,
     )
     logger.info("Call spent time:{}", time.time() - start_time)
-    paragraphs = completion.output[0].content[0].parsed
+    paragraphs = _extract_parsed_paragraphs(completion)
+    if paragraphs is None:
+        # Degrade gracefully: no grouped paragraphs, keep all lines as individual.
+        return [], dip_results_in_lines
+
     # get paragraph content and polygons
     paragraph_lines = []
-    for p in paragraphs.Paragraphs:
+    paragraph_indices: set[int] = set()
+    for paragraph in paragraphs.Paragraphs:
         complete_p = ""
         tmp_polygon = {"x_coords": [], "y_coords": []}
-        for line_idx in p.segment_lines_indices:
+        for line_idx in paragraph.segment_lines_indices:
+            if line_idx < 0 or line_idx >= len(dip_results_in_lines):
+                logger.warning(
+                    "Skipping out-of-range line index {} in grouped paragraph output",
+                    line_idx,
+                )
+                continue
+
             complete_p += dip_results_in_lines[line_idx]["content"]
             tmp_polygon["x_coords"] += dip_results_in_lines[line_idx]["polygon"][
                 "x_coords"
@@ -44,14 +72,14 @@ def build_paragraph(dip_results_in_lines):
             tmp_polygon["y_coords"] += dip_results_in_lines[line_idx]["polygon"][
                 "y_coords"
             ]
+            paragraph_indices.add(line_idx)
+
+        if not complete_p:
+            continue
+
         paragraph_lines.append({"content": complete_p, "polygon": tmp_polygon})
 
     # reduce json_data by removing the lines that are part of the paragraph content
-    paragraph_indices = set()
-    for p in paragraphs.Paragraphs:
-        for line_idx in p.segment_lines_indices:
-            paragraph_indices.add(line_idx)
-
     individual_dip_results_in_lines = []
     for i, line in enumerate(dip_results_in_lines):
         if i not in paragraph_indices:
