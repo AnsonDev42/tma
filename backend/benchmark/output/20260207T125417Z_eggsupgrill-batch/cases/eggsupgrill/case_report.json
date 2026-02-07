@@ -1,0 +1,2649 @@
+{
+  "caseId": "eggsupgrill",
+  "notes": "eggsupgrill benchmark case",
+  "image": {
+    "sourcePath": "/Users/yaowenshen/workspace/tma/backend/benchmark/dataset/eggsupgrill.jpg",
+    "artifactPath": "cases/eggsupgrill/input_image.jpg",
+    "processedWidth": 960,
+    "processedHeight": 1280
+  },
+  "reference": null,
+  "ocr": {
+    "lineCount": 160,
+    "lines": [
+      {
+        "index": 0,
+        "content": "EST.",
+        "bbox": {
+          "x": 0.2875,
+          "y": 0.103906,
+          "w": 0.073958,
+          "h": 0.01875
+        }
+      },
+      {
+        "index": 1,
+        "content": "EGGS UP",
+        "bbox": {
+          "x": 0.392708,
+          "y": 0.090625,
+          "w": 0.236458,
+          "h": 0.028125
+        }
+      },
+      {
+        "index": 2,
+        "content": "GRILLO",
+        "bbox": {
+          "x": 0.389583,
+          "y": 0.114844,
+          "w": 0.260417,
+          "h": 0.03125
+        }
+      },
+      {
+        "index": 3,
+        "content": "BITES &",
+        "bbox": {
+          "x": 0.198958,
+          "y": 0.160156,
+          "w": 0.064583,
+          "h": 0.008594
+        }
+      },
+      {
+        "index": 4,
+        "content": "BEVERAGES",
+        "bbox": {
+          "x": 0.179167,
+          "y": 0.167969,
+          "w": 0.1,
+          "h": 0.010937
+        }
+      },
+      {
+        "index": 5,
+        "content": "Free redis on coffee, tea and soft drinks.",
+        "bbox": {
+          "x": 0.157292,
+          "y": 0.179688,
+          "w": 0.140625,
+          "h": 0.010937
+        }
+      },
+      {
+        "index": 6,
+        "content": "MUFFIN | $3.99",
+        "bbox": {
+          "x": 0.178125,
+          "y": 0.192188,
+          "w": 0.090625,
+          "h": 0.010156
+        }
+      },
+      {
+        "index": 7,
+        "content": "A large muffin, buttered and grilled to a",
+        "bbox": {
+          "x": 0.153125,
+          "y": 0.201563,
+          "w": 0.138542,
+          "h": 0.011719
+        }
+      },
+      {
+        "index": 8,
+        "content": "golden-brown. Blueberry or Banana Nut.",
+        "bbox": {
+          "x": 0.151042,
+          "y": 0.208594,
+          "w": 0.139583,
+          "h": 0.010937
+        }
+      },
+      {
+        "index": 9,
+        "content": "\"Too muffins | 56.99",
+        "bbox": {
+          "x": 0.178125,
+          "y": 0.216406,
+          "w": 0.080208,
+          "h": 0.008594
+        }
+      },
+      {
+        "index": 10,
+        "content": "AVOCADO TOAST | $6.99",
+        "bbox": {
+          "x": 0.142708,
+          "y": 0.230469,
+          "w": 0.144792,
+          "h": 0.014063
+        }
+      },
+      {
+        "index": 11,
+        "content": "Toasted Tuscan bread, smashed avocado",
+        "bbox": {
+          "x": 0.141667,
+          "y": 0.239844,
+          "w": 0.144792,
+          "h": 0.011719
+        }
+      },
+      {
+        "index": 12,
+        "content": "and fresh picante salsa",
+        "bbox": {
+          "x": 0.167708,
+          "y": 0.248438,
+          "w": 0.085417,
+          "h": 0.009375
+        }
+      },
+      {
+        "index": 13,
+        "content": "BISCUITS & GRAVY | $4.49",
+        "bbox": {
+          "x": 0.130208,
+          "y": 0.263281,
+          "w": 0.159375,
+          "h": 0.013281
+        }
+      },
+      {
+        "index": 14,
+        "content": "Grilled buttermilk biscuits served with",
+        "bbox": {
+          "x": 0.1375,
+          "y": 0.274219,
+          "w": 0.139583,
+          "h": 0.010937
+        }
+      },
+      {
+        "index": 15,
+        "content": "sausage gravy for dipping.",
+        "bbox": {
+          "x": 0.155208,
+          "y": 0.282813,
+          "w": 0.097917,
+          "h": 0.010156
+        }
+      },
+      {
+        "index": 16,
+        "content": "GOOD MORNING",
+        "bbox": {
+          "x": 0.147917,
+          "y": 0.308594,
+          "w": 0.1,
+          "h": 0.010156
+        }
+      },
+      {
+        "index": 17,
+        "content": "SUNRISE | $3.79",
+        "bbox": {
+          "x": 0.145833,
+          "y": 0.317188,
+          "w": 0.102083,
+          "h": 0.010156
+        }
+      },
+      {
+        "index": 18,
+        "content": "Orange juice and club soda with a",
+        "bbox": {
+          "x": 0.130208,
+          "y": 0.327344,
+          "w": 0.13125,
+          "h": 0.010937
+        }
+      },
+      {
+        "index": 19,
+        "content": "splash of grenadine.",
+        "bbox": {
+          "x": 0.154167,
+          "y": 0.336719,
+          "w": 0.077083,
+          "h": 0.009375
+        }
+      },
+      {
+        "index": 20,
+        "content": "STRAWBERRY LEMONADE",
+        "bbox": {
+          "x": 0.110417,
+          "y": 0.353125,
+          "w": 0.1625,
+          "h": 0.0125
+        }
+      },
+      {
+        "index": 21,
+        "content": "SPRITZER | $3.79",
+        "bbox": {
+          "x": 0.13125,
+          "y": 0.3625,
+          "w": 0.113542,
+          "h": 0.010937
+        }
+      },
+      {
+        "index": 22,
+        "content": "Lemonade, club soda and fresh strawberries.",
+        "bbox": {
+          "x": 0.1,
+          "y": 0.375,
+          "w": 0.172917,
+          "h": 0.010937
+        }
+      },
+      {
+        "index": 23,
+        "content": "CARAMEL CINNAMON",
+        "bbox": {
+          "x": 0.1125,
+          "y": 0.392969,
+          "w": 0.139583,
+          "h": 0.010937
+        }
+      },
+      {
+        "index": 24,
+        "content": "SMILE | $2.99",
+        "bbox": {
+          "x": 0.133333,
+          "y": 0.401562,
+          "w": 0.092708,
+          "h": 0.010937
+        }
+      },
+      {
+        "index": 25,
+        "content": "Dark roast coffee, cream, cinnamon bun syrup,",
+        "bbox": {
+          "x": 0.0875,
+          "y": 0.414844,
+          "w": 0.184375,
+          "h": 0.010156
+        }
+      },
+      {
+        "index": 26,
+        "content": "topped with whipped cream, caramel drizzle",
+        "bbox": {
+          "x": 0.0875,
+          "y": 0.424219,
+          "w": 0.179167,
+          "h": 0.010156
+        }
+      },
+      {
+        "index": 27,
+        "content": "and dinnamon sugar.",
+        "bbox": {
+          "x": 0.13125,
+          "y": 0.433594,
+          "w": 0.085417,
+          "h": 0.008594
+        }
+      },
+      {
+        "index": 28,
+        "content": "HAZELNUT HARMONY | $2.99",
+        "bbox": {
+          "x": 0.073958,
+          "y": 0.452344,
+          "w": 0.194792,
+          "h": 0.013281
+        }
+      },
+      {
+        "index": 29,
+        "content": "Dark roast coffee, cream and hazelnut, topped",
+        "bbox": {
+          "x": 0.075,
+          "y": 0.464844,
+          "w": 0.189583,
+          "h": 0.011719
+        }
+      },
+      {
+        "index": 30,
+        "content": "with whipped cream and praline pecans.",
+        "bbox": {
+          "x": 0.079167,
+          "y": 0.475781,
+          "w": 0.169792,
+          "h": 0.010937
+        }
+      },
+      {
+        "index": 31,
+        "content": "CAFÉ MOCHA | $2.99",
+        "bbox": {
+          "x": 0.089583,
+          "y": 0.495312,
+          "w": 0.14375,
+          "h": 0.013281
+        }
+      },
+      {
+        "index": 32,
+        "content": "A blend of our house-brewed coffee with our",
+        "bbox": {
+          "x": 0.066667,
+          "y": 0.509375,
+          "w": 0.185417,
+          "h": 0.011719
+        }
+      },
+      {
+        "index": 33,
+        "content": "gourmet cocoa, topped with whipped cream.",
+        "bbox": {
+          "x": 0.0625,
+          "y": 0.520312,
+          "w": 0.188542,
+          "h": 0.010937
+        }
+      },
+      {
+        "index": 34,
+        "content": "FRENCH VANILLA",
+        "bbox": {
+          "x": 0.088542,
+          "y": 0.542969,
+          "w": 0.120833,
+          "h": 0.010156
+        }
+      },
+      {
+        "index": 35,
+        "content": "CAPPUCCINO | $2.99",
+        "bbox": {
+          "x": 0.075,
+          "y": 0.553125,
+          "w": 0.147917,
+          "h": 0.010937
+        }
+      },
+      {
+        "index": 36,
+        "content": "A comforting creamy cappuccino",
+        "bbox": {
+          "x": 0.075,
+          "y": 0.567187,
+          "w": 0.142708,
+          "h": 0.010937
+        }
+      },
+      {
+        "index": 37,
+        "content": "with vanilla flavor.",
+        "bbox": {
+          "x": 0.103125,
+          "y": 0.578906,
+          "w": 0.079167,
+          "h": 0.008594
+        }
+      },
+      {
+        "index": 38,
+        "content": "CLASSIC MIMOSA | $5.99",
+        "bbox": {
+          "x": 0.046875,
+          "y": 0.607031,
+          "w": 0.184375,
+          "h": 0.0125
+        }
+      },
+      {
+        "index": 39,
+        "content": "Orange juice and sparkling wine.",
+        "bbox": {
+          "x": 0.0625,
+          "y": 0.621094,
+          "w": 0.144792,
+          "h": 0.011719
+        }
+      },
+      {
+        "index": 40,
+        "content": "Carafe | $19.99",
+        "bbox": {
+          "x": 0.09375,
+          "y": 0.632812,
+          "w": 0.076042,
+          "h": 0.011719
+        }
+      },
+      {
+        "index": 41,
+        "content": "POINSETTIA MIMOSA | $5.99",
+        "bbox": {
+          "x": 0.025,
+          "y": 0.653125,
+          "w": 0.209375,
+          "h": 0.014063
+        }
+      },
+      {
+        "index": 42,
+        "content": "Cranberry juice and sparkling wine.",
+        "bbox": {
+          "x": 0.047917,
+          "y": 0.666406,
+          "w": 0.15625,
+          "h": 0.013281
+        }
+      },
+      {
+        "index": 43,
+        "content": "Carafe | $19.99",
+        "bbox": {
+          "x": 0.083333,
+          "y": 0.678125,
+          "w": 0.078125,
+          "h": 0.011719
+        }
+      },
+      {
+        "index": 44,
+        "content": "EGGS UP",
+        "bbox": {
+          "x": 0.13125,
+          "y": 0.741406,
+          "w": 0.05625,
+          "h": 0.013281
+        }
+      },
+      {
+        "index": 45,
+        "content": "GRILL",
+        "bbox": {
+          "x": 0.135417,
+          "y": 0.751563,
+          "w": 0.046875,
+          "h": 0.014063
+        }
+      },
+      {
+        "index": 46,
+        "content": "EGGS UP",
+        "bbox": {
+          "x": 0.046875,
+          "y": 0.758594,
+          "w": 0.061458,
+          "h": 0.01875
+        }
+      },
+      {
+        "index": 47,
+        "content": "GRILL",
+        "bbox": {
+          "x": 0.055208,
+          "y": 0.772656,
+          "w": 0.042708,
+          "h": 0.015625
+        }
+      },
+      {
+        "index": 48,
+        "content": "SODAS AND SUCH",
+        "bbox": {
+          "x": 0.007292,
+          "y": 0.839844,
+          "w": 0.161458,
+          "h": 0.017188
+        }
+      },
+      {
+        "index": 49,
+        "content": "ON THE BACK.",
+        "bbox": {
+          "x": 0.019792,
+          "y": 0.853906,
+          "w": 0.128125,
+          "h": 0.01875
+        }
+      },
+      {
+        "index": 50,
+        "content": "Our Roots",
+        "bbox": {
+          "x": 0.433333,
+          "y": 0.173437,
+          "w": 0.165625,
+          "h": 0.025781
+        }
+      },
+      {
+        "index": 51,
+        "content": "Eggs Up Grill was founded In 1997 in Pawleys",
+        "bbox": {
+          "x": 0.383333,
+          "y": 0.20625,
+          "w": 0.275,
+          "h": 0.0125
+        }
+      },
+      {
+        "index": 52,
+        "content": "Island, South Carolina. Its mission then-as It",
+        "bbox": {
+          "x": 0.379167,
+          "y": 0.215625,
+          "w": 0.284375,
+          "h": 0.013281
+        }
+      },
+      {
+        "index": 53,
+        "content": "is now-was to make people smile ... by providing",
+        "bbox": {
+          "x": 0.370833,
+          "y": 0.226562,
+          "w": 0.298958,
+          "h": 0.013281
+        }
+      },
+      {
+        "index": 54,
+        "content": "wonderful meals. friendly, welcoming service,",
+        "bbox": {
+          "x": 0.38125,
+          "y": 0.2375,
+          "w": 0.279167,
+          "h": 0.0125
+        }
+      },
+      {
+        "index": 55,
+        "content": "and a real sense of neighborhood. We're so glad",
+        "bbox": {
+          "x": 0.371875,
+          "y": 0.248438,
+          "w": 0.297917,
+          "h": 0.0125
+        }
+      },
+      {
+        "index": 56,
+        "content": "to serve you today, and please know that even",
+        "bbox": {
+          "x": 0.375,
+          "y": 0.259375,
+          "w": 0.290625,
+          "h": 0.0125
+        }
+      },
+      {
+        "index": 57,
+        "content": "though it's not listed here, a smile is always",
+        "bbox": {
+          "x": 0.38125,
+          "y": 0.270313,
+          "w": 0.278125,
+          "h": 0.0125
+        }
+      },
+      {
+        "index": 58,
+        "content": "on the house!",
+        "bbox": {
+          "x": 0.476042,
+          "y": 0.284375,
+          "w": 0.0875,
+          "h": 0.008594
+        }
+      },
+      {
+        "index": 59,
+        "content": "Founder's Favorites",
+        "bbox": {
+          "x": 0.404167,
+          "y": 0.301563,
+          "w": 0.214583,
+          "h": 0.01875
+        }
+      },
+      {
+        "index": 60,
+        "content": "FOUNDER'S HASH",
+        "bbox": {
+          "x": 0.3625,
+          "y": 0.328125,
+          "w": 0.114583,
+          "h": 0.011719
+        }
+      },
+      {
+        "index": 61,
+        "content": "& EGGS | $10.79",
+        "bbox": {
+          "x": 0.366667,
+          "y": 0.3375,
+          "w": 0.107292,
+          "h": 0.010937
+        }
+      },
+      {
+        "index": 62,
+        "content": "Founder's recipe comed beef hash with",
+        "bbox": {
+          "x": 0.340625,
+          "y": 0.346875,
+          "w": 0.154167,
+          "h": 0.0125
+        }
+      },
+      {
+        "index": 63,
+        "content": "potatoes, onions, special spices,-",
+        "bbox": {
+          "x": 0.354167,
+          "y": 0.357031,
+          "w": 0.136458,
+          "h": 0.010937
+        }
+      },
+      {
+        "index": 64,
+        "content": "served with two eggs; toast and choice",
+        "bbox": {
+          "x": 0.339583,
+          "y": 0.364844,
+          "w": 0.155208,
+          "h": 0.011719
+        }
+      },
+      {
+        "index": 65,
+        "content": "of home fries or grits.",
+        "bbox": {
+          "x": 0.373958,
+          "y": 0.375,
+          "w": 0.085417,
+          "h": 0.010156
+        }
+      },
+      {
+        "index": 66,
+        "content": "SHRIMP & GRITS",
+        "bbox": {
+          "x": 0.545833,
+          "y": 0.330469,
+          "w": 0.107292,
+          "h": 0.010156
+        }
+      },
+      {
+        "index": 67,
+        "content": "OMELET | $11.49",
+        "bbox": {
+          "x": 0.546875,
+          "y": 0.339062,
+          "w": 0.108333,
+          "h": 0.010156
+        }
+      },
+      {
+        "index": 68,
+        "content": "Shrimp, andouille sausage, green peppers,",
+        "bbox": {
+          "x": 0.517708,
+          "y": 0.35,
+          "w": 0.166667,
+          "h": 0.009375
+        }
+      },
+      {
+        "index": 69,
+        "content": "sautéed onions, and Swiss cheese omelet",
+        "bbox": {
+          "x": 0.51875,
+          "y": 0.357812,
+          "w": 0.166667,
+          "h": 0.010156
+        }
+      },
+      {
+        "index": 70,
+        "content": "served with fire-roasted tomato.",
+        "bbox": {
+          "x": 0.5375,
+          "y": 0.367969,
+          "w": 0.128125,
+          "h": 0.008594
+        }
+      },
+      {
+        "index": 71,
+        "content": "and spinach grits.",
+        "bbox": {
+          "x": 0.566667,
+          "y": 0.377344,
+          "w": 0.072917,
+          "h": 0.007812
+        }
+      },
+      {
+        "index": 72,
+        "content": "SOUTHERN",
+        "bbox": {
+          "x": 0.566667,
+          "y": 0.396875,
+          "w": 0.072917,
+          "h": 0.009375
+        }
+      },
+      {
+        "index": 73,
+        "content": "STAPLES | $9.29",
+        "bbox": {
+          "x": 0.546875,
+          "y": 0.40625,
+          "w": 0.110417,
+          "h": 0.009375
+        }
+      },
+      {
+        "index": 74,
+        "content": "Two eggs; sausage biscuit, a side of",
+        "bbox": {
+          "x": 0.529167,
+          "y": 0.417969,
+          "w": 0.15,
+          "h": 0.010156
+        }
+      },
+      {
+        "index": 75,
+        "content": "sausage gravy, with home fries or grits.",
+        "bbox": {
+          "x": 0.523958,
+          "y": 0.428906,
+          "w": 0.157292,
+          "h": 0.009375
+        }
+      },
+      {
+        "index": 76,
+        "content": "SIGNATURE OMELETS",
+        "bbox": {
+          "x": 0.396875,
+          "y": 0.494531,
+          "w": 0.220833,
+          "h": 0.016406
+        }
+      },
+      {
+        "index": 77,
+        "content": "Made with three hand-cracked, farm-fresh eggs: served with toast",
+        "bbox": {
+          "x": 0.367708,
+          "y": 0.510938,
+          "w": 0.279167,
+          "h": 0.013281
+        }
+      },
+      {
+        "index": 78,
+        "content": "and home fries, grits or fresh fruit.",
+        "bbox": {
+          "x": 0.433333,
+          "y": 0.523438,
+          "w": 0.147917,
+          "h": 0.010937
+        }
+      },
+      {
+        "index": 79,
+        "content": "PATTY O'SULLIVAN*",
+        "bbox": {
+          "x": 0.33125,
+          "y": 0.54375,
+          "w": 0.140625,
+          "h": 0.0125
+        }
+      },
+      {
+        "index": 80,
+        "content": "$10.99",
+        "bbox": {
+          "x": 0.375,
+          "y": 0.555469,
+          "w": 0.053125,
+          "h": 0.011719
+        }
+      },
+      {
+        "index": 81,
+        "content": "Founder's recipe corned beef hash with",
+        "bbox": {
+          "x": 0.310417,
+          "y": 0.56875,
+          "w": 0.176042,
+          "h": 0.011719
+        }
+      },
+      {
+        "index": 82,
+        "content": "potatoes, onions and special spices with",
+        "bbox": {
+          "x": 0.308333,
+          "y": 0.580469,
+          "w": 0.18125,
+          "h": 0.011719
+        }
+      },
+      {
+        "index": 83,
+        "content": "melted Swiss cheese.",
+        "bbox": {
+          "x": 0.35,
+          "y": 0.592187,
+          "w": 0.096875,
+          "h": 0.010156
+        }
+      },
+      {
+        "index": 84,
+        "content": "THE GREEK* | $9.99",
+        "bbox": {
+          "x": 0.319792,
+          "y": 0.614062,
+          "w": 0.151042,
+          "h": 0.015625
+        }
+      },
+      {
+        "index": 85,
+        "content": "Spinach, feta cheese, tomatoes and",
+        "bbox": {
+          "x": 0.311458,
+          "y": 0.628906,
+          "w": 0.165625,
+          "h": 0.014063
+        }
+      },
+      {
+        "index": 86,
+        "content": "black olives.",
+        "bbox": {
+          "x": 0.364583,
+          "y": 0.642969,
+          "w": 0.060417,
+          "h": 0.010937
+        }
+      },
+      {
+        "index": 87,
+        "content": "PHILLY CHEESE STEAK*",
+        "bbox": {
+          "x": 0.301042,
+          "y": 0.664844,
+          "w": 0.180208,
+          "h": 0.015625
+        }
+      },
+      {
+        "index": 88,
+        "content": "$10.49",
+        "bbox": {
+          "x": 0.363542,
+          "y": 0.679688,
+          "w": 0.05625,
+          "h": 0.011719
+        }
+      },
+      {
+        "index": 89,
+        "content": "Thinly-sliced steak with American cheese,",
+        "bbox": {
+          "x": 0.292708,
+          "y": 0.694531,
+          "w": 0.195833,
+          "h": 0.013281
+        }
+      },
+      {
+        "index": 90,
+        "content": "onions and peppers.",
+        "bbox": {
+          "x": 0.340625,
+          "y": 0.708594,
+          "w": 0.097917,
+          "h": 0.011719
+        }
+      },
+      {
+        "index": 91,
+        "content": "GOODNESS GRACIOUS*",
+        "bbox": {
+          "x": 0.294792,
+          "y": 0.733594,
+          "w": 0.182292,
+          "h": 0.013281
+        }
+      },
+      {
+        "index": 92,
+        "content": "$9.99",
+        "bbox": {
+          "x": 0.3625,
+          "y": 0.747656,
+          "w": 0.046875,
+          "h": 0.0125
+        }
+      },
+      {
+        "index": 93,
+        "content": "Egg+ white omelet with spinach, onions,",
+        "bbox": {
+          "x": 0.2875,
+          "y": 0.7625,
+          "w": 0.19375,
+          "h": 0.015625
+        }
+      },
+      {
+        "index": 94,
+        "content": "mushrooms and feta cheese topped with",
+        "bbox": {
+          "x": 0.283333,
+          "y": 0.777344,
+          "w": 0.2,
+          "h": 0.014063
+        }
+      },
+      {
+        "index": 95,
+        "content": "sliced tomatoes.",
+        "bbox": {
+          "x": 0.340625,
+          "y": 0.791406,
+          "w": 0.084375,
+          "h": 0.0125
+        }
+      },
+      {
+        "index": 96,
+        "content": "Add turkey bacon for $1.29",
+        "bbox": {
+          "x": 0.311458,
+          "y": 0.804688,
+          "w": 0.138542,
+          "h": 0.014063
+        }
+      },
+      {
+        "index": 97,
+        "content": "THE VEGGIE* | $9.99",
+        "bbox": {
+          "x": 0.539583,
+          "y": 0.546875,
+          "w": 0.15,
+          "h": 0.011719
+        }
+      },
+      {
+        "index": 98,
+        "content": "Sautéed mushrooms, peppers, onions",
+        "bbox": {
+          "x": 0.530208,
+          "y": 0.560156,
+          "w": 0.16875,
+          "h": 0.010937
+        }
+      },
+      {
+        "index": 99,
+        "content": "and tomatoes. Add cheese for $0.89",
+        "bbox": {
+          "x": 0.532292,
+          "y": 0.571875,
+          "w": 0.164583,
+          "h": 0.010156
+        }
+      },
+      {
+        "index": 100,
+        "content": "TEXAS FARMHOUSE*",
+        "bbox": {
+          "x": 0.536458,
+          "y": 0.594531,
+          "w": 0.15625,
+          "h": 0.011719
+        }
+      },
+      {
+        "index": 101,
+        "content": "$11.49",
+        "bbox": {
+          "x": 0.589583,
+          "y": 0.607031,
+          "w": 0.053125,
+          "h": 0.010937
+        }
+      },
+      {
+        "index": 102,
+        "content": "A four-egg omelet loaded with bacon,",
+        "bbox": {
+          "x": 0.530208,
+          "y": 0.621875,
+          "w": 0.175,
+          "h": 0.011719
+        }
+      },
+      {
+        "index": 103,
+        "content": "andouille sausage, mushrooms, home fries,",
+        "bbox": {
+          "x": 0.517708,
+          "y": 0.634375,
+          "w": 0.202083,
+          "h": 0.0125
+        }
+      },
+      {
+        "index": 104,
+        "content": "pepper jack cheese, pickled jalapeños and",
+        "bbox": {
+          "x": 0.516667,
+          "y": 0.648438,
+          "w": 0.204167,
+          "h": 0.011719
+        }
+      },
+      {
+        "index": 105,
+        "content": "green chiles. With sausage gravy, and",
+        "bbox": {
+          "x": 0.532292,
+          "y": 0.661719,
+          "w": 0.175,
+          "h": 0.013281
+        }
+      },
+      {
+        "index": 106,
+        "content": "green chiles.",
+        "bbox": {
+          "x": 0.5875,
+          "y": 0.676562,
+          "w": 0.0625,
+          "h": 0.010937
+        }
+      },
+      {
+        "index": 107,
+        "content": "BUILD YOUR OWN* | $6.99",
+        "bbox": {
+          "x": 0.516667,
+          "y": 0.7,
+          "w": 0.209375,
+          "h": 0.014844
+        }
+      },
+      {
+        "index": 108,
+        "content": "Veggies | $0,89 ea.",
+        "bbox": {
+          "x": 0.570833,
+          "y": 0.716406,
+          "w": 0.103125,
+          "h": 0.013281
+        }
+      },
+      {
+        "index": 109,
+        "content": "Mushrooms, onions, peppers, avocado, .",
+        "bbox": {
+          "x": 0.527083,
+          "y": 0.729688,
+          "w": 0.196875,
+          "h": 0.014063
+        }
+      },
+      {
+        "index": 110,
+        "content": "tomatoes, spinach, olives, jalapeños",
+        "bbox": {
+          "x": 0.533333,
+          "y": 0.74375,
+          "w": 0.179167,
+          "h": 0.0125
+        }
+      },
+      {
+        "index": 111,
+        "content": "Cheese | $0.89 ea.",
+        "bbox": {
+          "x": 0.571875,
+          "y": 0.757031,
+          "w": 0.103125,
+          "h": 0.0125
+        }
+      },
+      {
+        "index": 112,
+        "content": "Feta, cheddar, Swiss, pepper jack, American",
+        "bbox": {
+          "x": 0.514583,
+          "y": 0.769531,
+          "w": 0.217708,
+          "h": 0.014844
+        }
+      },
+      {
+        "index": 113,
+        "content": "Meat | $1.29 ea.",
+        "bbox": {
+          "x": 0.578125,
+          "y": 0.784375,
+          "w": 0.091667,
+          "h": 0.013281
+        }
+      },
+      {
+        "index": 114,
+        "content": "Sausage (turkey/pork/andouille), bacon",
+        "bbox": {
+          "x": 0.523958,
+          "y": 0.797656,
+          "w": 0.205208,
+          "h": 0.014844
+        }
+      },
+      {
+        "index": 115,
+        "content": "(turkey/pork), Canadian bacon or ham",
+        "bbox": {
+          "x": 0.527083,
+          "y": 0.811719,
+          "w": 0.196875,
+          "h": 0.014844
+        }
+      },
+      {
+        "index": 116,
+        "content": "Serving our full menu all day!",
+        "bbox": {
+          "x": 0.242708,
+          "y": 0.84375,
+          "w": 0.532292,
+          "h": 0.046094
+        }
+      },
+      {
+        "index": 117,
+        "content": "BREAKFAST",
+        "bbox": {
+          "x": 0.75,
+          "y": 0.157812,
+          "w": 0.101042,
+          "h": 0.014063
+        }
+      },
+      {
+        "index": 118,
+        "content": "CLASSICS",
+        "bbox": {
+          "x": 0.75625,
+          "y": 0.167969,
+          "w": 0.090625,
+          "h": 0.0125
+        }
+      },
+      {
+        "index": 119,
+        "content": "Farm-fresh eggs, hand-cracked, cooked to order.",
+        "bbox": {
+          "x": 0.716667,
+          "y": 0.177344,
+          "w": 0.177083,
+          "h": 0.014844
+        }
+      },
+      {
+        "index": 120,
+        "content": "Add an egg* | $0.99",
+        "bbox": {
+          "x": 0.763542,
+          "y": 0.186719,
+          "w": 0.082292,
+          "h": 0.010937
+        }
+      },
+      {
+        "index": 121,
+        "content": "HOMESTEAD PLATTER | $10.79",
+        "bbox": {
+          "x": 0.716667,
+          "y": 0.197656,
+          "w": 0.186458,
+          "h": 0.017188
+        }
+      },
+      {
+        "index": 122,
+        "content": "Two eggs\" four slices of bacon, four pieces of",
+        "bbox": {
+          "x": 0.726042,
+          "y": 0.207813,
+          "w": 0.170833,
+          "h": 0.014844
+        }
+      },
+      {
+        "index": 123,
+        "content": "sausage and a biscuit with a side of sausage gravy.",
+        "bbox": {
+          "x": 0.716667,
+          "y": 0.215625,
+          "w": 0.191667,
+          "h": 0.016406
+        }
+      },
+      {
+        "index": 124,
+        "content": "STEAK & EGGS | $11.99",
+        "bbox": {
+          "x": 0.740625,
+          "y": 0.232031,
+          "w": 0.148958,
+          "h": 0.014844
+        }
+      },
+      {
+        "index": 125,
+        "content": "Two eggs: 6 oz sirloin steak; grilled tomato",
+        "bbox": {
+          "x": 0.732292,
+          "y": 0.240625,
+          "w": 0.169792,
+          "h": 0.015625
+        }
+      },
+      {
+        "index": 126,
+        "content": "and garlic toast, with home fries or grits.",
+        "bbox": {
+          "x": 0.740625,
+          "y": 0.249219,
+          "w": 0.154167,
+          "h": 0.014844
+        }
+      },
+      {
+        "index": 127,
+        "content": "MUFFIN & EGGS | $8.49",
+        "bbox": {
+          "x": 0.744792,
+          "y": 0.264844,
+          "w": 0.152083,
+          "h": 0.015625
+        }
+      },
+      {
+        "index": 128,
+        "content": "Two eggs\" choice of a golden-grilled blueberry",
+        "bbox": {
+          "x": 0.732292,
+          "y": 0.274219,
+          "w": 0.18125,
+          "h": 0.016406
+        }
+      },
+      {
+        "index": 129,
+        "content": "or banana nut muffin with fresh fruit.",
+        "bbox": {
+          "x": 0.752083,
+          "y": 0.283594,
+          "w": 0.14375,
+          "h": 0.014063
+        }
+      },
+      {
+        "index": 130,
+        "content": "SLICES, STRIPS &",
+        "bbox": {
+          "x": 0.769792,
+          "y": 0.301563,
+          "w": 0.115625,
+          "h": 0.0125
+        }
+      },
+      {
+        "index": 131,
+        "content": "SPUDS | $9.49",
+        "bbox": {
+          "x": 0.780208,
+          "y": 0.310156,
+          "w": 0.097917,
+          "h": 0.0125
+        }
+      },
+      {
+        "index": 132,
+        "content": "Two slices of cinnamon swirl French toast,",
+        "bbox": {
+          "x": 0.746875,
+          "y": 0.31875,
+          "w": 0.169792,
+          "h": 0.014844
+        }
+      },
+      {
+        "index": 133,
+        "content": "bacon and home fries.",
+        "bbox": {
+          "x": 0.786458,
+          "y": 0.329688,
+          "w": 0.092708,
+          "h": 0.010156
+        }
+      },
+      {
+        "index": 134,
+        "content": "LITTLE WAFFLE IN THE",
+        "bbox": {
+          "x": 0.760417,
+          "y": 0.345313,
+          "w": 0.15,
+          "h": 0.014063
+        }
+      },
+      {
+        "index": 135,
+        "content": "HEN HOUSE | $8.49",
+        "bbox": {
+          "x": 0.769792,
+          "y": 0.354687,
+          "w": 0.134375,
+          "h": 0.013281
+        }
+      },
+      {
+        "index": 136,
+        "content": "Half waffle, two eggs* and bacon or sausage.",
+        "bbox": {
+          "x": 0.744792,
+          "y": 0.364844,
+          "w": 0.190625,
+          "h": 0.015625
+        }
+      },
+      {
+        "index": 137,
+        "content": "Substitute whole waffle | $1.50",
+        "bbox": {
+          "x": 0.773958,
+          "y": 0.374219,
+          "w": 0.135417,
+          "h": 0.014063
+        }
+      },
+      {
+        "index": 138,
+        "content": "AVOCADO TOAST &",
+        "bbox": {
+          "x": 0.778125,
+          "y": 0.39375,
+          "w": 0.135417,
+          "h": 0.014063
+        }
+      },
+      {
+        "index": 139,
+        "content": "EGGS | $8.99",
+        "bbox": {
+          "x": 0.798958,
+          "y": 0.403906,
+          "w": 0.09375,
+          "h": 0.013281
+        }
+      },
+      {
+        "index": 140,
+        "content": "Toasted Tuscan bread, smashed avocado,",
+        "bbox": {
+          "x": 0.759375,
+          "y": 0.414062,
+          "w": 0.179167,
+          "h": 0.015625
+        }
+      },
+      {
+        "index": 141,
+        "content": "fresh picante salsa, served with two eggs.\"",
+        "bbox": {
+          "x": 0.758333,
+          "y": 0.424219,
+          "w": 0.183333,
+          "h": 0.014844
+        }
+      },
+      {
+        "index": 142,
+        "content": "CHICKEN & WAFFLES | $10.99",
+        "bbox": {
+          "x": 0.745833,
+          "y": 0.444531,
+          "w": 0.21875,
+          "h": 0.017969
+        }
+      },
+      {
+        "index": 143,
+        "content": "Three chicken tenders over a waffle with",
+        "bbox": {
+          "x": 0.765625,
+          "y": 0.458594,
+          "w": 0.180208,
+          "h": 0.014844
+        }
+      },
+      {
+        "index": 144,
+        "content": "powdered sugar, spicy honey drizzle",
+        "bbox": {
+          "x": 0.779167,
+          "y": 0.469531,
+          "w": 0.159375,
+          "h": 0.014063
+        }
+      },
+      {
+        "index": 145,
+        "content": "and fresh chopped chives.",
+        "bbox": {
+          "x": 0.801042,
+          "y": 0.480469,
+          "w": 0.11875,
+          "h": 0.0125
+        }
+      },
+      {
+        "index": 146,
+        "content": "THE CLASSIC | $8.49",
+        "bbox": {
+          "x": 0.786458,
+          "y": 0.503125,
+          "w": 0.157292,
+          "h": 0.016406
+        }
+      },
+      {
+        "index": 147,
+        "content": "Eggs, bacon or sausage, with home",
+        "bbox": {
+          "x": 0.784375,
+          "y": 0.517188,
+          "w": 0.165625,
+          "h": 0.014063
+        }
+      },
+      {
+        "index": 148,
+        "content": "fries or grits and toast.",
+        "bbox": {
+          "x": 0.815625,
+          "y": 0.528906,
+          "w": 0.107292,
+          "h": 0.011719
+        }
+      },
+      {
+        "index": 149,
+        "content": "Substitute county or city ham | $2.99",
+        "bbox": {
+          "x": 0.779167,
+          "y": 0.538281,
+          "w": 0.183333,
+          "h": 0.014844
+        }
+      },
+      {
+        "index": 150,
+        "content": "THE GRAND CLASSIC",
+        "bbox": {
+          "x": 0.814583,
+          "y": 0.707031,
+          "w": 0.173958,
+          "h": 0.014844
+        }
+      },
+      {
+        "index": 151,
+        "content": "$10.99",
+        "bbox": {
+          "x": 0.878125,
+          "y": 0.724219,
+          "w": 0.057292,
+          "h": 0.011719
+        }
+      },
+      {
+        "index": 152,
+        "content": "Have it all. Three eggs, bacon, sausage",
+        "bbox": {
+          "x": 0.804167,
+          "y": 0.741406,
+          "w": 0.194792,
+          "h": 0.013281
+        }
+      },
+      {
+        "index": 153,
+        "content": "home fries, grits and toast.",
+        "bbox": {
+          "x": 0.839583,
+          "y": 0.757031,
+          "w": 0.14375,
+          "h": 0.0125
+        }
+      },
+      {
+        "index": 154,
+        "content": "*ITEMS ARE OFFERED RAW OR UNDERC",
+        "bbox": {
+          "x": 0.808333,
+          "y": 0.816406,
+          "w": 0.190625,
+          "h": 0.014844
+        }
+      },
+      {
+        "index": 155,
+        "content": "OR CONTAIN (OR MAY CONTAIN) RAY",
+        "bbox": {
+          "x": 0.821875,
+          "y": 0.829688,
+          "w": 0.177083,
+          "h": 0.015625
+        }
+      },
+      {
+        "index": 156,
+        "content": "UNDERCOOKED INGREDIENTS. CONSUN",
+        "bbox": {
+          "x": 0.804167,
+          "y": 0.842187,
+          "w": 0.194792,
+          "h": 0.016406
+        }
+      },
+      {
+        "index": 157,
+        "content": "OR UNDERCOOKED MEATS, POULTRY,",
+        "bbox": {
+          "x": 0.808333,
+          "y": 0.85625,
+          "w": 0.190625,
+          "h": 0.015625
+        }
+      },
+      {
+        "index": 158,
+        "content": "SHELLFISH OR EGGS MAY INCREASE",
+        "bbox": {
+          "x": 0.810417,
+          "y": 0.869531,
+          "w": 0.185417,
+          "h": 0.016406
+        }
+      },
+      {
+        "index": 159,
+        "content": "OF FOODBORNE ILLNESS.",
+        "bbox": {
+          "x": 0.866667,
+          "y": 0.885156,
+          "w": 0.132292,
+          "h": 0.014844
+        }
+      }
+    ]
+  },
+  "strategies": {
+    "heuristic": {
+      "strategy": "heuristic",
+      "status": "ok",
+      "timedOut": false,
+      "latencyMs": 3.106,
+      "error": null,
+      "notes": [],
+      "groupCount": 33,
+      "groupedLineCount": 78,
+      "groupedLineIndices": [
+        5,
+        7,
+        11,
+        12,
+        14,
+        18,
+        22,
+        25,
+        26,
+        29,
+        30,
+        32,
+        33,
+        37,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        62,
+        63,
+        64,
+        68,
+        69,
+        70,
+        74,
+        75,
+        77,
+        78,
+        81,
+        82,
+        83,
+        85,
+        87,
+        89,
+        93,
+        94,
+        95,
+        98,
+        99,
+        102,
+        103,
+        104,
+        105,
+        108,
+        109,
+        110,
+        111,
+        112,
+        114,
+        115,
+        116,
+        119,
+        122,
+        123,
+        125,
+        126,
+        128,
+        129,
+        130,
+        132,
+        136,
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        147,
+        149,
+        152,
+        153,
+        154,
+        155,
+        157,
+        158
+      ],
+      "groups": [
+        [
+          5,
+          119
+        ],
+        [
+          7,
+          51
+        ],
+        [
+          122
+        ],
+        [
+          52,
+          53,
+          123
+        ],
+        [
+          11,
+          12,
+          54,
+          55,
+          56,
+          125,
+          126
+        ],
+        [
+          14,
+          57,
+          128
+        ],
+        [
+          129,
+          130
+        ],
+        [
+          18,
+          132
+        ],
+        [
+          62,
+          68
+        ],
+        [
+          63,
+          69
+        ],
+        [
+          64,
+          70,
+          136
+        ],
+        [
+          22
+        ],
+        [
+          25,
+          26,
+          74,
+          75,
+          140,
+          141
+        ],
+        [
+          142
+        ],
+        [
+          29,
+          30,
+          143,
+          144,
+          145
+        ],
+        [
+          32,
+          33,
+          77,
+          78,
+          147
+        ],
+        [
+          149
+        ],
+        [
+          98
+        ],
+        [
+          37,
+          81,
+          82,
+          83,
+          99
+        ],
+        [
+          85,
+          102
+        ],
+        [
+          103
+        ],
+        [
+          104
+        ],
+        [
+          87,
+          105
+        ],
+        [
+          89
+        ],
+        [
+          108
+        ],
+        [
+          109
+        ],
+        [
+          110,
+          152
+        ],
+        [
+          111,
+          153
+        ],
+        [
+          93,
+          112
+        ],
+        [
+          94
+        ],
+        [
+          95,
+          114
+        ],
+        [
+          115,
+          154,
+          155
+        ],
+        [
+          116,
+          157,
+          158
+        ]
+      ],
+      "paragraphCount": 33,
+      "individualCount": 82,
+      "paragraphs": [
+        {
+          "content": "Free redis on coffee, tea and soft drinks. Farm-fresh eggs, hand-cracked, cooked to order.",
+          "bbox": {
+            "x": 0.157292,
+            "y": 0.177344,
+            "w": 0.736458,
+            "h": 0.014844
+          }
+        },
+        {
+          "content": "A large muffin, buttered and grilled to a Eggs Up Grill was founded In 1997 in Pawleys",
+          "bbox": {
+            "x": 0.153125,
+            "y": 0.201563,
+            "w": 0.505208,
+            "h": 0.017188
+          }
+        },
+        {
+          "content": "Two eggs\" four slices of bacon, four pieces of",
+          "bbox": {
+            "x": 0.726042,
+            "y": 0.207813,
+            "w": 0.170833,
+            "h": 0.014844
+          }
+        },
+        {
+          "content": "Island, South Carolina. Its mission then-as It is now-was to make people smile ... by providing sausage and a biscuit with a side of sausage gravy.",
+          "bbox": {
+            "x": 0.370833,
+            "y": 0.215625,
+            "w": 0.5375,
+            "h": 0.024219
+          }
+        },
+        {
+          "content": "Toasted Tuscan bread, smashed avocado and fresh picante salsa wonderful meals. friendly, welcoming service, and a real sense of neighborhood. We're so glad to serve you today, and please know that even Two eggs: 6 oz sirloin steak; grilled tomato and garlic toast, with home fries or grits.",
+          "bbox": {
+            "x": 0.141667,
+            "y": 0.2375,
+            "w": 0.760417,
+            "h": 0.034375
+          }
+        },
+        {
+          "content": "Grilled buttermilk biscuits served with though it's not listed here, a smile is always Two eggs\" choice of a golden-grilled blueberry",
+          "bbox": {
+            "x": 0.1375,
+            "y": 0.270313,
+            "w": 0.776042,
+            "h": 0.020313
+          }
+        },
+        {
+          "content": "or banana nut muffin with fresh fruit. SLICES, STRIPS &",
+          "bbox": {
+            "x": 0.752083,
+            "y": 0.283594,
+            "w": 0.14375,
+            "h": 0.030469
+          }
+        },
+        {
+          "content": "Orange juice and club soda with a Two slices of cinnamon swirl French toast,",
+          "bbox": {
+            "x": 0.130208,
+            "y": 0.31875,
+            "w": 0.786458,
+            "h": 0.019531
+          }
+        },
+        {
+          "content": "Founder's recipe comed beef hash with Shrimp, andouille sausage, green peppers,",
+          "bbox": {
+            "x": 0.340625,
+            "y": 0.346875,
+            "w": 0.34375,
+            "h": 0.0125
+          }
+        },
+        {
+          "content": "potatoes, onions, special spices,- sautéed onions, and Swiss cheese omelet",
+          "bbox": {
+            "x": 0.354167,
+            "y": 0.357031,
+            "w": 0.33125,
+            "h": 0.010937
+          }
+        },
+        {
+          "content": "served with two eggs; toast and choice served with fire-roasted tomato. Half waffle, two eggs* and bacon or sausage.",
+          "bbox": {
+            "x": 0.339583,
+            "y": 0.364844,
+            "w": 0.595833,
+            "h": 0.015625
+          }
+        },
+        {
+          "content": "Lemonade, club soda and fresh strawberries.",
+          "bbox": {
+            "x": 0.1,
+            "y": 0.375,
+            "w": 0.172917,
+            "h": 0.010937
+          }
+        },
+        {
+          "content": "Dark roast coffee, cream, cinnamon bun syrup, topped with whipped cream, caramel drizzle Two eggs; sausage biscuit, a side of sausage gravy, with home fries or grits. Toasted Tuscan bread, smashed avocado, fresh picante salsa, served with two eggs.\"",
+          "bbox": {
+            "x": 0.0875,
+            "y": 0.414062,
+            "w": 0.854167,
+            "h": 0.025
+          }
+        },
+        {
+          "content": "CHICKEN & WAFFLES | $10.99",
+          "bbox": {
+            "x": 0.745833,
+            "y": 0.444531,
+            "w": 0.21875,
+            "h": 0.017969
+          }
+        },
+        {
+          "content": "Dark roast coffee, cream and hazelnut, topped with whipped cream and praline pecans. Three chicken tenders over a waffle with powdered sugar, spicy honey drizzle and fresh chopped chives.",
+          "bbox": {
+            "x": 0.075,
+            "y": 0.458594,
+            "w": 0.870833,
+            "h": 0.034375
+          }
+        },
+        {
+          "content": "A blend of our house-brewed coffee with our gourmet cocoa, topped with whipped cream. Made with three hand-cracked, farm-fresh eggs: served with toast and home fries, grits or fresh fruit. Eggs, bacon or sausage, with home",
+          "bbox": {
+            "x": 0.0625,
+            "y": 0.509375,
+            "w": 0.8875,
+            "h": 0.025
+          }
+        },
+        {
+          "content": "Substitute county or city ham | $2.99",
+          "bbox": {
+            "x": 0.779167,
+            "y": 0.538281,
+            "w": 0.183333,
+            "h": 0.014844
+          }
+        },
+        {
+          "content": "Sautéed mushrooms, peppers, onions",
+          "bbox": {
+            "x": 0.530208,
+            "y": 0.560156,
+            "w": 0.16875,
+            "h": 0.010937
+          }
+        },
+        {
+          "content": "with vanilla flavor. Founder's recipe corned beef hash with potatoes, onions and special spices with melted Swiss cheese. and tomatoes. Add cheese for $0.89",
+          "bbox": {
+            "x": 0.103125,
+            "y": 0.56875,
+            "w": 0.59375,
+            "h": 0.033594
+          }
+        },
+        {
+          "content": "Spinach, feta cheese, tomatoes and A four-egg omelet loaded with bacon,",
+          "bbox": {
+            "x": 0.311458,
+            "y": 0.621875,
+            "w": 0.39375,
+            "h": 0.021094
+          }
+        },
+        {
+          "content": "andouille sausage, mushrooms, home fries,",
+          "bbox": {
+            "x": 0.517708,
+            "y": 0.634375,
+            "w": 0.202083,
+            "h": 0.0125
+          }
+        },
+        {
+          "content": "pepper jack cheese, pickled jalapeños and",
+          "bbox": {
+            "x": 0.516667,
+            "y": 0.648438,
+            "w": 0.204167,
+            "h": 0.011719
+          }
+        },
+        {
+          "content": "PHILLY CHEESE STEAK* green chiles. With sausage gravy, and",
+          "bbox": {
+            "x": 0.301042,
+            "y": 0.661719,
+            "w": 0.40625,
+            "h": 0.01875
+          }
+        },
+        {
+          "content": "Thinly-sliced steak with American cheese,",
+          "bbox": {
+            "x": 0.292708,
+            "y": 0.694531,
+            "w": 0.195833,
+            "h": 0.013281
+          }
+        },
+        {
+          "content": "Veggies | $0,89 ea.",
+          "bbox": {
+            "x": 0.570833,
+            "y": 0.716406,
+            "w": 0.103125,
+            "h": 0.013281
+          }
+        },
+        {
+          "content": "Mushrooms, onions, peppers, avocado, .",
+          "bbox": {
+            "x": 0.527083,
+            "y": 0.729688,
+            "w": 0.196875,
+            "h": 0.014063
+          }
+        },
+        {
+          "content": "tomatoes, spinach, olives, jalapeños Have it all. Three eggs, bacon, sausage",
+          "bbox": {
+            "x": 0.533333,
+            "y": 0.741406,
+            "w": 0.465625,
+            "h": 0.014844
+          }
+        },
+        {
+          "content": "Cheese | $0.89 ea. home fries, grits and toast.",
+          "bbox": {
+            "x": 0.571875,
+            "y": 0.757031,
+            "w": 0.411458,
+            "h": 0.0125
+          }
+        },
+        {
+          "content": "Egg+ white omelet with spinach, onions, Feta, cheddar, Swiss, pepper jack, American",
+          "bbox": {
+            "x": 0.2875,
+            "y": 0.7625,
+            "w": 0.444792,
+            "h": 0.021875
+          }
+        },
+        {
+          "content": "mushrooms and feta cheese topped with",
+          "bbox": {
+            "x": 0.283333,
+            "y": 0.777344,
+            "w": 0.2,
+            "h": 0.014063
+          }
+        },
+        {
+          "content": "sliced tomatoes. Sausage (turkey/pork/andouille), bacon",
+          "bbox": {
+            "x": 0.340625,
+            "y": 0.791406,
+            "w": 0.388542,
+            "h": 0.021094
+          }
+        },
+        {
+          "content": "(turkey/pork), Canadian bacon or ham *ITEMS ARE OFFERED RAW OR UNDERC OR CONTAIN (OR MAY CONTAIN) RAY",
+          "bbox": {
+            "x": 0.527083,
+            "y": 0.811719,
+            "w": 0.471875,
+            "h": 0.033594
+          }
+        },
+        {
+          "content": "Serving our full menu all day! OR UNDERCOOKED MEATS, POULTRY, SHELLFISH OR EGGS MAY INCREASE",
+          "bbox": {
+            "x": 0.242708,
+            "y": 0.84375,
+            "w": 0.75625,
+            "h": 0.046094
+          }
+        }
+      ],
+      "accuracy": null,
+      "final": null
+    },
+    "hybrid": {
+      "strategy": "hybrid",
+      "status": "ok",
+      "timedOut": false,
+      "latencyMs": 1.852,
+      "error": null,
+      "notes": [],
+      "groupCount": 1,
+      "groupedLineCount": 78,
+      "groupedLineIndices": [
+        5,
+        7,
+        11,
+        12,
+        14,
+        18,
+        22,
+        25,
+        26,
+        29,
+        30,
+        32,
+        33,
+        37,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        62,
+        63,
+        64,
+        68,
+        69,
+        70,
+        74,
+        75,
+        77,
+        78,
+        81,
+        82,
+        83,
+        85,
+        87,
+        89,
+        93,
+        94,
+        95,
+        98,
+        99,
+        102,
+        103,
+        104,
+        105,
+        108,
+        109,
+        110,
+        111,
+        112,
+        114,
+        115,
+        116,
+        119,
+        122,
+        123,
+        125,
+        126,
+        128,
+        129,
+        130,
+        132,
+        136,
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        147,
+        149,
+        152,
+        153,
+        154,
+        155,
+        157,
+        158
+      ],
+      "groups": [
+        [
+          5,
+          7,
+          11,
+          12,
+          14,
+          18,
+          22,
+          25,
+          26,
+          29,
+          30,
+          32,
+          33,
+          37,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          62,
+          63,
+          64,
+          68,
+          69,
+          70,
+          74,
+          75,
+          77,
+          78,
+          81,
+          82,
+          83,
+          85,
+          87,
+          89,
+          93,
+          94,
+          95,
+          98,
+          99,
+          102,
+          103,
+          104,
+          105,
+          108,
+          109,
+          110,
+          111,
+          112,
+          114,
+          115,
+          116,
+          119,
+          122,
+          123,
+          125,
+          126,
+          128,
+          129,
+          130,
+          132,
+          136,
+          140,
+          141,
+          142,
+          143,
+          144,
+          145,
+          147,
+          149,
+          152,
+          153,
+          154,
+          155,
+          157,
+          158
+        ]
+      ],
+      "paragraphCount": 33,
+      "individualCount": 82,
+      "paragraphs": [
+        {
+          "content": "Free redis on coffee, tea and soft drinks. Farm-fresh eggs, hand-cracked, cooked to order.",
+          "bbox": {
+            "x": 0.157292,
+            "y": 0.177344,
+            "w": 0.736458,
+            "h": 0.014844
+          }
+        },
+        {
+          "content": "A large muffin, buttered and grilled to a Eggs Up Grill was founded In 1997 in Pawleys",
+          "bbox": {
+            "x": 0.153125,
+            "y": 0.201563,
+            "w": 0.505208,
+            "h": 0.017188
+          }
+        },
+        {
+          "content": "Two eggs\" four slices of bacon, four pieces of",
+          "bbox": {
+            "x": 0.726042,
+            "y": 0.207813,
+            "w": 0.170833,
+            "h": 0.014844
+          }
+        },
+        {
+          "content": "Island, South Carolina. Its mission then-as It is now-was to make people smile ... by providing sausage and a biscuit with a side of sausage gravy.",
+          "bbox": {
+            "x": 0.370833,
+            "y": 0.215625,
+            "w": 0.5375,
+            "h": 0.024219
+          }
+        },
+        {
+          "content": "Toasted Tuscan bread, smashed avocado and fresh picante salsa wonderful meals. friendly, welcoming service, and a real sense of neighborhood. We're so glad to serve you today, and please know that even Two eggs: 6 oz sirloin steak; grilled tomato and garlic toast, with home fries or grits.",
+          "bbox": {
+            "x": 0.141667,
+            "y": 0.2375,
+            "w": 0.760417,
+            "h": 0.034375
+          }
+        },
+        {
+          "content": "Grilled buttermilk biscuits served with though it's not listed here, a smile is always Two eggs\" choice of a golden-grilled blueberry",
+          "bbox": {
+            "x": 0.1375,
+            "y": 0.270313,
+            "w": 0.776042,
+            "h": 0.020313
+          }
+        },
+        {
+          "content": "or banana nut muffin with fresh fruit. SLICES, STRIPS &",
+          "bbox": {
+            "x": 0.752083,
+            "y": 0.283594,
+            "w": 0.14375,
+            "h": 0.030469
+          }
+        },
+        {
+          "content": "Orange juice and club soda with a Two slices of cinnamon swirl French toast,",
+          "bbox": {
+            "x": 0.130208,
+            "y": 0.31875,
+            "w": 0.786458,
+            "h": 0.019531
+          }
+        },
+        {
+          "content": "Founder's recipe comed beef hash with Shrimp, andouille sausage, green peppers,",
+          "bbox": {
+            "x": 0.340625,
+            "y": 0.346875,
+            "w": 0.34375,
+            "h": 0.0125
+          }
+        },
+        {
+          "content": "potatoes, onions, special spices,- sautéed onions, and Swiss cheese omelet",
+          "bbox": {
+            "x": 0.354167,
+            "y": 0.357031,
+            "w": 0.33125,
+            "h": 0.010937
+          }
+        },
+        {
+          "content": "served with two eggs; toast and choice served with fire-roasted tomato. Half waffle, two eggs* and bacon or sausage.",
+          "bbox": {
+            "x": 0.339583,
+            "y": 0.364844,
+            "w": 0.595833,
+            "h": 0.015625
+          }
+        },
+        {
+          "content": "Lemonade, club soda and fresh strawberries.",
+          "bbox": {
+            "x": 0.1,
+            "y": 0.375,
+            "w": 0.172917,
+            "h": 0.010937
+          }
+        },
+        {
+          "content": "Dark roast coffee, cream, cinnamon bun syrup, topped with whipped cream, caramel drizzle Two eggs; sausage biscuit, a side of sausage gravy, with home fries or grits. Toasted Tuscan bread, smashed avocado, fresh picante salsa, served with two eggs.\"",
+          "bbox": {
+            "x": 0.0875,
+            "y": 0.414062,
+            "w": 0.854167,
+            "h": 0.025
+          }
+        },
+        {
+          "content": "CHICKEN & WAFFLES | $10.99",
+          "bbox": {
+            "x": 0.745833,
+            "y": 0.444531,
+            "w": 0.21875,
+            "h": 0.017969
+          }
+        },
+        {
+          "content": "Dark roast coffee, cream and hazelnut, topped with whipped cream and praline pecans. Three chicken tenders over a waffle with powdered sugar, spicy honey drizzle and fresh chopped chives.",
+          "bbox": {
+            "x": 0.075,
+            "y": 0.458594,
+            "w": 0.870833,
+            "h": 0.034375
+          }
+        },
+        {
+          "content": "A blend of our house-brewed coffee with our gourmet cocoa, topped with whipped cream. Made with three hand-cracked, farm-fresh eggs: served with toast and home fries, grits or fresh fruit. Eggs, bacon or sausage, with home",
+          "bbox": {
+            "x": 0.0625,
+            "y": 0.509375,
+            "w": 0.8875,
+            "h": 0.025
+          }
+        },
+        {
+          "content": "Substitute county or city ham | $2.99",
+          "bbox": {
+            "x": 0.779167,
+            "y": 0.538281,
+            "w": 0.183333,
+            "h": 0.014844
+          }
+        },
+        {
+          "content": "Sautéed mushrooms, peppers, onions",
+          "bbox": {
+            "x": 0.530208,
+            "y": 0.560156,
+            "w": 0.16875,
+            "h": 0.010937
+          }
+        },
+        {
+          "content": "with vanilla flavor. Founder's recipe corned beef hash with potatoes, onions and special spices with melted Swiss cheese. and tomatoes. Add cheese for $0.89",
+          "bbox": {
+            "x": 0.103125,
+            "y": 0.56875,
+            "w": 0.59375,
+            "h": 0.033594
+          }
+        },
+        {
+          "content": "Spinach, feta cheese, tomatoes and A four-egg omelet loaded with bacon,",
+          "bbox": {
+            "x": 0.311458,
+            "y": 0.621875,
+            "w": 0.39375,
+            "h": 0.021094
+          }
+        },
+        {
+          "content": "andouille sausage, mushrooms, home fries,",
+          "bbox": {
+            "x": 0.517708,
+            "y": 0.634375,
+            "w": 0.202083,
+            "h": 0.0125
+          }
+        },
+        {
+          "content": "pepper jack cheese, pickled jalapeños and",
+          "bbox": {
+            "x": 0.516667,
+            "y": 0.648438,
+            "w": 0.204167,
+            "h": 0.011719
+          }
+        },
+        {
+          "content": "PHILLY CHEESE STEAK* green chiles. With sausage gravy, and",
+          "bbox": {
+            "x": 0.301042,
+            "y": 0.661719,
+            "w": 0.40625,
+            "h": 0.01875
+          }
+        },
+        {
+          "content": "Thinly-sliced steak with American cheese,",
+          "bbox": {
+            "x": 0.292708,
+            "y": 0.694531,
+            "w": 0.195833,
+            "h": 0.013281
+          }
+        },
+        {
+          "content": "Veggies | $0,89 ea.",
+          "bbox": {
+            "x": 0.570833,
+            "y": 0.716406,
+            "w": 0.103125,
+            "h": 0.013281
+          }
+        },
+        {
+          "content": "Mushrooms, onions, peppers, avocado, .",
+          "bbox": {
+            "x": 0.527083,
+            "y": 0.729688,
+            "w": 0.196875,
+            "h": 0.014063
+          }
+        },
+        {
+          "content": "tomatoes, spinach, olives, jalapeños Have it all. Three eggs, bacon, sausage",
+          "bbox": {
+            "x": 0.533333,
+            "y": 0.741406,
+            "w": 0.465625,
+            "h": 0.014844
+          }
+        },
+        {
+          "content": "Cheese | $0.89 ea. home fries, grits and toast.",
+          "bbox": {
+            "x": 0.571875,
+            "y": 0.757031,
+            "w": 0.411458,
+            "h": 0.0125
+          }
+        },
+        {
+          "content": "Egg+ white omelet with spinach, onions, Feta, cheddar, Swiss, pepper jack, American",
+          "bbox": {
+            "x": 0.2875,
+            "y": 0.7625,
+            "w": 0.444792,
+            "h": 0.021875
+          }
+        },
+        {
+          "content": "mushrooms and feta cheese topped with",
+          "bbox": {
+            "x": 0.283333,
+            "y": 0.777344,
+            "w": 0.2,
+            "h": 0.014063
+          }
+        },
+        {
+          "content": "sliced tomatoes. Sausage (turkey/pork/andouille), bacon",
+          "bbox": {
+            "x": 0.340625,
+            "y": 0.791406,
+            "w": 0.388542,
+            "h": 0.021094
+          }
+        },
+        {
+          "content": "(turkey/pork), Canadian bacon or ham *ITEMS ARE OFFERED RAW OR UNDERC OR CONTAIN (OR MAY CONTAIN) RAY",
+          "bbox": {
+            "x": 0.527083,
+            "y": 0.811719,
+            "w": 0.471875,
+            "h": 0.033594
+          }
+        },
+        {
+          "content": "Serving our full menu all day! OR UNDERCOOKED MEATS, POULTRY, SHELLFISH OR EGGS MAY INCREASE",
+          "bbox": {
+            "x": 0.242708,
+            "y": 0.84375,
+            "w": 0.75625,
+            "h": 0.046094
+          }
+        }
+      ],
+      "accuracy": null,
+      "final": null
+    },
+    "llm": {
+      "strategy": "llm",
+      "status": "timeout",
+      "timedOut": true,
+      "latencyMs": 50068.156,
+      "error": "Grouping timed out",
+      "notes": [],
+      "groupCount": 0,
+      "groupedLineCount": 0,
+      "groupedLineIndices": [],
+      "groups": [],
+      "paragraphCount": 0,
+      "individualCount": 160,
+      "paragraphs": [],
+      "accuracy": null,
+      "final": null
+    }
+  }
+}

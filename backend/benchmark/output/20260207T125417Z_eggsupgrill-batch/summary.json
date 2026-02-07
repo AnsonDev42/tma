@@ -1,0 +1,62 @@
+{
+  "runId": "20260207T125417Z_eggsupgrill-batch",
+  "createdAt": "2026-02-07T12:55:10.899857+00:00",
+  "durationMs": 53612.174,
+  "manifestPath": "/Users/yaowenshen/workspace/tma/backend/benchmark/manifests/eggsupgrill.json",
+  "outputPath": "/Users/yaowenshen/workspace/tma/backend/benchmark/output/20260207T125417Z_eggsupgrill-batch",
+  "language": "en",
+  "strategies": [
+    "heuristic",
+    "hybrid",
+    "llm"
+  ],
+  "cases": [
+    {
+      "caseId": "eggsupgrill",
+      "ocrLineCount": 160,
+      "strategyStatus": {
+        "heuristic": "ok",
+        "hybrid": "ok",
+        "llm": "timeout"
+      }
+    }
+  ],
+  "stats": {
+    "totalCases": 1,
+    "strategies": {
+      "heuristic": {
+        "totalCases": 1,
+        "okCases": 1,
+        "timeoutCases": 0,
+        "errorCases": 0,
+        "avgLatencyMs": 3.106,
+        "p50LatencyMs": 3.106,
+        "p95LatencyMs": 3.106,
+        "avgPrecisionNonDish": null,
+        "avgRecallNonDish": null
+      },
+      "hybrid": {
+        "totalCases": 1,
+        "okCases": 1,
+        "timeoutCases": 0,
+        "errorCases": 0,
+        "avgLatencyMs": 1.852,
+        "p50LatencyMs": 1.852,
+        "p95LatencyMs": 1.852,
+        "avgPrecisionNonDish": null,
+        "avgRecallNonDish": null
+      },
+      "llm": {
+        "totalCases": 1,
+        "okCases": 0,
+        "timeoutCases": 1,
+        "errorCases": 0,
+        "avgLatencyMs": null,
+        "p50LatencyMs": null,
+        "p95LatencyMs": null,
+        "avgPrecisionNonDish": null,
+        "avgRecallNonDish": null
+      }
+    }
+  }
+}
