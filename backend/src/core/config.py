@@ -22,6 +22,7 @@ class Settings(BaseSettings):
     OPENAI_API_KEY: str
     OPENAI_BASE_URL: str = "https://api.openai.com/v1"
     OPENAI_MODEL: str = "gpt-5-nano"
+    OPENAI_REASONING_EFFORT: str = "minimal"
     AZURE_DIP_API_KEY: str
     AZURE_DIP_BASE_URL: str
     BACKEND_CORS_ORIGINS: Annotated[

@@ -15,6 +15,7 @@ from src.models import Dish
 
 P = ParamSpec("P")
 T = TypeVar("T")
+_DISABLED_REASONING_EFFORTS = {"", "none"}
 
 
 def duration(func: Callable[P, T]) -> Callable[P, T]:
@@ -66,13 +67,41 @@ def clean_dish_name(dish_name: str) -> str:
     return cleaned_name
 
 
-def build_search_chain(model: str | None = None) -> RunnableSerializable:
+def resolve_reasoning_effort(raw_effort: str | None = None) -> str | None:
+    effort = settings.OPENAI_REASONING_EFFORT if raw_effort is None else raw_effort
+    normalized_effort = (effort or "").strip().lower()
+    if normalized_effort in _DISABLED_REASONING_EFFORTS:
+        return None
+    return normalized_effort
+
+
+def build_openai_reasoning_kwargs(
+    raw_effort: str | None = None,
+) -> dict[str, dict[str, str]]:
+    reasoning_effort = resolve_reasoning_effort(raw_effort)
+    if reasoning_effort is None:
+        return {}
+    return {"reasoning": {"effort": reasoning_effort}}
+
+
+def build_chat_openai(
+    model: str | None = None,
+    reasoning_effort: str | None = None,
+) -> ChatOpenAI:
     model_name = model or settings.OPENAI_MODEL
-    llm = ChatOpenAI(
-        model_name=model_name,
-        openai_api_base=settings.OPENAI_BASE_URL,
-        openai_api_key=settings.OPENAI_API_KEY,
-    )
+    llm_kwargs = {
+        "model_name": model_name,
+        "openai_api_base": settings.OPENAI_BASE_URL,
+        "openai_api_key": settings.OPENAI_API_KEY,
+    }
+    resolved_effort = resolve_reasoning_effort(reasoning_effort)
+    if resolved_effort is not None:
+        llm_kwargs["reasoning_effort"] = resolved_effort
+    return ChatOpenAI(**llm_kwargs)
+
+
+def build_search_chain(model: str | None = None) -> RunnableSerializable:
+    llm = build_chat_openai(model)
     prompt = ChatPromptTemplate.from_messages(
         [
             ("system", PROMPT),
@@ -99,12 +128,7 @@ You are a helpful assistant specialized in food industry and translation, design
 
 
 def build_recommendation_chain(model: str | None = None) -> RunnableSerializable:
-    model_name = model or settings.OPENAI_MODEL
-    llm = ChatOpenAI(
-        model_name=model_name,
-        openai_api_base=settings.OPENAI_BASE_URL,
-        openai_api_key=settings.OPENAI_API_KEY,
-    )
+    llm = build_chat_openai(model)
     prompt_template = PromptTemplate(
         input_variables=["dish_names", "mode", "additional_info", "language"],
         template=SUGGESTION_PROMPT,
