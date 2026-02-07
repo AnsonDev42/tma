@@ -3,1313 +3,1539 @@
 		{
 			"id": 0,
 			"info": {
-				"description": "甜虾是一种口感鲜甜的海鲜，常见于日本料理中，通常以刺身或寿司的形式呈现，具有细腻的肉质和丰富的海味。",
-				"text": "甜蝦",
-				"text_translation": "甜虾",
-				"img_src": null
+				"description": "\u65e5\u5f0f\u70e4\u9e21\u4e32\uff0c\u901a\u5e38\u4f7f\u7528\u9e21\u8089\u7684\u5404\u4e2a\u90e8\u4f4d\uff08\u5982\u817f\u8089\u3001\u80f8\u8089\u548c\u9e21\u76ae\uff09\uff0c\u7a7f\u6210\u4e32\u5728\u70ad\u706b\u4e0a\u70e4\u5236\uff0c\u5e38\u7528\u76d0\u5473\u6216\u4ee5\u9171\u6cb9\u4e3a\u57fa\u5e95\u7684 tare \u8c03\u5473\uff0c\u662f\u5c45\u9152\u5c4b\u5e38\u89c1\u7684\u5c0f\u5403\u3002",
+				"text": "Yakitori",
+				"text_translation": "\u70e7\u9e1f\uff08\u65e5\u5f0f\u70e4\u9e21\u4e32\uff09",
+				"img_src": [
+					"https://www.justonecookbook.com/wp-content/uploads/2024/04/Yakitori-7831-I.jpg",
+					"https://hips.hearstapps.com/hmg-prod/images/chicken-yakitori-index-65e738c4f032e.jpg?crop=0.8891491784610379xw:1xh;center,top&resize=1200:*",
+					"https://www.justonecookbook.com/wp-content/uploads/2024/04/Yakitori-7831-I-500x500.jpg",
+					"https://img.sndimg.com/food/image/upload/f_auto,c_thumb,q_55,w_744,ar_5:4/v1/img/recipes/74/84/4/wJzaUOYASw64dUqTpa9Z_yakitori%20SITE.jpg",
+					"https://www.healthyishandhappy.com/wp-content/uploads/2021/07/Yakitori2-scaled.jpg",
+					"http://thejapanesepantry.com/cdn/shop/articles/Yakitori_Tare.jpg?v=1616626587",
+					"https://www.seriouseats.com/thmb/ZJbhj96NdEKnLj8TatxPZzm89BI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2016__06__20160606-yakitori-negima-13-61803f895fdc4c138f56e09dbc24648f.jpg",
+					"https://thejapanstore.us/wp-content/uploads/2021/11/shutterstock_579499555-scaled.jpg",
+					"https://www.foodandwine.com/thmb/Ei8SjmowbrTIBzc496UswOPBhos=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/salmon-yakitori-XL-RECIPE0618_0-7d4f49b75aeb4bf19678bcc009b4cf62.jpg",
+					"https://images.squarespace-cdn.com/content/v1/5dd037423cb7ec3c88e97f7e/1579844961074-M2NKLSI5YOIQQ3V7PY0B/IMG_8317.jpeg"
+				]
 			},
 			"boundingBox": {
-				"x": 0.25811965811965815,
-				"y": 0.23515981735159816,
-				"w": 0.024786324786324785,
-				"h": 0.014840182648401826
+				"x": 0.05,
+				"y": 0.09375,
+				"w": 0.175,
+				"h": 0.07916666666666666
 			}
 		},
 		{
 			"id": 1,
 			"info": {
-				"description": "干贝是一种常见的海鲜食材，通常指的是一种干燥的扇贝肉，味道鲜美，通常用于煮汤、蒸菜或炖煮等多种烹饪方式。",
-				"text": "干貝",
-				"text_translation": "干贝",
-				"img_src": null
+				"description": "\u9e21\u76ae\uff0c\u6765\u81ea\u9e21\u8089\u8868\u9762\u7684\u8584\u8102\u76ae\uff0c\u5e38\u4ee5\u70e4\u5236\u6216\u6cb9\u70b8\u5448\u73b0\uff0c\u53e3\u611f\u9165\u8106\uff0c\u5e38\u4f5c\u4e3a\u65e5\u5f0f\u70e4\u4e32\uff08\u5982\u9e21\u76ae\u4e32\uff09\u6216\u4e0b\u9152\u5c0f\u5403\uff0c\u5e38\u642d\u914d\u9171\u6cb9\u3001\u76d0\u7b49\u8c03\u5473\u3002",
+				"text": "\u3068\u308a\u76ae",
+				"text_translation": "\u9e21\u76ae",
+				"img_src": [
+					"https://yonosukehonten.net/column/img/torikawa01.jpg",
+					"http://shop.sumidaya.co.jp/cdn/shop/products/20b3c79f95accb0017f85b612f5cbd38.jpg?v=1740819361",
+					"https://cdn.r-corona.jp/prd.rb.r-corona.jp/assets/site_files/48fzjths/2242772/ppbo_.jpg",
+					"http://shop.sumidaya.co.jp/cdn/shop/products/d9bb09cd6b5ef4b58fc63a8cc618887c.png?v=1740818966",
+					"https://www.umakamonya.com/wp-content/uploads/2022/10/takenoyaaji.jpg",
+					"https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=100076363750501",
+					"https://kcta.jp/shop/wp-content/uploads/2024/06/92fd28c9c0bd8266ae8761b7a86c52d1.jpg",
+					"https://img07.shop-pro.jp/PA01356/393/product/181439566.jpg?cmsp_timestamp=20240620164315",
+					"http://hiroshima-gift.co.jp/cdn/shop/files/02182338_5c6ac3591ac42_49cf3147-4608-4c3a-b1f9-dd6beb0c39e5.jpg?v=1719223923",
+					"https://www.yamaya.com/uploads/t_news/604/4c320078a3b13b0149a3d08fa0e7a55e-1.png"
+				]
 			},
 			"boundingBox": {
-				"x": 0.25811965811965815,
-				"y": 0.2751141552511416,
-				"w": 0.023076923076923078,
-				"h": 0.014840182648401826
+				"x": 0.0515625,
+				"y": 0.18125,
+				"w": 0.0859375,
+				"h": 0.05416666666666667
 			}
 		},
 		{
 			"id": 2,
 			"info": {
-				"description": "这道菜可能是一个名字或品牌，而不是具体的食品。",
-				"text": "Hi LE",
-				"text_translation": "嗨LE",
-				"img_src": null
+				"description": "\u9e21\u5fc3\uff08kokoro\uff09\u662f\u9e21\u7684\u5fc3\u810f\uff0c\u5e38\u89c1\u4e8e\u65e5\u5f0f\u70e4\u4e32\uff08yakitori\uff09\u7b49\u83dc\u80b4\u3002\u53e3\u611f\u9c9c\u5ae9\uff0c\u901a\u5e38\u4ee5\u76d0\u70e4\u6216\u9171\u6c41\u814c\u5236\u540e\u70e4\u5236\u3002",
+				"text": "\u3053\u3053\u308d",
+				"text_translation": "\u9e21\u5fc3",
+				"img_src": [
+					"https://m.media-amazon.com/images/I/71dNMmPj4hL._AC_UF1000,1000_QL80_.jpg",
+					"https://mangadedokuha.jp/prweb/wp-content/uploads/2022/01/sample-layer003.png",
+					"https://m.media-amazon.com/images/I/91zydQq8BSL._UF1000,1000_QL80_.jpg",
+					"https://bang-dream.bushimo.jp/wordpress/wp-content/themes/bang-dream_gbp_v2/assets/images/common/character/hello-happy-world/s1/img_tsurumaki-kokoro_1.png",
+					"https://storage.googleapis.com/studio-cms-assets/projects/xNWY3neDql/s-720x1101_v-fs_webp_9617a88d-d0ad-4a85-8da0-8a2f9713002b.jpg",
+					"https://danmaku.jp/import/card/r039_img.jpg",
+					"https://i.ytimg.com/vi/QzYGA0JgUOI/sddefault.jpg",
+					"https://fushigenwiki.work/todr/index.php?plugin=ref&page=%E7%A7%A6%E3%81%93%E3%81%93%E3%82%8D&src=kokoro_tachie.jpg",
+					"https://bang-dream.bushimo.jp/wordpress/wp-content/themes/bang-dream_gbp_v2/assets/images/common/character/hello-happy-world/s1/img_tsurumaki-kokoro_2.png",
+					"https://img.altema.jp/lostword/chara/banner/61.jpg"
+				]
 			},
 			"boundingBox": {
-				"x": 0.32051282051282054,
-				"y": 0.3356164383561644,
-				"w": 0.03418803418803419,
-				"h": 0.01598173515981735
+				"x": 0.0546875,
+				"y": 0.3,
+				"w": 0.0875,
+				"h": 0.052083333333333336
 			}
 		},
 		{
 			"id": 3,
 			"info": {
-				"description": "海间是一种传统的海鲜菜肴，通常使用新鲜的海鲜和当地特产进行烹饪，其味道鲜美，营养丰富。",
-				"text": "海間",
-				"text_translation": "海间",
+				"description": "\u9e21\u809d\uff0c\u662f\u65e5\u5f0f\u70e4\u4e32\uff08yakitori\uff09\u4e2d\u5e38\u7528\u7684\u4e00\u79cd\u9e21\u809d\u7c7b\u8089\u54c1\uff0c\u901a\u5e38\u5207\u5757\u540e\u7528\u76d0\u6216\u9171\u6c41\u70e4\u5236\uff0c\u53e3\u611f\u5ae9\u6ed1\uff0c\u98ce\u5473\u9c9c\u7f8e\u3002",
+				"text": "\u3068\u308a\u304d\u3082",
+				"text_translation": "\u9e21\u809d",
 				"img_src": [
-					"https://i.ytimg.com/vi/GdSS_kS3SFY/maxresdefault.jpg",
-					"https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=1394212592378238",
-					"https://i.ytimg.com/vi/GdSS_kS3SFY/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBW6mGsaMmz5BC3zXTBHOwGTDg1Mg",
-					"https://upload.wikimedia.org/wikipedia/commons/c/c9/Mapka_miedzymorza.png",
-					"https://www.tiktok.com/api/img/?itemId=7491983491631009031&location=0&aid=1988",
-					"https://img.alicdn.com/imgextra/i4/655508497/O1CN0119sIKg2CdgTT1DbVm_!!4611686018427380753-0-item_pic.jpg_q50.jpg_.webp",
-					"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Jozef_Pilsudski1.jpg/250px-Jozef_Pilsudski1.jpg",
-					"https://i.ytimg.com/vi/RoZuZEftHj0/hq720.jpg?sqp=-oaymwE7CK4FEIIDSFryq4qpAy0IARUAAAAAGAAlAADIQj0AgKJD8AEB-AG2CIACuAiKAgwIABABGHIgXCg1MA8=&rs=AOn4CLAU-eTc8JLm6GGS-1B4I33rRBF5BQ",
-					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3780940251808991356",
-					"https://pic5.iqiyipic.com/image/20250607/cf/dc/a_100629803_m_601_579_772.jpg"
+					"https://recipe.r10s.jp/recipe-space/d/strg/ctrl/3/41c0243619bed4c2c40ad83d8b43c3f0849ba540.02.9.3.3.jpg?interpolation=lanczos-none&fit=around|600:600&crop=600:600;*,*",
+					"https://video.kurashiru.com/production/recipe_lists/4009/compressed_background_small.png?1721370169",
+					"https://www.bitatto-japan.com/wp-content/uploads/2022/08/torikimo-4-1.jpg",
+					"https://recipe.r10s.jp/recipe-space/d/strg/ctrl/3/358c9be2f532aec9b4315f4002b9ee5c0dc04213.23.2.3.2.jpg",
+					"https://wellfam-foods.co.jp/wp-content/themes/wellfam/img/recipe17_1_1_01.png",
+					"https://video.kurashiru.com/production/recipe_lists/4009/compressed_thumbnail_large.png?1721370169",
+					"https://www.nihonshokken.co.jp/assets/img/retail/retail-03-slide1c.png",
+					"https://recipe.r10s.jp/recipe-space/d/strg/ctrl/3/358c9be2f532aec9b4315f4002b9ee5c0dc04213.23.2.3.2.jpg?interpolation=lanczos-none&fit=around|600:600&crop=600:600;*,*",
+					"https://www.nipponham.co.jp/recipes/meat/knowhow/process/image/process07_img_01.jpg",
+					"https://maru-take-ebisu.jp/wp-content/uploads/2018/12/tori_syoga-7.jpg"
 				]
 			},
 			"boundingBox": {
-				"x": 0.252991452991453,
-				"y": 0.3573059360730594,
-				"w": 0.024786324786324785,
-				"h": 0.014840182648401826
+				"x": 0.053125,
+				"y": 0.35,
+				"w": 0.096875,
+				"h": 0.052083333333333336
 			}
 		},
 		{
 			"id": 4,
 			"info": {
-				"description": "猪井 是一种传统的中国菜，主要用猪肉制作，通常以炖或炸的方式烹饪。",
-				"text": "豬井",
-				"text_translation": "猪井",
-				"img_src": null
+				"description": "\u80cc\u304e\u3082\u662f\u4e00\u9053\u65e5\u672c\u6599\u7406\u4e2d\u7684\u5185\u810f\u98df\u6750\uff0c\u901a\u5e38\u6307\u6765\u81ea\u52a8\u7269\u80cc\u90e8\u7684\u809d\u810f\u90e8\u4f4d\uff0c\u5e38\u7528\u4e8e\u70e4\u5236\u3001\u714e\u7092\u6216\u4e32\u70e7\uff0c\u53e3\u611f\u7ec6\u817b\uff0c\u98ce\u5473\u9c9c\u7f8e\u3002",
+				"text": "\u80cc\u304e\u3082",
+				"text_translation": "\u80cc\u90e8\u809d\u810f",
+				"img_src": [
+					"https://www.m-mart.co.jp/e298naka/ireg/tmp/e298naka_20190707181914.jpg",
+					"https://torikatsu-blog.jp/wp/wp-content/uploads/2018/08/aaec1b6245fbfa0af98965a1716c3413.jpg",
+					"https://item-shopping.c.yimg.jp/i/n/torihaku_torihaku17",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=2315692671320117898",
+					"https://torikatsu-blog.jp/wp/wp-content/uploads/2019/10/a460b560fd9966998de2dd698a8b6ad2.jpg",
+					"https://jp.bloguru.com/userdata/268/268/201805141734400.jpg",
+					"https://lookaside.fbsbx.com/lookaside/crawler/threads/DF5Nj_OvTym/0/image.jpg",
+					"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhdLFpp45JZv0VbRulrEMy-ZE_pS-76QkESBmcnozS9K17L4v7hew216IAtPLtco766sx-ncEzbqEegSic3F_h5X0E4BzeTNDNL1e3m0UAx2FflfOcAIUFgiAOXe1pzhVIKOhK9NnXz0SwX/s1600/%E9%A7%92%E5%AE%89+%E8%83%8C%E8%82%9D.JPG",
+					"https://image.news.livedoor.com/newsimage/9/3/93961_1349_1cca93ccd71b78c32627b7bea82765aa.jpg",
+					"http://bird44.com/cdn/shop/products/prosegimo.jpg?v=1649844493"
+				]
 			},
 			"boundingBox": {
-				"x": 0.5128205128205128,
-				"y": 0.4315068493150685,
-				"w": 0.024786324786324785,
-				"h": 0.01598173515981735
+				"x": 0.0515625,
+				"y": 0.4041666666666667,
+				"w": 0.0921875,
+				"h": 0.052083333333333336
 			}
 		},
 		{
 			"id": 5,
 			"info": {
-				"description": "小品是一种传统的中国艺术表演形式，通常包括小品剧、相声等，与美食直接相关的内容较少。",
-				"text": "小品",
-				"text_translation": "Xiao Pin",
-				"img_src": null
+				"description": "\u9e21\u9888\u8089\uff0c\u53d6\u81ea\u9e21\u9888\u90e8\u7684\u7ec6\u5ae9\u8089\uff0c\u8102\u80aa\u542b\u91cf\u9002\u4e2d\uff0c\u5e38\u7528\u4e8e\u65e5\u5f0f\u70e4\u4e32\u7b49\u6599\u7406\uff0c\u53e3\u611f\u5ae9\u6ed1\u6709\u56bc\u52b2\uff0c\u9002\u5408\u7528\u76d0\u5473\u6216\u9171\u6cb9\u8c03\u5473\u3002",
+				"text": "\u305b\u305b\u308a",
+				"text_translation": "\u9e21\u9888\u8089",
+				"img_src": [
+					"https://www.3030.co.jp/template/default/trivia/no12/img/img_001.png",
+					"https://shopping.c.yimg.jp/lib/maekasi/koniku500.jpg",
+					"https://i.ytimg.com/vi/dosLcrEjNwQ/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLC-vrlA1LYCszXZwZpRMaCV0AKYHw",
+					"https://media.delishkitchen.tv/article/455/krk911jhma.jpeg?version=1748924213",
+					"https://sakaikikaku.com/img/gallery/2737/01.jpg",
+					"https://www.recipe.shizenha.ne.jp/wp-content/uploads/2024/04/10252973-690x414.jpg",
+					"https://www.suigo.co.jp/blog/wp-content/uploads/2023/05/to_kirin.jpg",
+					"https://sakaikikaku.com/img/gallery/2737/02.jpg",
+					"https://recipe.r10s.jp/recipe-space/d/strg/ctrl/3/16cdb6ba2043f2c1a82dc41a3e27c1f2679bf584.57.2.3.2.jpg?interpolation=lanczos-none&fit=around|600:600&crop=600:600;*,*",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3693816276289776061"
+				]
 			},
 			"boundingBox": {
-				"x": 0.7504273504273504,
-				"y": 0.3915525114155251,
-				"w": 0.03675213675213675,
-				"h": 0.023972602739726026
+				"x": 0.05,
+				"y": 0.4583333333333333,
+				"w": 0.09375,
+				"h": 0.04375
 			}
 		},
 		{
 			"id": 6,
 			"info": {
-				"description": "白饭是指用水煮熟的白米，通常作为主食与各种菜肴搭配，是中国餐饮中常见的一种食物。",
-				"text": "白飯",
-				"text_translation": "白米饭",
-				"img_src": null
+				"description": "\u57fa\u4e8e\u540d\u79f0\u63a8\u65ad\uff0c\u8fd9\u662f\u4e00\u9053\u4ee5\u54c8\u62c9\u7c73\uff08\u725b\u8170\u8179\u90e8\u8089\uff09\u4e3a\u4e3b\u7684\u65e5\u5f0f\u70e4\u8089\u98ce\u683c\u5c0f\u4efd\u83dc\uff0c\u5e38\u89c1\u642d\u914d\u852c\u83dc\u548c\u9171\u6c41\uff0c\u9002\u5408\u4f5c\u4e3a\u5c0f\u4efd\u54c1\u5c1d\u3002",
+				"text": "\u30c8\u30c3\u30cf\u30e9\u30df\u30cb\u30fc\u30ad\u30e3",
+				"text_translation": "\u9876\u7ea7\u54c8\u62c9\u7c73\u8ff7\u4f60",
+				"img_src": [
+					"https://static.mercdn.net/item/detail/orig/photos/m63980307478_3.jpg?1736289137",
+					"https://tshop.r10s.jp/mycket-pocket/cabinet/brand/nishizaki_2/nsz-002_1.jpg?fitin=720%3A720",
+					"https://opengraph.githubassets.com/dc81761386e25634b279c3ac01da01c4019f3dd31bdf7821f874943d74ab740d/pfnet-research/pfgen-bench",
+					"https://img.yumpu.com/54892056/1/500x640/151216-ebook.jpg",
+					"https://tshop.r10s.jp/mycket-pocket/cabinet/brand/nishizaki_2/nsz-002_2.jpg?fitin=720%3A720",
+					"https://www.tiktok.com/api/img/?itemId=7554353178406358280&location=0&aid=1988",
+					"https://s3-us-west-2.amazonaws.com/anchor-generated-image-bank/staging/podcast_uploaded_nologo400/42813621/42813621-1736474677672-18b7ef0727226.jpg",
+					"https://auctions.c.yimg.jp/images.auctions.yahoo.co.jp/image/dr000/auc0106/users/f8b7eab875ac56f2899eb99b77545df6bf634e6c/i-img1200x1200-1749349473485kqe3q9.jpg",
+					"https://imgv2-1-f.scribdassets.com/img/document/787461358/298x396/f9bef6373d/1730647081?v=1",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3476402599132348341"
+				]
 			},
 			"boundingBox": {
-				"x": 0.7512820512820513,
-				"y": 0.4246575342465753,
-				"w": 0.024786324786324785,
-				"h": 0.017123287671232876
+				"x": 0.0484375,
+				"y": 0.4895833333333333,
+				"w": 0.1921875,
+				"h": 0.05625
 			}
 		},
 		{
 			"id": 7,
 			"info": {
-				"description": "牛丼是一种日本料理，通常由牛肉和洋葱炖煮在酱油基底的汤汁中，然后浇在米饭上。",
-				"text": "牛丼",
-				"text_translation": "牛肉盖饭",
+				"description": "\u65e5\u8bed\u91cc\u6307\u8f83\u8001\u7684\u9e21\uff0c\u8089\u8d28\u7d27\u5b9e\uff0c\u98ce\u5473\u6d53\u90c1\uff0c\u5e38\u89c1\u4e8e\u65e5\u5f0f\u70e7\u70e4\uff08yakitori\uff09\u6216\u6c64\u54c1\uff0c\u70f9\u996a\u65f6\u9700\u5ef6\u957f\u65f6\u95f4\u4ee5\u8f6f\u5316\u8089\u8d28\u3002",
+				"text": "\u3072\u306d\u9ce5",
+				"text_translation": "\u8001\u9e21",
 				"img_src": [
-					"https://www.sukiya-jp.com.tw/gyudon/img/point1_img_gyudon@2x.png",
-					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3560954881337025860",
-					"https://m.media-amazon.com/images/I/51LZMxYr6fL._AC_UF894,1000_QL80_.jpg",
-					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3332189368235775212",
-					"https://i.ytimg.com/vi/h70GxdiMK-0/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCKFfVHDCThxNrGL9SuWdiTYTctCw",
-					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3560954881328623033",
-					"https://i.ytimg.com/vi/UsBBNG9iSnw/maxresdefault.jpg",
-					"https://image.delishkitchen.tv/recipe/176147753863217510/1.jpg?version=1734659894&w=920",
-					"https://i.ytimg.com/vi/h70GxdiMK-0/maxresdefault.jpg",
-					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3446533141996035676"
+					"https://pds.exblog.jp/pds/1/201209/30/67/e0065967_19364558.jpg",
+					"https://image-cdn.tabechoku.com/crop/w/720/h/720/cw/720/ch/540/images/3264d8f62d8ba6fded5d7429e5ad85b1ecf79035f4b11a3b964288966a942569.jpeg",
+					"https://torikatsu-blog.jp/wp/wp-content/uploads/2018/05/09b726b51b3793fb8d308b25614ba4d2.jpg",
+					"https://tshop.r10s.jp/f284424-ichikawa/cabinet/item/item0232.jpg?fitin=720%3A720",
+					"https://item-shopping.c.yimg.jp/i/n/suigodori_218-y_8",
+					"https://image1.shopserve.jp/toritake.co.jp/pic-labo/llimg/120613-hinedori2.jpg?t=20120910142959",
+					"https://item-shopping.c.yimg.jp/i/n/qshoku_a000076",
+					"https://image.rakuten.co.jp/maekashi/cabinet/topga/3shuset.jpg",
+					"https://tshop.r10s.jp/yakitori-kitokito/cabinet/imgrc0103007772.jpg?fitin=720%3A720",
+					"https://item-shopping.c.yimg.jp/i/l/suigodori_2181-y"
 				]
 			},
 			"boundingBox": {
-				"x": 0.5136752136752136,
-				"y": 0.4520547945205479,
-				"w": 0.023931623931623933,
-				"h": 0.017123287671232876
+				"x": 0.053125,
+				"y": 0.5458333333333333,
+				"w": 0.1,
+				"h": 0.04375
 			}
 		},
 		{
 			"id": 8,
 			"info": {
-				"description": "饮料是液体食品，通常人们在餐饮时饮用。饮料的种类繁多，包括水、果汁、碳酸饮料、茶、咖啡等。",
-				"text": "飲料",
-				"text_translation": "饮料",
-				"img_src": null
+				"description": "\u65e5\u5f0f\u70e4\u4e32\uff0c\u5c06\u9e21\u8089\u4e0e\u8471\u4e00\u540c\u7a7f\u5728\u7af9\u7b7e\u4e0a\u70e4\u5236\uff0c\u5e38\u89c1\u4e8e\u5c45\u9152\u5c4b\uff0c\u98ce\u5473\u9c9c\u7f8e",
+				"text": "\u306d\u304e\u307e",
+				"text_translation": "\u8471\u70e4\u9e21\u8089\u4e32",
+				"img_src": [
+					"https://www.shokusenden.com/wp-content/uploads/2024/12/nagima_main.jpg",
+					"https://food.fnr.sndimg.com/content/dam/images/food/fullset/2021/03/18/0/FNK_YAKITORI_NEGIMA_H_f_s4x3.jpg.rend.hgtvcom.616.462.suffix/1616083153149.webp",
+					"https://assets.epicurious.com/photos/62b4d95eba4911ad9d7f93a0/1:1/w_2560%2Cc_limit/GrilledChickenScallionSkewers_RECIPE_062322_35873.jpg",
+					"https://www.ebarafoods.com/recipe/detail/assets_img/b6d6fb10-1a4b-11ea-a14c-63122b1eb2ce/8acebd89-6093-11ef-bae9-067f294bcf31/03344_001.jpg",
+					"https://item-shopping.c.yimg.jp/i/n/fuji-s_7002906299",
+					"https://i.ytimg.com/vi/eUX9mszl5tM/maxresdefault.jpg",
+					"https://tshop.r10s.jp/kaisanouji/cabinet/96/compass1685669302.jpg?fitin=720%3A720",
+					"https://www.suigo.co.jp/blog/wp-content/uploads/2023/08/negima-tare-.jpg",
+					"https://i.ytimg.com/vi/eUX9mszl5tM/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLD-sHxnjgVBymuvk4ut-_zvKhCfOQ",
+					"https://www.seriouseats.com/thmb/ZJbhj96NdEKnLj8TatxPZzm89BI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2016__06__20160606-yakitori-negima-13-61803f895fdc4c138f56e09dbc24648f.jpg"
+				]
 			},
 			"boundingBox": {
-				"x": 0.782051282051282,
-				"y": 0.7420091324200914,
-				"w": 0.04188034188034188,
-				"h": 0.030821917808219176
+				"x": 0.059375,
+				"y": 0.59375,
+				"w": 0.1375,
+				"h": 0.04583333333333333
 			}
 		},
 		{
 			"id": 9,
 			"info": {
-				"description": "可乐是一种碳酸饮料，通常由水、糖、焦糖色、咖啡因和其他风味成分制成，具有甜味和气泡感。",
-				"text": "可樂",
-				"text_translation": "可乐",
+				"description": null,
+				"text": "",
+				"text_translation": null,
 				"img_src": null
 			},
 			"boundingBox": {
-				"x": 0.7837606837606838,
-				"y": 0.7865296803652968,
-				"w": 0.02735042735042735,
-				"h": 0.019406392694063926
+				"x": 0.159375,
+				"y": 0.6,
+				"w": 0.0703125,
+				"h": 0.03958333333333333
 			}
 		},
 		{
 			"id": 10,
 			"info": {
-				"description": "沙士是一种以沙士树根为基础的饮料，常见于甜味饮料中，具有独特的甜味和香气。",
-				"text": "沙士",
-				"text_translation": "Sarsaparilla",
-				"img_src": null
+				"description": "\u65e5\u5f0f\u70e4\u4e32\u5e38\u89c1\u7684\u98df\u6750\u4e4b\u4e00\uff0c\u6307\u9e21\u7684\u8f6f\u9aa8\u90e8\u5206\uff0c\u53e3\u611f\u8106\u97e7\uff0c\u901a\u5e38\u4ee5\u76d0\u5473\u6216\u9171\u6cb9\u8c03\u5473\uff0c\u5e38\u89c1\u505a\u6cd5\u5305\u62ec\u70e4\u5236\u3001\u714e\u70b8\u7b49\u3002",
+				"text": "\u306a\u3093\u3053\u3064",
+				"text_translation": "\u9e21\u8f6f\u9aa8",
+				"img_src": [
+					"http://a-price.jp/cdn/shop/files/4970101618038.jpg?v=1719538613",
+					"https://chinuya.com/product/images/2024/08/9f38883dd9dd640c21a16c5430614921608c930b.jpg",
+					"https://www.nihonichi.jp/cms/wp-content/uploads/2025/07/%E3%80%90%E7%84%BC%E9%B3%A5%E3%83%BB%E5%A1%A9%E3%80%91WEB%E3%82%B5%E3%82%A4%E3%83%88%E7%94%A8_840%C3%97560_%E5%A1%A9%E3%81%AA%E3%82%93%E3%81%93%E3%81%A4%E4%B8%B2.jpg",
+					"https://www.amicashop.com/upload/product/20230602134148_6479730cd3c3c.jpg",
+					"https://www.family.co.jp/content/dam/family/goods/5012565.jpg",
+					"https://suigo.itembox.design/product/001/000000000138/000000000138-01-l.jpg",
+					"https://www.primaham.co.jp/products/attaches/images/21-SP-011K_min.jpg",
+					"https://img.tkjm.jp/webshop/006/182/sl_16941.jpg",
+					"https://www.lawson.co.jp/recommend/original/detail/img/l780963.png",
+					"http://shop.sumidaya.co.jp/cdn/shop/files/hyugayanankotsu_1.png?v=1725963975"
+				]
 			},
 			"boundingBox": {
-				"x": 0.7846153846153846,
-				"y": 0.8093607305936074,
-				"w": 0.029914529914529916,
-				"h": 0.023972602739726026
+				"x": 0.059375,
+				"y": 0.6416666666666667,
+				"w": 0.1640625,
+				"h": 0.04791666666666667
 			}
 		},
 		{
 			"id": 11,
 			"info": {
-				"description": "苹果汁是一种受欢迎的饮品，通常由新鲜苹果榨取而成，口感清新，甜美。",
-				"text": "蘋果汁",
-				"text_translation": "苹果汁",
-				"img_src": null
+				"description": "\u9e21\u80f8\u8089\u4e2d\u6700\u5ae9\u7684\u90e8\u5206\uff0c\u8089\u8d28\u7ec6\u5ae9\uff0c\u5e38\u7528\u4e8e\u714e\u3001\u70e4\u3001\u70b8\u7b49\u6599\u7406\uff0c\u53e3\u611f\u9c9c\u7f8e\u3002",
+				"text": "\u3055\u3055\u307f",
+				"text_translation": "\u9e21\u91cc\u810a",
+				"img_src": [
+					"https://7premium.jp/files/item/2021_guidelines/4941605019188_k.jpg",
+					"https://www.tiktok.com/api/img/?itemId=7484497951956471058&location=0&aid=1988",
+					"https://media.delishkitchen.tv/article/555/jwno2b3khqj.jpeg?version=1714098698",
+					"https://img15.shop-pro.jp/PA01242/628/etc_base64/pLWktaTfMTAwNQ.jpg",
+					"https://7premium.jp/files/item/1705GMD/4902130109126.jpg",
+					"https://img.kewpie.co.jp/products_src/g3/imgs/4901577134524L.jpg",
+					"http://www.marukome.co.jp/files/recipe/4774/62900a18-ae90-4cc5-9aa7-3a6f0a0001f7.jpg",
+					"https://static.nichireifoods.co.jp/wp/wp-content/uploads/2025/04/sho_id42781_img01.png",
+					"https://pshoken.co.jp/uploads/2021/12/28/cat-food004a.jpg",
+					"https://www.family.co.jp/content/dam/family/goods/2230115.jpg"
+				]
 			},
 			"boundingBox": {
-				"x": 0.7923076923076923,
-				"y": 0.83675799086758,
-				"w": 0.04358974358974359,
-				"h": 0.023972602739726026
+				"x": 0.0640625,
+				"y": 0.6875,
+				"w": 0.1375,
+				"h": 0.04791666666666667
 			}
 		},
 		{
 			"id": 12,
 			"info": {
-				"description": "生鱼片",
-				"text": "生鱼片",
-				"text_translation": "生鱼片",
-				"img_src": null
+				"description": "\u624b\u7fbd\u5148\u6307\u9e21\u7fc5\u7684\u4e0a\u6bb5\uff0c\u5e38\u4ee5\u70b8\u3001\u70e4\u6216\u70e7\u70e4\u7b49\u65b9\u5f0f\u70f9\u8c03\uff0c\u5e38\u7528\u8c03\u5473\u6599\u5305\u62ec\u7167\u70e7\u3001\u8fa3\u9171\u6216\u76d0\u70e4\uff0c\u53e3\u611f\u9c9c\u5ae9\uff0c\u9999\u6c14\u56db\u6ea2\uff0c\u662f\u53d7\u6b22\u8fce\u7684\u4e0b\u9152\u83dc\u4e0e\u5c0f\u5403\u3002",
+				"text": "\u624b\u7fbd\u5148",
+				"text_translation": "\u624b\u7fbd\u5148",
+				"img_src": [
+					"https://cont-daidokolog.pal-system.co.jp/system/recipe/1593/COP11_AB_859.jpg",
+					"https://amanoshouten.co.jp/cdn/shop/products/001.jpg?v=1646714423&width=1946",
+					"https://kirisyoku.com/wp-content/uploads/2023/09/9c8ed0443803eeabaa3d602d818452ac.jpg",
+					"https://mi-journey.jp/foodie/wp-content/uploads/2024/05/240517tebasaki1.jpg",
+					"https://i.ytimg.com/vi/NRzDr3y1NM8/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDFW3A9rWrMaBOLLxVQr3lRiwgHQA",
+					"https://kiwa-group.co.jp/wp5/wp-content/uploads/2025/05/benitora_2025_6-scaled.jpg",
+					"https://i.ytimg.com/vi/NRzDr3y1NM8/maxresdefault.jpg",
+					"https://asset.oceans-nadia.com/upload/save_image/d1/d12be914b2d1384d5e20d1d9eb7a8b56.jpg?impolicy=cropwm&w=500&h=500",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3337769954310594182",
+					"https://livedoor.blogimg.jp/mizuki_recipe/imgs/5/d/5d579fda.jpg"
+				]
 			},
 			"boundingBox": {
-				"x": 0.04786324786324787,
-				"y": 0.1141552511415525,
-				"w": 0.05299145299145299,
-				"h": 0.0228310502283105
+				"x": 0.0703125,
+				"y": 0.7375,
+				"w": 0.1359375,
+				"h": 0.052083333333333336
 			}
 		},
 		{
 			"id": 13,
 			"info": {
-				"description": "综合生鱼片（八片）",
-				"text": "综合生鱼片（八片）",
-				"text_translation": "综合生鱼片（八片）",
-				"img_src": null
+				"description": "\u7a00\u5c11\u90e8\u4f4d\u6307\u8089\u7c7b\u4e2d\u8f83\u5c11\u4f7f\u7528\u4e14\u901a\u5e38\u8f83\u4e3a\u73cd\u8d35\u7684\u90e8\u4f4d\uff0c\u53e3\u611f\u548c\u98ce\u5473\u5f80\u5f80\u72ec\u7279\uff0c\u5e38\u9700\u6162\u716e\u3001\u7096\u716e\u6216\u4f4e\u6e29\u70f9\u8c03\u7b49\u65b9\u6cd5\u6765\u63d0\u5347\u5ae9\u5ea6\u4e0e\u9999\u6c14\u3002",
+				"text": "\u7a00\u5c11\u90e8\u4f4d",
+				"text_translation": "\u7a00\u5c11\u90e8\u4f4d",
+				"img_src": [
+					"https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=355733538485438",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3721217211190349887",
+					"https://image1.shopserve.jp/29-kanekichi.com/pic-labo/llimg/sankakumap.png?t=20221030150208",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3826389643205651075",
+					"https://tshop.r10s.jp/ushigen/cabinet/10831843/10839762/10972435/mtcb_012.jpg",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3170538540675929662",
+					"https://item-shopping.c.yimg.jp/i/n/ushigencom_myic5001-1_17_d_20250603101008",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3774231484757188150",
+					"https://rimage.savorjapan.com/svj/image/0004045161/0004045161F3_210x180.jpg?t=1732683472",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3711067372200844097"
+				]
 			},
 			"boundingBox": {
-				"x": 0.042735042735042736,
-				"y": 0.14269406392694065,
-				"w": 0.08888888888888889,
-				"h": 0.0182648401826484
+				"x": 0.2609375,
+				"y": 0.09375,
+				"w": 0.10625,
+				"h": 0.05
 			}
 		},
 		{
 			"id": 14,
 			"info": {
-				"description": "紫鱼三片",
-				"text": "紫鱼三片",
-				"text_translation": "紫鱼三片",
-				"img_src": null
+				"description": "\u4ee5\u9e21\u80d7\u548c\u91d1\u67aa\u9c7c\u8179\u8089\u4e3a\u4e3b\u6750\uff0c\u642d\u914d\u9ed1\u80e1\u6912\u70e4\u5236\uff0c\u5916\u7126\u91cc\u5ae9\uff0c\u9999\u6c14\u6d53\u90c1\u3002",
+				"text": "\u30ba\u30ea\u3068\u30a8\u30f3\u30ac\u30ef\u306e\u9ed2\u80e1\u6912\u713c\u304d",
+				"text_translation": "\u9ed1\u80e1\u6912\u70e4\u9e21\u80d7\u4e0e\u9ccd\u8fb9\u8089",
+				"img_src": [
+					"https://lh7-us.googleusercontent.com/docsz/AD_4nXdrFN8ur8f8ayXm89zuIfHLmHevRZBpitMDinT5cpTKD9svXl4-myCOm8Onedq5VPjXbm-m412u3IdLxSVZarS49U0ux593nfB0h9NEaZIPxmYEGV5Y_J5SPH3CmJB_VVN_966wZjdanrUNNl3P-dbR6yYr?key=mXMByjBwb9YPw66pTXApvA",
+					"https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=815691442254374",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3823670935199824486",
+					"http://gomashiki.gomaabura.jp/content/uploads/2022/01/135_yaoya_tate_02.jpg",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=2372713143370674048",
+					"https://www.tiktok.com/api/img/?itemId=7318742967282371848&location=0&aid=1988",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3432686888710251419",
+					"https://www.tiktok.com/api/img/?itemId=7448208807982828818&location=0&aid=1988",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3317035696812207982",
+					"https://www.tiktok.com/api/img/?itemId=7336540522774875393&location=0&aid=1988"
+				]
 			},
 			"boundingBox": {
-				"x": 0.040170940170940174,
-				"y": 0.16210045662100456,
-				"w": 0.0547008547008547,
-				"h": 0.017123287671232876
+				"x": 0.2625,
+				"y": 0.24583333333333332,
+				"w": 0.215625,
+				"h": 0.0375
 			}
 		},
 		{
 			"id": 15,
 			"info": {
-				"description": "鮭鱼（三片）",
-				"text": "鮭鱼（三片）",
-				"text_translation": "鮭鱼（三片）",
+				"description": null,
+				"text": "\u54c1eo Ghes 27",
+				"text_translation": null,
 				"img_src": null
 			},
 			"boundingBox": {
-				"x": 0.037606837606837605,
-				"y": 0.1815068493150685,
-				"w": 0.05726495726495726,
-				"h": 0.017123287671232876
+				"x": 0.271875,
+				"y": 0.28958333333333336,
+				"w": 0.134375,
+				"h": 0.022916666666666665
 			}
 		},
 		{
 			"id": 16,
 			"info": {
-				"description": "鮭鱼肚",
-				"text": "鮭鱼肚",
-				"text_translation": "鮭鱼肚",
-				"img_src": null
+				"description": "\u725b\u30cf\u30e9\u30df\uff08\u725b\u6a2a\u8188\u819c\u8089\uff09\u662f\u65e5\u5f0f\u70e4\u8089\u5e38\u7528\u7684\u725b\u8089\u90e8\u4f4d\uff0c\u6765\u81ea\u6a2a\u8188\u819c\u533a\u57df\uff0c\u8089\u8d28\u5ae9\u6ed1\u4e14\u6709\u56bc\u52b2\uff0c\u9002\u5408\u70e4\u5236\u6210\u725b\u6392\u6216\u4e32\u70e7\uff0c\u98ce\u5473\u9c9c\u7f8e\u3002",
+				"text": "\u725b\u30cf\u30e9\u30df",
+				"text_translation": "\u725b\u6a2a\u8188\u819c\u8089",
+				"img_src": [
+					"https://www.849shop.com/html/user_data/products/harami/photo_01.jpg",
+					"https://cdn.shopify.com/s/files/1/0650/7020/2968/files/harami01.jpg?v=1754361903&width=2048",
+					"https://www.m-mart.co.jp/zonrijk/ireg/tmp/zonrijk_20241018100002.jpg",
+					"https://item-shopping.c.yimg.jp/i/n/allmeat-co_20180531",
+					"https://kamichiku.com/img/item/otk2411/otk2411_01.jpg",
+					"https://www.starzen.co.jp/product/processed/2ed28d1f2ab9f8bddcc984b1fc1056f2/960x960/download",
+					"https://m.media-amazon.com/images/I/81n8klANY2L._AC_UF1000,1000_QL80_.jpg",
+					"http://nikuya-oishi.co.jp/cdn/shop/products/nami.jpg?v=1684905379&width=2048",
+					"https://makeshop-multi-images.akamaized.net/seakikaku/shopimages/81/72/5_000000007281.jpg?1740451280",
+					"https://www.purefood.co.jp/images/287f60a66372557893c2b625fb9b68c62abedfb2.jpg"
+				]
 			},
 			"boundingBox": {
-				"x": 0.038461538461538464,
-				"y": 0.2009132420091324,
-				"w": 0.038461538461538464,
-				"h": 0.017123287671232876
+				"x": 0.2625,
+				"y": 0.32708333333333334,
+				"w": 0.21875,
+				"h": 0.05625
 			}
 		},
 		{
 			"id": 17,
 			"info": {
-				"description": "鮪鱼（三片）",
-				"text": "鮪鱼（三片）",
-				"text_translation": "鮪鱼（三片）",
-				"img_src": null
+				"description": "\u8c5a\u30d0\u30e9\uff08\u732a\u4e94\u82b1\u8089\uff09\u662f\u6765\u81ea\u732a\u8179\u90e8\u3001\u8102\u80aa\u4e0e\u7626\u8089\u76f8\u95f4\u7684\u90e8\u4f4d\uff0c\u5e38\u7528\u4e8e\u65e5\u5f0f\u70e7\u70e4\u3001\u6dae\u706b\u9505\u7b49\uff0c\u53e3\u611f\u4e30\u5bcc\u3001\u8102\u9999\u56db\u6ea2\u3002",
+				"text": "\u8c5a\u30d0\u30e9",
+				"text_translation": "\u732a\u4e94\u82b1\u8089",
+				"img_src": [
+					"https://makeshop-multi-images.akamaized.net/nanchiku/itemimages/000000000435_rC5m4JL.jpg",
+					"https://www.ja-town.com/img/goods/2401/L/2401-24017310.JPG",
+					"http://nikuya-oishi.co.jp/cdn/shop/products/wapp.jpg?v=1680259069&width=2048",
+					"http://ebarafoodshop.jp/cdn/shop/files/5_cb05bf8d-a272-4818-8479-c4d12fd45f50.jpg?v=1752554998",
+					"https://makeshop-multi-images.akamaized.net/nanchiku/itemimages/000000000129_haXsZu5.jpg",
+					"https://n-meat.co.jp/cms/wp-content/uploads/skin-on-pork-belly-scaled.webp",
+					"https://img21.shop-pro.jp/PA01469/040/product/167699193.png?cmsp_timestamp=20220620154322",
+					"https://i.ytimg.com/vi/cScbqU_zfiU/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDzc5uM37UxbpyLS3yNiD2vVafbwg",
+					"https://www.horizonfarms.jp/cdn/shop/files/HFC08842_9d4a7bf5-f4c9-45e5-afef-68882d8c5f3e.jpg?v=1741311187&width=1600",
+					"https://cont-daidokolog.pal-system.co.jp/system/recipe/2786/img/thumbnail/sp_detail_main_PS_KCH_0358M.jpg"
+				]
 			},
 			"boundingBox": {
-				"x": 0.03333333333333333,
-				"y": 0.22031963470319635,
-				"w": 0.05726495726495726,
-				"h": 0.017123287671232876
+				"x": 0.2671875,
+				"y": 0.3854166666666667,
+				"w": 0.1953125,
+				"h": 0.052083333333333336
 			}
 		},
 		{
 			"id": 18,
 			"info": {
-				"description": "甜虾",
-				"text": "甜虾",
-				"text_translation": "甜虾",
-				"img_src": null
+				"description": "\u6765\u81ea\u5965\u5730\u5229\u7684\u9999\u80a0\uff0c\u901a\u5e38\u4ee5\u732a\u8089\u548c\u725b\u8089\u6df7\u5408\u8089\u5236\u6210\uff0c\u53e3\u611f\u6e29\u548c\uff0c\u5e38\u89c1\u4e8e\u70ed\u72d7\u3001\u714e\u70e4\u6216\u716e\u98df\u3002",
+				"text": "\u30a6\u30a4\u30f3\u30ca\u30fc",
+				"text_translation": "\u7ef4\u4e5f\u7eb3\u9999\u80a0",
+				"img_src": [
+					"https://wp.prezo.jp/wp-content/uploads/2023/02/column-main-1.jpg",
+					"https://okiham.co.jp/wp_cms/wp-content/uploads/2019/02/9bf318562c528b23aab6c57111e985b5-2.jpg",
+					"https://gigaplus.makeshop.jp/ksfood/images/item/02590.jpg",
+					"https://www.marudai.jp/products/item/img/01526/l.jpg",
+					"https://www.itoham.co.jp/Portals/0/images/product/sausages/20250813_MU_W.jpg",
+					"https://isetandoor.mistore.jp/shopping/image/mi4-7663_560_1.jpg",
+					"https://saiboku.itembox.design/product/001/000000000177/000000000177-01-l.jpg?t=20260116122801",
+					"https://storage.topvalu.net/assets/contents/images/product/273941/4549741174343_PC_L.jpg",
+					"https://www.marudai.jp/products/item/img/01389/l.jpg",
+					"https://storage.topvalu.net/assets/contents/images/product/278776/4549414646450_PC_L.jpg"
+				]
 			},
 			"boundingBox": {
-				"x": 0.03247863247863248,
-				"y": 0.2408675799086758,
-				"w": 0.023931623931623933,
-				"h": 0.014840182648401826
+				"x": 0.365625,
+				"y": 0.46041666666666664,
+				"w": 0.121875,
+				"h": 0.041666666666666664
 			}
 		},
 		{
 			"id": 19,
 			"info": {
-				"description": "干贝",
-				"text": "干贝",
-				"text_translation": "干贝",
-				"img_src": null
+				"description": "\u65e5\u5f0f\u852c\u83dc\u5377\u7ec4\u5408\uff1a\u7d2b\u82cf\u53f6\u5377\u548c\u756a\u8304\u5377\uff0c\u5e38\u4f5c\u4e3a\u524d\u83dc\u6216\u5c0f\u5403\uff0c\u6e05\u65b0\u9999\u6c14\uff0c\u53e3\u611f\u6e05\u723d\u3002",
+				"text": "\u3057\u305d\u5dfb\u304d\u3068\u307e\u3068\u5dfb",
+				"text_translation": "\u7d2b\u82cf\u5377\u548c\u756a\u8304\u5377",
+				"img_src": [
+					"https://www.arugenzo.com/img/item/1450000003/%E9%A3%9F%E3%81%B9%E6%AF%94%E3%81%B9.webp",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3808096415763210094",
+					"https://img07.shop-pro.jp/PA01364/567/product/189298900.jpg?cmsp_timestamp=20251110150545",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3808096415763234394",
+					"https://www.nishitetsu.jp/nishitetsu_news/wp-content/uploads/2023/07/makinshai6.jpg",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3808096415763208198",
+					"https://makizushi-club.com/wp/wp-content/uploads/2019/06/%E5%85%AB%E5%B9%A1%E3%83%AC%E3%82%B7%E3%83%945%E6%9C%88%E5%AE%8C%E6%88%90%E6%96%AD%E9%9D%A2-600x600.jpg",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3808096415889078768",
+					"https://www.umaies.net/pic-labo/057-00104a2024.jpg",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3808096415931027473"
+				]
 			},
 			"boundingBox": {
-				"x": 0.03076923076923077,
-				"y": 0.2614155251141553,
-				"w": 0.022222222222222223,
-				"h": 0.0136986301369863
+				"x": 0.271875,
+				"y": 0.5020833333333333,
+				"w": 0.190625,
+				"h": 0.052083333333333336
 			}
 		},
 		{
 			"id": 20,
 			"info": {
-				"description": "牡丹虾",
-				"text": "牡丹虾",
-				"text_translation": "牡丹虾",
-				"img_src": null
+				"description": "\u83ab\u624e\u91cc\u62c9\u5976\u916a\u662f\u4e00\u79cd\u6765\u6e90\u4e8e\u610f\u5927\u5229\u7684\u767d\u8272\u8f6f\u8d28\u5976\u916a\uff0c\u53e3\u611f\u67d4\u8f6f\u3001\u5177\u5ef6\u5c55\u6027\uff0c\u5e38\u7528\u4e8e\u62ab\u8428\u3001\u6c99\u62c9\u548c\u610f\u9762\u7b49\u6599\u7406\u3002",
+				"text": "\u30e2\u30c3\u30c4\u30a1\u30ec\u30e9\u30c1\u30fc\u30ba",
+				"text_translation": "\u83ab\u624e\u91cc\u62c9\u5976\u916a",
+				"img_src": [
+					"https://video.kurashiru.com/production/recipe_card_contents/cover_image/200513/large_image_original.jpg",
+					"https://img.my-best.com/section_component/contents/93364a4ff64c9f1e6a6f7398c24860fb.jpg?ixlib=rails-4.3.1&q=70&lossless=0&w=690&fit=max&s=c9a0a07d0045ab0640db392234fcdb48",
+					"https://storage.topvalu.net/assets/contents/images/product/277057/4549414285505_PC_L.jpg",
+					"https://cont-daidokolog.pal-system.co.jp/system/recipe/6697/img/thumbnail/sp_detail_main_PS_KCP_0937M.jpg",
+					"https://image1.shopserve.jp/hanabatakebokujo-store.com/pic-labo/llimg/23105ssn2.jpg?t=20240510152842",
+					"https://sm.r10s.jp/item/73/4902720041973.jpg",
+					"https://media.delishkitchen.tv/article/422/7z5j277rohw.jpeg?version=1754643480",
+					"https://www.morinagamilk.co.jp/products/brand/mozzarella/common/images/img_flesh_main.png",
+					"https://item-shopping.c.yimg.jp/i/n/seisen-online_1189000-1",
+					"https://cdn-ak.f.st-hatena.com/images/fotolife/k/konyhamemo/20230720/20230720232919.jpg"
+				]
 			},
 			"boundingBox": {
-				"x": 0.026495726495726495,
-				"y": 0.2808219178082192,
-				"w": 0.037606837606837605,
-				"h": 0.01598173515981735
+				"x": 0.271875,
+				"y": 0.5583333333333333,
+				"w": 0.171875,
+				"h": 0.03958333333333333
 			}
 		},
 		{
 			"id": 21,
 			"info": {
-				"description": "寿司",
-				"text": "寿司",
-				"text_translation": "寿司",
-				"img_src": null
+				"description": "\u5c71\u53e3\u98ce\u5473\u7684\u70ad\u70e7\u5185\u810f\uff0c\u901a\u5e38\u4ee5\u732a\u6216\u725b\u7684\u5185\u810f\u4e3a\u4e3b\uff0c\u642d\u914d\u76d0\u6216\u9171\u6599\u5728\u70ad\u706b\u4e0a\u70e4\u5236\uff0c\u53e3\u611f\u9999\u8106\uff0c\u98ce\u5473\u6d53\u90c1\u3002",
+				"text": "\u5c71\u53e3\u3082\u3064\u70ad\u713c",
+				"text_translation": "\u5c71\u53e3\u98ce\u5473\u70ad\u70e7\u5185\u810f",
+				"img_src": [
+					"https://www.yamaya.com/assets_onlineshop/img/item_l/72155_00.webp",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3795201878394082136",
+					"https://www.tiktok.com/api/img/?itemId=7470008477541272840&location=0&aid=1988",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3795201878327026330",
+					"https://imgc.eximg.jp/i=https%253A%252F%252Fs.eximg.jp%252Fexpub%252Ffeed%252FHitosara%252F2024%252FHitosara_4349%252FHitosara_4349_8fac2a2ac9fe61d1513f_1.jpg&small=600&quality=100&type=webp",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3795201878318607725",
+					"https://umineko-do.jp/manage/wp-content/uploads/2025/08/20250830_%E4%B8%89%E6%B4%A5%E6%B5%9C%E9%97%87%E5%B8%82.jpg",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3809105826788108268",
+					"https://dynamic-media-cdn.tripadvisor.com/media/photo-o/18/2a/3d/d1/getlstd-property-photo.jpg?w=900&h=500&s=1",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3795201319847034920"
+				]
 			},
 			"boundingBox": {
-				"x": 0.020512820512820513,
-				"y": 0.3550228310502283,
-				"w": 0.038461538461538464,
-				"h": 0.026255707762557076
+				"x": 0.2703125,
+				"y": 0.6,
+				"w": 0.171875,
+				"h": 0.04375
 			}
 		},
 		{
 			"id": 22,
 			"info": {
-				"description": "豆皮寿司（两个）",
-				"text": "豆皮寿司（两个）",
-				"text_translation": "豆皮寿司（两个）",
-				"img_src": null
+				"description": "\u7528\u719f\u900f\u7684\u725b\u6cb9\u679c\u7ecf\u8fc7\u70ad\u706b\u8f7b\u70e4\uff0c\u8868\u9762\u5fae\u7126\uff0c\u679c\u8089\u987a\u6ed1\uff0c\u5e38\u89c1\u4ee5\u76d0\u3001\u67e0\u6aac\u6c41\u6216\u6a44\u6984\u6cb9\u7b80\u5355\u8c03\u5473\uff0c\u98ce\u5473\u72ec\u7279\u3002",
+				"text": "\u30a2\u30dc\u30ab\u30c9\u70ad\u713c\u304d",
+				"text_translation": "\u70ad\u70e4\u725b\u6cb9\u679c",
+				"img_src": [
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3770732973185162198",
+					"https://static.mercdn.net/item/detail/orig/photos/m12235750283_12.jpg?1757597833",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3794447932779882141",
+					"https://stat.ameba.jp/user_images/20210413/23/yasai-canaco/8f/72/j/o1080108014926031714.jpg",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3126407253066636324",
+					"https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=1464086479052931",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3819292843677500371",
+					"https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=653035737071752",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3790211478877052814",
+					"https://www.oliolihawaii.com/oliolihw_wp/wp-content/uploads/2025/07/IMG_4928.jpg"
+				]
 			},
 			"boundingBox": {
-				"x": 0.015384615384615385,
-				"y": 0.3881278538812785,
-				"w": 0.08205128205128205,
-				"h": 0.02054794520547945
+				"x": 0.2703125,
+				"y": 0.64375,
+				"w": 0.1734375,
+				"h": 0.04791666666666667
 			}
 		},
 		{
 			"id": 23,
 			"info": {
-				"description": "海苔寿司（五个）",
-				"text": "海苔寿司（五个）",
-				"text_translation": "海苔寿司（五个）",
-				"img_src": null
+				"description": "\u8fd9\u9053\u83dc\u540d\u63cf\u8ff0\u4e24\u79cd\u5e38\u89c1\u98df\u6750\uff1a\u767d\u8471\u548c\u9999\u83c7\uff0c\u5e7f\u6cdb\u7528\u4e8e\u65e5\u5f0f\u53ca\u4e9a\u6d32\u83dc\u80b4\u7684\u7092\u3001\u716e\u6216\u706b\u9505\u7b49\u6599\u7406\u3002\u9999\u83c7\u9c9c\u9999\uff0c\u767d\u8471\u6e05\u751c\uff0c\u5f7c\u6b64\u4e92\u76f8\u63d0\u5473\u3002",
+				"text": "\u767d\u306d\u304e\u3068\u3057\u3044\u305f\u3051",
+				"text_translation": "\u767d\u8471\u548c\u9999\u83c7",
+				"img_src": [
+					"https://image.rakuten.co.jp/dandando-mo/cabinet/hashi_oki/imgrc0066655159.jpg",
+					"https://www.kondatekun.com/DBlarge/11898.jpg",
+					"https://recipe.r10s.jp/recipe-space/d/strg/ctrl/3/9e5228a8258eccc1c8cd640af6b26fca34bfb952.80.2.3.2.jpg?interpolation=lanczos-none&fit=around|600:600&crop=600:600;*,*",
+					"https://img.oishi-kenko.com/images/healthcare_recipes/w=500,h=500,c=true/2778.jpg?2019-12-30%2023:26:03%20+0900",
+					"https://tshop.r10s.jp/f312029-yonago/cabinet/10746035/imgrc0098152965.jpg",
+					"https://www.muji.com/public/media/jp/img/store/045785/visual/_%E7%99%BD%E3%81%AD%E3%81%8E%E3%81%A8%E3%81%97%E3%81%84%E3%81%9F%E3%81%91%E3%81%AE%E3%82%81%E3%82%93%E3%81%A4%E3%82%86%E3%83%90%E3%82%BF%E3%83%BC%E7%82%92%E3%82%81_%E3%82%B9%E3%82%AF%E3%82%A8%E3%82%A2.jpg",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3790875852628638549",
+					"https://img-global-jp.cpcdn.com/recipes/2012600/680x781cq80/%E7%99%BD%E3%81%AD%E3%81%8E%E3%81%A8%E6%A4%8E%E8%8C%B8%E3%81%AE%E3%81%A0%E3%81%97%E7%82%92%E3%82%81-%E3%83%AC%E3%82%B7%E3%83%94-%E3%83%A1%E3%82%A4%E3%83%B3-%E5%86%99%E7%9C%9F.jpg",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3797994971946326462",
+					"https://auctions.c.yimg.jp/images.auctions.yahoo.co.jp/image/dr000/auc0502/users/e5dd9c3f0529d9aa2fab7f217faa10d601b47b7d/i-img900x1200-1707378947uybhka292560.jpg"
+				]
 			},
 			"boundingBox": {
-				"x": 0.011111111111111112,
-				"y": 0.4098173515981735,
-				"w": 0.08376068376068375,
-				"h": 0.02054794520547945
+				"x": 0.275,
+				"y": 0.6979166666666666,
+				"w": 0.2140625,
+				"h": 0.04791666666666667
 			}
 		},
 		{
 			"id": 24,
 			"info": {
-				"description": "铁火细卷",
-				"text": "铁火细卷",
-				"text_translation": "铁火细卷",
-				"img_src": null
+				"description": "\u4ee5\u65e5\u672c\u7ec6\u957f\u751c\u6912\uff08\u3057\u3057\u3068\u3046\uff09\u548c\u674f\u9c8d\u83c7\uff08\u30a8\u30ea\u30f3\u30ae\uff09\u4e3a\u4e3b\u7684\u7b80\u6613\u6599\u7406\uff0c\u5e38\u89c1\u4e8e\u65e5\u5f0f\u5bb6\u5ead\u83dc\uff0c\u901a\u5e38\u5feb\u7092\uff0c\u4fdd\u7559\u852c\u83dc\u7684\u9c9c\u9999\u548c\u8106\u5ae9\u53e3\u611f\u3002",
+				"text": "\u3057\u3057\u3068\u3046 \u30a8\u30ea\u30f3\u30ae",
+				"text_translation": "\u65e5\u5f0f\u751c\u6912\u4e0e\u674f\u9c8d\u83c7",
+				"img_src": [
+					"https://www.lettuceclub.net/i/R1/img/dish/1/S20070910159003A_000.jpg",
+					"https://image.delishkitchen.tv/recipe/380516612530242640/1.jpg?version=1640173262",
+					"https://video.kurashiru.com/production/videos/84442d33-163d-433d-a3f6-18fd8279d9de/compressed_thumbnail_square_large.jpg?1761310162",
+					"https://recipe.r10s.jp/recipe-space/d/strg/ctrl/3/b9f9d6fd500a7791c14155a4add80b7ebd568b63.03.2.3.2.jpg?interpolation=lanczos-none&fit=around|600:600&crop=600:600;*,*",
+					"https://www.lettuceclub.net/i/R1/img/dish/1/S20150925026001A_000.png?w=450",
+					"https://static.mercdn.net/item/detail/orig/photos/m27814769067_3.jpg?1730459394",
+					"https://img.kurashinista.jp/get/2023/07/15/0d85d6ad641cb1f521f0ffb0091bef7d.jpg?size=700&v=1",
+					"https://img-global-jp.cpcdn.com/recipes/2267678/680x781cq80/%E3%81%97%E3%81%97%E3%81%A8%E3%81%86%E3%81%A8%E3%82%A8%E3%83%AA%E3%83%B3%E3%82%AE%E3%81%AE%E3%82%AC%E3%83%BC%E3%83%AA%E3%83%83%E3%82%AF%E9%86%A4%E6%B2%B9%E7%82%92%E3%82%81-%E3%83%AC%E3%82%B7%E3%83%94-%E3%83%A1%E3%82%A4%E3%83%B3-%E5%86%99%E7%9C%9F.jpg",
+					"https://www.lettuceclub.net/i/R1/img/dish/1/S20240625017002A1_000.jpg?w=450",
+					"https://img-global-jp.cpcdn.com/recipes/7320629/680x781cq80/%E3%83%8A%E3%82%B9%E3%81%A8%E3%82%A8%E3%83%AA%E3%83%B3%E3%82%AE%E3%81%A8%E3%81%97%E3%81%97%E3%81%A8%E3%81%86%E3%81%AE%E7%82%92%E3%82%81%E7%89%A9-%E3%83%AC%E3%82%B7%E3%83%94-%E3%83%A1%E3%82%A4%E3%83%B3-%E5%86%99%E7%9C%9F.jpg"
+				]
 			},
 			"boundingBox": {
-				"x": 0.009401709401709401,
-				"y": 0.432648401826484,
-				"w": 0.05213675213675214,
-				"h": 0.019406392694063926
+				"x": 0.275,
+				"y": 0.7520833333333333,
+				"w": 0.2140625,
+				"h": 0.04375
 			}
 		},
 		{
 			"id": 25,
 			"info": {
-				"description": "花壽司 (五个)",
-				"text": "花壽司 (五个)",
-				"text_translation": "花壽司 (五个)",
-				"img_src": null
+				"description": "\u5927\u849c\u662f\u4e00\u79cd\u5e38\u89c1\u7684\u9999\u6599\u4e0e\u8c03\u5473\u98df\u6750\uff0c\u5177\u6709\u8f9b\u8fa3\u7684\u9999\u6c14\uff0c\u5e7f\u6cdb\u7528\u4e8e\u7092\u83dc\u3001\u7172\u6c64\u3001\u814c\u5236\u7b49\uff0c\u542b\u6709\u5927\u849c\u7d20\u7b49\u6d3b\u6027\u6210\u5206\uff0c\u5177\u6709\u4e00\u5b9a\u4fdd\u5065\u4f5c\u7528\u3002",
+				"text": "\u306b\u3093\u306b\u304f",
+				"text_translation": "\u5927\u849c",
+				"img_src": [
+					"https://chefgohan.gnavi.co.jp/static/food/img/sp_img_food_detail_garlic.jpg",
+					"https://powerkun.co.jp/wp-content/uploads/2024/02/220808%EF%BC%880129037%EF%BC%89DC%E5%8D%97%E9%AB%98%E6%A2%85%E3%81%AB%E3%82%93%E3%81%AB%E3%81%8F75g%E3%80%90%E3%81%B2%E3%81%A8%E3%81%8F%E3%81%A1%E3%82%AB%E3%83%84%E3%80%91-800x694.jpg",
+					"https://cdn.sbfoods.co.jp/spicesherbs/00006_3_l.jpg",
+					"https://www.241241.jp/contents/shop/egao/img/goods/nn/zoom_img_0168001.png",
+					"https://pbs.twimg.com/media/GnsIzrwa0AEvv9f.jpg",
+					"https://www.kikkoman.co.jp/homecook/tsushin/tips0043/img/homecook_tsushin_tips0043_main.jpg",
+					"https://www.zaiho.jp/img/itm/7007050_0_99_l04.jpg",
+					"https://www.e-ninniku.com/column/wp-content/uploads/2023/12/27186709_s.jpg",
+					"https://powerkun.co.jp/wp-content/uploads/2024/02/220808%EF%BC%880129037%EF%BC%89DC%E5%8D%97%E9%AB%98%E6%A2%85%E3%81%AB%E3%82%93%E3%81%AB%E3%81%8F75g%E3%80%90%E3%81%B2%E3%81%A8%E3%81%8F%E3%81%A1%E3%82%AB%E3%83%84%E3%80%91.jpg",
+					"https://makeshop-multi-images.akamaized.net/sagamachicom/itemimages/000000000131_iD7srrg.jpg"
+				]
 			},
 			"boundingBox": {
-				"x": 0.008547008547008548,
-				"y": 0.454337899543379,
-				"w": 0.0829059829059829,
-				"h": 0.02054794520547945
+				"x": 0.271875,
+				"y": 0.80625,
+				"w": 0.115625,
+				"h": 0.03333333333333333
 			}
 		},
 		{
 			"id": 26,
 			"info": {
-				"description": "炸虾寿司（六个）",
-				"text": "炸虾寿司（六个）",
-				"text_translation": "炸虾寿司（六个）",
-				"img_src": null
+				"description": "\u65e5\u5f0f\u6599\u7406\u65b9\u5f0f\uff0c\u5c06\u9e21\u817f\u8089\u8868\u9762\u5feb\u901f\u7099\u70d9\uff0c\u4fdd\u6301\u5185\u90e8\u751f\u9c9c\u611f\uff0c\u5e38\u642d\u914d\u849c\u672b\u3001\u8471\u82b1\u548c\u9171\u6cb9\u7b49\u8638\u6599\u98df\u7528\u3002",
+				"text": "\u9d8f\u3082\u3082\u8089\u306e\u30bf\u30bf\u30ad",
+				"text_translation": "\u65e5\u5f0f\u8584\u7099\u9e21\u817f\u8089",
+				"img_src": [
+					"https://nanatani.jp/images/nanatani_chicken_a001m.jpeg",
+					"https://tshop.r10s.jp/f454028-shintomi/cabinet/item_images/10616400/c_a301-24_1_r_1.jpg?fitin=720%3A720",
+					"https://img.furusato-tax.jp/cdn-cgi/image/width=520,height=323/img/x/product/details/20250812/sd1_91cee7aa9d7e8e31e7077681bfc254ac0113330c.jpg",
+					"https://tshop.r10s.jp/f454028-shintomi/cabinet/item_images/10616400/c_a301-24_3_r.jpg?fitin=720%3A720",
+					"https://thumbnail.image.rakuten.co.jp/@0_mall/f452025-miyakonojo/cabinet/08218569/08366723/mj-9908_0417_n2kx.jpg",
+					"https://tshop.r10s.jp/niku-jiro/cabinet/07554365/imgrc0086213744.jpg?fitin=720%3A720",
+					"https://furusato.jreast.co.jp/html/upload/save_image/shop/17886/product/1431119/0902180517_68b6b34d6196b.jpg",
+					"https://cf.furunavi.jp/product_images/1647/1039131/2.jpg",
+					"https://item-shopping.c.yimg.jp/i/n/takumiya-miyazaki_150111_1",
+					"https://i.ytimg.com/vi/Cfrt_rgzcLU/maxresdefault.jpg"
+				]
 			},
 			"boundingBox": {
-				"x": 0.004273504273504274,
-				"y": 0.476027397260274,
-				"w": 0.08461538461538462,
-				"h": 0.02054794520547945
+				"x": 0.50625,
+				"y": 0.10625,
+				"w": 0.1921875,
+				"h": 0.04375
 			}
 		},
 		{
 			"id": 27,
 			"info": {
-				"description": "软壳蟹寿司（五个）",
-				"text": "软壳蟹寿司（五个）",
-				"text_translation": "软壳蟹寿司（五个）",
-				"img_src": null
+				"description": "\u5c06\u9e21\u80f8\u8089\u8868\u9762\u5feb\u901f\u7099\u70e4\uff0c\u5185\u90e8\u4fdd\u6301\u5ae9\u6ed1\uff0c\u901a\u5e38\u5207\u6210\u8584\u7247\uff0c\u642d\u914d\u9171\u6cb9\u548c\u67d1\u6a58\u7c7b\u8c03\u5473\u6c41\u7b49\u98ce\u5473\u3002",
+				"text": "\u9d8f\u3080\u306d\u8089\u306e\u30bf\u30bf\u30ad",
+				"text_translation": "\u65e5\u5f0f\u8f7b\u7099\u9e21\u80f8\u8089\uff08Tataki\uff09",
+				"img_src": [
+					"https://takumiya.shop/html/upload/save_image/0417152240_68009e30e40e7.jpg",
+					"https://makeshop-multi-images.akamaized.net/jukudori001/shopimages/79/00/1_000000000079.jpg?1721286422",
+					"https://takumiya.shop/html/user_data/assets/img/image/munetataki-itimai01.jpg",
+					"https://i.ytimg.com/vi/Pbt8Cpb_eUQ/maxresdefault.jpg",
+					"https://takumiya.shop/html/upload/save_image/01291007_61f4934fdf4a1.jpg",
+					"https://www.tori-tsu.co.jp/upload/Product/images/img2_301_5c8372ff-d418-4541-a2c2-2265ac112091.jpg",
+					"https://www.m-mart.co.jp/takumiya-m/ireg/tmp/takumiya-m_20220907164503.jpg",
+					"https://www.47club.jp/cdn/shop/files/2_10179298_6c900f80-f215-4745-a81d-7bfdacc66ff0.jpg?v=1722065825",
+					"https://cf.furunavi.jp/product_images/1644/1165180/4.jpg",
+					"https://nanatani.jp/images/nanatani_chicken_a001m.jpeg"
+				]
 			},
 			"boundingBox": {
-				"x": 0.005982905982905983,
-				"y": 0.4954337899543379,
-				"w": 0.09572649572649573,
-				"h": 0.0273972602739726
+				"x": 0.5015625,
+				"y": 0.15833333333333333,
+				"w": 0.184375,
+				"h": 0.04375
 			}
 		},
 		{
 			"id": 28,
 			"info": {
-				"description": "手卷翻译为中文是“手卷”。",
-				"text": "手卷翻译为中文是“手卷”。",
-				"text_translation": "手卷翻译为中文是“手卷”。",
-				"img_src": null
+				"description": "\u8584\u5207\u9e21\u80f8\u8089\uff0c\u5e38\u7528\u6a44\u6984\u6cb9\u3001\u67e0\u6aac\u6c41\u3001\u9178\u8c46\u548c\u5e15\u739b\u68ee\u5e72\u916a\u7b49\u8c03\u5473\uff0c\u4f5c\u4e3a\u6e05\u723d\u7684\u610f\u5f0f\u5f00\u80c3\u51c9\u83dc\u3002",
+				"text": "\u9d8f\u3080\u306d\u8089\u306e\u30ab\u30eb\u30d1\u30c3\u30c1\u30e7",
+				"text_translation": "\u9e21\u80f8\u8089\u5361\u5e15\u4e54",
+				"img_src": [
+					"https://image.delishkitchen.tv/recipe/515947327005918337/1.jpg?version=1724511602&w=920",
+					"https://video.kurashiru.com/production/videos/bc32e7fd-e1c0-4198-bb74-b317b2608d63/compressed_thumbnail_square_large.jpg?1761897053",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3115613073084779112",
+					"https://oliveoillife.jp/wp-content/uploads/2019/06/26304ad6289430d6e9f43acc31534429.jpg",
+					"https://shop.nisshin.oilliogroup.com/cms/wp-content/uploads/2020/06/alonso_2_tori2.jpg",
+					"https://ourage.jp/wp-content/uploads/2023/06/755ee0c458c93ed10d23d30985e3df41.jpg",
+					"https://asset.oceans-nadia.com/upload/save_image/21/21c19774d6dc32046bfcf0b7dfb8248b.jpeg?impolicy=cropwm&w=500&h=500",
+					"https://www.mizkan.co.jp/image.jsp?id=1997773",
+					"https://pds.exblog.jp/pds/1/201406/06/86/a0258686_6103794.jpg",
+					"https://www.ogunimon.com/wp-content/uploads/2023/03/%E3%82%84%E3%81%BE%E3%81%8B%E3%82%99%E3%81%9F%E5%9C%B0%E9%B6%8F%E3%81%AE%E3%82%BF%E3%82%BF%E3%82%AD.jpg"
+				]
 			},
 			"boundingBox": {
-				"x": 0.2504273504273504,
-				"y": 0.4452054794520548,
-				"w": 0.040170940170940174,
-				"h": 0.0273972602739726
+				"x": 0.5,
+				"y": 0.21041666666666667,
+				"w": 0.225,
+				"h": 0.04583333333333333
 			}
 		},
 		{
 			"id": 29,
 			"info": {
-				"description": "蝦卵手卷",
-				"text": "蝦卵手卷",
-				"text_translation": "蝦卵手卷",
-				"img_src": null
+				"description": "\u756a\u8304\u5207\u7247\uff0c\u901a\u5e38\u7528\u4e8e\u6c99\u62c9\u3001\u6c49\u5821\u7b49\u98df\u54c1\uff0c\u53e3\u611f\u6e05\u65b0\u591a\u6c41\uff0c\u5236\u4f5c\u7b80\u5355\u3002",
+				"text": "\u30c8\u30de\u30c8\u30b9\u30e9\u30a4\u30b9",
+				"text_translation": "\u756a\u8304\u5207\u7247",
+				"img_src": [
+					"http://shop.ganso-sample.com/cdn/shop/files/E3A5773.jpg?v=1752646116",
+					"https://lookaside.fbsbx.com/lookaside/crawler/threads/Cu31m6WhNmm/0/image.jpg",
+					"https://image.delishkitchen.tv/recipe/186464450931328081/1.jpg?version=1627881538",
+					"https://www.mizkan.co.jp/image.jsp?id=38540",
+					"https://foodservice.ajinomoto.co.jp/wp-content/uploads/2025/09/menu_image_176735.jpg",
+					"https://image.delishkitchen.tv/recipe/453601512749270035/1.jpg?version=1689087602",
+					"https://t.pimg.jp/065/580/289/1/65580289.jpg",
+					"https://recipe.r10s.jp/recipe-space/d/strg/ctrl/3/646c3b028b7701232f18402e3e46170b4ad23477.33.2.3.2.jpg?interpolation=lanczos-none&fit=around|600:600&crop=600:600;*,*",
+					"https://www.hiranojp.com/_wps/wp-content/uploads/2020/04/tomato_cut%E3%81%AE%E3%82%B3%E3%83%92%E3%82%9A%E3%83%BC.jpg",
+					"https://t3.ftcdn.net/jpg/03/65/49/90/360_F_365499022_J6oXrR1Nue0UV8OI9G8pnEu69nsDe2nn.jpg"
+				]
 			},
 			"boundingBox": {
-				"x": 0.24700854700854702,
-				"y": 0.4817351598173516,
-				"w": 0.05128205128205128,
-				"h": 0.017123287671232876
+				"x": 0.5015625,
+				"y": 0.26666666666666666,
+				"w": 0.159375,
+				"h": 0.04583333333333333
 			}
 		},
 		{
 			"id": 30,
 			"info": {
-				"description": "蘆筍手卷",
-				"text": "蘆筍手卷",
-				"text_translation": "蘆筍手卷",
-				"img_src": null
+				"description": "\u571f\u8c46\u6c99\u62c9\u662f\u4e00\u9053\u4ee5\u571f\u8c46\u4e3a\u4e3b\u6599\u3001\u5e38\u7528\u7f8e\u4e43\u6ecb\u8c03\u5473\u7684\u65e5\u5f0f\u6c99\u62c9\uff0c\u901a\u5e38\u52a0\u5165\u9ec4\u74dc\u3001\u80e1\u841d\u535c\u548c\u706b\u817f\u7b49\u914d\u6599\uff0c\u53e3\u611f\u987a\u6ed1\u3001\u6e05\u723d\uff0c\u5e38\u89c1\u4e8e\u65e5\u9910\u3001\u4fbf\u5f53\u53ca\u5bb6\u5ead\u9910\u684c\u3002",
+				"text": "\u30dd\u30c6\u30c8\u30b5\u30e9\u30c0",
+				"text_translation": "\u571f\u8c46\u6c99\u62c9",
+				"img_src": [
+					"https://i.ytimg.com/vi/p0Uhq6olluY/maxresdefault.jpg",
+					"https://southern-kitchen.com/wp-content/uploads/2024/12/DSC_0780-2-2-1210x1042.jpg",
+					"https://image.delishkitchen.tv/recipe/162510032456384915/1.jpg?version=1764210728",
+					"https://i.ytimg.com/vi/wmkYKk5qzgo/maxresdefault.jpg",
+					"https://kuzefukuandsons.com/cdn/shop/files/jp-recipe-iburigakko-potato-salad_01_1200x.jpg?v=1724982528",
+					"https://www.kewpie.co.jp/recipes/cat_assets/img/basicsalad/salad01/img_salad01_mv.jpg",
+					"https://i.ytimg.com/vi/wmkYKk5qzgo/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDWpvqp6zUl9zs3Us_VEgFSbM2Mvw",
+					"https://storage.topvalu.net/assets/contents/images/product/293373/4549414651485_PC_L.jpg",
+					"https://i.ytimg.com/vi/BrrzRBBj5BM/maxresdefault.jpg",
+					"https://cont-daidokolog.pal-system.co.jp/system/recipe/5050/img/thumbnail/sp_detail_main_PA0708_2_020.jpg"
+				]
 			},
 			"boundingBox": {
-				"x": 0.24615384615384617,
-				"y": 0.5045662100456622,
-				"w": 0.05213675213675214,
-				"h": 0.0182648401826484
+				"x": 0.4953125,
+				"y": 0.3145833333333333,
+				"w": 0.175,
+				"h": 0.04375
 			}
 		},
 		{
 			"id": 31,
 			"info": {
-				"description": "蝦手卷",
-				"text": "蝦手卷",
-				"text_translation": "蝦手卷",
-				"img_src": null
+				"description": "\u4ee5\u65b0\u9c9c\u852c\u83dc\u4e3a\u4e3b\u7684\u6c99\u62c9\uff0c\u5e38\u89c1\u6750\u6599\u5305\u62ec\u751f\u83dc\u3001\u9ec4\u74dc\u3001\u756a\u8304\u7b49\uff0c\u901a\u5e38\u4f7f\u7528\u6a44\u6984\u6cb9\u548c\u918b\u7b49\u6e05\u6de1\u8c03\u5473\uff0c\u53e3\u611f\u6e05\u723d\uff0c\u9002\u5408\u4f5c\u4e3a\u524d\u83dc\u6216\u8f7b\u98df\u3002",
+				"text": "\u3048\u3093\u3084\u306e\u91ce\u83dc\u30b5\u30e9\u30c0",
+				"text_translation": "\u6069\u96c5\u7684\u852c\u83dc\u6c99\u62c9",
+				"img_src": [
+					"https://m.media-amazon.com/images/I/714LKJlskhL._AC_SL1500_.jpg",
+					"https://tshop.r10s.jp/enya-nikko/cabinet/enya/enya00004.jpg?fitin=300:300",
+					"https://image.rakuten.co.jp/fukuroya-shop/cabinet/02093156/02552688/02723104/imgrc0110239675.jpg",
+					"https://kashi-maeda.jp/html/upload/save_image/0819081135_66c27fa7610c5.JPG",
+					"https://assets.mercari-shops-static.com/-/large/plain/4qNxMyqc4LAX8xvhTSpiVP.jpg@jpg",
+					"https://lookaside.fbsbx.com/lookaside/crawler/threads/DQGLC-bkm3D/0/image.jpg",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3814074941201933217",
+					"https://lookaside.fbsbx.com/lookaside/crawler/threads/C9GqK6DP05F/0/image.jpg",
+					"https://m.media-amazon.com/images/I/61s5Lij0nrL._AC_SL1000_.jpg",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3401292365968212106"
+				]
 			},
 			"boundingBox": {
-				"x": 0.24700854700854702,
-				"y": 0.523972602739726,
-				"w": 0.03504273504273504,
-				"h": 0.023972602739726026
+				"x": 0.4890625,
+				"y": 0.3625,
+				"w": 0.21875,
+				"h": 0.04583333333333333
 			}
 		},
 		{
 			"id": 32,
 			"info": {
-				"description": "蝦蘆筍手法的翻譯是「虾芦笋手法」。",
-				"text": "蝦蘆筍手法的翻譯是「虾芦笋手法」。",
-				"text_translation": "蝦蘆筍手法的翻譯是「虾芦笋手法」。",
-				"img_src": null
+				"description": "\u8fd9\u9053\u83dc\u4ee5\u65b0\u9c9c\u756a\u8304\u548c\u83ab\u624e\u91cc\u62c9\u5976\u916a\u4e3a\u4e3b\uff0c\u5e38\u642d\u914d\u6a44\u6984\u6cb9\u3001\u7f57\u52d2\u7b49\u9999\u8349\uff0c\u98ce\u5473\u6e05\u65b0\uff0c\u5e38\u89c1\u4e8e\u610f\u5f0f\u5f00\u80c3\u83dc\u6216\u6c99\u62c9\u3002",
+				"text": "\u30c8\u30de\u30c8\u3068\u30e2\u30c3\u30c4\u30a1\u30ec\u30e9\u30c1\u30fc\u30ba",
+				"text_translation": "\u756a\u8304\u548c\u83ab\u624e\u91cc\u62c9\u5976\u916a",
+				"img_src": [
+					"https://www.kagome.co.jp/library/recipe/img/A00948.jpg",
+					"https://cont-daidokolog.pal-system.co.jp/system/recipe/6697/img/thumbnail/sp_detail_main_PS_KCP_0937M.jpg",
+					"https://housefoods.jp/_sys/catimages/recipe/hfrecipe/items/00022076/0.1200-.jpeg",
+					"https://oldelpaso.jp/wp-content/uploads/2022/11/%E3%83%88%E3%83%9E%E3%83%88%E3%81%A8%E3%83%A2%E3%83%83%E3%83%84%E3%82%A1%E3%83%AC%E3%83%A9%E3%83%81%E3%83%BC%E3%82%BA%E3%81%AE%E3%82%B5%E3%83%A9%E3%83%80%E3%82%BF%E3%82%B3%E3%82%B9.jpg",
+					"https://housefoods.jp/_sys/catimages/recipe/hfrecipe/items/00022076/0.485-310.jpeg",
+					"https://www.kewpie.co.jp/recipes/cat_assets/img/basicsalad/salad13/top.jpg",
+					"https://housefoods.jp/_sys/catimages/recipe/hfrecipe/items/00022076/0.jpeg",
+					"https://labisboccia.tokyo/admin/wp-content/uploads/2019/06/IMG_5829-1.jpg",
+					"https://otsumamipremier.com/wdprs/wp-content/uploads/2025/05/tomato-mozzarellacheese-salad6.png",
+					"https://cdn.sbfoods.co.jp/recipes/02784_l.jpg"
+				]
 			},
 			"boundingBox": {
-				"x": 0.24273504273504273,
-				"y": 0.5502283105022832,
-				"w": 0.06581196581196581,
-				"h": 0.0182648401826484
+				"x": 0.49375,
+				"y": 0.4041666666666667,
+				"w": 0.221875,
+				"h": 0.05
 			}
 		},
 		{
 			"id": 33,
 			"info": {
-				"description": "铁火手を",
-				"text": "铁火手を",
-				"text_translation": "铁火手を",
-				"img_src": null
+				"description": "\u4ee5\u756a\u8304\u3001\u9a6c\u82cf\u91cc\u62c9\u5976\u916a\u548c\u7f57\u52d2\u4e3a\u4e3b\u6599\u7684\u5377\u72b6\u610f\u5f0f\u524d\u83dc\uff0c\u5e38\u7528\u6a44\u6984\u6cb9\u3001\u9999\u918b\u53ca\u9ed1\u80e1\u6912\u8c03\u5473\u3002",
+				"text": "\u30ab\u30d7\u30ec\u30fc\u30bc \u30ed\u30fc\u30eb",
+				"text_translation": "\u5361\u666e\u96f7\u585e\u5377",
+				"img_src": [
+					"https://m.media-amazon.com/images/I/71e+S6JSZPL._UF350,350_QL80_.jpg",
+					"https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=1034032555060550",
+					"https://park.ajinomoto.co.jp/wp-content/uploads/2024/09/804013.jpeg",
+					"https://lookaside.fbsbx.com/lookaside/crawler/threads/DHZ289hPO4h/1/image.jpg",
+					"https://item-shopping.c.yimg.jp/i/j/misonoya_b21-696",
+					"https://lookaside.fbsbx.com/lookaside/crawler/threads/DS_esbRkgZf/0/image.jpg",
+					"https://baseec-img-mng.akamaized.net/images/item/origin/1e1c3854d632f16f4717635e698a1fb7.jpg?imformat=generic&q=80&im=Resize,width=1120,type=normal",
+					"https://i.ytimg.com/vi/DpDKAvhygy0/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBZ6pTB-icbCadTF-YwP6yq43CiFg",
+					"https://furusato-asahi-data.jp/g_img/413275/1589183_1664349653_image.jpg",
+					"https://i.ytimg.com/vi/mYQSuJH-NTU/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCe-B7qABgwEpLGgKvgazlmIlAxtQ"
+				]
 			},
 			"boundingBox": {
-				"x": 0.24273504273504273,
-				"y": 0.5730593607305936,
-				"w": 0.05213675213675214,
-				"h": 0.02054794520547945
+				"x": 0.5796875,
+				"y": 0.44583333333333336,
+				"w": 0.121875,
+				"h": 0.03125
 			}
 		},
 		{
 			"id": 34,
 			"info": {
-				"description": "海胆手卷",
-				"text": "海胆手卷",
-				"text_translation": "海胆手卷",
-				"img_src": null
+				"description": "\u4ee5\u9e21\u9888\u8089\u4e3a\u4e3b\u6599\uff0c\u642d\u914d\u5357\u86ee\u9171\uff08\u918b\u3001\u9171\u6cb9\u3001\u7cd6\u3001\u8fa3\u5473\u8c03\u6599\u7b49\uff09\u70f9\u5236\uff0c\u9178\u751c\u8fa3\u53e3\u611f\u5e38\u89c1\u4e8e\u65e5\u5f0f\u5c45\u9152\u5c4b\u7684\u5c0f\u5403\u3002",
+				"text": "\u305b\u305b\u308a\u5357\u86ee",
+				"text_translation": "\u9e21\u9888\u8089\u5357\u86ee\u98ce\u5473",
+				"img_src": [
+					"https://i.ytimg.com/vi/gkTvU9U9MYE/maxresdefault.jpg",
+					"https://lbb-cloud-uploads.s3-ap-northeast-1.amazonaws.com/uploads/331403.jpg",
+					"https://recipe.r10s.jp/recipe-space/d/strg/ctrl/3/ef9a556fdecb208ed01a77cc6888ea74bf195d3b.06.2.3.2.jpg?interpolation=lanczos-none&fit=around|600:600&crop=600:600;*,*",
+					"https://img-global-jp.cpcdn.com/recipes/3017077/680x781cq80/%E9%B6%8F%E3%81%9B%E3%81%9B%E3%82%8A%E5%8D%97%E8%9B%AE%E3%83%95%E3%83%A9%E3%82%A4%E3%83%91%E3%83%B3%E3%81%A7%E7%B0%A1%E5%8D%98-%E3%83%AC%E3%82%B7%E3%83%94-%E3%83%A1%E3%82%A4%E3%83%B3-%E5%86%99%E7%9C%9F.jpg",
+					"http://tadokoro.lovepop.jp/ajisho/wp/wp-content/uploads/2022/11/044f7f6f430e72f5fab07e822cb14ee7-800x600.jpg",
+					"https://miyazaki.tege2.jp/wp-content/uploads/2014/08/IMG_5188.jpg",
+					"https://img-global-jp.cpcdn.com/recipes/429770/680x781cq80/%E5%AE%AE%E5%B4%8E%E3%81%AE%E3%81%9B%E3%81%9B%E3%82%8A%E5%8D%97%E8%9B%AE-%E3%83%AC%E3%82%B7%E3%83%94-%E3%83%A1%E3%82%A4%E3%83%B3-%E5%86%99%E7%9C%9F.jpg",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3814122845841274035",
+					"https://takehisa-shiitake.com/news/wp-content/uploads/2021/07/%E6%A4%8E%E8%8C%B8%E3%81%AE%E5%8D%97%E8%9B%AE%E6%BC%AC%E3%81%91.jpg",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3460239402885340996"
+				]
 			},
 			"boundingBox": {
-				"x": 0.24017094017094018,
-				"y": 0.6221461187214612,
-				"w": 0.05384615384615385,
-				"h": 0.019406392694063926
+				"x": 0.49375,
+				"y": 0.4791666666666667,
+				"w": 0.1328125,
+				"h": 0.04375
 			}
 		},
 		{
 			"id": 35,
 			"info": {
-				"description": "炸物的中文翻译是“fried food”。",
-				"text": "炸物的中文翻译是“fried food”。",
-				"text_translation": "炸物的中文翻译是“fried food”。",
-				"img_src": null
+				"description": "\u7802\u809d\u5357\u86ee\u662f\u4e00\u9053\u65e5\u5f0f\u98ce\u5473\u7684\u4e0b\u9152\u83dc\uff0c\u5c06\u7802\u809d\uff08\u9e21\u80d7\uff09\u70b8\u81f3\u9165\u8106\u540e\uff0c\u4e0e\u9178\u751c\u8fa3\u7684\u5357\u86ee\u9171\u62cc\u5300\uff0c\u5e38\u52a0\u5165\u6d0b\u8471\u3001\u9752\u6912\u7b49\u852c\u83dc\uff0c\u53e3\u611f\u9178\u723d\u3001\u9999\u8fa3\u4e14\u9c9c\u7f8e\u3002",
+				"text": "\u7802\u809d\u5357\u86ee",
+				"text_translation": "\u7802\u809d\u5357\u86ee",
+				"img_src": [
+					"https://bazurecipe.com/wp-content/uploads/2020/05/8FtPq5TU-768x564.jpg",
+					"https://i.ytimg.com/vi/v1ch4okV2tk/maxresdefault.jpg",
+					"https://video.kurashiru.com/production/recipe_card_contents/cover_image/355835/large_image_original.jpg",
+					"https://recipe.r10s.jp/recipe-space/d/strg/ctrl/3/7defa11c39734bff3df305acf9cb124adb48c567.83.9.3.3.jpg?interpolation=lanczos-none&fit=around|600:600&crop=600:600;*,*",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=2593342707453465171",
+					"https://i.ytimg.com/vi/v1ch4okV2tk/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLD8IDYOjDNQA7xitXGYxb8rs3RIag",
+					"https://asset.oceans-nadia.com/upload/save_image/39/39d0f50f4102.JPG?impolicy=cropwm&w=500&h=500",
+					"https://i.ytimg.com/vi/PpXV7iqhC-c/maxresdefault.jpg",
+					"https://www.tiktok.com/api/img/?itemId=7529811875379350792&location=0&aid=1988",
+					"https://i.ytimg.com/vi/r1aLfj3b9Ys/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCmcszsGEJwk1Qg8nvzpH7GbsgZJg"
+				]
 			},
 			"boundingBox": {
-				"x": 0.2358974358974359,
-				"y": 0.7328767123287672,
-				"w": 0.04358974358974359,
-				"h": 0.0273972602739726
+				"x": 0.4921875,
+				"y": 0.5229166666666667,
+				"w": 0.128125,
+				"h": 0.04791666666666667
 			}
 		},
 		{
 			"id": 36,
 			"info": {
-				"description": "扬出豆腐",
-				"text": "扬出豆腐",
-				"text_translation": "扬出豆腐",
-				"img_src": null
+				"description": "\u65e5\u5f0f\u70b8\u9e21\u5c3e\uff0c\u9009\u7528\u9e21\u5c3e\u8089\uff08bonjiri\uff09\u8089\uff0c\u814c\u5236\u540e\u88f9\u7c89\u70b8\u5236\uff0c\u5e38\u4ee5\u9171\u6cb9\u3001\u6e05\u9152\u3001\u59dc\u849c\u7b49\u8c03\u5473\uff0c\u5916\u9165\u91cc\u5ae9\uff0c\u662f\u5c45\u9152\u5c4b\u5e38\u89c1\u7684\u5c0f\u5403\u3002",
+				"text": "\u307c\u3093\u3058\u308a\u5510\u63da\u3052",
+				"text_translation": "\u65e5\u5f0f\u70b8\u9e21\u5c3e",
+				"img_src": [
+					"https://makeshop-multi-images.akamaized.net/jukudori001/shopimages/16/03/2_000000000316.jpg?1681372372",
+					"https://image.delishkitchen.tv/recipe/197009989259231636/1.jpg?version=1701997442",
+					"https://www.japanfoodservice.co.jp/wp-content/uploads/2022/05/1d08701e3b1024f539bc00f3c66b50da-950x640.jpg",
+					"https://video.kurashiru.com/production/videos/8e94ab03-a4cb-4876-b5f5-fff2035c00ea/compressed_thumbnail_square_large.jpg?1761414760",
+					"https://www.japanfoodservice.co.jp/wp-content/uploads/2022/05/c3e14bd37bae12e50500a02d87f64145-950x640.jpg",
+					"https://recipe.r10s.jp/recipe-space/d/strg/ctrl/3/a84e2e0a0fcbb9f1debf73563d8cdc84562c0c3a.57.2.3.2.jpg?interpolation=lanczos-none&fit=around|600:600&crop=600:600;*,*",
+					"https://www.karaage-takadaya.com/shop/upload/save_image/11301047_5c0096c3b845c.jpg",
+					"http://a-price.jp/cdn/shop/files/4560367767719_1.jpg?v=1761704335",
+					"https://tshop.r10s.jp/japanfoodservice/cabinet/09405250/imgrc0145786622.jpg?fitin=720%3A720",
+					"https://img.dinos.co.jp/kp/defaultMall/images/goods/NSH/0019/etc/N98579c1.jpg?Mode=main2"
+				]
 			},
 			"boundingBox": {
-				"x": 0.23247863247863249,
-				"y": 0.773972602739726,
-				"w": 0.05641025641025641,
-				"h": 0.02054794520547945
+				"x": 0.4921875,
+				"y": 0.56875,
+				"w": 0.203125,
+				"h": 0.04375
 			}
 		},
 		{
 			"id": 37,
 			"info": {
-				"description": "野菜天妇罗",
-				"text": "野菜天妇罗",
-				"text_translation": "野菜天妇罗",
-				"img_src": null
+				"description": "\u65e5\u5f0f\u70b8\u9e21\u8f6f\u9aa8\uff0c\u5916\u76ae\u9165\u8106\uff0c\u9e21\u8f6f\u9aa8\u53e3\u611f\u5f39\u7259\uff0c\u5e38\u7528\u9171\u6cb9\u3001\u849c\u548c\u59dc\u7b49\u8c03\u5473\uff0c\u642d\u914d\u67e0\u6aac\u6216\u9171\u6599\u3002",
+				"text": "\u306a\u3093\u3053\u3064\u5510\u63da\u3052",
+				"text_translation": "\u70b8\u9e21\u8f6f\u9aa8",
+				"img_src": [
+					"https://chinuya.com/product/images/2024/08/9f38883dd9dd640c21a16c5430614921608c930b.jpg",
+					"https://res.cloudinary.com/henuvxlvs/image/upload/c_pad,f_auto,fl_lossy,h_512,w_512/v1720611011/kwjm9tq6wd5tmvgm2mov",
+					"https://chinuya.com/product/images/2023/02/7e63977f794fb5fe40b65400fe87986cf9635dbc.jpg",
+					"https://www.amicashop.com/upload/product/20230602134148_6479730cd3c3c.jpg",
+					"https://video.kurashiru.com/production/videos/6ef3ab0e-9620-4453-8f34-6dd2b29d7e86/compressed_thumbnail_square_normal.jpg?1731948463",
+					"https://image.rakuten.co.jp/chinuya-shop/cabinet/compass1643589623.jpg",
+					"https://video.kurashiru.com/production/videos/6ef3ab0e-9620-4453-8f34-6dd2b29d7e86/compressed_thumbnail_square_large.jpg?1768322836",
+					"http://a-price.jp/cdn/shop/files/4970101618038.jpg?v=1719538613",
+					"https://item-shopping.c.yimg.jp/i/l/apos_4970101618038",
+					"https://www.nihonichi.jp/cms/wp-content/uploads/2025/07/%E3%80%90%E6%83%A3%E8%8F%9C%E3%80%91WEB%E3%82%B5%E3%82%A4%E3%83%88%E7%94%A8_840%C3%97560_%E8%82%89%E4%BB%98%E3%81%8D%E3%81%AA%E3%82%93%E3%81%93%E3%81%A4%E5%94%90%E6%8F%9A%E3%81%92.jpg"
+				]
 			},
 			"boundingBox": {
-				"x": 0.23247863247863249,
-				"y": 0.7990867579908676,
-				"w": 0.06923076923076923,
-				"h": 0.021689497716894976
+				"x": 0.4921875,
+				"y": 0.6125,
+				"w": 0.20625,
+				"h": 0.041666666666666664
 			}
 		},
 		{
 			"id": 38,
 			"info": {
-				"description": "若鸡唐扬",
-				"text": "若鸡唐扬",
-				"text_translation": "若鸡唐扬",
-				"img_src": null
+				"description": "\u65e5\u5f0f\u70b8\u9e21\uff08\u5510\u626c\uff09\u4ee5\u9e21\u817f\u8089\u4e3a\u4e3b\uff0c\u814c\u5236\u540e\u88f9\u7c89\u6cb9\u70b8\uff0c\u5916\u9165\u91cc\u5ae9\uff0c\u5e38\u4f5c\u4e3a\u4e0b\u9152\u83dc\u6216\u4e3b\u9910\u7684\u7ecf\u5178\u65e5\u5f0f\u70b8\u7269\u3002",
+				"text": "\u9d8f\u3082\u3082\u8089\u306e\u5510\u63da\u3052",
+				"text_translation": "\u70b8\u9e21\u817f",
+				"img_src": [
+					"https://img-global.cpcdn.com/recipes/3055471/680x781cq80/well-seasoned-crispy-fried-chicken-thighs-recipe-main-photo.jpg",
+					"https://park.ajinomoto.co.jp/wp-content/uploads/2018/03/705651.jpeg",
+					"https://asset.oceans-nadia.com/upload/save_image/01/015a6dbfbd7bba735bf718841ead4cb0.jpg?impolicy=cropwm&w=500&h=500",
+					"https://www.nichireifoods.co.jp/media/wp-content/uploads/2023/02/2302_03_karaage_01.jpg",
+					"https://image.delishkitchen.tv/recipe/167612989870965228/1.jpg?version=1759194819&w=920",
+					"https://video.kurashiru.com/production/videos/cdc492d3-02a9-4e55-b4a8-28e9de35b870/compressed_thumbnail_square_large.jpg?1770050828",
+					"https://cont-daidokolog.pal-system.co.jp/system/recipe/12764/PS_KCZ_0219L.jpg",
+					"https://park.ajinomoto.co.jp/wp-content/uploads/2021/07/802182.jpeg",
+					"http://bird44.com/cdn/shop/files/mosio-k_img1.jpg?v=1711355173",
+					"https://park.ajinomoto.co.jp/wp-content/uploads/2018/03/710275.jpeg"
+				]
 			},
 			"boundingBox": {
-				"x": 0.23162393162393163,
-				"y": 0.8276255707762558,
-				"w": 0.05555555555555555,
-				"h": 0.019406392694063926
+				"x": 0.496875,
+				"y": 0.6541666666666667,
+				"w": 0.2125,
+				"h": 0.04375
 			}
 		},
 		{
 			"id": 39,
 			"info": {
-				"description": "什锦天妇罗",
-				"text": "什锦天妇罗",
-				"text_translation": "什锦天妇罗",
-				"img_src": null
+				"description": "\u65e5\u5f0f\u5929\u5987\u7f57\uff0c\u4f7f\u7528\u9e21\u9888\u8089\uff08\u305b\u305b\u308a\uff09\u88f9\u7c89\u540e\u6cb9\u70b8\uff0c\u5916\u9165\u91cc\u5ae9\uff0c\u5e38\u642d\u914d\u8638\u9171\u4eab\u7528\uff0c\u662f\u5c45\u9152\u5c4b\u5e38\u89c1\u7684\u5c0f\u5403\u6216\u4e0b\u9152\u83dc\u3002",
+				"text": "\u305b\u305b\u308a\u306e\u5929\u3077\u3089",
+				"text_translation": "\u9e21\u9888\u8089\u5929\u5987\u7f57",
+				"img_src": [
+					"https://jfood-brothers.com/wp-content/uploads/2019/11/IMG_9388-800x600.jpg",
+					"https://recipe.r10s.jp/recipe-space/d/strg/ctrl/3/b0523b16a18b3cb3b84c41d8cbbe12e7ebf00d2b.36.9.3.3.jpg?interpolation=lanczos-none&fit=around|600:600&crop=600:600;*,*",
+					"https://stat.ameba.jp/user_images/20240414/18/creamsoda777-2003/77/2a/j/o1080081015425810959.jpg",
+					"https://jfood-brothers.com/wp-content/uploads/2019/11/IMG_9367-800x600.jpg",
+					"https://pds.exblog.jp/pds/1/202101/20/45/d0377645_22370216.jpg",
+					"https://image.space.rakuten.co.jp/d/strg/ctrl/3/4053b1fc3f4431ce6cabe9f106747131cd2ee450.91.2.3.2.jpg",
+					"https://jfood-brothers.com/wp-content/uploads/2019/11/IMG_9387-800x600.jpg",
+					"https://cdn.4travel.jp/img/thumbnails/imk/tips_pict/18/74/28/220x220_18742805.jpg?updated_at=1657247219",
+					"https://recipe.r10s.jp/recipe-space/d/strg/ctrl/3/a93d496cf5a86f1f43f002115d11a211bf2383dc.20.9.3.3.jpg?interpolation=lanczos-none&fit=around|600:600&crop=600:600;*,*",
+					"https://img-global-jp.cpcdn.com/recipes/4363828/680x781cq80/%E3%81%9B%E3%81%9B%E3%82%8A%E3%81%AE%E5%A4%A9%E3%81%B7%E3%82%89-%E3%83%AC%E3%82%B7%E3%83%94-%E3%83%A1%E3%82%A4%E3%83%B3-%E5%86%99%E7%9C%9F.jpg"
+				]
 			},
 			"boundingBox": {
-				"x": 0.22905982905982905,
-				"y": 0.8515981735159818,
-				"w": 0.07008547008547009,
-				"h": 0.02511415525114155
+				"x": 0.4953125,
+				"y": 0.7,
+				"w": 0.1984375,
+				"h": 0.0375
 			}
 		},
 		{
 			"id": 40,
 			"info": {
-				"description": "酥炸生蚝",
-				"text": "酥炸生蚝",
-				"text_translation": "酥炸生蚝",
-				"img_src": null
+				"description": "\u8fd9\u6761 OCR \u7ed3\u679c\u770b\u8d77\u6765\u50cf\u662f\u5c06\u201c\u632f\u8896\u201d\u4e0e\u65e5\u5f0f\u5929\u5987\u7f57\u7ec4\u5408\u7684\u83dc\u540d\uff0c\u5b9e\u9645\u5728\u83dc\u5355\u4e2d\u4e0d\u5e38\u89c1\uff0c\u53ef\u80fd\u662f OCR \u9519\u8bef\u3002\u6309\u5e38\u89c4\uff0c\u5929\u5987\u7f57\u662f\u4ee5\u6d77\u9c9c\u6216\u852c\u83dc\u88f9\u4e0a\u9762\u7cca\u70b8\u81f3\u9165\u8106\u7684\u65e5\u5f0f\u6599\u7406\u3002",
+				"text": "\u3075\u308a\u305d\u3067\u306e\u5929\u3077\u3089",
+				"text_translation": "\u632f\u8896\u5929\u5987\u7f57",
+				"img_src": [
+					"https://www.harumiya.co.jp/wp/wp-content/uploads/2022/06/2022-07%E3%80%80%E3%81%B5%E3%82%8A%E3%81%9D%E3%81%A7%E5%BE%A1%E8%86%B3.png",
+					"https://shopping.c.yimg.jp/lib/kouragumi/240037_main.jpg",
+					"https://i.ytimg.com/vi/XXaDp6W6c9Y/maxresdefault.jpg",
+					"https://azu-kimonodress.com/_img/ja/article/1382/image/_/",
+					"https://static.mercdn.net/item/detail/orig/photos/m14839599035_1.jpg?1634173250",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3789313239650817853",
+					"https://www.harumiya.co.jp/wp/wp-content/uploads/2022/09/img_foodmenu03_202209-1000x665",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3510289575405407633",
+					"https://shopping.c.yimg.jp/lib/kouragumi/240037_image.jpg",
+					"https://www.tiktok.com/api/img/?itemId=7561296527944174861&location=0&aid=1988"
+				]
 			},
 			"boundingBox": {
-				"x": 0.22905982905982905,
-				"y": 0.8812785388127854,
-				"w": 0.05726495726495726,
-				"h": 0.021689497716894976
+				"x": 0.496875,
+				"y": 0.7375,
+				"w": 0.2140625,
+				"h": 0.035416666666666666
 			}
 		},
 		{
 			"id": 41,
 			"info": {
-				"description": "干贝唐揚  (the translation remains the same as it is a specific dish name)",
-				"text": "干贝唐揚  (the translation remains the same as it is a specific dish name)",
-				"text_translation": "干贝唐揚  (the translation remains the same as it is a specific dish name)",
-				"img_src": null
+				"description": "\u624b\u5de5\u5236\u4f5c\u7684\u539a\u63da\u8c46\u8150\uff0c\u5916\u76ae\u91d1\u9ec4\u9165\u8106\uff0c\u5185\u90e8\u7ef5\u8f6f\uff0c\u5e38\u7528\u4e8e\u65e5\u5f0f\u716e\u7269\u3001\u70b8\u7269\u6216\u7d20\u98df\u6599\u7406\u3002",
+				"text": "\u624b\u4f5c\u308a\u539a\u63da\u3052",
+				"text_translation": "\u624b\u5de5\u539a\u63da\u8c46\u8150",
+				"img_src": [
+					"https://i.ytimg.com/vi/B70zMsCoMeI/maxresdefault.jpg",
+					"https://stat.ameba.jp/user_images/20230610/22/tesipida07/db/17/j/o1280072015297110639.jpg",
+					"https://media-cdn.tripadvisor.com/media/photo-s/19/36/13/e0/caption.jpg",
+					"https://img.buzzfeed.com/buzzfeed-static/static/2024-09/2/6/asset/5a36dddb244d/sub-buzz-1462-1725259442-1.jpg?resize=990:990",
+					"https://i.ytimg.com/vi/B70zMsCoMeI/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAIf4c0IS6cqVBnpDfiqu-smr0Hmg",
+					"https://recipe.r10s.jp/recipe-space/d/strg/ctrl/3/5a7c4c30152ce7638000451b3e81ec086b9aa5f5.77.2.3.2.jpg?interpolation=lanczos-none&fit=around|600:600&crop=600:600;*,*",
+					"https://i.ytimg.com/vi/6gOQhsM9oaY/mqdefault.jpg",
+					"https://image.delishkitchen.tv/recipe/434345937326834768/1.jpg?version=1743946741",
+					"https://i.ytimg.com/vi/4uDT-bNa5mI/maxresdefault.jpg",
+					"https://media-cdn.tripadvisor.com/media/photo-i/19/36/13/e0/caption.jpg"
+				]
 			},
 			"boundingBox": {
-				"x": 0.22905982905982905,
-				"y": 0.906392694063927,
-				"w": 0.05726495726495726,
-				"h": 0.026255707762557076
+				"x": 0.496875,
+				"y": 0.775,
+				"w": 0.2015625,
+				"h": 0.03958333333333333
 			}
 		},
 		{
 			"id": 42,
 			"info": {
-				"description": "烤物",
-				"text": "烤物",
-				"text_translation": "烤物",
-				"img_src": null
+				"description": "\u70b8\u85af\u6761\u662f\u4e00\u79cd\u5c06\u5207\u6210\u6761\u72b6\u7684\u571f\u8c46\u6cb9\u70b8\u81f3\u8868\u9762\u9165\u8106\u7684\u5feb\u9910\u5e38\u89c1\u914d\u83dc\uff0c\u5916\u8106\u5185\u8f6f\uff0c\u901a\u5e38\u642d\u914d\u756a\u8304\u9171\u3001\u86cb\u9ec4\u9171\u7b49\u8c03\u5473\u54c1\u3002",
+				"text": "\u30d5\u30e9\u30a4\u30c9\u30dd\u30c6\u30c8",
+				"text_translation": "\u70b8\u85af\u6761",
+				"img_src": [
+					"https://image.delishkitchen.tv/recipe/194112857606979988/1.jpg?version=1757292711&w=920",
+					"https://res.cloudinary.com/kraft-heinz-whats-cooking-ca/image/upload/f_auto/q_auto/r_8/c_limit,w_3840/v1/dxp-images/brands/products/4902521010079---350g/marketing-view-center_f05f8868509d16ede9bcdd6756da91ed2a7450ae_155871d7b16e2a026ee66cae216b5b31?_a=BAVMn6ID0",
+					"https://www.nicesocal.com/wp-content/uploads/2021/02/IMG_0355-750x430.jpg",
+					"https://res.cloudinary.com/kraft-heinz-whats-cooking-ca/image/upload/f_auto/q_auto/r_8/c_limit,w_3840/v1/dxp-images/brands/products/4902521010116---70g/marketing-view-center_4024031d49ef7987f67b6c1358985f2e143c8aa6_93003acadc7f30d0eb92b19ccb928a35?_a=BAVMn6ID0",
+					"https://i.ytimg.com/vi/cpiWNMpCwPQ/sddefault.jpg",
+					"https://park.ajinomoto.co.jp/wp-content/uploads/2018/03/706093.jpeg",
+					"http://cdn.allotta.io/image/upload/v1756403868/dxp-images/brands/products/4902521010062---250g/marketing-view-center_c99228a4095cdbd523988a80ad3e04ad2b1f7acf_a36e69cec9972503d1b842c07c95f14e.png",
+					"https://image.delishkitchen.tv/recipe/194112857606979988/1.jpg?version=1697036821",
+					"https://online.ministop.co.jp/Contents/ProductImages/0/905176_LL.jpg",
+					"https://www.lawson.co.jp/recommend/original/detail/img/l643701_4.png"
+				]
 			},
 			"boundingBox": {
-				"x": 0.5068376068376068,
-				"y": 0.1917808219178082,
-				"w": 0.037606837606837605,
-				"h": 0.021689497716894976
+				"x": 0.496875,
+				"y": 0.8229166666666666,
+				"w": 0.20625,
+				"h": 0.0375
 			}
 		},
 		{
 			"id": 43,
 			"info": {
-				"description": "盐烤香鱼",
-				"text": "盐烤香鱼",
-				"text_translation": "盐烤香鱼",
-				"img_src": null
+				"description": "\u4ee5\u7518\u85af\u5207\u6210\u6761\u72b6\u540e\u8fdb\u884c\u6cb9\u70b8\u6216\u70d8\u70e4\uff0c\u5916\u9165\u5185\u8f6f\uff0c\u5e38\u4f5c\u4e3a\u4f11\u95f2\u5c0f\u5403\u6216\u914d\u9910\u3002",
+				"text": "\u30b5\u30c4\u30de\u30a4\u30e2 \u30b9\u30c6\u30a3\u30c3\u30af",
+				"text_translation": "\u5730\u74dc\u6761",
+				"img_src": [
+					"https://www.daisho.co.jp/dw/wp-content/uploads/2023/07/HP%E3%83%AC%E3%82%B7%E3%83%94%E7%94%A8%E3%80%80%E3%81%82%E3%82%81%E3%80%80%E3%81%95%E3%81%A4%E3%81%BE%E3%81%84%E3%82%82-scaled.jpg",
+					"https://image.delishkitchen.tv/recipe/373486814138205202/1.jpg?version=1721633402",
+					"https://i.ytimg.com/vi/8McKfx_sdXo/maxresdefault.jpg",
+					"https://7premium.jp/files/blog/1632/4902590122567_01.jpg",
+					"https://www.lettuceclub.net/i/R1/img/dish/1/S20191025079001A_000.jpg",
+					"https://www.higashimaru.co.jp/img/recipe/0153_pic.jpg",
+					"https://www.photolibrary.jp/mhd6/img526/450-20170524181244279119.jpg",
+					"https://video.kurashiru.com/production/recipe_card_contents/cover_image/325871/large_image_original.jpg",
+					"https://www.lettuceclub.net/i/R1/img/dish/1/S20191025079001A_000.jpg?w=450",
+					"https://asset.oceans-nadia.com/upload/save_image/17/177cecece146546de2c096e2011c7597.jpg?impolicy=cropwm&w=500&h=500"
+				]
 			},
 			"boundingBox": {
-				"x": 0.5076923076923077,
-				"y": 0.2226027397260274,
-				"w": 0.0452991452991453,
-				"h": 0.01598173515981735
+				"x": 0.4953125,
+				"y": 0.8604166666666667,
+				"w": 0.2109375,
+				"h": 0.04583333333333333
 			}
 		},
 		{
 			"id": 44,
 			"info": {
-				"description": "盐烤面鱼",
-				"text": "盐烤面鱼",
-				"text_translation": "盐烤面鱼",
-				"img_src": null
+				"description": "\u5c06\u5c71\u836f\u5207\u7247\u540e\u653e\u5728\u94c1\u677f\u4e0a\u714e\u70e4\uff0c\u8868\u9762\u5fae\u7126\uff0c\u5185\u91cc\u4fdd\u6301\u5ae9\u6ed1\uff0c\u5e38\u4ee5\u9171\u6cb9\u3001\u8471\u82b1\u7b49\u8c03\u5473\uff0c\u98ce\u5473\u6e05\u723d\uff0c\u9002\u5408\u4f5c\u4e3a\u4e0b\u9152\u83dc\u6216\u5c0f\u5403\u3002",
+				"text": "\u5c71\u3044\u3082\u9244\u677f",
+				"text_translation": "\u5c71\u836f\u94c1\u677f\u70e7",
+				"img_src": [
+					"https://www.kubara.co.jp/files/bgeditor/img/1203__44K544Op44Kk44OJOQ-D-.JPG",
+					"https://assets.mercari-shops-static.com/-/large/plain/txtpinCUb9Vq7n8q8Nqwok.jpg@jpg",
+					"https://info.ajino-hyoshiro.co.jp/wp/wp-content/uploads/2015/08/20220412photo04.jpg",
+					"https://www.daisho.co.jp/dw/wp-content/uploads/2021/11/HP%E5%95%86%E5%93%81%E7%94%BB%E5%83%8F%E3%80%80%E5%B1%B1%E8%8A%8B%E9%89%84%E6%9D%BF%E7%84%BC%E3%81%8D-scaled.jpg",
+					"https://image.delishkitchen.tv/recipe/173971842497774673/1.jpg?version=1769761004&w=920",
+					"https://torikizoku.co.jp/assets/uploads/2023/05/yamaimo_teppan.jpg",
+					"https://www.daisho.co.jp/dw/wp-content/uploads/2021/12/HP%E7%94%A8%E3%80%80%E5%B1%B1%E8%8A%8B%E9%89%84%E6%9D%BF02%E5%90%88%E6%88%90-%E8%89%B2%E8%AA%BF%E6%95%B4%E5%AE%8C%E6%88%90-%E5%85%A5%E7%A8%BF10.11%E3%81%AE%E3%82%B3%E3%83%94%E3%83%BC-scaled.jpg",
+					"https://livedoor.blogimg.jp/shokunincom/imgs/e/b/eb88a2c3.jpg",
+					"https://recipe.r10s.jp/recipe-space/d/strg/ctrl/3/af43383e5314619133a49bb4cdad8e601449ac9b.51.9.3.3.jpg?interpolation=lanczos-none&fit=around|600:600&crop=600:600;*,*",
+					"https://www.lettuceclub.net/i/N1/1092718/10948035.jpg"
+				]
 			},
 			"boundingBox": {
-				"x": 0.5085470085470085,
-				"y": 0.2420091324200913,
-				"w": 0.0452991452991453,
-				"h": 0.01598173515981735
+				"x": 0.7328125,
+				"y": 0.10416666666666667,
+				"w": 0.178125,
+				"h": 0.04375
 			}
 		},
 		{
 			"id": 45,
 			"info": {
-				"description": "味噌松阪猪",
-				"text": "味噌松阪猪",
-				"text_translation": "味噌松阪猪",
-				"img_src": null
+				"description": "\u5728\u70ed\u94c1\u677f\u4e0a\u878d\u5316\u7684\u829d\u58eb\uff0c\u5e38\u642d\u914d\u852c\u83dc\u3001\u725b\u8089\u6216\u6d77\u9c9c\u7b49\u98df\u6750\uff0c\u9999\u6d53\u53ef\u53e3\uff0c\u662f\u65e5\u5f0f\u94c1\u677f\u70e7\u7684\u4e00\u79cd\u53d8\u4f53\u3002",
+				"text": "\u30c1\u30fc\u30ba\u9244\u677f\u713c\u304d",
+				"text_translation": "\u829d\u58eb\u94c1\u677f\u70e7",
+				"img_src": [
+					"https://www.nisshin-oillio.com/recipe/dispImage.php?id=1035",
+					"https://cdn.askul.co.jp/img/product/3L1/UN01589_3L1.jpg",
+					"https://www.tiktok.com/api/img/?itemId=7357255258600443144&location=0&aid=1988",
+					"https://potasala.jp/wp-content/uploads/2019/06/teppan-shou-1024x1024.jpg",
+					"https://item-shopping.c.yimg.jp/i/n/premium-pony_ito-hkd-03bk_1_d_20231223183748",
+					"https://img.rurubu.jp/img_srw/andmore/images/0000402933/yglTsbkjMS95MoVrgu9NJVfWSYYKQFySLqZy1KKh.jpeg",
+					"https://m.media-amazon.com/images/I/61CuRdh9gQL._AC_SL1000_.jpg",
+					"https://tshop.r10s.jp/f272132-izumisano/cabinet/f-item16/cfx0003r_800_2_0314.jpg",
+					"https://m.media-amazon.com/images/I/71UZxUhPpNL._AC_SL1500_.jpg",
+					"https://image.rakuten.co.jp/s-zakka-show/cabinet/a/05785182/21087_5.jpg"
+				]
 			},
 			"boundingBox": {
-				"x": 0.5076923076923077,
-				"y": 0.2614155251141553,
-				"w": 0.05811965811965812,
-				"h": 0.01598173515981735
+				"x": 0.734375,
+				"y": 0.15416666666666667,
+				"w": 0.16875,
+				"h": 0.04375
 			}
 		},
 		{
 			"id": 46,
 			"info": {
-				"description": "手羽明太子 translates to \"手羽明太子\" in Chinese (zh-cn).",
-				"text": "手羽明太子 translates to \"手羽明太子\" in Chinese (zh-cn).",
-				"text_translation": "手羽明太子 translates to \"手羽明太子\" in Chinese (zh-cn).",
-				"img_src": null
+				"description": "\u8c46\u82bd\uff08\u7eff\u8c46\u82bd\uff09\u662f\u4e00\u79cd\u7531\u7eff\u8c46\u53d1\u82bd\u540e\u5f62\u6210\u7684\u852c\u83dc\uff0c\u8d28\u5730\u8106\u5ae9\uff0c\u5473\u9053\u6e05\u6de1\uff0c\u5bcc\u542b\u7ea4\u7ef4\u548c\u86cb\u767d\u8d28\uff0c\u5e38\u7528\u4e8e\u7092\u83dc\u3001\u6c64\u54c1\u548c\u51c9\u62cc\u83dc\u7b49\u3002",
+				"text": "\u8c46\u3082\u3084\u3057",
+				"text_translation": "\u7eff\u8c46\u82bd",
+				"img_src": [
+					"https://www.sirogohan.com/_files/recipe/images/namuru/moyasinamuru5008.JPG",
+					"https://img-global-jp.cpcdn.com/recipes/3121780/680x781cq80/%E9%9F%93%E5%9B%BD%E3%81%AE%E5%AE%B6%E5%BA%AD%E3%81%AE%E5%91%B3%E8%B1%86%E3%82%82%E3%82%84%E3%81%97%E3%81%AE%E3%83%8A%E3%83%A0%E3%83%AB-%E3%83%AC%E3%82%B7%E3%83%94-%E3%83%A1%E3%82%A4%E3%83%B3-%E5%86%99%E7%9C%9F.jpg",
+					"https://cdn.slism.jp/calorie/foodImages/106287.jpg",
+					"https://www.saladcosmo.co.jp/scweb/wp-content/uploads/2023/11/daizumoyashi-organic.jpg",
+					"https://theoita.com/wp-content/uploads/2019/09/mo.jpg",
+					"https://baseec-img-mng.akamaized.net/images/item/origin/288fcd7b3a0d7b05002b5fad25f676d2.jpg?imformat=generic",
+					"https://tshop.r10s.jp/shokuhin-chokusou/cabinet/product09/21710844.jpg?fitin=720%3A720",
+					"https://www.tiktok.com/api/img/?itemId=7166103770546408706&location=0&aid=1988",
+					"https://imgcp.aacdn.jp/img-a/auto/auto/aa/gm/article/4/1/8/8/5/1/1559005117/topimg_original.jpeg",
+					"https://park.ajinomoto.co.jp/wp-content/uploads/2018/03/705148.jpeg"
+				]
 			},
 			"boundingBox": {
-				"x": 0.5111111111111111,
-				"y": 0.2808219178082192,
-				"w": 0.0547008547008547,
-				"h": 0.01598173515981735
+				"x": 0.734375,
+				"y": 0.20625,
+				"w": 0.121875,
+				"h": 0.041666666666666664
 			}
 		},
 		{
 			"id": 47,
 			"info": {
-				"description": "花鱼一夜干",
-				"text": "花鱼一夜干",
-				"text_translation": "花鱼一夜干",
-				"img_src": null
+				"description": "\u679d\u8c46\u662f\u4e00\u79cd\u5c1a\u672a\u6210\u719f\u7684\u5927\u8c46\u835a\uff0c\u901a\u5e38\u84b8\u716e\u540e\u6492\u76d0\u98df\u7528\uff0c\u53e3\u611f\u9c9c\u8106\uff0c\u662f\u65e5\u5f0f\u6599\u7406\u53ca\u5c45\u9152\u5c4b\u5e38\u89c1\u7684\u5c0f\u5403\u3002",
+				"text": "\u679d\u8c46",
+				"text_translation": "\u679d\u8c46",
+				"img_src": [
+					"https://northwestmeadowscapes.com/cdn/shop/files/midori-edamame-405582_483x386.jpg?v=1739774568",
+					"https://pickledplum.com/wp-content/uploads/2018/09/edamame-with-soy-and-sesame-1200.jpg",
+					"https://www.threshseed.com/cdn/shop/files/midori-giant-edamame-seeds-1130372501.jpg?v=1739543300&width=2000",
+					"https://www.bhg.com/thmb/UjbEcHMkG_2Ab1EwiFCz5roJmh0=/2000x0/filters:no_upscale():strip_icc()/recipes-how-to-cooking-basics-how-to-cook-edamame-04-67af81d469994e7091e6135de04149ab.jpg",
+					"https://pickledplum.com/wp-content/uploads/2018/09/edamame-with-soy-and-sesame-1200-400x600.jpg",
+					"https://www.foodinjapan.org/wp-content/uploads/2023/05/26019864_s.jpg",
+					"https://www.healthybyfork.com/wp-content/uploads/2025/09/steamed-edamame-sea-salt-featured.webp",
+					"https://trueloveseeds.com/cdn/shop/files/FE966AF7-046C-47C0-83EA-116C33C5A4DE_1024x1024@2x.jpg?v=1705604917",
+					"https://www.elephantasticvegan.com/wp-content/uploads/2016/08/basic-edamame-close.jpg",
+					"https://simplegreensmoothies.com/wp-content/uploads/how-to-make-edamame-boiled-steamed-easy-8.jpg"
+				]
 			},
 			"boundingBox": {
-				"x": 0.5102564102564102,
-				"y": 0.3013698630136986,
-				"w": 0.05641025641025641,
-				"h": 0.01598173515981735
+				"x": 0.73125,
+				"y": 0.2520833333333333,
+				"w": 0.0640625,
+				"h": 0.041666666666666664
 			}
 		},
 		{
 			"id": 48,
 			"info": {
-				"description": "青甘下巴翻译成中文（简体）是“青甘下巴”。",
-				"text": "青甘下巴翻译成中文（简体）是“青甘下巴”。",
-				"text_translation": "青甘下巴翻译成中文（简体）是“青甘下巴”。",
-				"img_src": null
+				"description": "\u8fd9\u9053\u65e5\u5f0f\u5c0f\u5403\u901a\u5e38\u5c06\u9e21\u8089\u8584\u7247\u4e0e\u82a5\u672b\u9171\u548c\u9171\u6cb9\u8638\u98df\uff0c\u53e3\u611f\u9c9c\u5ae9\u3001\u5e26\u6709\u82a5\u672b\u7684\u5fae\u8fa3\u98ce\u5473\uff0c\u5e38\u89c1\u4e8e\u5c45\u9152\u5c4b\u3002",
+				"text": "\u3048\u3093\u3084\u306e\u3068\u308a\u308f\u3055",
+				"text_translation": "Enya\u7684\u9e21\u8089\u82a5\u672b\u523a\u8eab",
+				"img_src": [
+					"https://cdn.sarah30.com/reviews/photos/000/706/805/x_large/82c9fad10b6486b5a4b7f68a485905f5d1937e14.jpg",
+					"https://static.mercdn.net/item/detail/orig/photos/m29498652428_10.jpg?1712378852",
+					"https://s3-media0.fl.yelpcdn.com/bphoto/CtcCrmWs5XK-tI_LLZTe2Q/348s.jpg",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3825322718443840805",
+					"https://lookaside.fbsbx.com/lookaside/crawler/threads/DIoKpdkJc4z/3/image.jpg",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3807756520742558416",
+					"https://lookaside.fbsbx.com/lookaside/crawler/threads/DTXBL3Tk9ph/0/image.jpg",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3634388942877202851",
+					"https://tblg.k-img.com/restaurant/images/Rvw/202654/b7d466ff76809ff0c0d1b2b39c3f661d.jpg",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3794458387577135109"
+				]
 			},
 			"boundingBox": {
-				"x": 0.5111111111111111,
-				"y": 0.3207762557077626,
-				"w": 0.046153846153846156,
-				"h": 0.01598173515981735
+				"x": 0.7296875,
+				"y": 0.29583333333333334,
+				"w": 0.175,
+				"h": 0.04583333333333333
 			}
 		},
 		{
 			"id": 49,
 			"info": {
-				"description": "食事 translates to \"饮食\" in Chinese (simplified).",
-				"text": "食事 translates to \"饮食\" in Chinese (simplified).",
-				"text_translation": "食事 translates to \"饮食\" in Chinese (simplified).",
-				"img_src": null
+				"description": "\u8fd9\u9053\u65e5\u5f0f\u51c9\u83dc\u4ee5\u62cd\u788e\u7684\u9ec4\u74dc\u4e3a\u4e3b\uff0c\u53e3\u611f\u8106\u723d\uff0c\u5e38\u642d\u914d\u849c\u672b\u3001\u9171\u6cb9\u3001\u9999\u6cb9\u7b49\u8c03\u5473\uff0c\u6e05\u65b0\u5f00\u80c3\u3002",
+				"text": "\u305f\u305f\u304d\u304d\u3085\u3046\u308a",
+				"text_translation": "\u62cd\u9ec4\u74dc",
+				"img_src": [
+					"https://video.kurashiru.com/production/recipe_card_contents/image_src_file/31174/large_contents20211207-26989-ax5i3.jpg",
+					"https://www.sirogohan.com/_files/recipe/images/tatakikyuuri/tatakikyuuri1426.JPG",
+					"https://asset.oceans-nadia.com/upload/save_image/f0/f0c055b12362af7675c1352d637ce271.jpg?impolicy=cropwm&w=500&h=500",
+					"https://park.ajinomoto.co.jp/wp-content/uploads/2018/03/708236.jpeg",
+					"https://recipe.r10s.jp/recipe-space/d/strg/ctrl/3/29885b5d7383fac4af5f78a77b8ba29382f700d6.46.9.3.3.jpg?interpolation=lanczos-none&fit=around|600:600&crop=600:600;*,*",
+					"https://park.ajinomoto.co.jp/wp-content/uploads/2019/05/801519.jpeg",
+					"https://www.marutomo.co.jp/wp/wp-content/uploads/2024/05/085219_l.png",
+					"https://www.sirogohan.com/_files/recipe/images/tatakikyuuri/tatakikyuuri2108.JPG",
+					"https://www.kyounoryouri.jp/upfile/r/new_xl_30752_80792.jpg",
+					"https://www.j-oil.com/recipe/materials/yamituki968.webp"
+				]
 			},
 			"boundingBox": {
-				"x": 0.5145299145299145,
-				"y": 0.3961187214611872,
-				"w": 0.038461538461538464,
-				"h": 0.02511415525114155
+				"x": 0.73125,
+				"y": 0.3375,
+				"w": 0.16875,
+				"h": 0.0375
 			}
 		},
 		{
 			"id": 50,
 			"info": {
-				"description": "加60均可享用定食。",
-				"text": "加60均可享用定食。",
-				"text_translation": "加60均可享用定食。",
-				"img_src": null
+				"description": "\u65e5\u5f0f\u98ce\u5473\u5976\u6cb9\u5976\u916a\uff0c\u8d28\u5730\u987a\u6ed1\uff0c\u5e38\u7528\u4e8e\u6d82\u62b9\u9762\u5305\u3001\u642d\u914d\u5bff\u53f8\u5377\u6216\u70b9\u5fc3\u3002\u5178\u578b\u505a\u6cd5\u53ef\u80fd\u5728\u5976\u6cb9\u5976\u916a\u4e2d\u52a0\u5165\u5473\u564c\u3001\u8471\u3001\u6d77\u82d4\u7b49\u65e5\u5f0f\u98ce\u5473\u5143\u7d20\uff0c\u5e26\u6709\u6e05\u65b0\u3001\u9c9c\u54b8\u7684\u53e3\u611f\u3002",
+				"text": "\u548c\u98a8\u30ec\u30af\u30ea\u30fc\u30e0\u30c1\u30fc\u30ba",
+				"text_translation": "\u65e5\u5f0f\u98ce\u5473\u5976\u6cb9\u5976\u916a",
+				"img_src": [
+					"https://cf.furunavi.jp/product_images/1688/803039/2.jpg",
+					"https://qummy.imagewave.pictures/141-1.jpg/product_ll",
+					"https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=1268932638604823",
+					"https://item-shopping.c.yimg.jp/i/n/umaimono18_182402undp5_4_d_20250617001114",
+					"https://lookaside.fbsbx.com/lookaside/crawler/threads/DS4nzlOic7s/2/image.jpg",
+					"https://cf.furunavi.jp/img_product.ashx?municipalid=224&pid=1355026",
+					"https://mottama.jp/upload/save_image/07271225_64c1e3a5e01.jpg",
+					"https://cf.furunavi.jp/product_images/1182/528212/5.jpg",
+					"https://static.mercdn.net/item/detail/orig/photos/m32872924636_1.jpg?1665454937",
+					"https://rimage.gnst.jp/gurusuguri.com/public/rszimg/products/fo/food-studio/2597780/main4_bleuet_menu_2_578_578.jpg?20251020152013"
+				]
 			},
 			"boundingBox": {
-				"x": 0.5641025641025641,
-				"y": 0.3938356164383562,
-				"w": 0.12051282051282051,
-				"h": 0.0273972602739726
+				"x": 0.728125,
+				"y": 0.375,
+				"w": 0.190625,
+				"h": 0.0375
 			}
 		},
 		{
 			"id": 51,
 			"info": {
-				"description": "握寿司",
-				"text": "握寿司",
-				"text_translation": "握寿司",
-				"img_src": null
+				"description": "\u4ee5\u9e21\u76ae\u4e3a\u4e3b\u6599\uff0c\u914d\u5408\u6e05\u723d\u7684\u67da\u5b50\u918b\u6c41\uff08ponzu\uff09\uff0c\u53e3\u611f\u8106\u5ae9\uff0c\u9178\u9999\u5f00\u80c3\uff0c\u5e38\u89c1\u4e8e\u65e5\u672c\u5c45\u9152\u5c4b\u7684\u5c0f\u5403\u3002",
+				"text": "\u3072\u306d\u76ae\u30dd\u30f3\u9162",
+				"text_translation": "\u9e21\u76ae\u914d ponzu \u9171\uff08\u67da\u5b50\u918b\u6c41\uff09",
+				"img_src": [
+					"https://fukui.cast-a-net.net/common/image2.php?1=1&w=960&t=1&f=https%3A%2F%2Ffukui%2Ecast%2Da%2Dnet%2Enet%2Fdb%5Fimg%2Fcl%5Fimg%2F10373%2Fnews%2Fimages%2Fnews%5Fimg%5F20180925095936100%2Ejpg",
+					"https://video.kurashiru.com/production/videos/92723478-c2f4-473a-a423-53f8db135090/compressed_thumbnail_square_large.jpg?1761454259",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3667198816993775531",
+					"https://livedoor.blogimg.jp/ilovebeerwine/imgs/5/5/551e7b70.jpg",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3283701635297813513",
+					"https://thumbnail.image.rakuten.co.jp/@0_mall/etsusui/cabinet/okazu/126731-0.jpg",
+					"https://blog-imgs-23.fc2.com/d/t/1/dt125kazuo/20061123135157.jpg",
+					"https://item-shopping.c.yimg.jp/i/n/maekasi_b-003-2_6",
+					"https://blog-imgs-23.fc2.com/d/t/1/dt125kazuo/20061123135142.jpg",
+					"https://image.delishkitchen.tv/recipe/206379360490357783/1.jpg?version=1741677901&w=920"
+				]
 			},
 			"boundingBox": {
-				"x": 0.2658119658119658,
-				"y": 0.11073059360730593,
-				"w": 0.05555555555555555,
-				"h": 0.021689497716894976
+				"x": 0.728125,
+				"y": 0.4125,
+				"w": 0.1859375,
+				"h": 0.03958333333333333
 			}
 		},
 		{
 			"id": 52,
 			"info": {
-				"description": "综合握寿司（七页）",
-				"text": "综合握寿司（七页）",
-				"text_translation": "综合握寿司（七页）",
-				"img_src": null
+				"description": "\u4ee5\u5927\u767d\u83dc\u4e3a\u4e3b\u6599\u7684\u97e9\u56fd\u53d1\u9175\u6ce1\u83dc\uff0c\u9999\u8fa3\u9178\u723d\uff0c\u5e38\u89c1\u914d\u6599\u5305\u62ec\u849c\u3001\u59dc\u3001\u8fa3\u6912\u7c89\u548c\u9c7c\u9732\u7b49\u3002",
+				"text": "\u767d\u83dc\u30ad\u30e0\u30c1",
+				"text_translation": "\u5927\u767d\u83dc\u6ce1\u83dc",
+				"img_src": [
+					"https://i.ytimg.com/vi/lVGVeHiz_HE/maxresdefault.jpg",
+					"https://seikatsuclub.coop/excludes/rengou/img/item/processed/70076/70076_m_01.jpg",
+					"https://i.ytimg.com/vi/e6GBL7HDNZ4/maxresdefault.jpg",
+					"https://mi-journey.jp/foodie/wp-content/uploads/2016/12/12_13_kimchi_01.jpg",
+					"https://biomarche.jp/wp/wp-content/uploads/2021/12/IMG_9625.jpg",
+					"https://makeshop-multi-images.akamaized.net/d1bos/shopimages/56/04/1_000000000456.jpg?1731577008",
+					"https://cont-daidokolog.pal-system.co.jp/system/recipe/3002/img/thumbnail/sp_detail_main_COP10_AJ_536.jpg",
+					"https://kimchi-no-moto.jp/ec/wp-content/uploads/2020/12/p_0014_1000px%E7%99%BD%E8%8F%9C%E3%82%AD%E3%83%A0%E3%83%81.jpg",
+					"https://asset.oceans-nadia.com/upload/save_image/58/58814661f16b.JPG?impolicy=cropwm&w=500&h=500",
+					"https://makeshop-multi-images.akamaized.net/seakikaku/shopimages/02/92/1_000000009202.jpg?1730448059"
+				]
 			},
 			"boundingBox": {
-				"x": 0.26324786324786326,
-				"y": 0.13926940639269406,
-				"w": 0.08888888888888889,
-				"h": 0.01598173515981735
+				"x": 0.7296875,
+				"y": 0.45208333333333334,
+				"w": 0.1421875,
+				"h": 0.04583333333333333
 			}
 		},
 		{
 			"id": 53,
 			"info": {
-				"description": "M鱼 translates to \"M鱼\" in Chinese (Simplified). It appears to be a specific term or name, possibly referring to a type of fish. If you have more context or a different meaning in mind, please provide more information!",
-				"text": "M鱼 translates to \"M鱼\" in Chinese (Simplified). It appears to be a specific term or name, possibly referring to a type of fish. If you have more context or a different meaning in mind, please provide more information!",
-				"text_translation": "M鱼 translates to \"M鱼\" in Chinese (Simplified). It appears to be a specific term or name, possibly referring to a type of fish. If you have more context or a different meaning in mind, please provide more information!",
-				"img_src": null
+				"description": "\u4ee5\u767d\u841d\u535c\u4e3a\u4e3b\u6599\u7684\u53d1\u9175\u6ce1\u83dc\uff0c\u53e3\u611f\u9178\u8106\u5fae\u8fa3\uff0c\u98ce\u5473\u6e05\u65b0\uff0c\u5e38\u4f5c\u4e3a\u5c0f\u83dc\u6216\u914d\u83dc\u3002",
+				"text": "\u5927\u6839\u30ad\u30e0\u30c1",
+				"text_translation": "\u767d\u841d\u535c\u6ce1\u83dc",
+				"img_src": [
+					"https://makeshop-multi-images.akamaized.net/kfoods/itemimages/008001000069_QPKraqR.jpg",
+					"https://i.ytimg.com/vi/SVN-suWucfo/hqdefault.jpg",
+					"https://www.on-the-slope.com/corporate/wp-content/uploads/2021/01/ea60cab01850da22315426d558294c6f.jpg",
+					"https://images.mainichigrillbu.noritz.co.jp/recipe/9fdb74904d814d94d3812fc9ee3c6c95.jpg",
+					"https://shop.aos-fan.com/wp-content/uploads/2022/07/14859e107750ee9e3f1b60db4a106cdd9181840f.88.2.3.2.jpg",
+					"https://i.ytimg.com/vi/xE4RIUqTS60/maxresdefault.jpg",
+					"https://makeshop-multi-images.akamaized.net/seakikaku/shopimages/3_005003000002.jpg?1742952484",
+					"https://c-chefgohan.gnst.jp/imgdata/recipe/84/47/4784/rc640x477_1611091000_e99c46e68a4fd1f168aafa3341b6fb5c.jpg",
+					"https://video.kurashiru.com/production/videos/4e1358fa-66a6-4a91-9fe7-b410fa5e23f4/compressed_thumbnail_square_large.jpg?1767026855",
+					"https://toyodashouten.itembox.design/product/000/000000000005/000000000005-01-m.jpg?t=20251118042547"
+				]
 			},
 			"boundingBox": {
-				"x": 0.2623931623931624,
-				"y": 0.158675799086758,
-				"w": 0.023076923076923078,
-				"h": 0.014840182648401826
+				"x": 0.73125,
+				"y": 0.5,
+				"w": 0.1484375,
+				"h": 0.041666666666666664
 			}
 		},
 		{
 			"id": 54,
 			"info": {
-				"description": "鮭魚 in Chinese (Simplified) is: 鲑鱼.",
-				"text": "鮭魚 in Chinese (Simplified) is: 鲑鱼.",
-				"text_translation": "鮭魚 in Chinese (Simplified) is: 鲑鱼.",
-				"img_src": null
+				"description": "\u97e9\u5f0f\u8fa3\u5473\u814c\u5236\u9c7f\u9c7c\uff08chanja\uff09\uff0c\u4ee5\u8fa3\u6912\u3001\u849c\u3001\u6d0b\u8471\u7b49\u9999\u6599\u814c\u5236\uff0c\u53e3\u611f\u8f9b\u8fa3\u9c9c\u9999\uff0c\u5e38\u4f5c\u4e3a\u5c0f\u83dc\u6216\u4e0b\u9152\u83dc\u3002",
+				"text": "\u30c1\u30e3\u30f3\u30b8\u30e3",
+				"text_translation": "\u8fa3\u62cc\u9c7f\u9c7c",
+				"img_src": [
+					"https://m.media-amazon.com/images/I/51UEnEwvSrL._SL500_.jpg",
+					"https://shopping.geocities.jp/iitoko/img/item/et112_01.jpg",
+					"https://www.toyoda-shouten.com/wp/wp-content/uploads/2021/03/chaja3-1-1024x977.png",
+					"https://tshop.r10s.jp/toyoshou/cabinet/03116453/03116455/imgrc0091609776.jpg?fitin=720%3A720",
+					"https://gigaplus.makeshop.jp/toua/2020/images/teiban/pic-03.jpg",
+					"https://toyodashouten.itembox.design/product/000/000000000044/000000000044-01-m.jpg?t=20251118042547",
+					"https://img13.shop-pro.jp/PA01284/948/product/155657416.gif?cmsp_timestamp=20201121094716",
+					"https://nunome.shop/wordpress/wp-content/uploads/2023/07/hotatetyan.png",
+					"http://chimmi.kanetoku.co.jp/cdn/shop/products/539_tsubu-chanja_01.jpg?v=1641540442",
+					"https://cdn.snapdish.co/photo/5fc37f4a8efdc20641c78b16"
+				]
 			},
 			"boundingBox": {
-				"x": 0.2606837606837607,
-				"y": 0.1769406392694064,
-				"w": 0.024786324786324785,
-				"h": 0.014840182648401826
+				"x": 0.7296875,
+				"y": 0.5458333333333333,
+				"w": 0.1375,
+				"h": 0.0375
 			}
 		},
 		{
 			"id": 55,
 			"info": {
-				"description": "鮭鱼肚",
-				"text": "鮭鱼肚",
-				"text_translation": "鮭鱼肚",
-				"img_src": null
+				"description": "\u65e5\u5f0f\u714e\u70e4\u996d\u56e2\uff0c\u7c73\u996d\u6210\u578b\u540e\u5728\u8868\u9762\u714e\u81f3\u91d1\u9ec4\u9165\u8106\uff0c\u5185\u90e8\u4fdd\u6301\u677e\u8f6f\uff0c\u5e38\u4ee5\u9171\u6cb9\u3001\u76d0\u6216\u6d77\u82d4\u7b49\u8c03\u5473\u3002",
+				"text": "\u713c\u304d\u304a\u306b\u304e\u308a",
+				"text_translation": "\u70e4\u996d\u56e2",
+				"img_src": [
+					"https://i.ytimg.com/vi/bqwyc1QDpGw/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAefuYcyfx2tNuwONDDHwR8f054gA",
+					"https://www.nissui.co.jp/news/img/20240701_photo_01.jpg",
+					"https://i.ytimg.com/vi/wyNYKD2LCuU/sddefault.jpg",
+					"https://static.nichireifoods.co.jp/wp/wp-content/uploads/2021/09/sho_id7824_img01.jpg",
+					"https://i.ytimg.com/vi/f3W_j82K3Po/maxresdefault.jpg",
+					"https://greenbeans.com/images-v3/89edeb69-fe10-49ca-baab-5c51900239b9/50e0ae81-f3bf-4d96-83eb-9e7a45e9bbe2/500x500.jpg",
+					"https://i.ytimg.com/vi/f3W_j82K3Po/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBScPxTx3OvzZD_YnAaPFIO_1E5EQ",
+					"https://www.nissui.co.jp/product/img/p_01276_mv.png",
+					"https://kansou.co.jp/wp2020/wp-content/uploads/2020/09/d610a004868c82519a96dd3e7618400a.jpg",
+					"https://furusato-mynavi-data.jp/g_img/272078/file_20b1144d7528b61777c1204c4788a4e4.jpg"
+				]
 			},
 			"boundingBox": {
-				"x": 0.25982905982905985,
-				"y": 0.1952054794520548,
-				"w": 0.040170940170940174,
-				"h": 0.01598173515981735
+				"x": 0.7296875,
+				"y": 0.5895833333333333,
+				"w": 0.178125,
+				"h": 0.041666666666666664
 			}
 		},
 		{
 			"id": 56,
 			"info": {
-				"description": "鮪魚 translates to \"金枪鱼\" in Chinese (Simplified).",
-				"text": "鮪魚 translates to \"金枪鱼\" in Chinese (Simplified).",
-				"text_translation": "鮪魚 translates to \"金枪鱼\" in Chinese (Simplified).",
-				"img_src": null
+				"description": "\u9cb7\u9c7c\u8336\u6ce1\u996d\uff08\u65e5\u5f0f\u6599\u7406\uff09\u662f\u4e00\u9053\u5c06\u6e29\u70ed\u7684\u8336\u6c64\uff08\u901a\u5e38\u7eff\u8336\u6216\u9ad8\u6c64\uff09\u6d47\u5728\u7c73\u996d\u4e0a\uff0c\u642d\u914d\u9cb7\u9c7c\u7247\u3001\u6d77\u82d4\u548c\u8471\u82b1\u7b49\uff0c\u7c73\u996d\u5438\u6536\u8336\u6c64\u7684\u9999\u6c14\uff0c\u53e3\u611f\u6e05\u723d\u4e14\u6e29\u6696\u3002",
+				"text": "\u9bdb\u8336\u6f2c\u3051",
+				"text_translation": "\u9cb7\u9c7c\u8336\u6ce1\u996d",
+				"img_src": [
+					"https://www.nibishi.co.jp/wp/wp-content/uploads/2018/08/8aefa3e062b9c3ff28d4a59a51a57c03-1600x1067.jpg",
+					"https://www.kubara.jp/files/recipes/20210427102758_BMFsp8rA.jpg?1770008966",
+					"https://www.sirogohan.com/_files/recipe/images/taicha/taichayoko.JPG",
+					"https://i.ytimg.com/vi/6BGI9k7EAbc/maxresdefault.jpg",
+					"https://video.kurashiru.com/production/videos/6df8c963-2756-47ad-8c12-16c9b18b7ada/compressed_thumbnail_square_large.jpg?1767288700",
+					"https://www.ja-town.com/img/goods/9508/L/9508-209.jpg",
+					"https://shun-gate.com/wp-content/uploads/2021/05/35453511363ba4ff75cb67abd5f3ceb1.jpg",
+					"http://kyoudo-ryouri.com/wp-content/uploads/2014/10/taichazuke_niigata_p_1-400x360.jpg",
+					"https://shun-gate.com/wp-content/uploads/2021/05/35453511363ba4ff75cb67abd5f3ceb1-768x512.jpg",
+					"http://www.caretta.jp/theme/caretta/upload/shop/img/shop-20250513_174227-img.jpg"
+				]
 			},
 			"boundingBox": {
-				"x": 0.25982905982905985,
-				"y": 0.21575342465753425,
-				"w": 0.023931623931623933,
-				"h": 0.014840182648401826
+				"x": 0.7296875,
+				"y": 0.6354166666666666,
+				"w": 0.159375,
+				"h": 0.04375
 			}
 		},
 		{
 			"id": 57,
 			"info": {
-				"description": "穴子 in Chinese (Simplified) is translated as \"穴子\".",
-				"text": "穴子 in Chinese (Simplified) is translated as \"穴子\".",
-				"text_translation": "穴子 in Chinese (Simplified) is translated as \"穴子\".",
-				"img_src": null
+				"description": "\u65e5\u5f0f\u76d6\u996d\uff0c\u5c06\u70e4\u9e21\u8089\u4e32\u653e\u5728\u70ed\u7c73\u996d\u4e0a\uff0c\u5e38\u914d\u4ee5\u7167\u70e7\u9171\uff0c\u8089\u9999\u751c\u54b8\uff0c\u7b80\u6d01\u7f8e\u5473\u3002",
+				"text": "\u713c\u304d\u9ce5\u4e3c",
+				"text_translation": "\u70e4\u9e21\u8089\u76d6\u996d",
+				"img_src": [
+					"https://news.nissyoku.co.jp/wp-content/uploads/2020/10/460050.jpg",
+					"https://asset.oceans-nadia.com/upload/save_image/a3/a3b9db82938c9fe14fa1f378b599e748.jpeg?impolicy=cropwm&w=500&h=500",
+					"https://i.ytimg.com/vi/1-JdRysAi24/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCKg62SRdkit9L0kGENrNazEu-OFA",
+					"https://asset.oceans-nadia.com/upload/save_image/b6/b6e60c20310cfada2cadc185c9aed84f.jpeg?impolicy=cropwm&w=500&h=500",
+					"https://www.yakitori-ninomiya.jp/shop/upload/save_image/12111356_5fd2fbee5441d.jpg",
+					"https://asset.oceans-nadia.com/upload/save_image/a0/a07b67b8b6b0.jpg?impolicy=cropwm&w=500&h=500",
+					"https://img.kurumesi-bentou.com/shops/442/35372/main_lg.jpg",
+					"https://i.ytimg.com/vi/9Jp4UxR_jUQ/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAjfma2vke8noU2BeL4DWzGs8AQhQ",
+					"https://www.sukiya.jp/news/photo_20250121_yakitori.jpg",
+					"https://www.ebarafoods.com/recipe/detail/assets_img/8c016b20-1a4b-11ea-abd0-4b514dd2a871/8d2b79e4-6093-11ef-bae9-067f294bcf31/01194_001.jpg"
+				]
 			},
 			"boundingBox": {
-				"x": 0.25726495726495724,
-				"y": 0.2557077625570776,
-				"w": 0.024786324786324785,
-				"h": 0.0136986301369863
+				"x": 0.728125,
+				"y": 0.7229166666666667,
+				"w": 0.146875,
+				"h": 0.041666666666666664
 			}
 		},
 		{
 			"id": 58,
 			"info": {
-				"description": "(两贯)",
-				"text": "(两贯)",
-				"text_translation": "(两贯)",
-				"img_src": null
+				"description": "\u9d8f\u30ac\u30e9\u30b9\u30fc\u30d7\u662f\u4e00\u79cd\u4ee5\u9e21\u9aa8\u4e3a\u539f\u6599\uff0c\u957f\u65f6\u95f4\u71ac\u716e\u800c\u6210\u7684\u6e05\u6f88\u6c64\u5e95\uff0c\u9999\u6c14\u6d53\u90c1\uff0c\u901a\u5e38\u4f5c\u4e3a\u4e2d\u5f0f\u6c64\u5e95\u6216\u6c64\u9762\u3001\u706b\u9505\u7b49\u6599\u7406\u7684\u57fa\u7840\u6c64\u3002",
+				"text": "\u9d8f\u30ac\u30e9\u30b9\u30fc\u30d7",
+				"text_translation": "\u9e21\u9aa8\u6c64",
+				"img_src": [
+					"https://makeshop-multi-images.akamaized.net/AsianStore/itemimages/000000005248_flKRB9i.jpg",
+					"https://m.media-amazon.com/images/I/71En63tw1aL._AC_UF1000,1000_QL80_.jpg",
+					"https://cdn.askul.co.jp/img/product/3L1/KE98093_3L1.jpg",
+					"https://public.admin-story.prtimes.jp/uploads/92524/5661/thumbnail_ce114040-600e-11ed-b556-4d8f77ea3cef.jpg",
+					"https://i.ytimg.com/vi/fD0qJGTyRPc/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBSOI-d1_NEZLViyNEh2MkM38stGA",
+					"https://okyakusama.ajinomoto.co.jp/qa/65fd7816961fc6b47460cc2abe86976b_1.jpg",
+					"https://www.ajinomoto.co.jp/products/Image.aspx?PicType=0&PIMNO=A110927919",
+					"https://m.media-amazon.com/images/I/71uBCHtzhBL._AC_UF894,1000_QL80_.jpg",
+					"https://cdn.askul.co.jp/img/product/3L1/AX78285_3L1.jpg",
+					"https://jp.images-monotaro.com/Monotaro3/pi/full/mono60884986-210316-02.jpg"
+				]
 			},
 			"boundingBox": {
-				"x": 0.3153846153846154,
-				"y": 0.2751141552511416,
-				"w": 0.03333333333333333,
-				"h": 0.014840182648401826
+				"x": 0.7296875,
+				"y": 0.7708333333333334,
+				"w": 0.1625,
+				"h": 0.04375
 			}
 		},
 		{
 			"id": 59,
 			"info": {
-				"description": "牡丹虾",
-				"text": "牡丹虾",
-				"text_translation": "牡丹虾",
-				"img_src": null
+				"description": "\u6e05\u7269\u76db\u308a\u5408\u308f\u305b\u662f\u65e5\u5f0f\u6599\u7406\u4e2d\u7684\u524d\u83dc\u62fc\u76d8\uff0c\u901a\u5e38\u7531\u5b63\u8282\u6027\u852c\u83dc\u3001\u8c46\u5236\u54c1\u3001\u6d77\u85fb\u7b49\u6e05\u6de1\u3001\u7b80\u5355\u7684\u98df\u6750\u7ec4\u6210\uff0c\u5f3a\u8c03\u98df\u6750\u7684\u65b0\u9c9c\u53e3\u611f\u4e0e\u539f\u5473\u3002",
+				"text": "\u6e05\u7269\u76db\u308a\u5408\u308f\u305b",
+				"text_translation": "\u6e05\u7269\u62fc\u76d8",
+				"img_src": [
+					"https://auctions.c.yimg.jp/images.auctions.yahoo.co.jp/image/dr000/auc0509/user/5bc996645662d58e57e0bb332c37e44a317fb7fe68f4b19e1ff2675014c6925d/i-img900x1200-172681088899690oddff885200.jpg",
+					"https://shopping.c.yimg.jp/lib/aino-kajitu/swt_ymorikago.jpg",
+					"https://item-shopping.c.yimg.jp/i/l/aino-kajitu_fthkago-a",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3801750240589200948",
+					"https://auctions.c.yimg.jp/images.auctions.yahoo.co.jp/image/dr000/auc0509/user/1204380774a10f4f899eb274596fc1a77eb09c80d8a0648ef752dbf02dfb50ba/i-img1200x1200-172561641238687jfq5q555944.jpg",
+					"https://shop.onagawadays.jp/cdn/shop/products/okasei_20210412_okasei_0256_1400x.jpg?v=1647326741",
+					"https://www.tiktok.com/api/img/?itemId=7449040360946404626&location=0&aid=1988",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3652506806015808223",
+					"https://lookaside.fbsbx.com/lookaside/crawler/instagram/DSJh9STmCEK/0/image.jpg",
+					"https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3806116509349146167"
+				]
 			},
 			"boundingBox": {
-				"x": 0.25555555555555554,
-				"y": 0.2945205479452055,
-				"w": 0.037606837606837605,
-				"h": 0.01598173515981735
-			}
-		},
-		{
-			"id": 60,
-			"info": {
-				"description": "比目鱼绿侧（两贯）",
-				"text": "比目鱼绿侧（两贯）",
-				"text_translation": "比目鱼绿侧（两贯）",
-				"img_src": null
-			},
-			"boundingBox": {
-				"x": 0.2547008547008547,
-				"y": 0.3150684931506849,
-				"w": 0.1,
-				"h": 0.01598173515981735
-			}
-		},
-		{
-			"id": 61,
-			"info": {
-				"description": "鮭魚卵 translates to \"鲑鱼卵\" in simplified Chinese (zh-cn).",
-				"text": "鮭魚卵 translates to \"鲑鱼卵\" in simplified Chinese (zh-cn).",
-				"text_translation": "鮭魚卵 translates to \"鲑鱼卵\" in simplified Chinese (zh-cn).",
-				"img_src": null
-			},
-			"boundingBox": {
-				"x": 0.25384615384615383,
-				"y": 0.3367579908675799,
-				"w": 0.037606837606837605,
-				"h": 0.014840182648401826
-			}
-		},
-		{
-			"id": 62,
-			"info": {
-				"description": "(HE EE)",
-				"text": "(HE EE)",
-				"text_translation": "(HE EE)",
-				"img_src": null
-			},
-			"boundingBox": {
-				"x": 0.31965811965811963,
-				"y": 0.3573059360730594,
-				"w": 0.03418803418803419,
-				"h": 0.014840182648401826
-			}
-		},
-		{
-			"id": 63,
-			"info": {
-				"description": "茶碗蒸翻译成中文是“茶碗蒸”。",
-				"text": "茶碗蒸翻译成中文是“茶碗蒸”。",
-				"text_translation": "茶碗蒸翻译成中文是“茶碗蒸”。",
-				"img_src": null
-			},
-			"boundingBox": {
-				"x": 0.752991452991453,
-				"y": 0.4452054794520548,
-				"w": 0.03675213675213675,
-				"h": 0.0182648401826484
-			}
-		},
-		{
-			"id": 64,
-			"info": {
-				"description": "饭称",
-				"text": "饭称",
-				"text_translation": "饭称",
-				"img_src": null
-			},
-			"boundingBox": {
-				"x": 0.7547008547008547,
-				"y": 0.4691780821917808,
-				"w": 0.024786324786324785,
-				"h": 0.014840182648401826
-			}
-		},
-		{
-			"id": 65,
-			"info": {
-				"description": "亲子丼",
-				"text": "亲子丼",
-				"text_translation": "亲子丼",
-				"img_src": null
-			},
-			"boundingBox": {
-				"x": 0.5128205128205128,
-				"y": 0.4737442922374429,
-				"w": 0.03675213675213675,
-				"h": 0.017123287671232876
-			}
-		},
-		{
-			"id": 66,
-			"info": {
-				"description": "猪排丼",
-				"text": "猪排丼",
-				"text_translation": "猪排丼",
-				"img_src": null
-			},
-			"boundingBox": {
-				"x": 0.5145299145299145,
-				"y": 0.4954337899543379,
-				"w": 0.035897435897435895,
-				"h": 0.01598173515981735
-			}
-		},
-		{
-			"id": 67,
-			"info": {
-				"description": "天丼翻译为中文是“天妇罗盖饭”。",
-				"text": "天丼翻译为中文是“天妇罗盖饭”。",
-				"text_translation": "天丼翻译为中文是“天妇罗盖饭”。",
-				"img_src": null
-			},
-			"boundingBox": {
-				"x": 0.5153846153846153,
-				"y": 0.5171232876712328,
-				"w": 0.024786324786324785,
-				"h": 0.017123287671232876
-			}
-		},
-		{
-			"id": 68,
-			"info": {
-				"description": "胡麻乌龙面（冷面）",
-				"text": "胡麻乌龙面（冷面）",
-				"text_translation": "胡麻乌龙面（冷面）",
-				"img_src": null
-			},
-			"boundingBox": {
-				"x": 0.5162393162393163,
-				"y": 0.5376712328767124,
-				"w": 0.09316239316239316,
-				"h": 0.019406392694063926
-			}
-		},
-		{
-			"id": 69,
-			"info": {
-				"description": "日式蕎麦面（冷面）",
-				"text": "日式蕎麦面（冷面）",
-				"text_translation": "日式蕎麦面（冷面）",
-				"img_src": null
-			},
-			"boundingBox": {
-				"x": 0.5162393162393163,
-				"y": 0.5605022831050228,
-				"w": 0.10170940170940171,
-				"h": 0.019406392694063926
-			}
-		},
-		{
-			"id": 70,
-			"info": {
-				"description": "牛(猪)乌龙面",
-				"text": "牛(猪)乌龙面",
-				"text_translation": "牛(猪)乌龙面",
-				"img_src": null
-			},
-			"boundingBox": {
-				"x": 0.5170940170940171,
-				"y": 0.5833333333333334,
-				"w": 0.07179487179487179,
-				"h": 0.0182648401826484
-			}
-		},
-		{
-			"id": 71,
-			"info": {
-				"description": "海鲜乌冬面",
-				"text": "海鲜乌冬面",
-				"text_translation": "海鲜乌冬面",
-				"img_src": null
-			},
-			"boundingBox": {
-				"x": 0.5170940170940171,
-				"y": 0.6073059360730594,
-				"w": 0.06324786324786325,
-				"h": 0.0182648401826484
-			}
-		},
-		{
-			"id": 72,
-			"info": {
-				"description": "生鱼片丼饭",
-				"text": "生鱼片丼饭",
-				"text_translation": "生鱼片丼饭",
-				"img_src": null
-			},
-			"boundingBox": {
-				"x": 0.5170940170940171,
-				"y": 0.6301369863013698,
-				"w": 0.06495726495726496,
-				"h": 0.02054794520547945
-			}
-		},
-		{
-			"id": 73,
-			"info": {
-				"description": "吸物 in Chinese (Simplified) translates to \"suction\" or \"吸引物\" which means \"suction object\" depending on the context. Please provide more context if needed for a more accurate translation.",
-				"text": "吸物 in Chinese (Simplified) translates to \"suction\" or \"吸引物\" which means \"suction object\" depending on the context. Please provide more context if needed for a more accurate translation.",
-				"text_translation": "吸物 in Chinese (Simplified) translates to \"suction\" or \"吸引物\" which means \"suction object\" depending on the context. Please provide more context if needed for a more accurate translation.",
-				"img_src": null
-			},
-			"boundingBox": {
-				"x": 0.7649572649572649,
-				"y": 0.5559360730593608,
-				"w": 0.039316239316239315,
-				"h": 0.026255707762557076
-			}
-		},
-		{
-			"id": 74,
-			"info": {
-				"description": "海苔汤",
-				"text": "海苔汤",
-				"text_translation": "海苔汤",
-				"img_src": null
-			},
-			"boundingBox": {
-				"x": 0.7658119658119659,
-				"y": 0.593607305936073,
-				"w": 0.039316239316239315,
-				"h": 0.02054794520547945
-			}
-		},
-		{
-			"id": 75,
-			"info": {
-				"description": "海带芽汤",
-				"text": "海带芽汤",
-				"text_translation": "海带芽汤",
-				"img_src": null
-			},
-			"boundingBox": {
-				"x": 0.7683760683760684,
-				"y": 0.6164383561643836,
-				"w": 0.05128205128205128,
-				"h": 0.02054794520547945
-			}
-		},
-		{
-			"id": 76,
-			"info": {
-				"description": "味噌汤",
-				"text": "味噌汤",
-				"text_translation": "味噌汤",
-				"img_src": null
-			},
-			"boundingBox": {
-				"x": 0.770940170940171,
-				"y": 0.6415525114155252,
-				"w": 0.039316239316239315,
-				"h": 0.019406392694063926
-			}
-		},
-		{
-			"id": 77,
-			"info": {
-				"description": "小菜 translates to \"side dish\" in English.",
-				"text": "小菜 translates to \"side dish\" in English.",
-				"text_translation": "小菜 translates to \"side dish\" in English.",
-				"img_src": null
-			},
-			"boundingBox": {
-				"x": 0.5222222222222223,
-				"y": 0.7226027397260274,
-				"w": 0.04188034188034188,
-				"h": 0.028538812785388126
-			}
-		},
-		{
-			"id": 78,
-			"info": {
-				"description": "柚香大根的中文翻译是：柚香大根。",
-				"text": "柚香大根的中文翻译是：柚香大根。",
-				"text_translation": "柚香大根的中文翻译是：柚香大根。",
-				"img_src": null
-			},
-			"boundingBox": {
-				"x": 0.5213675213675214,
-				"y": 0.7659817351598174,
-				"w": 0.05299145299145299,
-				"h": 0.02054794520547945
-			}
-		},
-		{
-			"id": 79,
-			"info": {
-				"description": "日本黑豆翻译为中文是“日本黑豆”。",
-				"text": "日本黑豆翻译为中文是“日本黑豆”。",
-				"text_translation": "日本黑豆翻译为中文是“日本黑豆”。",
-				"img_src": null
-			},
-			"boundingBox": {
-				"x": 0.5222222222222223,
-				"y": 0.7922374429223744,
-				"w": 0.05299145299145299,
-				"h": 0.02054794520547945
-			}
-		},
-		{
-			"id": 80,
-			"info": {
-				"description": "辣味螺肉 переводится на китайский как 辣味螺肉.",
-				"text": "辣味螺肉 переводится на китайский как 辣味螺肉.",
-				"text_translation": "辣味螺肉 переводится на китайский как 辣味螺肉.",
-				"img_src": null
-			},
-			"boundingBox": {
-				"x": 0.5230769230769231,
-				"y": 0.817351598173516,
-				"w": 0.05299145299145299,
-				"h": 0.02054794520547945
-			}
-		},
-		{
-			"id": 81,
-			"info": {
-				"description": "凉拌洋葱",
-				"text": "凉拌洋葱",
-				"text_translation": "凉拌洋葱",
-				"img_src": null
-			},
-			"boundingBox": {
-				"x": 0.5230769230769231,
-				"y": 0.843607305936073,
-				"w": 0.0547008547008547,
-				"h": 0.021689497716894976
-			}
-		},
-		{
-			"id": 82,
-			"info": {
-				"description": "和风沙拉",
-				"text": "和风沙拉",
-				"text_translation": "和风沙拉",
-				"img_src": null
-			},
-			"boundingBox": {
-				"x": 0.5247863247863248,
-				"y": 0.8698630136986302,
-				"w": 0.0547008547008547,
-				"h": 0.021689497716894976
-			}
-		},
-		{
-			"id": 83,
-			"info": {
-				"description": "鱈鱼肝",
-				"text": "鱈鱼肝",
-				"text_translation": "鱈鱼肝",
-				"img_src": null
-			},
-			"boundingBox": {
-				"x": 0.523931623931624,
-				"y": 0.8984018264840182,
-				"w": 0.04188034188034188,
-				"h": 0.02054794520547945
-			}
-		},
-		{
-			"id": 84,
-			"info": {
-				"description": "18天生啤酒",
-				"text": "18天生啤酒",
-				"text_translation": "18天生啤酒",
-				"img_src": null
-			},
-			"boundingBox": {
-				"x": 0.7948717948717948,
-				"y": 0.860730593607306,
-				"w": 0.07264957264957266,
-				"h": 0.02511415525114155
-			}
-		},
-		{
-			"id": 85,
-			"info": {
-				"description": "清酒（温/冰）",
-				"text": "清酒（温/冰）",
-				"text_translation": "清酒（温/冰）",
-				"img_src": null
-			},
-			"boundingBox": {
-				"x": 0.794017094017094,
-				"y": 0.889269406392694,
-				"w": 0.06923076923076923,
-				"h": 0.023972602739726026
+				"x": 0.725,
+				"y": 0.8145833333333333,
+				"w": 0.1765625,
+				"h": 0.04791666666666667
 			}
 		}
 	],
@@ -1317,7 +1543,7 @@
 		"flowId": "dip.auto_group.v1",
 		"flowLabel": "DIP Auto Group",
 		"language": "zh-cn",
-		"totalItems": 86,
+		"totalItems": 60,
 		"contractVersion": "2026-02-06"
 	}
 }
