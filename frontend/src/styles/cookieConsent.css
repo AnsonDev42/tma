@@ -1,0 +1,90 @@
+@import "vanilla-cookieconsent/dist/cookieconsent.css";
+
+#cc-main {
+	--cc-font-family: "Manrope", sans-serif;
+	--cc-modal-border-radius: 1rem;
+	--cc-btn-border-radius: 999px;
+	--cc-bg: hsl(210 26% 97% / 0.96);
+	--cc-primary-color: hsl(220 24% 16%);
+	--cc-secondary-color: hsl(215 16% 34%);
+	--cc-btn-primary-bg: hsl(173 78% 37%);
+	--cc-btn-primary-color: hsl(0 0% 100%);
+	--cc-btn-primary-border-color: hsl(173 78% 37%);
+	--cc-btn-primary-hover-bg: hsl(173 74% 31%);
+	--cc-btn-primary-hover-color: hsl(0 0% 100%);
+	--cc-btn-primary-hover-border-color: hsl(173 74% 31%);
+	--cc-btn-secondary-bg: hsl(214 32% 91%);
+	--cc-btn-secondary-color: hsl(220 24% 16%);
+	--cc-btn-secondary-border-color: hsl(214 20% 82%);
+	--cc-btn-secondary-hover-bg: hsl(214 28% 86%);
+	--cc-btn-secondary-hover-color: hsl(220 24% 16%);
+	--cc-btn-secondary-hover-border-color: hsl(214 20% 82%);
+	--cc-separator-border-color: hsl(214 20% 82%);
+	--cc-overlay-bg: hsl(220 40% 8% / 0.45);
+}
+
+#cc-main .cm,
+#cc-main .pm {
+	backdrop-filter: blur(14px);
+	border: 1px solid hsl(214 20% 82%);
+	box-shadow: 0 24px 44px hsl(220 44% 12% / 0.2);
+}
+
+#cc-main .cm {
+	max-width: 34rem;
+}
+
+#cc-main .cm__title,
+#cc-main .pm__title {
+	font-family: "Space Grotesk", "Manrope", sans-serif;
+	font-size: 1.04rem;
+	letter-spacing: 0.01em;
+}
+
+#cc-main .cm__desc,
+#cc-main .pm__section-desc,
+#cc-main .pm__section-desc-wrapper {
+	line-height: 1.55;
+}
+
+#cc-main .cm__btn,
+#cc-main .pm__btn {
+	font-weight: 700;
+	letter-spacing: 0.01em;
+	min-height: 44px;
+}
+
+#cc-main .pm__section--toggle .pm__section-title {
+	border-radius: 0.8rem;
+}
+
+#cc-main .pm__section--toggle .pm__section-desc-wrapper {
+	border-bottom-left-radius: 0.8rem;
+	border-bottom-right-radius: 0.8rem;
+}
+
+html.dark #cc-main {
+	--cc-bg: hsl(222 34% 10% / 0.98);
+	--cc-primary-color: hsl(210 35% 92%);
+	--cc-secondary-color: hsl(214 18% 68%);
+	--cc-btn-secondary-bg: hsl(222 30% 16%);
+	--cc-btn-secondary-color: hsl(210 35% 92%);
+	--cc-btn-secondary-border-color: hsl(222 24% 20%);
+	--cc-btn-secondary-hover-bg: hsl(222 24% 22%);
+	--cc-btn-secondary-hover-color: hsl(210 35% 92%);
+	--cc-btn-secondary-hover-border-color: hsl(222 24% 20%);
+	--cc-separator-border-color: hsl(222 24% 20%);
+	--cc-overlay-bg: hsl(220 40% 8% / 0.7);
+}
+
+html.dark #cc-main .cm,
+html.dark #cc-main .pm {
+	border-color: hsl(222 24% 20%);
+	box-shadow: 0 24px 44px hsl(220 40% 8% / 0.45);
+}
+
+@media screen and (max-width: 640px) {
+	#cc-main .cm {
+		border-radius: 1rem;
+	}
+}
