@@ -4,6 +4,15 @@ import { normalizeAnalyzeResults } from "@/features/menu/utils/menuResults";
 import { DishProps } from "@/types/DishProps.tsx";
 import axios from "axios";
 
+export type MenuGroupingMode = "heuristic" | "llm";
+
+const MENU_ANALYZE_FLOW_ID_BY_MODE: Record<MenuGroupingMode, string> = {
+	heuristic: "dip.lines_only.v1",
+	llm: "dip.auto_group.v1",
+};
+
+export const DEFAULT_MENU_GROUPING_MODE: MenuGroupingMode = "heuristic";
+
 function readAnalyzeResults(payload: unknown) {
 	if (Array.isArray(payload)) {
 		return payload;
@@ -23,13 +32,19 @@ export async function uploadMenuData(
 	formData: FormData,
 	jwt: string,
 	selectedLanguage: Language | null,
+	groupingMode: MenuGroupingMode = DEFAULT_MENU_GROUPING_MODE,
 ): Promise<DishProps[]> {
+	const flowId = MENU_ANALYZE_FLOW_ID_BY_MODE[groupingMode];
+
 	try {
 		const response = await axios.post(`${__API_URL__}/menu/analyze`, formData, {
 			headers: {
 				"Content-Type": "multipart/form-data",
 				Authorization: jwt,
 				"Accept-Language": selectedLanguage?.value || "en",
+			},
+			params: {
+				flowId,
 			},
 		});
 

@@ -3,6 +3,7 @@ import { useMenuV2 } from "@/contexts/MenuV2Context";
 import { SessionContext } from "@/contexts/SessionContext.tsx";
 import { demoPresets } from "@/features/menu/config/demoPresets";
 import {
+	MenuGroupingMode,
 	loadDemoMenuData,
 	uploadMenuData,
 } from "@/features/menu/services/menuUploadService";
@@ -20,6 +21,22 @@ const ACCEPTED_IMAGE_TYPES = [
 	"image/jpg",
 	"image/png",
 	"image/webp",
+];
+const GROUPING_MODE_OPTIONS: Array<{
+	value: MenuGroupingMode;
+	label: string;
+	description: string;
+}> = [
+	{
+		value: "heuristic",
+		label: "Heuristic",
+		description: "Fast, no LLM grouping",
+	},
+	{
+		value: "llm",
+		label: "LLM-based",
+		description: "Auto paragraph grouping with LLM",
+	},
 ];
 
 type PendingUploadAction =
@@ -63,7 +80,8 @@ const UploadFormV2: React.FC<UploadFormV2Props> = ({
 }) => {
 	const session = useContext(SessionContext)?.session;
 	const { selectedLanguage } = useLanguageContext();
-	const { selectedImage, setSelectedImage } = useMenuV2();
+	const { selectedImage, setSelectedImage, groupingMode, setGroupingMode } =
+		useMenuV2();
 	const isE2EAuthBypassEnabled =
 		import.meta.env.VITE_E2E_AUTH_BYPASS === "true";
 
@@ -152,15 +170,19 @@ const UploadFormV2: React.FC<UploadFormV2Props> = ({
 
 			const imageSrc = await fileToDataUrl(compressedFile);
 
-			await toast.promise(uploadMenuData(formData, jwt, selectedLanguage), {
-				loading: "Uploading and analyzing your menu...(This may take a while)",
-				success: (data) => {
-					saveUpload(imageSrc, data);
-					return "Menu has been successfully analyzed!";
+			await toast.promise(
+				uploadMenuData(formData, jwt, selectedLanguage, groupingMode),
+				{
+					loading:
+						"Uploading and analyzing your menu...(This may take a while)",
+					success: (data) => {
+						saveUpload(imageSrc, data);
+						return "Menu has been successfully analyzed!";
+					},
+					error: (error) =>
+						(error as Error).message || "Failed to process menu image.",
 				},
-				error: (error) =>
-					(error as Error).message || "Failed to process menu image.",
-			});
+			);
 		} catch (error) {
 			toast.error((error as Error).message || "Failed to process menu image.");
 		} finally {
@@ -311,7 +333,43 @@ const UploadFormV2: React.FC<UploadFormV2Props> = ({
 						>
 							Max 65MB
 						</span>
+						<label
+							className={`flex items-center gap-2 rounded-full border px-3 py-1 text-xs ${
+								theme === "dark"
+									? "border-slate-700 text-slate-300"
+									: "border-slate-300 text-slate-700"
+							}`}
+						>
+							<span>Grouping</span>
+							<select
+								value={groupingMode}
+								onChange={(event) =>
+									setGroupingMode(event.target.value as MenuGroupingMode)
+								}
+								className={`bg-transparent text-xs focus:outline-none ${
+									theme === "dark" ? "text-slate-100" : "text-slate-800"
+								}`}
+								disabled={isLoading}
+							>
+								{GROUPING_MODE_OPTIONS.map((option) => (
+									<option key={option.value} value={option.value}>
+										{option.label}
+									</option>
+								))}
+							</select>
+						</label>
 					</div>
+					<p
+						className={`text-xs ${
+							theme === "dark" ? "text-slate-500" : "text-slate-600"
+						}`}
+					>
+						{
+							GROUPING_MODE_OPTIONS.find(
+								(option) => option.value === groupingMode,
+							)?.description
+						}
+					</p>
 				</div>
 
 				{!isCollapsed && (

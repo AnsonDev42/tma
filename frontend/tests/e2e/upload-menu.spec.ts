@@ -82,12 +82,15 @@ async function uploadDishImageAndMockAnalyze(
 ) {
 	let analyzeRequestSeen = false;
 
-	await page.route("**/menu/analyze", async (route) => {
+	await page.route("**/menu/analyze*", async (route) => {
 		const request = route.request();
 		analyzeRequestSeen = true;
 		expect(request.method()).toBe("POST");
 		expect(request.headers()["content-type"] ?? "").toContain(
 			"multipart/form-data",
+		);
+		expect(new URL(request.url()).searchParams.get("flowId")).toBe(
+			"dip.lines_only.v1",
 		);
 
 		await route.fulfill({
