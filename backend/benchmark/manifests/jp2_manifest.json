@@ -1,0 +1,11 @@
+{
+  "name": "jp2-batch",
+  "language": "en",
+  "cases": [
+    {
+      "id": "jp2",
+      "imagePath": "../dataset/jp2.jpg",
+      "notes": "jp2 benchmark case"
+    }
+  ]
+}

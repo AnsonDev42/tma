@@ -33,6 +33,7 @@ dependencies = [
 dev = [
     "pre-commit>=4.0.1",
     "pytest>=8.3.2",
+    "pytest-env>=1.1.5",
     "pytest-asyncio>=0.25.0",
     "asynctest>=0.13.0",
 ]
@@ -48,3 +49,16 @@ asyncio_default_fixture_loop_scope = "function"
 testpaths = ["src/tests"]
 
 pythonpath = ["."]
+env = [
+    "D:OPENAI_API_KEY=test-openai-key",
+    "D:AZURE_DIP_API_KEY=test-azure-key",
+    "D:AZURE_DIP_BASE_URL=https://example.com/azure-dip",
+    "D:GOOGLE_IMG_SEARCH_CX=test-cx",
+    "D:GOOGLE_IMG_SEARCH_KEY=test-google-key",
+    "D:SUPABASE_URL=https://example.supabase.co",
+    "D:SUPABASE_KEY=test-supabase-key",
+    "D:FATSECRET_TOKEN_URL=https://example.com/fatsecret/token",
+    "D:FATSECRET_CLIENT_ID=test-fatsecret-client-id",
+    "D:FATSECRET_CLIENT_SECRET=test-fatsecret-client-secret",
+    "D:FATSECRET_BASE_URL=https://example.com/fatsecret",
+]

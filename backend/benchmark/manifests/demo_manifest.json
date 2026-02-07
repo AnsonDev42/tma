@@ -1,0 +1,12 @@
+{
+  "name": "demo-batch",
+  "language": "en",
+  "cases": [
+    {
+      "id": "demo-menu-1",
+      "imagePath": "../../../frontend/public/demoMenu1.jpg",
+      "referenceResultPath": "../../../frontend/public/demoDataEN.json",
+      "notes": "Public demo case"
+    }
+  ]
+}
