@@ -1,3 +1,5 @@
+from typing import Literal
+
 from pydantic import BaseModel
 
 
@@ -26,3 +28,12 @@ class SegmentGroup(BaseModel):
 
 class GroupedSegments(BaseModel):
     Paragraphs: list[SegmentGroup]
+
+
+class SegmentWashDecision(BaseModel):
+    index: int
+    label: Literal["dish_title", "description", "price", "non_dish", "unknown"]
+
+
+class WashedSegments(BaseModel):
+    Segments: list[SegmentWashDecision]

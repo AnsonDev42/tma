@@ -4,6 +4,7 @@ from src.services.ocr.layout_grouping_experiment import (
     build_fallback_segment_groups,
     build_layout_segments,
     materialize_layout_groups,
+    partition_layout_lines_by_label,
 )
 
 
@@ -23,12 +24,40 @@ def test_build_layout_segments_splits_delimiters_and_trailing_price():
 
     assert len(segments) == 4
     assert [segment.source_line_index for segment in segments] == [0, 0, 1, 1]
-    assert segments[0].role_hint == "description"
-    assert segments[1].role_hint == "description"
+    assert segments[0].role_hint == "title"
+    assert segments[1].role_hint == "title"
     assert segments[2].text == "Udon"
     assert segments[2].role_hint == "title"
     assert segments[3].text == "1,200円"
     assert segments[3].role_hint == "price"
+
+
+def test_build_layout_segments_splits_multiple_dishes_on_one_line_with_prices():
+    dip_lines = [
+        {
+            "content": "Pasta 12.99 Burger 13.49 Salad 9.99",
+            "polygon": {"x_coords": [10, 610, 610, 10], "y_coords": [10, 10, 40, 40]},
+        }
+    ]
+
+    segments = build_layout_segments(dip_lines)
+
+    assert [segment.text for segment in segments] == [
+        "Pasta",
+        "12.99",
+        "Burger",
+        "13.49",
+        "Salad",
+        "9.99",
+    ]
+    assert [segment.role_hint for segment in segments] == [
+        "title",
+        "price",
+        "title",
+        "price",
+        "title",
+        "price",
+    ]
 
 
 def test_materialize_layout_groups_preserves_titles_and_skips_prices():
@@ -82,7 +111,7 @@ def test_materialize_layout_groups_preserves_titles_and_skips_prices():
     assert paragraph_lines[0]["content"] == "rich broth garlic oil"
     assert grouped_source_line_groups == [[0, 1]]
     assert grouped_segment_set == {1, 2}
-    assert [line["content"] for line in individual_lines] == ["Chicken Ramen"]
+    assert [line["content"] for line in individual_lines] == ["Chicken Ramen", "12.5"]
 
 
 def test_build_fallback_segment_groups_clusters_description_like_segments():
@@ -172,7 +201,7 @@ def test_materialize_layout_groups_uses_non_price_members_when_description_missi
     assert paragraph_lines[0]["content"] == "French Toast Chef Special"
     assert grouped_source_line_groups == [[0]]
     assert grouped_segment_set == {0, 1}
-    assert individual_lines == []
+    assert [line["content"] for line in individual_lines] == ["$8.99"]
 
 
 def test_resolve_layout_grouping_model_prefers_layout_specific_setting(monkeypatch):
@@ -199,3 +228,59 @@ def test_resolve_layout_grouping_model_falls_back_to_openai_model(monkeypatch):
     )
 
     assert _resolve_layout_grouping_model() == "gpt-5-nano"
+
+
+def test_partition_layout_lines_by_label_routes_lines_and_discards_non_dish():
+    lines = [
+        {"content": "Classic Burger", "role_hint": "title"},
+        {"content": "with pickles and mustard", "role_hint": "description"},
+        {"content": "$12.99", "role_hint": "price"},
+        {"content": "OPEN 7AM - 2PM", "role_hint": "unknown"},
+        {"content": "Chef Choice", "role_hint": "unknown"},
+    ]
+
+    (
+        dish_lines,
+        price_lines,
+        description_lines,
+        discarded_lines,
+    ) = partition_layout_lines_by_label(
+        lines,
+        {
+            0: "dish_title",
+            1: "description",
+            2: "price",
+            3: "non_dish",
+            4: "unknown",
+        },
+    )
+
+    assert [line["content"] for line in dish_lines] == ["Classic Burger", "Chef Choice"]
+    assert [line["content"] for line in price_lines] == ["$12.99"]
+    assert [line["content"] for line in description_lines] == [
+        "with pickles and mustard"
+    ]
+    assert [line["content"] for line in discarded_lines] == ["OPEN 7AM - 2PM"]
+
+
+def test_partition_layout_lines_by_label_uses_role_hint_fallback_for_unlabeled_lines():
+    lines = [
+        {"content": "Set Menu", "role_hint": "title"},
+        {"content": "selected daily ingredients", "role_hint": "description"},
+        {"content": "15.50", "role_hint": "price"},
+        {"content": "店内写真", "role_hint": "unknown"},
+    ]
+
+    (
+        dish_lines,
+        price_lines,
+        description_lines,
+        discarded_lines,
+    ) = partition_layout_lines_by_label(lines, {})
+
+    assert [line["content"] for line in dish_lines] == ["Set Menu", "店内写真"]
+    assert [line["content"] for line in price_lines] == ["15.50"]
+    assert [line["content"] for line in description_lines] == [
+        "selected daily ingredients"
+    ]
+    assert discarded_lines == []

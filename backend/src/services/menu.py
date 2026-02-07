@@ -1,6 +1,7 @@
 import asyncio
 import base64
 import datetime
+import re
 import time
 from dataclasses import asdict
 from typing import Any, Awaitable
@@ -17,6 +18,7 @@ from src.models import Dish
 from src.services.exceptions import OCRError
 from src.services.ocr.layout_grouping_experiment import (
     build_paragraph_layout_experiment,
+    wash_layout_lines,
 )
 from src.services.ocr.build_paragraph import build_paragraph, translate
 from src.services.utils import BoundingBox, clean_dish_name, duration
@@ -26,6 +28,16 @@ MAX_IMAGE_SIZE = 4 * 1024 * 1024 - 100  # 4MB
 HTTP_TIMEOUT_SECONDS = 60
 DIP_RESULT_POLL_INTERVAL_SECONDS = 0.5
 DIP_RESULT_TIMEOUT_SECONDS = 6
+
+PRICE_NUMBER_PATTERN = r"(?:\d{1,3}(?:[.,]\d{3})+|\d{1,4})(?:[.,]\d{1,2})?"
+PRICE_ONLY_PATTERN = re.compile(
+    rf"^\s*(?:[$€£¥]\s*)?{PRICE_NUMBER_PATTERN}(?:\s?(?:usd|eur|gbp|cad|aud|cny|rmb|円))?\s*$",
+    re.IGNORECASE,
+)
+TRAILING_PRICE_CAPTURE_PATTERN = re.compile(
+    rf"(?:[-–—:]\s*)?((?:[$€£¥]\s*)?{PRICE_NUMBER_PATTERN}(?:\s?(?:usd|eur|gbp|cad|aud|cny|rmb|円))?)\s*$",
+    re.IGNORECASE,
+)
 
 
 def _resolve_language(accept_language: str | None) -> str:
@@ -42,6 +54,181 @@ def _unknown_dish_result() -> dict[str, Any]:
         "text_translation": None,
         "img_src": None,
     }
+
+
+def _extract_price_token(text: str) -> str | None:
+    stripped = text.strip()
+    if not stripped:
+        return None
+    if PRICE_ONLY_PATTERN.fullmatch(stripped):
+        return stripped
+    trailing = TRAILING_PRICE_CAPTURE_PATTERN.search(stripped)
+    if trailing is None:
+        return None
+    token = trailing.group(1).strip()
+    return token or None
+
+
+def _bbox_center(box: dict[str, float]) -> tuple[float, float]:
+    return box["x"] + box["w"] / 2.0, box["y"] + box["h"] / 2.0
+
+
+def _bbox_union(a: dict[str, float], b: dict[str, float]) -> dict[str, float]:
+    x_min = min(a["x"], b["x"])
+    y_min = min(a["y"], b["y"])
+    x_max = max(a["x"] + a["w"], b["x"] + b["w"])
+    y_max = max(a["y"] + a["h"], b["y"] + b["h"])
+    return {
+        "x": x_min,
+        "y": y_min,
+        "w": max(0.0, x_max - x_min),
+        "h": max(0.0, y_max - y_min),
+    }
+
+
+def _horizontal_overlap_ratio(a: dict[str, float], b: dict[str, float]) -> float:
+    overlap_left = max(a["x"], b["x"])
+    overlap_right = min(a["x"] + a["w"], b["x"] + b["w"])
+    overlap = max(0.0, overlap_right - overlap_left)
+    base = max(1e-6, min(a["w"], b["w"]))
+    return overlap / base
+
+
+def _select_best_dish_index_for_paragraph(
+    dish_boxes: list[dict[str, float]],
+    paragraph_box: dict[str, float],
+) -> int | None:
+    if not dish_boxes:
+        return None
+
+    paragraph_center_x, paragraph_center_y = _bbox_center(paragraph_box)
+    best_idx: int | None = None
+    best_score = float("inf")
+    for idx, dish_box in enumerate(dish_boxes):
+        dish_center_x, dish_center_y = _bbox_center(dish_box)
+        vertical_delta = paragraph_center_y - dish_center_y
+        horizontal_distance = abs(paragraph_center_x - dish_center_x)
+        overlap_ratio = _horizontal_overlap_ratio(dish_box, paragraph_box)
+        score = (
+            abs(vertical_delta) * 1.8
+            + horizontal_distance * 0.9
+            + (1.0 - overlap_ratio) * 0.6
+        )
+        if vertical_delta < -0.04:
+            score += 0.7
+        if vertical_delta > 0.35:
+            score += 0.9
+        if score < best_score:
+            best_score = score
+            best_idx = idx
+
+    return best_idx if best_score < 2.0 else None
+
+
+def _select_best_dish_index_for_price(
+    dish_boxes: list[dict[str, float]],
+    price_box: dict[str, float],
+) -> int | None:
+    if not dish_boxes:
+        return None
+
+    price_center_x, price_center_y = _bbox_center(price_box)
+    best_idx: int | None = None
+    best_score = float("inf")
+    for idx, dish_box in enumerate(dish_boxes):
+        dish_center_x, dish_center_y = _bbox_center(dish_box)
+        vertical_distance = abs(price_center_y - dish_center_y)
+        horizontal_distance = abs(price_center_x - dish_center_x)
+        score = vertical_distance * 3.0 + horizontal_distance * 0.8
+        if price_center_x < dish_center_x:
+            score += 0.4
+        if vertical_distance > 0.18:
+            score += 1.0
+        if score < best_score:
+            best_score = score
+            best_idx = idx
+
+    return best_idx if best_score < 1.6 else None
+
+
+def merge_grouped_context_into_dishes(
+    dish_info: list[dict[str, Any]],
+    dish_boxes: list[dict[str, float]],
+    paragraph_info: list[dict[str, Any]],
+    paragraph_boxes: list[dict[str, float]],
+    *,
+    price_lines: list[dict] | None = None,
+    price_boxes: list[dict[str, float]] | None = None,
+) -> tuple[list[dict[str, Any]], list[dict[str, float]]]:
+    if len(dish_info) != len(dish_boxes):
+        aligned_length = min(len(dish_info), len(dish_boxes))
+        logger.warning(
+            "Dish info/box length mismatch; truncating to {} (info={}, boxes={})",
+            aligned_length,
+            len(dish_info),
+            len(dish_boxes),
+        )
+        dish_info = dish_info[:aligned_length]
+        dish_boxes = dish_boxes[:aligned_length]
+
+    merged_info = [dict(item) for item in dish_info]
+    merged_boxes = [dict(box) for box in dish_boxes]
+    if not merged_info:
+        return merged_info, merged_boxes
+
+    paragraph_assignments = 0
+    for paragraph_meta, paragraph_box in zip(paragraph_info, paragraph_boxes, strict=False):
+        paragraph_text = str(
+            paragraph_meta.get("description")
+            or paragraph_meta.get("text_translation")
+            or paragraph_meta.get("text")
+            or ""
+        ).strip()
+        if not paragraph_text:
+            continue
+
+        best_dish_idx = _select_best_dish_index_for_paragraph(merged_boxes, paragraph_box)
+        if best_dish_idx is None:
+            continue
+
+        existing_description = str(merged_info[best_dish_idx].get("description") or "").strip()
+        if paragraph_text.casefold() not in existing_description.casefold():
+            if existing_description:
+                merged_info[best_dish_idx]["description"] = (
+                    f"{existing_description} {paragraph_text}"
+                )
+            else:
+                merged_info[best_dish_idx]["description"] = paragraph_text
+        merged_boxes[best_dish_idx] = _bbox_union(merged_boxes[best_dish_idx], paragraph_box)
+        paragraph_assignments += 1
+
+    price_assignments = 0
+    if price_lines and price_boxes:
+        for line, price_box in zip(price_lines, price_boxes, strict=False):
+            price_token = _extract_price_token(str(line.get("content", "")))
+            if not price_token:
+                continue
+
+            best_dish_idx = _select_best_dish_index_for_price(merged_boxes, price_box)
+            if best_dish_idx is None:
+                continue
+
+            existing_price = str(merged_info[best_dish_idx].get("price") or "").strip()
+            if not existing_price:
+                merged_info[best_dish_idx]["price"] = price_token
+            elif price_token.casefold() not in existing_price.casefold():
+                merged_info[best_dish_idx]["price"] = f"{existing_price} / {price_token}"
+            merged_boxes[best_dish_idx] = _bbox_union(merged_boxes[best_dish_idx], price_box)
+            price_assignments += 1
+
+    logger.info(
+        "Grouped context merge paragraphs={} paragraphAssignments={} prices={} priceAssignments={}",
+        len(paragraph_info),
+        paragraph_assignments,
+        len(price_lines or []),
+        price_assignments,
+    )
+    return merged_info, merged_boxes
 
 
 async def _gather_with_limit(
@@ -370,15 +557,22 @@ def format_dip_lines_polygon(dip_results: list[dict]) -> list[dict]:
     return dip_results
 
 
-def filter_dip_lines(dip_results: list[dict]) -> list[dict]:
+def filter_dip_lines(
+    dip_results: list[dict],
+    *,
+    remove_unknown: bool = True,
+    remove_numeric_only: bool = True,
+) -> list[dict]:
     cleaned = []
     for line in dip_results:
-        content = line["content"].strip()
-        if content.lower() == "unknown":
+        content = str(line.get("content", "")).strip()
+        if not content:
+            continue
+        if remove_unknown and content.lower() == "unknown":
             continue
 
         normalized = content.replace(".", "").replace(",", "").replace(" ", "")
-        if normalized.isdigit():
+        if remove_numeric_only and normalized.isdigit():
             continue
 
         cleaned.append(line)
@@ -386,7 +580,7 @@ def filter_dip_lines(dip_results: list[dict]) -> list[dict]:
 
 
 @duration
-async def run_dip(image: bytes) -> list[dict]:
+async def run_dip(image: bytes, *, preserve_raw_lines: bool = False) -> list[dict]:
     retrieve_url = await post_dip_request(image)
     results = await retrieve_dip_results(retrieve_url)
     if not results:
@@ -394,7 +588,11 @@ async def run_dip(image: bytes) -> list[dict]:
         raise OCRError("DIP failed")
 
     dip_line_results = results["analyzeResult"]["pages"][0]["lines"]
-    dip_line_results = filter_dip_lines(dip_line_results)
+    dip_line_results = filter_dip_lines(
+        dip_line_results,
+        remove_unknown=not preserve_raw_lines,
+        remove_numeric_only=not preserve_raw_lines,
+    )
     return format_dip_lines_polygon(dip_line_results)
 
 
@@ -406,8 +604,10 @@ async def process_dip_results(dip_results: list[dict], accept_language: str) -> 
     include_images = len(dip_results) <= settings.MENU_IMAGE_ENRICH_MAX_ITEMS
     cleaned_lookup: dict[str, str] = {}
     line_keys: list[str | None] = []
+    line_prices: list[str | None] = []
 
     for line in dip_results:
+        line_prices.append(_extract_price_token(str(line.get("content", ""))))
         cleaned_name = clean_dish_name(line["content"])
         if not cleaned_name:
             line_keys.append(None)
@@ -436,11 +636,15 @@ async def process_dip_results(dip_results: list[dict], accept_language: str) -> 
     resolved_by_key = {key: value for key, value in unique_results}
 
     results: list[dict] = []
-    for key in line_keys:
+    for key, price_token in zip(line_keys, line_prices, strict=True):
         if key is None:
             results.append(_unknown_dish_result())
             continue
-        results.append(resolved_by_key.get(key, _unknown_dish_result()))
+        resolved = resolved_by_key.get(key, _unknown_dish_result())
+        output_item = dict(resolved)
+        if price_token:
+            output_item["price"] = price_token
+        results.append(output_item)
 
     logger.info(
         "Dish fan-out stats total={} unique={} include_images={} concurrency={}",
@@ -474,7 +678,7 @@ async def upload_pipeline_with_dip_auto_group_lines(
     accept_language: str | None,
 ) -> dict[str, list[dict]]:
     language = _resolve_language(accept_language)
-    dip_results_in_lines = await run_dip(image)
+    dip_results_in_lines = await run_dip(image, preserve_raw_lines=True)
     grouping_start = time.monotonic()
     paragraphs, individual_lines = await build_paragraph(dip_results_in_lines)
     grouping_elapsed = time.monotonic() - grouping_start
@@ -501,11 +705,16 @@ async def upload_pipeline_with_dip_auto_group_lines(
 
     dish_info_bounding_box = normalize_text_bbox_dip(img_width, img_height, individual_lines)
     dish_description_bounding_box = normalize_text_bbox_dip(img_width, img_height, paragraphs)
+    if not dish_info and dish_description:
+        return {"results": serialize_dish_data_filtered(dish_description, dish_description_bounding_box)}
 
-    dish_info.extend(dish_description)
-    dish_info_bounding_box.extend(dish_description_bounding_box)
-
-    return {"results": serialize_dish_data_filtered(dish_info, dish_info_bounding_box)}
+    merged_dish_info, merged_boxes = merge_grouped_context_into_dishes(
+        dish_info,
+        dish_info_bounding_box,
+        dish_description,
+        dish_description_bounding_box,
+    )
+    return {"results": serialize_dish_data_filtered(merged_dish_info, merged_boxes)}
 
 
 @duration
@@ -516,7 +725,7 @@ async def upload_pipeline_with_dip_layout_grouping_experiment(
     accept_language: str | None,
 ) -> dict[str, list[dict]]:
     language = _resolve_language(accept_language)
-    dip_results_in_lines = await run_dip(image)
+    dip_results_in_lines = await run_dip(image, preserve_raw_lines=True)
     grouping_start = time.monotonic()
     paragraphs, individual_lines, grouping_debug = await build_paragraph_layout_experiment(
         dip_results_in_lines
@@ -532,8 +741,38 @@ async def upload_pipeline_with_dip_layout_grouping_experiment(
         grouping_debug.get("groupedSegmentCount", 0),
     )
 
-    dish_info_task = process_dip_results(individual_lines, language)
-    dish_description_task = process_dip_paragraph_results(paragraphs, language)
+    layout_lines_for_wash: list[dict] = []
+    for line in individual_lines:
+        line_with_origin = dict(line)
+        line_with_origin.setdefault("origin", "individual")
+        layout_lines_for_wash.append(line_with_origin)
+    for paragraph in paragraphs:
+        paragraph_with_origin = dict(paragraph)
+        paragraph_with_origin.setdefault("origin", "paragraph")
+        paragraph_with_origin.setdefault("role_hint", "description")
+        layout_lines_for_wash.append(paragraph_with_origin)
+
+    wash_start = time.monotonic()
+    (
+        individual_dish_lines,
+        price_lines,
+        paragraph_context_lines,
+        discarded_lines,
+        wash_debug,
+    ) = await wash_layout_lines(layout_lines_for_wash)
+    wash_elapsed = time.monotonic() - wash_start
+    logger.info(
+        "Layout wash elapsed={}s mode={} dish_lines={} paragraph_lines={} price_lines={} discarded_lines={}",
+        round(wash_elapsed, 3),
+        wash_debug.get("mode"),
+        len(individual_dish_lines),
+        len(paragraph_context_lines),
+        len(price_lines),
+        len(discarded_lines),
+    )
+
+    dish_info_task = process_dip_results(individual_dish_lines, language)
+    dish_description_task = process_dip_paragraph_results(paragraph_context_lines, language)
     fan_out_start = time.monotonic()
     dish_info, dish_description = await asyncio.gather(
         dish_info_task, dish_description_task
@@ -542,16 +781,30 @@ async def upload_pipeline_with_dip_layout_grouping_experiment(
     logger.info(
         "Layout experiment fan-out elapsed={}s dish_lines={} paragraph_lines={}",
         round(fan_out_elapsed, 3),
-        len(individual_lines),
-        len(paragraphs),
+        len(individual_dish_lines),
+        len(paragraph_context_lines),
     )
 
-    dish_info_bounding_box = normalize_text_bbox_dip(img_width, img_height, individual_lines)
-    dish_description_bounding_box = normalize_text_bbox_dip(img_width, img_height, paragraphs)
-    dish_info.extend(dish_description)
-    dish_info_bounding_box.extend(dish_description_bounding_box)
+    dish_info_bounding_box = normalize_text_bbox_dip(
+        img_width, img_height, individual_dish_lines
+    )
+    dish_description_bounding_box = normalize_text_bbox_dip(
+        img_width, img_height, paragraph_context_lines
+    )
+    price_bounding_box = normalize_text_bbox_dip(img_width, img_height, price_lines)
 
-    return {"results": serialize_dish_data_filtered(dish_info, dish_info_bounding_box)}
+    if not dish_info and dish_description:
+        return {"results": serialize_dish_data_filtered(dish_description, dish_description_bounding_box)}
+
+    merged_dish_info, merged_boxes = merge_grouped_context_into_dishes(
+        dish_info,
+        dish_info_bounding_box,
+        dish_description,
+        dish_description_bounding_box,
+        price_lines=price_lines,
+        price_boxes=price_bounding_box,
+    )
+    return {"results": serialize_dish_data_filtered(merged_dish_info, merged_boxes)}
 
 
 async def analyze_menu_image(image: bytes, accept_language: str | None) -> dict[str, list[dict]]:
