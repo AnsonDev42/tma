@@ -109,7 +109,7 @@ async def post_dip_request(image: bytes) -> str:
     }
     url = (
         f"{settings.AZURE_DIP_BASE_URL}/documentintelligence/documentModels"
-        "/prebuilt-read:analyze?api-version=2024-02-29-preview"
+        "/prebuilt-read:analyze?api-version=2024-11-30"
     )
     payload = {"base64Source": base64.b64encode(image).decode("utf-8")}
 
