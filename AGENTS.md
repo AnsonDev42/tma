@@ -2,6 +2,12 @@
 
 This file is the operational runbook for contributors and coding agents in this repo.
 
+## Onboarding Doc
+
+For architecture and high-level backend flow explanations (including mermaid diagrams of `/menu/analyze` flows), read:
+
+- `SOLUTION_OVERVIEW.md`
+
 ## Repository Map
 
 - `backend/`: FastAPI service (Python 3.13, `uv`)
