@@ -50,16 +50,22 @@ class BoundingBox:
 
 
 def clean_dish_name(dish_name: str) -> str:
-    # Remove price indicators that typically follow a dash or are set in parentheses
+    # Remove trailing prices such as "- 7", "- $7.5", ": 1,200円"
     cleaned_name = re.sub(
-        r"[-–—]\s*\d+\.?\d*", "", dish_name
-    )  # Handles 'Dish Name - 7' or 'Dish – 7.5'
+        r"[-–—:]\s*(?:[$€£¥]\s*)?\d+(?:[.,]\d+)?(?:\s?(?:usd|eur|gbp|cad|aud|cny|rmb|円))?",
+        "",
+        dish_name,
+        flags=re.IGNORECASE,
+    )
     cleaned_name = re.sub(
         r"\(\s*vg\s*\)", "", cleaned_name, flags=re.IGNORECASE
     )  # Removes vegan indicator '(vg)'
     cleaned_name = re.sub(
-        r"\s*\d+\.\d*", "", cleaned_name
-    )  # Removes standalone prices like '7.5' or '12'
+        r"\s*(?:[$€£¥]\s*\d+(?:[.,]\d+)?|\d+[.,]\d+|\d+\s?(?:usd|eur|gbp|cad|aud|cny|rmb|円))",
+        "",
+        cleaned_name,
+        flags=re.IGNORECASE,
+    )  # Removes standalone prices like '$7.5' or '12'
     cleaned_name = re.sub(
         r"\s+", " ", cleaned_name
     ).strip()  # Clean up extra spaces and trim
@@ -87,6 +93,7 @@ def build_openai_reasoning_kwargs(
 def build_chat_openai(
     model: str | None = None,
     reasoning_effort: str | None = None,
+    temperature: float | None = None,
 ) -> ChatOpenAI:
     model_name = model or settings.OPENAI_MODEL
     llm_kwargs = {
@@ -97,18 +104,24 @@ def build_chat_openai(
     resolved_effort = resolve_reasoning_effort(reasoning_effort)
     if resolved_effort is not None:
         llm_kwargs["reasoning_effort"] = resolved_effort
+    if temperature is not None:
+        llm_kwargs["temperature"] = temperature
     return ChatOpenAI(**llm_kwargs)
 
 
 def build_search_chain(model: str | None = None) -> RunnableSerializable:
-    llm = build_chat_openai(model)
+    selected_model = model or settings.MENU_DISH_INFO_LLM_MODEL or settings.OPENAI_MODEL
+    llm = build_chat_openai(
+        selected_model,
+        temperature=settings.MENU_DISH_INFO_LLM_TEMPERATURE,
+    )
     prompt = ChatPromptTemplate.from_messages(
         [
             ("system", PROMPT),
             (
                 "human",
-                "Return in the instructed JSON format for what is the most possible food or food description,"
-                " from OCR result: '{dish_name}'",
+                "Target language: '{accept_language}'. OCR text: '{dish_name}'. "
+                "Return only the structured fields.",
             ),
         ]
     )
@@ -117,13 +130,27 @@ def build_search_chain(model: str | None = None) -> RunnableSerializable:
 
 
 PROMPT = """\
-You are a helpful assistant specialized in food industry and translation, designed to output structured JSON response
- with attributes 'dish_name','dish_translation' and 'dish_description'. The 'dish_name' should be a cleaned-up version
- of the dish name (or dish description in some cases) in in its original language from the OCR result which may contains
-  error. 'dish_translation' should translate the 'dish_name' to user's preferred language code: $Target-Language =
-   '{accept_language}' The 'dish_description' should be a brief introduction to the dish in $Target-Language as well.
-    If you don't think the OCR result is relevant to food, it may due to OCR errors or the texts is not a food, such as
-    a restaurant name, or price info. In this case, please return null for all attributes value.
+You are a multilingual menu extraction assistant. Return structured JSON with:
+- dish_name
+- dish_translation
+- dish_description
+
+Rules:
+- dish_name must be an explicit menu item title in original language/script.
+- Preserve accents and original spelling for dish_name (for example: CAFÉ MOCHA stays CAFÉ MOCHA).
+- Do NOT treat description fragments as dish_name.
+- Do NOT treat brand names, section headers, slogans, legal/promo copy, or standalone prices as dish_name.
+- If the OCR text is not a valid dish name, return dish_name="Unknown" and null for other attributes.
+- dish_translation must be one final translation in target language '{accept_language}'.
+- dish_translation must be plain phrase text only; never output reasoning, alternatives, or uncertainty.
+- Never include meta words or self-talk such as "wait", "translation", "or", "maybe", question prompts, or explanations.
+- dish_description should be one brief sentence in target language '{accept_language}', only when dish_name is valid.
+
+Normalization examples (menu terminology):
+- If target language is zh-CN:
+  - CAFÉ MOCHA -> 摩卡咖啡
+  - CAPPUCCINO -> 卡布奇诺
+  - LATTE -> 拿铁咖啡
 """
 
 

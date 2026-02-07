@@ -32,5 +32,19 @@ def test_build_chat_openai_skips_reasoning_when_disabled(monkeypatch):
     assert "reasoning_effort" not in captured_init_kwargs
 
 
+def test_build_chat_openai_includes_temperature_when_provided(monkeypatch):
+    captured_init_kwargs = {}
+
+    class FakeChatOpenAI:
+        def __init__(self, **kwargs):
+            captured_init_kwargs.update(kwargs)
+
+    monkeypatch.setattr("src.services.utils.ChatOpenAI", FakeChatOpenAI)
+
+    build_chat_openai(temperature=0)
+
+    assert captured_init_kwargs["temperature"] == 0
+
+
 def test_build_openai_reasoning_kwargs_uses_override_without_fallback():
     assert build_openai_reasoning_kwargs("") == {}

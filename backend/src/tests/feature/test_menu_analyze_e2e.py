@@ -75,13 +75,14 @@ def test_menu_analyze_full_flow(client, sample_image_bytes, monkeypatch):
 
     payload = response.json()
     assert "results" in payload
-    assert len(payload["results"]) == 2
+    assert len(payload["results"]) == 1
     assert payload["meta"]["flowId"] == "dip.auto_group.v1"
-    assert payload["meta"]["totalItems"] == 2
+    assert payload["meta"]["totalItems"] == 1
     assert payload["meta"]["language"] == "en"
 
     first = payload["results"][0]
     assert first["info"]["text"] == "Margherita Pizza"
+    assert "Fresh basil and tomato sauce (en)" in first["info"]["description"]
     assert 0 <= first["boundingBox"]["x"] <= 1
     assert 0 <= first["boundingBox"]["y"] <= 1
     assert 0 <= first["boundingBox"]["w"] <= 1
