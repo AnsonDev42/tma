@@ -1,0 +1,4 @@
+caseId,strategy,status,latencyMs,groupCount,groupedLineCount,paragraphCount,individualCount,precisionNonDish,recallNonDish,finalStatus,finalLatencyMs,finalTotalItems
+eggsupgrill,heuristic,ok,2.923,33,78,33,82,,,,,
+eggsupgrill,hybrid,ok,5.155,1,78,33,82,,,,,
+eggsupgrill,llm,ok,6802.664,16,153,16,7,,,,,

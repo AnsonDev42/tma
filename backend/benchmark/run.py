@@ -27,6 +27,7 @@ from src.services.ocr.line_grouping import build_line_features, heuristic_group_
 
 StrategyName = Literal["heuristic", "hybrid", "llm"]
 SUPPORTED_STRATEGIES: tuple[StrategyName, ...] = ("heuristic", "hybrid", "llm")
+SUPPORTED_REASONING_EFFORTS = ("none", "minimal", "low", "medium", "high")
 
 
 @dataclass(frozen=True, slots=True)
@@ -553,9 +554,14 @@ async def run_benchmark(args: argparse.Namespace) -> int:
     previous_timeout = settings.MENU_GROUPING_TIMEOUT_SECONDS
     previous_threshold = settings.MENU_GROUPING_LLM_LINE_THRESHOLD
     previous_image_max = settings.MENU_IMAGE_ENRICH_MAX_ITEMS
+    previous_reasoning_effort = settings.MENU_GROUPING_LLM_REASONING_EFFORT
+    selected_reasoning_effort = args.llm_reasoning_effort.strip().lower()
     settings.MENU_GROUPING_TIMEOUT_SECONDS = args.hybrid_timeout_seconds
     settings.MENU_GROUPING_LLM_LINE_THRESHOLD = args.llm_line_threshold
     settings.MENU_IMAGE_ENRICH_MAX_ITEMS = args.image_enrich_max_items
+    settings.MENU_GROUPING_LLM_REASONING_EFFORT = (
+        "" if selected_reasoning_effort == "none" else selected_reasoning_effort
+    )
 
     started = time.perf_counter()
     case_reports: list[dict[str, Any]] = []
@@ -576,6 +582,7 @@ async def run_benchmark(args: argparse.Namespace) -> int:
         settings.MENU_GROUPING_TIMEOUT_SECONDS = previous_timeout
         settings.MENU_GROUPING_LLM_LINE_THRESHOLD = previous_threshold
         settings.MENU_IMAGE_ENRICH_MAX_ITEMS = previous_image_max
+        settings.MENU_GROUPING_LLM_REASONING_EFFORT = previous_reasoning_effort
 
     summary_stats = _summarize_run(case_reports, strategies)
     finished_at = datetime.now(UTC)
@@ -613,6 +620,7 @@ async def run_benchmark(args: argparse.Namespace) -> int:
             "includeFinalResults": args.include_final_results,
             "finalMaxLines": args.final_max_lines,
             "imageEnrichMaxItems": args.image_enrich_max_items,
+            "llmReasoningEffort": selected_reasoning_effort,
         },
     )
     _write_json(run_dir / "summary.json", summary)
@@ -657,6 +665,13 @@ def parse_args() -> argparse.Namespace:
         type=int,
         default=settings.MENU_GROUPING_LLM_LINE_THRESHOLD,
         help="Hybrid threshold: invoke LLM when line count exceeds this value",
+    )
+    parser.add_argument(
+        "--llm-reasoning-effort",
+        type=str,
+        choices=SUPPORTED_REASONING_EFFORTS,
+        default="minimal",
+        help="LLM reasoning effort for grouping (default: minimal; use none to omit reasoning override)",
     )
     parser.add_argument(
         "--include-final-results",
