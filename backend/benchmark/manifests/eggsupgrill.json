@@ -1,0 +1,11 @@
+{
+  "name": "eggsupgrill-batch",
+  "language": "en",
+  "cases": [
+    {
+      "id": "eggsupgrill",
+      "imagePath": "../dataset/eggsupgrill.jpg",
+      "notes": "eggsupgrill benchmark case"
+    }
+  ]
+}

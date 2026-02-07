@@ -48,7 +48,7 @@ class Settings(BaseSettings):
     MENU_DISH_FANOUT_ADAPTIVE: bool = True
     MENU_DISH_FANOUT_MAX_CONCURRENCY: int = 100
     MENU_IMAGE_ENRICH_MAX_ITEMS: int = 30
-    DEBUG_TOOLS_ENABLED: bool = False
+    DEBUG_TOOLS_ENABLED: bool = True
     BENCHMARK_OUTPUT_DIR: str = "benchmark/output"
 
 
