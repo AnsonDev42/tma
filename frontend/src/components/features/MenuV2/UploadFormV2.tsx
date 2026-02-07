@@ -35,7 +35,7 @@ const GROUPING_MODE_OPTIONS: Array<{
 	{
 		value: "llm",
 		label: "LLM-based",
-		description: "Auto paragraph grouping with LLM",
+		description: "Layout-aware segment grouping with LLM",
 	},
 ];
 

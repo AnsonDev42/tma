@@ -7,6 +7,7 @@ from src.core.config import settings
 from src.core.security import verify_jwt
 from src.menu_engine.analysis import (
     DipAutoGroupAnalysisFlow,
+    DipLayoutGroupingExperimentFlow,
     DipLinesOnlyAnalysisFlow,
     MenuAnalysisService,
     MenuFlowRegistry,
@@ -53,9 +54,13 @@ def get_menu_flow_registry() -> MenuFlowRegistry:
     registered_flows = {
         DipAutoGroupAnalysisFlow.descriptor.id: DipAutoGroupAnalysisFlow(),
         DipLinesOnlyAnalysisFlow.descriptor.id: DipLinesOnlyAnalysisFlow(),
+        DipLayoutGroupingExperimentFlow.descriptor.id: DipLayoutGroupingExperimentFlow(),
     }
 
     enabled_flow_ids = _parse_csv(settings.MENU_ENABLED_FLOW_IDS)
+    experimental_flow_id = DipLayoutGroupingExperimentFlow.descriptor.id
+    if experimental_flow_id not in enabled_flow_ids:
+        enabled_flow_ids.append(experimental_flow_id)
     enabled_flows = [
         registered_flows[flow_id]
         for flow_id in enabled_flow_ids
@@ -64,10 +69,12 @@ def get_menu_flow_registry() -> MenuFlowRegistry:
     if not enabled_flows:
         enabled_flows = list(registered_flows.values())
 
+    aliases = _parse_alias_map(settings.MENU_FLOW_ALIASES)
+    aliases.setdefault("layoutexp", experimental_flow_id)
     return MenuFlowRegistry(
         flows=enabled_flows,
         default_flow_id=settings.MENU_DEFAULT_FLOW_ID,
-        aliases=_parse_alias_map(settings.MENU_FLOW_ALIASES),
+        aliases=aliases,
     )
 
 

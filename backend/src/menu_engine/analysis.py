@@ -84,6 +84,26 @@ class DipLinesOnlyAnalysisFlow:
         }
 
 
+class DipLayoutGroupingExperimentFlow:
+    descriptor = MenuFlowDescriptor(
+        id="dip.layout_segments_llm.v1",
+        label="DIP Layout Segments LLM (Experimental)",
+        description=(
+            "Experimental Azure DIP OCR flow that splits OCR lines into geometry-aware "
+            "segments before LLM paragraph grouping."
+        ),
+    )
+
+    async def run(
+        self,
+        image: bytes,
+        accept_language: str | None,
+    ) -> dict[str, list[dict[str, Any]]]:
+        return await legacy_menu_service.analyze_menu_image_layout_grouping_experiment(
+            image, accept_language
+        )
+
+
 class FlowNotFoundError(LookupError):
     def __init__(self, requested_flow: str | None, available_flow_ids: list[str]):
         self.requested_flow = requested_flow

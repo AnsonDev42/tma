@@ -39,13 +39,17 @@ class Settings(BaseSettings):
     FATSECRET_CLIENT_SECRET: str
     FATSECRET_BASE_URL: str
     MENU_DEFAULT_FLOW_ID: str = "dip.auto_group.v1"
-    MENU_ENABLED_FLOW_IDS: str = "dip.auto_group.v1,dip.lines_only.v1"
+    MENU_ENABLED_FLOW_IDS: str = (
+        "dip.auto_group.v1,dip.lines_only.v1,dip.layout_segments_llm.v1"
+    )
     MENU_FLOW_ALIASES: str = (
-        "default=dip.auto_group.v1,legacy=dip.auto_group.v1,fast=dip.lines_only.v1"
+        "default=dip.auto_group.v1,legacy=dip.auto_group.v1,fast=dip.lines_only.v1,"
+        "layoutexp=dip.layout_segments_llm.v1"
     )
     MENU_GROUPING_TIMEOUT_SECONDS: int = 8
     MENU_GROUPING_LLM_LINE_THRESHOLD: int = 40
     MENU_GROUPING_LLM_REASONING_EFFORT: str = "minimal"
+    MENU_LAYOUT_GROUPING_LLM_MODEL: str = "gpt-5-mini"
     MENU_DISH_FANOUT_CONCURRENCY: int = 50
     MENU_DISH_FANOUT_ADAPTIVE: bool = True
     MENU_DISH_FANOUT_MAX_CONCURRENCY: int = 100

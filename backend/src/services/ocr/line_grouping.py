@@ -2,14 +2,15 @@ import re
 from dataclasses import dataclass
 
 
+PRICE_NUMBER_PATTERN = r"(?:\d{1,3}(?:[.,]\d{3})+|\d{1,4})(?:[.,]\d{1,2})?"
 TRAILING_PRICE_PATTERN = re.compile(
-    r"[-–—]\s*(?:[$€£¥]\s*)?\d{1,4}(?:[.,]\d{1,2})?\s*$"
+    rf"[-–—]\s*(?:[$€£¥]\s*)?{PRICE_NUMBER_PATTERN}(?:\s?円)?\s*$"
 )
 FULL_PRICE_PATTERN = re.compile(
-    r"^(?:[$€£¥]\s*)?\d{1,4}(?:[.,]\d{1,2})?(?:\s?(?:usd|eur|gbp|cad|aud|cny|rmb))?$",
+    rf"^(?:[$€£¥]\s*)?{PRICE_NUMBER_PATTERN}(?:\s?(?:usd|eur|gbp|cad|aud|cny|rmb|円))?$",
     re.IGNORECASE,
 )
-NUMERIC_TOKEN_PATTERN = re.compile(r"\d{1,4}(?:[.,]\d{1,2})?")
+NUMERIC_TOKEN_PATTERN = re.compile(PRICE_NUMBER_PATTERN)
 DESCRIPTION_HINT_TOKENS = (
     "with",
     "served",

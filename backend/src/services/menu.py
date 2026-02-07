@@ -15,6 +15,9 @@ from src.core.vendors.supabase.client import SupabaseClient
 from src.core.vendors.utilities.client import chain, logger, recommendation_chain
 from src.models import Dish
 from src.services.exceptions import OCRError
+from src.services.ocr.layout_grouping_experiment import (
+    build_paragraph_layout_experiment,
+)
 from src.services.ocr.build_paragraph import build_paragraph, translate
 from src.services.utils import BoundingBox, clean_dish_name, duration
 
@@ -505,8 +508,64 @@ async def upload_pipeline_with_dip_auto_group_lines(
     return {"results": serialize_dish_data_filtered(dish_info, dish_info_bounding_box)}
 
 
+@duration
+async def upload_pipeline_with_dip_layout_grouping_experiment(
+    image: bytes,
+    img_height: int,
+    img_width: int,
+    accept_language: str | None,
+) -> dict[str, list[dict]]:
+    language = _resolve_language(accept_language)
+    dip_results_in_lines = await run_dip(image)
+    grouping_start = time.monotonic()
+    paragraphs, individual_lines, grouping_debug = await build_paragraph_layout_experiment(
+        dip_results_in_lines
+    )
+    grouping_elapsed = time.monotonic() - grouping_start
+    logger.info(
+        "Layout experiment grouping elapsed={}s paragraphs={} individual_lines={} mode={} segment_count={} grouped_segment_count={}",
+        round(grouping_elapsed, 3),
+        len(paragraphs),
+        len(individual_lines),
+        grouping_debug.get("mode"),
+        grouping_debug.get("segmentCount", 0),
+        grouping_debug.get("groupedSegmentCount", 0),
+    )
+
+    dish_info_task = process_dip_results(individual_lines, language)
+    dish_description_task = process_dip_paragraph_results(paragraphs, language)
+    fan_out_start = time.monotonic()
+    dish_info, dish_description = await asyncio.gather(
+        dish_info_task, dish_description_task
+    )
+    fan_out_elapsed = time.monotonic() - fan_out_start
+    logger.info(
+        "Layout experiment fan-out elapsed={}s dish_lines={} paragraph_lines={}",
+        round(fan_out_elapsed, 3),
+        len(individual_lines),
+        len(paragraphs),
+    )
+
+    dish_info_bounding_box = normalize_text_bbox_dip(img_width, img_height, individual_lines)
+    dish_description_bounding_box = normalize_text_bbox_dip(img_width, img_height, paragraphs)
+    dish_info.extend(dish_description)
+    dish_info_bounding_box.extend(dish_description_bounding_box)
+
+    return {"results": serialize_dish_data_filtered(dish_info, dish_info_bounding_box)}
+
+
 async def analyze_menu_image(image: bytes, accept_language: str | None) -> dict[str, list[dict]]:
     processed_image, img_height, img_width = process_image(image)
     return await upload_pipeline_with_dip_auto_group_lines(
+        processed_image, img_height, img_width, accept_language
+    )
+
+
+async def analyze_menu_image_layout_grouping_experiment(
+    image: bytes,
+    accept_language: str | None,
+) -> dict[str, list[dict]]:
+    processed_image, img_height, img_width = process_image(image)
+    return await upload_pipeline_with_dip_layout_grouping_experiment(
         processed_image, img_height, img_width, accept_language
     )
