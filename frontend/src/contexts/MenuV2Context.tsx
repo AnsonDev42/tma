@@ -1,3 +1,5 @@
+import { DEFAULT_MENU_GROUPING_MODE } from "@/features/menu/services/menuUploadService";
+import { MenuGroupingMode } from "@/features/menu/services/menuUploadService";
 import { DishProps } from "@/types/DishProps.tsx";
 import { UploadProps } from "@/types/UploadProps.ts";
 import { useUploadsState } from "@/utils/hooks/useUploadsState.ts";
@@ -27,6 +29,7 @@ interface MenuState {
 	locationPreviewDishId: number | null;
 	orderItems: OrderItem[];
 	viewMode: MenuViewMode;
+	groupingMode: MenuGroupingMode;
 }
 
 type MenuAction =
@@ -42,7 +45,8 @@ type MenuAction =
 			payload: { dishId: number; quantity: number };
 	  }
 	| { type: "CLEAR_ORDER" }
-	| { type: "SET_VIEW_MODE"; payload: MenuViewMode };
+	| { type: "SET_VIEW_MODE"; payload: MenuViewMode }
+	| { type: "SET_GROUPING_MODE"; payload: MenuGroupingMode };
 
 interface MenuV2ContextType extends MenuState {
 	setSelectedImage: (upload: UploadProps | null) => void;
@@ -51,6 +55,7 @@ interface MenuV2ContextType extends MenuState {
 	setSelectedDish: (id: number | null) => void;
 	setLocationPreviewDishId: (id: number | null) => void;
 	setViewMode: (mode: MenuViewMode) => void;
+	setGroupingMode: (mode: MenuGroupingMode) => void;
 	addToOrder: (dish: DishProps) => void;
 	removeFromOrder: (dishId: number) => void;
 	updateOrderQuantity: (dishId: number, quantity: number) => void;
@@ -65,6 +70,7 @@ const initialState: MenuState = {
 	locationPreviewDishId: null,
 	orderItems: [],
 	viewMode: "balanced",
+	groupingMode: DEFAULT_MENU_GROUPING_MODE,
 };
 
 function menuReducer(state: MenuState, action: MenuAction): MenuState {
@@ -117,6 +123,8 @@ function menuReducer(state: MenuState, action: MenuAction): MenuState {
 			return { ...state, locationPreviewDishId: action.payload };
 		case "SET_VIEW_MODE":
 			return { ...state, viewMode: action.payload };
+		case "SET_GROUPING_MODE":
+			return { ...state, groupingMode: action.payload };
 		case "ADD_TO_ORDER": {
 			const existingItem = state.orderItems.find(
 				(item) => item.dish.id === action.payload.id,
@@ -218,6 +226,10 @@ export const MenuV2Provider: React.FC<MenuV2ProviderProps> = ({ children }) => {
 		dispatch({ type: "SET_VIEW_MODE", payload: mode });
 	}, []);
 
+	const setGroupingMode = useCallback((mode: MenuGroupingMode) => {
+		dispatch({ type: "SET_GROUPING_MODE", payload: mode });
+	}, []);
+
 	const addToOrder = useCallback(
 		(dish: DishProps) => {
 			const existingItem = state.orderItems.find(
@@ -294,6 +306,7 @@ export const MenuV2Provider: React.FC<MenuV2ProviderProps> = ({ children }) => {
 			setSelectedDish,
 			setLocationPreviewDishId,
 			setViewMode,
+			setGroupingMode,
 			addToOrder,
 			removeFromOrder,
 			updateOrderQuantity,
@@ -307,6 +320,7 @@ export const MenuV2Provider: React.FC<MenuV2ProviderProps> = ({ children }) => {
 			setSelectedDish,
 			setLocationPreviewDishId,
 			setViewMode,
+			setGroupingMode,
 			addToOrder,
 			removeFromOrder,
 			updateOrderQuantity,

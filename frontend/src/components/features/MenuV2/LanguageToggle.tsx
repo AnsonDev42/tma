@@ -14,7 +14,7 @@ import { toast } from "sonner";
 
 const LanguageToggle: React.FC = () => {
 	const { selectedLanguage, setSelectedLanguage } = useLanguageContext();
-	const { selectedImage, setDishes } = useMenuV2();
+	const { selectedImage, setDishes, groupingMode } = useMenuV2();
 	const { isDark } = useTheme();
 	const session = useContext(SessionContext)?.session;
 	const isE2EAuthBypassEnabled =
@@ -99,20 +99,23 @@ const LanguageToggle: React.FC = () => {
 		formData.append("file", file);
 		formData.append("file_name", "reprocessed_image.jpg");
 
-		toast.promise(uploadMenuData(formData, jwt, languageToConfirm), {
-			loading: `Reprocessing menu with ${languageToConfirm.label}...`,
-			success: (data) => {
-				setDishes(data as DishProps[]);
-				setIsProcessing(false);
-				setShowConfirmation(false);
-				return `Menu updated in ${languageToConfirm.label}.`;
+		toast.promise(
+			uploadMenuData(formData, jwt, languageToConfirm, groupingMode),
+			{
+				loading: `Reprocessing menu with ${languageToConfirm.label}...`,
+				success: (data) => {
+					setDishes(data as DishProps[]);
+					setIsProcessing(false);
+					setShowConfirmation(false);
+					return `Menu updated in ${languageToConfirm.label}.`;
+				},
+				error: (error) => {
+					setIsProcessing(false);
+					setShowConfirmation(false);
+					return `Error: ${(error as Error).message}`;
+				},
 			},
-			error: (error) => {
-				setIsProcessing(false);
-				setShowConfirmation(false);
-				return `Error: ${(error as Error).message}`;
-			},
-		});
+		);
 	};
 
 	const confirmationDialog =
