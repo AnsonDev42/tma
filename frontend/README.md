@@ -11,6 +11,14 @@ pnpm preview
 pnpm check
 ```
 
+## Environment Variables
+
+- `VITE_SUPABASE_URL`
+- `VITE_SUPABASE_PUBLIC_ANON_KEY`
+- `VITE_DEBUG_TOOLS` (`true` or `false`)
+- `VITE_PUBLIC_POSTHOG_KEY` (optional; enables analytics + consent banner when set)
+- `VITE_PUBLIC_POSTHOG_HOST` (optional; defaults to `https://us.i.posthog.com`)
+
 ## E2E (Playwright)
 
 Install browser runtime once:

@@ -1,3 +1,4 @@
+import AnalyticsProvider from "@/contexts/AnalyticsProvider.tsx";
 import { Language, LanguageProvider } from "@/contexts/LanguageContext.tsx";
 import { SessionProvider } from "@/contexts/SessionContext.tsx";
 import React from "react";
@@ -8,10 +9,12 @@ const initialLanguage: Language = { value: "en-us", label: "English" };
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
 	<React.StrictMode>
-		<SessionProvider>
-			<LanguageProvider initialLanguage={initialLanguage}>
-				<App />
-			</LanguageProvider>
-		</SessionProvider>
+		<AnalyticsProvider>
+			<SessionProvider>
+				<LanguageProvider initialLanguage={initialLanguage}>
+					<App />
+				</LanguageProvider>
+			</SessionProvider>
+		</AnalyticsProvider>
 	</React.StrictMode>,
 );
