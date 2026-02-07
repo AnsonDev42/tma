@@ -1,6 +1,8 @@
-import time
-import os
+import asyncio
 import json
+import os
+import time
+
 from src.services.ocr.build_paragraph import build_paragraph
 
 if __name__ == "__main__":
@@ -11,5 +13,5 @@ if __name__ == "__main__":
     )
     with open(abs_json_path) as f:
         json_data = json.load(f)
-        print(build_paragraph(json_data))
+        print(asyncio.run(build_paragraph(json_data)))
     print(f"Elapsed time: {time.time() - start}")

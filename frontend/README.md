@@ -30,6 +30,27 @@ pnpm test:e2e:report
 
 E2E auth bypass is enabled only inside `playwright.config.ts` via `VITE_E2E_AUTH_BYPASS=true`.
 
+## Benchmark Debug Page
+
+Set:
+
+```bash
+VITE_DEBUG_TOOLS=true
+```
+
+Then open:
+
+```text
+/debug/benchmark
+```
+
+The page reads benchmark artifacts from backend debug endpoints:
+
+- `GET /debug/benchmark/runs`
+- `GET /debug/benchmark/runs/{run_id}/summary`
+- `GET /debug/benchmark/runs/{run_id}/cases/{case_id}`
+- `GET /debug/benchmark/runs/{run_id}/cases/{case_id}/image`
+
 ## Capture Deterministic Demo Output
 
 Use this when you have a raw `/menu/analyze` response and want a stable JSON file for `public/` demos.
