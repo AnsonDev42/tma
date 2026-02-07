@@ -18,3 +18,11 @@ class GroupedParagraphs(BaseModel):
 
     def __str__(self):
         return "\n".join([str(p) for p in self.Paragraphs])
+
+
+class SegmentGroup(BaseModel):
+    segment_indices: list[int]
+
+
+class GroupedSegments(BaseModel):
+    Paragraphs: list[SegmentGroup]

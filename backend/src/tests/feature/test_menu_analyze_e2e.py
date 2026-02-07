@@ -215,6 +215,46 @@ def test_menu_analyze_fast_flow_uses_lines_only_path(client, sample_image_bytes,
     assert len(payload["results"]) == 1
 
 
+def test_menu_analyze_layout_experiment_flow_uses_experimental_pipeline(
+    client,
+    sample_image_bytes,
+    monkeypatch,
+):
+    async def fake_layout_pipeline(_image: bytes, _accept_language: str | None):
+        return {
+            "results": [
+                {
+                    "id": 0,
+                    "info": {
+                        "description": "layout description",
+                        "text": "layout item",
+                        "text_translation": "layout item",
+                        "img_src": None,
+                    },
+                    "boundingBox": {"x": 0.1, "y": 0.1, "w": 0.2, "h": 0.1},
+                }
+            ]
+        }
+
+    monkeypatch.setattr(
+        "src.services.menu.analyze_menu_image_layout_grouping_experiment",
+        fake_layout_pipeline,
+    )
+
+    files = {"file": ("menu.jpeg", sample_image_bytes, "image/jpeg")}
+    response = client.post(
+        "/menu/analyze?flowId=layoutexp",
+        files=files,
+        headers={"Accept-Language": "en"},
+    )
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["meta"]["flowId"] == "dip.layout_segments_llm.v1"
+    assert payload["meta"]["totalItems"] == 1
+    assert payload["results"][0]["info"]["text"] == "layout item"
+
+
 def test_menu_flow_catalog(client):
     response = client.get("/menu/flows")
     assert response.status_code == 200
@@ -223,3 +263,4 @@ def test_menu_flow_catalog(client):
     assert "defaultFlowId" in payload
     assert "flows" in payload
     assert any(flow["id"] == "dip.auto_group.v1" for flow in payload["flows"])
+    assert any(flow["id"] == "dip.layout_segments_llm.v1" for flow in payload["flows"])

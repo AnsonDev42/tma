@@ -9,6 +9,7 @@ This folder contains a reusable benchmark framework for OCR/grouping strategy co
   - `heuristic`
   - `hybrid`
   - `llm` (forced LLM grouping)
+  - `layout_llm` (experimental line-segment-aware LLM grouping)
 - Optional final extraction latency/result payload per strategy
 - Optional pseudo-accuracy metrics against a reference menu JSON
 
@@ -39,7 +40,7 @@ cd backend
 PYTHONPATH=. uv run python benchmark/run.py \
   --manifest benchmark/manifests/demo_manifest.json \
   --output benchmark/output \
-  --strategies heuristic,hybrid,llm \
+  --strategies heuristic,hybrid,llm,layout_llm \
   --llm-reasoning-effort minimal \
   --hybrid-timeout-seconds 8 \
   --forced-llm-timeout-seconds 30

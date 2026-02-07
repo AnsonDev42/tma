@@ -8,7 +8,7 @@ export type MenuGroupingMode = "heuristic" | "llm";
 
 const MENU_ANALYZE_FLOW_ID_BY_MODE: Record<MenuGroupingMode, string> = {
 	heuristic: "dip.lines_only.v1",
-	llm: "dip.auto_group.v1",
+	llm: "dip.layout_segments_llm.v1",
 };
 
 export const DEFAULT_MENU_GROUPING_MODE: MenuGroupingMode = "heuristic";

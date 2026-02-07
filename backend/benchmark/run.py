@@ -23,10 +23,18 @@ from src.services.menu import (
     serialize_dish_data_filtered,
 )
 from src.services.ocr.build_paragraph import _group_with_llm, build_paragraph
+from src.services.ocr.layout_grouping_experiment import (
+    build_paragraph_layout_experiment,
+)
 from src.services.ocr.line_grouping import build_line_features, heuristic_group_lines
 
-StrategyName = Literal["heuristic", "hybrid", "llm"]
-SUPPORTED_STRATEGIES: tuple[StrategyName, ...] = ("heuristic", "hybrid", "llm")
+StrategyName = Literal["heuristic", "hybrid", "llm", "layout_llm"]
+SUPPORTED_STRATEGIES: tuple[StrategyName, ...] = (
+    "heuristic",
+    "hybrid",
+    "llm",
+    "layout_llm",
+)
 SUPPORTED_REASONING_EFFORTS = ("none", "minimal", "low", "medium", "high")
 
 
@@ -238,6 +246,23 @@ async def _run_strategy(
                 paragraph_lines, individual_lines, _ = _materialize_paragraphs(
                     strategy_input, group_list
                 )
+            finally:
+                settings.MENU_GROUPING_TIMEOUT_SECONDS = previous_timeout
+        elif strategy == "layout_llm":
+            previous_timeout = settings.MENU_GROUPING_TIMEOUT_SECONDS
+            settings.MENU_GROUPING_TIMEOUT_SECONDS = forced_llm_timeout_seconds
+            try:
+                (
+                    paragraph_lines,
+                    individual_lines,
+                    grouping_debug,
+                ) = await build_paragraph_layout_experiment(strategy_input)
+                group_list = [
+                    sorted({int(idx) for idx in group if isinstance(idx, int)})
+                    for group in grouping_debug.get("groupedSourceLineGroups", [])
+                    if group
+                ]
+                notes.append(str(grouping_debug.get("mode", "layout_llm")))
             finally:
                 settings.MENU_GROUPING_TIMEOUT_SECONDS = previous_timeout
         else:

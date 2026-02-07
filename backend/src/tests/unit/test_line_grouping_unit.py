@@ -74,3 +74,21 @@ def test_heuristic_grouping_does_not_anchor_from_price_only_lines():
     assert features[0].is_numeric_only is True
     assert decision.groups == []
     assert "description_without_title" in decision.ambiguous_reasons
+
+
+def test_build_line_features_detects_yen_price_tokens():
+    dip_lines = [
+        {
+            "content": "1,200円",
+            "polygon": {"x_coords": [10, 80], "y_coords": [10, 30]},
+        },
+        {
+            "content": "Chicken Karaage",
+            "polygon": {"x_coords": [100, 280], "y_coords": [10, 30]},
+        },
+    ]
+
+    features = build_line_features(dip_lines)
+
+    assert features[0].has_price_like_pattern is True
+    assert features[1].has_price_like_pattern is False
