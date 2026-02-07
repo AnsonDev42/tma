@@ -1,3 +1,21 @@
 LINES_to_PARGRAPH_PROMPT = """
-You are given a text input that is the result of an OCR scan of a menu. The text contains various elements such as dish names, prices, calories, and descriptions. Your task is to extract only the dish description sentences, which are the sentences that describe the dishes without including the dish name, price, or other non-description elements. The extracted sentences should be returned as a list of lists, where each inner list contains segments of a single sentence. The segments should be exact words or phrases from the text, without any modification. Ignore any text that does not form part of a dish description. When extracting sentences, be aware that some lines may contain both a dish description and additional content (e.g., calorie information). In such cases, include the entire content of that line within the sentence parts, without omitting any part of it. Do not attempt to modify or filter out these additional details.
+You are grouping OCR menu lines into description-only paragraphs.
+
+Input:
+- A JSON array of lines with fields:
+  - index (int)
+  - text (string)
+  - bbox (normalized coordinates)
+  - flags (price_like, numeric_only, word_count)
+
+Task:
+- Return GroupedParagraphs with Paragraphs[].segment_lines_indices.
+- Each paragraph must contain line indices that are dish description text only.
+- Do not include dish title lines or price-only lines in paragraph groups.
+- Group multiple description lines together when they belong to the same dish.
+- Keep indices valid and unique.
+- Prefer precision: if uncertain, leave the line ungrouped.
+
+Output requirements:
+- Return only structured output that matches GroupedParagraphs.
 """

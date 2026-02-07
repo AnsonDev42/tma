@@ -13,9 +13,6 @@ def parse_cors(v: Any) -> list[str] | str:
     raise ValueError(v)
 
 
-# env_file_path = os.path.join(os.path.dirname(__file__), "../../.env")
-
-
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
         env_file=".env", env_ignore_empty=True, extra="ignore"
@@ -45,6 +42,14 @@ class Settings(BaseSettings):
     MENU_FLOW_ALIASES: str = (
         "default=dip.auto_group.v1,legacy=dip.auto_group.v1,fast=dip.lines_only.v1"
     )
+    MENU_GROUPING_TIMEOUT_SECONDS: int = 8
+    MENU_GROUPING_LLM_LINE_THRESHOLD: int = 40
+    MENU_DISH_FANOUT_CONCURRENCY: int = 50
+    MENU_DISH_FANOUT_ADAPTIVE: bool = True
+    MENU_DISH_FANOUT_MAX_CONCURRENCY: int = 100
+    MENU_IMAGE_ENRICH_MAX_ITEMS: int = 30
+    DEBUG_TOOLS_ENABLED: bool = False
+    BENCHMARK_OUTPUT_DIR: str = "benchmark/output"
 
 
 settings = Settings()

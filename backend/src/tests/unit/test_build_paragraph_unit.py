@@ -1,5 +1,7 @@
 from types import SimpleNamespace
 
+import pytest
+
 from src.services.ocr.build_paragraph import build_paragraph
 from src.services.ocr.models import GroupedParagraphs, Lines
 
@@ -17,7 +19,8 @@ def _sample_dip_lines() -> list[dict]:
     ]
 
 
-def test_build_paragraph_handles_reasoning_first_output(monkeypatch):
+@pytest.mark.asyncio
+async def test_build_paragraph_async_parse_success(monkeypatch):
     parsed = GroupedParagraphs(Paragraphs=[Lines(segment_lines_indices=[1])])
     completion = SimpleNamespace(
         output_parsed=parsed,
@@ -26,13 +29,21 @@ def test_build_paragraph_handles_reasoning_first_output(monkeypatch):
         status="completed",
     )
 
-    class FakeOpenAI:
+    class FakeAsyncOpenAI:
         def __init__(self, *args, **kwargs):
-            self.responses = SimpleNamespace(parse=lambda **_kwargs: completion)
+            async def _parse(**_kwargs):
+                return completion
 
-    monkeypatch.setattr("src.services.ocr.build_paragraph.OpenAI", FakeOpenAI)
+            self.responses = SimpleNamespace(parse=_parse)
 
-    paragraph_lines, individual_lines = build_paragraph(_sample_dip_lines())
+    monkeypatch.setattr(
+        "src.services.ocr.build_paragraph.should_invoke_llm_grouping",
+        lambda *_args, **_kwargs: True,
+    )
+    monkeypatch.setattr("src.services.ocr.build_paragraph.AsyncOpenAI", FakeAsyncOpenAI)
+    monkeypatch.setattr("src.services.ocr.build_paragraph._openai_client", None)
+
+    paragraph_lines, individual_lines = await build_paragraph(_sample_dip_lines())
 
     assert len(paragraph_lines) == 1
     assert paragraph_lines[0]["content"] == "Dish description"
@@ -40,22 +51,37 @@ def test_build_paragraph_handles_reasoning_first_output(monkeypatch):
     assert individual_lines[0]["content"] == "Dish Name"
 
 
-def test_build_paragraph_falls_back_when_no_structured_output(monkeypatch):
-    completion = SimpleNamespace(
-        output_parsed=None,
-        output=[SimpleNamespace(type="reasoning")],
-        output_text="",
-        status="completed",
+@pytest.mark.asyncio
+async def test_build_paragraph_timeout_falls_back_to_lines_only(monkeypatch):
+    async def fake_group_with_llm(_features):
+        raise TimeoutError()
+
+    monkeypatch.setattr(
+        "src.services.ocr.build_paragraph.should_invoke_llm_grouping",
+        lambda *_args, **_kwargs: True,
     )
-
-    class FakeOpenAI:
-        def __init__(self, *args, **kwargs):
-            self.responses = SimpleNamespace(parse=lambda **_kwargs: completion)
-
-    monkeypatch.setattr("src.services.ocr.build_paragraph.OpenAI", FakeOpenAI)
+    monkeypatch.setattr("src.services.ocr.build_paragraph._group_with_llm", fake_group_with_llm)
 
     dip_lines = _sample_dip_lines()
-    paragraph_lines, individual_lines = build_paragraph(dip_lines)
+    paragraph_lines, individual_lines = await build_paragraph(dip_lines)
+
+    assert paragraph_lines == []
+    assert len(individual_lines) == len(dip_lines)
+
+
+@pytest.mark.asyncio
+async def test_build_paragraph_parse_fallback_to_lines_only(monkeypatch):
+    async def fake_group_with_llm(_features):
+        return None
+
+    monkeypatch.setattr(
+        "src.services.ocr.build_paragraph.should_invoke_llm_grouping",
+        lambda *_args, **_kwargs: True,
+    )
+    monkeypatch.setattr("src.services.ocr.build_paragraph._group_with_llm", fake_group_with_llm)
+
+    dip_lines = _sample_dip_lines()
+    paragraph_lines, individual_lines = await build_paragraph(dip_lines)
 
     assert paragraph_lines == []
     assert len(individual_lines) == len(dip_lines)

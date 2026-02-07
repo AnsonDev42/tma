@@ -2,6 +2,7 @@ import LanguageToggle from "@/components/features/MenuV2/LanguageToggle";
 import OrderPanelToggle from "@/components/ui/OrderPanelToggle";
 import { useTheme } from "@/contexts/ThemeContext";
 import React from "react";
+import { Link } from "react-router-dom";
 
 interface HeaderV2Props {
 	title?: string;
@@ -14,6 +15,7 @@ const HeaderV2: React.FC<HeaderV2Props> = ({
 	isOrderPanelOpen,
 	onOrderPanelToggle,
 }) => {
+	const isDebugToolsEnabled = import.meta.env.VITE_DEBUG_TOOLS === "true";
 	const { toggleTheme, isDark } = useTheme();
 
 	return (
@@ -40,6 +42,18 @@ const HeaderV2: React.FC<HeaderV2Props> = ({
 
 				<div className="flex items-center gap-2 sm:gap-3">
 					<LanguageToggle />
+					{isDebugToolsEnabled ? (
+						<Link
+							to="/debug/benchmark"
+							className={`rounded-md px-2 py-1 text-xs font-semibold ${
+								isDark
+									? "border border-slate-700 bg-slate-900 text-slate-200 hover:bg-slate-800"
+									: "border border-slate-300 bg-white text-slate-700 hover:bg-slate-100"
+							}`}
+						>
+							Debug
+						</Link>
+					) : null}
 					<button
 						type="button"
 						onClick={toggleTheme}

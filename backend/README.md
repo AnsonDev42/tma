@@ -53,3 +53,30 @@ Run ```uv sync``` to install dependencies
 - `MENU_DEFAULT_FLOW_ID` (default: `dip.auto_group.v1`)
 - `MENU_ENABLED_FLOW_IDS` (default: `dip.auto_group.v1,dip.lines_only.v1`)
 - `MENU_FLOW_ALIASES` (default maps `default`, `legacy`, `fast`)
+- `MENU_GROUPING_TIMEOUT_SECONDS` (default: `8`)
+- `MENU_GROUPING_LLM_LINE_THRESHOLD` (default: `40`)
+- `MENU_DISH_FANOUT_CONCURRENCY` (default: `12`)
+- `MENU_DISH_FANOUT_ADAPTIVE` (default: `true`)
+- `MENU_DISH_FANOUT_MAX_CONCURRENCY` (default: `100`)
+- `MENU_IMAGE_ENRICH_MAX_ITEMS` (default: `30`)
+- `DEBUG_TOOLS_ENABLED` (default: `false`)
+- `BENCHMARK_OUTPUT_DIR` (default: `benchmark/output`)
+
+## Benchmark tools
+
+- Framework: `benchmark/`
+- Run bulk benchmark:
+
+```bash
+cd backend
+PYTHONPATH=. uv run python benchmark/run.py \
+  --manifest benchmark/manifests/demo_manifest.json \
+  --output benchmark/output \
+  --strategies heuristic,hybrid,llm
+```
+
+- Optional debug API endpoints (require auth, and `DEBUG_TOOLS_ENABLED=true`):
+  - `GET /debug/benchmark/runs`
+  - `GET /debug/benchmark/runs/{run_id}/summary`
+  - `GET /debug/benchmark/runs/{run_id}/cases/{case_id}`
+  - `GET /debug/benchmark/runs/{run_id}/cases/{case_id}/image`

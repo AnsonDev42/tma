@@ -2,9 +2,8 @@ import asyncio
 import base64
 import datetime
 import time
-from asyncio import gather
 from dataclasses import asdict
-from typing import Any
+from typing import Any, Awaitable
 
 import cv2
 import numpy as np
@@ -31,6 +30,43 @@ def _resolve_language(accept_language: str | None) -> str:
         return "en"
     language = accept_language.split(",")[0].strip()
     return language or "en"
+
+
+def _unknown_dish_result() -> dict[str, Any]:
+    return {
+        "description": None,
+        "text": "Unknown",
+        "text_translation": None,
+        "img_src": None,
+    }
+
+
+async def _gather_with_limit(
+    coroutines: list[Awaitable[Any]],
+    concurrency_limit: int,
+) -> list[Any]:
+    if not coroutines:
+        return []
+
+    semaphore = asyncio.Semaphore(max(1, concurrency_limit))
+
+    async def _run(coroutine: Awaitable[Any]) -> Any:
+        async with semaphore:
+            return await coroutine
+
+    return await asyncio.gather(*[_run(coroutine) for coroutine in coroutines])
+
+
+def _resolve_fanout_concurrency(task_count: int) -> int:
+    base_limit = max(1, settings.MENU_DISH_FANOUT_CONCURRENCY)
+    max_limit = max(base_limit, settings.MENU_DISH_FANOUT_MAX_CONCURRENCY)
+
+    if task_count <= 0:
+        return base_limit
+    if not settings.MENU_DISH_FANOUT_ADAPTIVE:
+        return base_limit
+
+    return min(max_limit, max(base_limit, task_count))
 
 
 @duration
@@ -223,30 +259,32 @@ async def get_dish_image(
 
 
 @duration
-async def get_dish_data(dish_name: str, accept_language: str) -> dict[str, Any]:
+async def get_dish_data(
+    dish_name: str,
+    accept_language: str,
+    *,
+    include_images: bool = True,
+) -> dict[str, Any]:
     cleaned_name = clean_dish_name(dish_name)
     if not cleaned_name:
-        return {
-            "description": None,
-            "text": "Unknown",
-            "text_translation": None,
-            "img_src": None,
-        }
+        return _unknown_dish_result()
 
     dish = await get_dish_info_via_openai(cleaned_name, accept_language)
 
-    try:
-        if dish.get("text") == "Unknown":
-            raise OCRError("Unknown dish name")
-        img_src = await get_dish_image(dish.get("text"), 10, enable_cache=True)
-    except (HTTPStatusError, OCRError, APIError):
-        img_src = None
+    img_src = None
+    if include_images:
+        try:
+            if dish.get("text") == "Unknown":
+                raise OCRError("Unknown dish name")
+            img_src = await get_dish_image(dish.get("text"), 10, enable_cache=True)
+        except (HTTPStatusError, OCRError, APIError):
+            img_src = None
 
     return dish | {"img_src": img_src}
 
 
 async def get_paragraph_data(dish_name: str, accept_language: str) -> dict[str, Any]:
-    paragraph_translation = translate(dish_name, accept_language)
+    paragraph_translation = await translate(dish_name, accept_language)
     return {
         "description": paragraph_translation,
         "text": paragraph_translation,
@@ -359,8 +397,56 @@ async def run_dip(image: bytes) -> list[dict]:
 
 @duration
 async def process_dip_results(dip_results: list[dict], accept_language: str) -> list[dict]:
-    tasks = [get_dish_data(line["content"], accept_language) for line in dip_results]
-    return await asyncio.gather(*tasks)
+    if not dip_results:
+        return []
+
+    include_images = len(dip_results) <= settings.MENU_IMAGE_ENRICH_MAX_ITEMS
+    cleaned_lookup: dict[str, str] = {}
+    line_keys: list[str | None] = []
+
+    for line in dip_results:
+        cleaned_name = clean_dish_name(line["content"])
+        if not cleaned_name:
+            line_keys.append(None)
+            continue
+        normalized_key = cleaned_name.casefold()
+        cleaned_lookup.setdefault(normalized_key, cleaned_name)
+        line_keys.append(normalized_key)
+
+    async def _fetch_unique(normalized_key: str, cleaned_name: str) -> tuple[str, dict[str, Any]]:
+        dish = await get_dish_data(
+            cleaned_name,
+            accept_language,
+            include_images=include_images,
+        )
+        return normalized_key, dish
+
+    unique_tasks = [
+        _fetch_unique(normalized_key, cleaned_name)
+        for normalized_key, cleaned_name in cleaned_lookup.items()
+    ]
+    fanout_concurrency = _resolve_fanout_concurrency(len(unique_tasks))
+    unique_results = await _gather_with_limit(
+        unique_tasks,
+        fanout_concurrency,
+    )
+    resolved_by_key = {key: value for key, value in unique_results}
+
+    results: list[dict] = []
+    for key in line_keys:
+        if key is None:
+            results.append(_unknown_dish_result())
+            continue
+        results.append(resolved_by_key.get(key, _unknown_dish_result()))
+
+    logger.info(
+        "Dish fan-out stats total={} unique={} include_images={} concurrency={}",
+        len(dip_results),
+        len(cleaned_lookup),
+        include_images,
+        fanout_concurrency,
+    )
+    return results
 
 
 @duration
@@ -368,7 +454,13 @@ async def process_dip_paragraph_results(
     dip_results: list[dict], accept_language: str
 ) -> list[dict]:
     tasks = [get_paragraph_data(line["content"], accept_language) for line in dip_results]
-    return await asyncio.gather(*tasks)
+    fanout_concurrency = _resolve_fanout_concurrency(len(tasks))
+    logger.info(
+        "Paragraph fan-out stats total={} concurrency={}",
+        len(tasks),
+        fanout_concurrency,
+    )
+    return await _gather_with_limit(tasks, fanout_concurrency)
 
 
 @duration
@@ -380,11 +472,29 @@ async def upload_pipeline_with_dip_auto_group_lines(
 ) -> dict[str, list[dict]]:
     language = _resolve_language(accept_language)
     dip_results_in_lines = await run_dip(image)
-    paragraphs, individual_lines = build_paragraph(dip_results_in_lines)
+    grouping_start = time.monotonic()
+    paragraphs, individual_lines = await build_paragraph(dip_results_in_lines)
+    grouping_elapsed = time.monotonic() - grouping_start
+    logger.info(
+        "Grouping stage elapsed={}s paragraphs={} individual_lines={}",
+        round(grouping_elapsed, 3),
+        len(paragraphs),
+        len(individual_lines),
+    )
 
     dish_info_task = process_dip_results(individual_lines, language)
     dish_description_task = process_dip_paragraph_results(paragraphs, language)
-    dish_info, dish_description = await gather(dish_info_task, dish_description_task)
+    fan_out_start = time.monotonic()
+    dish_info, dish_description = await asyncio.gather(
+        dish_info_task, dish_description_task
+    )
+    fan_out_elapsed = time.monotonic() - fan_out_start
+    logger.info(
+        "Dish fan-out elapsed={}s dish_lines={} paragraph_lines={}",
+        round(fan_out_elapsed, 3),
+        len(individual_lines),
+        len(paragraphs),
+    )
 
     dish_info_bounding_box = normalize_text_bbox_dip(img_width, img_height, individual_lines)
     dish_description_bounding_box = normalize_text_bbox_dip(img_width, img_height, paragraphs)
