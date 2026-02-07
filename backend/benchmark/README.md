@@ -40,9 +40,12 @@ PYTHONPATH=. uv run python benchmark/run.py \
   --manifest benchmark/manifests/demo_manifest.json \
   --output benchmark/output \
   --strategies heuristic,hybrid,llm \
+  --llm-reasoning-effort minimal \
   --hybrid-timeout-seconds 8 \
   --forced-llm-timeout-seconds 30
 ```
+
+`--llm-reasoning-effort` defaults to `minimal`.
 
 Optional final result generation:
 

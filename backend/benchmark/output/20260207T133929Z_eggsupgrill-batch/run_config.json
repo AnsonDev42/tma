@@ -1,0 +1,15 @@
+{
+  "manifest": "/Users/yaowenshen/workspace/tma/backend/benchmark/manifests/eggsupgrill.json",
+  "output": "/Users/yaowenshen/workspace/tma/backend/benchmark/output/20260207T133929Z_eggsupgrill-batch",
+  "strategies": [
+    "heuristic",
+    "hybrid",
+    "llm"
+  ],
+  "hybridTimeoutSeconds": 50,
+  "forcedLlmTimeoutSeconds": 50,
+  "llmLineThreshold": 40,
+  "includeFinalResults": false,
+  "finalMaxLines": 80,
+  "imageEnrichMaxItems": 30
+}
