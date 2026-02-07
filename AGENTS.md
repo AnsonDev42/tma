@@ -8,6 +8,14 @@ For architecture and high-level backend flow explanations (including mermaid dia
 
 - `SOLUTION_OVERVIEW.md`
 
+If you update `SOLUTION_OVERVIEW.md` or `docs/readme-header.md`, regenerate root `README.md` with:
+
+```bash
+./scripts/generate-readme.sh
+```
+
+This is also enforced by the git `pre-commit` hook (`frontend/.husky/pre-commit`) when those files are staged.
+
 ## Repository Map
 
 - `backend/`: FastAPI service (Python 3.13, `uv`)
