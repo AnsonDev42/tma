@@ -80,6 +80,10 @@ def _extract_llm_groups(completion: Any, total_lines: int) -> list[list[int]] | 
 
 async def _group_with_llm(features) -> list[list[int]] | None:
     payload = build_compact_grouping_payload(features)
+    reasoning_effort = settings.MENU_GROUPING_LLM_REASONING_EFFORT.strip().lower()
+    parse_kwargs = {}
+    if reasoning_effort:
+        parse_kwargs["reasoning"] = {"effort": reasoning_effort}
     start_time = time.monotonic()
     completion = await asyncio.wait_for(
         _get_openai_client().responses.parse(
@@ -89,6 +93,7 @@ async def _group_with_llm(features) -> list[list[int]] | None:
                 {"role": "user", "content": json.dumps(payload, ensure_ascii=True)},
             ],
             text_format=GroupedParagraphs,
+            **parse_kwargs,
         ),
         timeout=settings.MENU_GROUPING_TIMEOUT_SECONDS,
     )
