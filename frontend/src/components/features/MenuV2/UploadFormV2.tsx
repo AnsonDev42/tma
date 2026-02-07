@@ -11,6 +11,7 @@ import { DemoPreset } from "@/features/menu/types";
 import { UploadProps } from "@/types/UploadProps.ts";
 import resizeFile from "@/utils/localImageCompmressor.ts";
 import { addUploadToLocalStorage } from "@/utils/localStorageUploadUtils.ts";
+import { usePostHog } from "posthog-js/react";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import UploadLoginPromptSheet from "./UploadLoginPromptSheet";
@@ -43,6 +44,7 @@ type PendingUploadAction =
 	| { type: "open-picker" }
 	| { type: "upload-file"; file: File }
 	| null;
+type UploadSource = "file_picker" | "drag_drop" | "resume_after_login";
 
 interface UploadFormV2Props {
 	theme: string;
@@ -73,12 +75,18 @@ async function fileToDataUrl(file: Blob): Promise<string> {
 	});
 }
 
+function getFileExtension(file: File): string {
+	const splitName = file.name.split(".");
+	return splitName.length > 1 ? splitName.pop()?.toLowerCase() || "" : "";
+}
+
 const UploadFormV2: React.FC<UploadFormV2Props> = ({
 	theme,
 	className = "",
 	compact = false,
 }) => {
 	const session = useContext(SessionContext)?.session;
+	const posthog = usePostHog();
 	const { selectedLanguage } = useLanguageContext();
 	const { selectedImage, setSelectedImage, groupingMode, setGroupingMode } =
 		useMenuV2();
@@ -93,6 +101,13 @@ const UploadFormV2: React.FC<UploadFormV2Props> = ({
 	const [pendingUploadAction, setPendingUploadAction] =
 		useState<PendingUploadAction>(null);
 	const [isCollapsed, setIsCollapsed] = useState(compact);
+
+	const captureEvent = (
+		eventName: string,
+		properties?: Record<string, string | number | boolean>,
+	) => {
+		posthog.capture(eventName, properties);
+	};
 
 	useEffect(() => {
 		if (compact) {
@@ -111,6 +126,9 @@ const UploadFormV2: React.FC<UploadFormV2Props> = ({
 			return true;
 		}
 
+		captureEvent("menu_upload_auth_required", {
+			action_type: action.type,
+		});
 		setPendingUploadAction(action);
 		setIsLoginPromptOpen(true);
 		return false;
@@ -129,8 +147,10 @@ const UploadFormV2: React.FC<UploadFormV2Props> = ({
 
 	const processFile = async (
 		rawFile: File,
-		options?: { skipAuthGate?: boolean },
+		options?: { skipAuthGate?: boolean; source?: UploadSource },
 	) => {
+		const source = options?.source ?? "file_picker";
+
 		if (
 			!options?.skipAuthGate &&
 			!ensureCanUpload({ type: "upload-file", file: rawFile })
@@ -140,15 +160,30 @@ const UploadFormV2: React.FC<UploadFormV2Props> = ({
 
 		const validationError = validateFile(rawFile);
 		if (validationError) {
+			captureEvent("menu_upload_validation_failed", {
+				source,
+				grouping_mode: groupingMode,
+				file_size_bytes: rawFile.size,
+				file_type: rawFile.type || "unknown",
+			});
 			setErrorMessage(validationError);
 			toast.error(validationError);
 			return;
 		}
 
+		captureEvent("menu_upload_started", {
+			source,
+			grouping_mode: groupingMode,
+			file_size_bytes: rawFile.size,
+			file_type: rawFile.type || "unknown",
+			file_extension: getFileExtension(rawFile),
+			selected_language: selectedLanguage?.value || "en",
+		});
 		setErrorMessage(null);
 		setIsLoading(true);
 
 		try {
+			const uploadStartedAt = performance.now();
 			const compressedFile = await resizeFile(rawFile);
 			const formData = new FormData();
 			formData.append("file", compressedFile);
@@ -170,7 +205,7 @@ const UploadFormV2: React.FC<UploadFormV2Props> = ({
 
 			const imageSrc = await fileToDataUrl(compressedFile);
 
-			await toast.promise(
+			const analyzedDishes = await toast.promise(
 				uploadMenuData(formData, jwt, selectedLanguage, groupingMode),
 				{
 					loading:
@@ -183,7 +218,19 @@ const UploadFormV2: React.FC<UploadFormV2Props> = ({
 						(error as Error).message || "Failed to process menu image.",
 				},
 			);
+
+			captureEvent("menu_upload_succeeded", {
+				source,
+				grouping_mode: groupingMode,
+				dish_count: analyzedDishes.length,
+				duration_ms: Math.round(performance.now() - uploadStartedAt),
+				selected_language: selectedLanguage?.value || "en",
+			});
 		} catch (error) {
+			captureEvent("menu_upload_failed", {
+				source,
+				grouping_mode: groupingMode,
+			});
 			toast.error((error as Error).message || "Failed to process menu image.");
 		} finally {
 			setIsLoading(false);
@@ -191,11 +238,15 @@ const UploadFormV2: React.FC<UploadFormV2Props> = ({
 	};
 
 	const handleDemoSubmit = async (preset: DemoPreset) => {
+		captureEvent("demo_menu_load_started", {
+			preset_id: preset.id,
+			grouping_mode: groupingMode,
+		});
 		setIsLoading(true);
 		setErrorMessage(null);
 
 		try {
-			await toast.promise(loadDemoMenuData(preset.dataUrl), {
+			const demoData = await toast.promise(loadDemoMenuData(preset.dataUrl), {
 				loading: `Loading ${preset.label}...`,
 				success: (data) => {
 					saveUpload(preset.imageSrc, data);
@@ -203,6 +254,14 @@ const UploadFormV2: React.FC<UploadFormV2Props> = ({
 				},
 				error: (error) =>
 					(error as Error).message || "Failed to load demo data.",
+			});
+			captureEvent("demo_menu_load_succeeded", {
+				preset_id: preset.id,
+				dish_count: demoData.length,
+			});
+		} catch {
+			captureEvent("demo_menu_load_failed", {
+				preset_id: preset.id,
 			});
 		} finally {
 			setIsLoading(false);
@@ -213,6 +272,9 @@ const UploadFormV2: React.FC<UploadFormV2Props> = ({
 		if (isLoading) {
 			return;
 		}
+		captureEvent("menu_upload_cta_clicked", {
+			has_existing_result: Boolean(selectedImage),
+		});
 
 		if (!ensureCanUpload({ type: "open-picker" })) {
 			return;
@@ -226,7 +288,12 @@ const UploadFormV2: React.FC<UploadFormV2Props> = ({
 		setIsDragging(false);
 		const droppedFile = event.dataTransfer.files?.[0] ?? null;
 		if (droppedFile) {
-			void processFile(droppedFile);
+			captureEvent("menu_upload_file_dropped", {
+				file_size_bytes: droppedFile.size,
+				file_type: droppedFile.type || "unknown",
+				file_extension: getFileExtension(droppedFile),
+			});
+			void processFile(droppedFile, { source: "drag_drop" });
 		}
 	};
 
@@ -240,13 +307,18 @@ const UploadFormV2: React.FC<UploadFormV2Props> = ({
 		}
 
 		if (actionToResume.type === "open-picker") {
+			captureEvent("menu_upload_picker_opened_after_login");
 			window.setTimeout(() => {
 				inputRef.current?.click();
 			}, 220);
 			return;
 		}
 
-		void processFile(actionToResume.file, { skipAuthGate: true });
+		captureEvent("menu_upload_resumed_after_login");
+		void processFile(actionToResume.file, {
+			skipAuthGate: true,
+			source: "resume_after_login",
+		});
 	};
 
 	return (
@@ -300,7 +372,12 @@ const UploadFormV2: React.FC<UploadFormV2Props> = ({
 						{selectedImage && (
 							<button
 								type="button"
-								onClick={() => setIsCollapsed((previous) => !previous)}
+								onClick={() => {
+									captureEvent("menu_upload_panel_toggled", {
+										will_collapse: !isCollapsed,
+									});
+									setIsCollapsed((previous) => !previous);
+								}}
 								className={`rounded-full px-3 py-1.5 text-xs font-semibold transition-colors ${
 									theme === "dark"
 										? "bg-slate-800 text-slate-200 hover:bg-slate-700"
@@ -343,9 +420,15 @@ const UploadFormV2: React.FC<UploadFormV2Props> = ({
 							<span>Grouping</span>
 							<select
 								value={groupingMode}
-								onChange={(event) =>
-									setGroupingMode(event.target.value as MenuGroupingMode)
-								}
+								onChange={(event) => {
+									const nextGroupingMode = event.target
+										.value as MenuGroupingMode;
+									captureEvent("menu_grouping_mode_changed", {
+										from_mode: groupingMode,
+										to_mode: nextGroupingMode,
+									});
+									setGroupingMode(nextGroupingMode);
+								}}
 								className={`bg-transparent text-xs focus:outline-none ${
 									theme === "dark" ? "text-slate-100" : "text-slate-800"
 								}`}
@@ -384,6 +467,9 @@ const UploadFormV2: React.FC<UploadFormV2Props> = ({
 									type="button"
 									key={preset.id}
 									onClick={() => {
+										captureEvent("demo_menu_card_clicked", {
+											preset_id: preset.id,
+										});
 										void handleDemoSubmit(preset);
 									}}
 									disabled={isLoading}
@@ -438,7 +524,12 @@ const UploadFormV2: React.FC<UploadFormV2Props> = ({
 					onChange={(event) => {
 						const selectedFile = event.target.files?.[0] ?? null;
 						if (selectedFile) {
-							void processFile(selectedFile);
+							captureEvent("menu_upload_file_selected", {
+								file_size_bytes: selectedFile.size,
+								file_type: selectedFile.type || "unknown",
+								file_extension: getFileExtension(selectedFile),
+							});
+							void processFile(selectedFile, { source: "file_picker" });
 						}
 						event.target.value = "";
 					}}
@@ -447,6 +538,7 @@ const UploadFormV2: React.FC<UploadFormV2Props> = ({
 			<UploadLoginPromptSheet
 				isOpen={isLoginPromptOpen}
 				onClose={() => {
+					captureEvent("menu_upload_login_prompt_closed");
 					setIsLoginPromptOpen(false);
 					setPendingUploadAction(null);
 				}}
