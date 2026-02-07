@@ -2,7 +2,9 @@ from types import SimpleNamespace
 
 import pytest
 
+from src.core.config import settings
 from src.services.ocr.build_paragraph import build_paragraph
+from src.services.ocr.build_paragraph import translate
 from src.services.ocr.models import GroupedParagraphs, Lines
 
 
@@ -28,10 +30,12 @@ async def test_build_paragraph_async_parse_success(monkeypatch):
         output_text='{"Paragraphs":[{"segment_lines_indices":[1]}]}',
         status="completed",
     )
+    captured_parse_kwargs = {}
 
     class FakeAsyncOpenAI:
         def __init__(self, *args, **kwargs):
             async def _parse(**_kwargs):
+                captured_parse_kwargs.update(_kwargs)
                 return completion
 
             self.responses = SimpleNamespace(parse=_parse)
@@ -39,6 +43,12 @@ async def test_build_paragraph_async_parse_success(monkeypatch):
     monkeypatch.setattr(
         "src.services.ocr.build_paragraph.should_invoke_llm_grouping",
         lambda *_args, **_kwargs: True,
+    )
+    monkeypatch.setattr(
+        settings,
+        "MENU_GROUPING_LLM_REASONING_EFFORT",
+        "minimal",
+        raising=False,
     )
     monkeypatch.setattr("src.services.ocr.build_paragraph.AsyncOpenAI", FakeAsyncOpenAI)
     monkeypatch.setattr("src.services.ocr.build_paragraph._openai_client", None)
@@ -49,6 +59,7 @@ async def test_build_paragraph_async_parse_success(monkeypatch):
     assert paragraph_lines[0]["content"] == "Dish description"
     assert len(individual_lines) == 1
     assert individual_lines[0]["content"] == "Dish Name"
+    assert captured_parse_kwargs["reasoning"] == {"effort": "minimal"}
 
 
 @pytest.mark.asyncio
@@ -85,3 +96,51 @@ async def test_build_paragraph_parse_fallback_to_lines_only(monkeypatch):
 
     assert paragraph_lines == []
     assert len(individual_lines) == len(dip_lines)
+
+
+@pytest.mark.asyncio
+async def test_translate_adds_global_reasoning_effort(monkeypatch):
+    captured_create_kwargs = {}
+
+    class FakeAsyncOpenAI:
+        def __init__(self, *args, **kwargs):
+            async def _create(**_kwargs):
+                captured_create_kwargs.update(_kwargs)
+                return SimpleNamespace(output_text="hola")
+
+            self.responses = SimpleNamespace(create=_create)
+
+    monkeypatch.setattr(
+        settings,
+        "OPENAI_REASONING_EFFORT",
+        "minimal",
+        raising=False,
+    )
+    monkeypatch.setattr("src.services.ocr.build_paragraph.AsyncOpenAI", FakeAsyncOpenAI)
+    monkeypatch.setattr("src.services.ocr.build_paragraph._openai_client", None)
+
+    translated = await translate("hello", "es")
+
+    assert translated == "hola"
+    assert captured_create_kwargs["reasoning"] == {"effort": "minimal"}
+
+
+@pytest.mark.asyncio
+async def test_translate_skips_reasoning_when_disabled(monkeypatch):
+    captured_create_kwargs = {}
+
+    class FakeAsyncOpenAI:
+        def __init__(self, *args, **kwargs):
+            async def _create(**_kwargs):
+                captured_create_kwargs.update(_kwargs)
+                return SimpleNamespace(output_text="hola")
+
+            self.responses = SimpleNamespace(create=_create)
+
+    monkeypatch.setattr(settings, "OPENAI_REASONING_EFFORT", "none", raising=False)
+    monkeypatch.setattr("src.services.ocr.build_paragraph.AsyncOpenAI", FakeAsyncOpenAI)
+    monkeypatch.setattr("src.services.ocr.build_paragraph._openai_client", None)
+
+    await translate("hello", "es")
+
+    assert "reasoning" not in captured_create_kwargs

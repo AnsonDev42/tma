@@ -16,7 +16,7 @@ from src.services.ocr.line_grouping import (
 )
 from src.services.ocr.llm_utlities import LINES_to_PARGRAPH_PROMPT
 from src.services.ocr.models import GroupedParagraphs
-from src.services.utils import duration
+from src.services.utils import build_openai_reasoning_kwargs, duration
 
 _openai_client: AsyncOpenAI | None = None
 
@@ -80,10 +80,9 @@ def _extract_llm_groups(completion: Any, total_lines: int) -> list[list[int]] | 
 
 async def _group_with_llm(features) -> list[list[int]] | None:
     payload = build_compact_grouping_payload(features)
-    reasoning_effort = settings.MENU_GROUPING_LLM_REASONING_EFFORT.strip().lower()
-    parse_kwargs = {}
-    if reasoning_effort:
-        parse_kwargs["reasoning"] = {"effort": reasoning_effort}
+    parse_kwargs = build_openai_reasoning_kwargs(
+        settings.MENU_GROUPING_LLM_REASONING_EFFORT
+    )
     start_time = time.monotonic()
     completion = await asyncio.wait_for(
         _get_openai_client().responses.parse(
@@ -199,6 +198,7 @@ async def translate(text: str, accept_language: str) -> str:
             {"role": "system", "content": translation_prompt},
             {"role": "user", "content": f"translate to {accept_language}:{text}"},
         ],
+        **build_openai_reasoning_kwargs(),
     )
     return completion.output_text
 
